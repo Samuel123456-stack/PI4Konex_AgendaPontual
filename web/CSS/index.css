@@ -58,7 +58,7 @@
     
     font-family: 'Mulish', sans-serif;
 }
-.selectBusca:hover{
+.selectBusca:hover, .textoBusca:hover{
     border: 1.4px solid #858FA1;
 }
 .selectBusca p, .textoBusca p{

@@ -1,4 +1,3 @@
-
 create database agendapontual;
 
 CREATE USER 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
@@ -193,5 +192,4 @@ CREATE TABLE consulta (
     FOREIGN KEY (fk_feedback) REFERENCES feedback (id_feed),
     FOREIGN KEY (fk_notificacao) REFERENCES notificacao (id_notif),
     FOREIGN KEY (fk_pagamento) REFERENCES pagamento (id_pag)
-    
 );

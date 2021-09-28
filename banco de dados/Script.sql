@@ -131,21 +131,49 @@ CREATE TABLE dias_semana (
     dia varchar(13) not null
 );
 
-CREATE TABLE Horario (
+insert into dias_semana (dia) values
+	('Domingo'),
+    ('Segunda-feira'),
+    ('Terça-feira'),
+    ('Quarta-feira'),
+    ('Quinta-feira'),
+    ('Sexta-feira'),
+    ('Sábado');
+
+CREATE TABLE horario (
     id_hor Integer AUTO_INCREMENT PRIMARY KEY,
-    horario Time not null
+    horario Time null,
+    fk_medico Integer null,
+    FOREIGN KEY (fk_medico) REFERENCES medico (id_med)
 );
+
+INSERT INTO horario (horario) values
+	('08:00'),('08:20'),
+    ('08:40'),('09:00'),
+    ('09:20'),('09:40'),
+    ('10:00'),('10:20'),
+    ('10:40'),('11:00'),
+    ('11:20'),('11:40'),
+    ('13:00'),('13:20'),
+    ('13:40'),('14:00'),
+    ('14:20'),('14:40'),
+    ('15:00'),('15:20'),
+    ('15:40'),('16:00'),
+    ('16:20'),('16:40'),
+    ('17:00'),('17:20'),
+    ('17:40');
 
 CREATE TABLE agenda_medica(
 	id_agen integer AUTO_INCREMENT PRIMARY KEY,
     fk_dias_semana integer null,
     fk_horario Integer null,
-    fk_paciente Integer null,
     fk_medico Integer null,
+    data_agendada date null,
+    fk_paciente Integer null,
     FOREIGN KEY (fk_dias_semana) REFERENCES dias_semana (id_dia),
     FOREIGN KEY (fk_horario) REFERENCES horario (id_hor),
-    FOREIGN KEY (fk_paciente) REFERENCES paciente (id_paci),
-    FOREIGN KEY (fk_medico) REFERENCES medico (id_med)
+    FOREIGN KEY (fk_medico) REFERENCES medico (id_med),
+    FOREIGN KEY (fk_paciente) REFERENCES paciente (id_paci)
 );
 
 CREATE TABLE recepcionista (
@@ -173,23 +201,26 @@ CREATE TABLE consulta (
 	id_con Integer AUTO_INCREMENT PRIMARY KEY,
 	data_consulta Date not null,
 	hora Time not null,
-	confirmada Boolean not null,
-	retorno Boolean not null,
-	hora_chegada Time not null,
-	hora_saida Time not null,
-	duracao Time not null,
+	confirmada Boolean null,
+	retorno Boolean null,
+	hora_chegada Time null,
+	hora_saida Time null,
+	duracao Time null,
 	concluida Boolean null,
-	fez_feedback Boolean null,
-    fk_medico Integer not null,
+	fk_medico Integer not null,
     fk_paciente Integer not null,
     fk_receita Integer null,
     fk_feedback Integer null,
     fk_notificacao Integer null,
-    fk_pagamento Integer not null,
+    fk_pagamento Integer null,
+    fk_feedback Integer null,
     FOREIGN KEY (fk_medico) REFERENCES medico (id_med),
     FOREIGN KEY (fk_paciente) REFERENCES paciente (id_paci),
     FOREIGN KEY (fk_receita) REFERENCES receita (id_rece),
     FOREIGN KEY (fk_feedback) REFERENCES feedback (id_feed),
     FOREIGN KEY (fk_notificacao) REFERENCES notificacao (id_notif),
-    FOREIGN KEY (fk_pagamento) REFERENCES pagamento (id_pag)
+    FOREIGN KEY (fk_pagamento) REFERENCES pagamento (id_pag),
+    FOREIGN KEY (fk_feedback) REFERENCES feedback (id_feed)
 );
+
+

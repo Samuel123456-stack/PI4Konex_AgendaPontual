@@ -40,7 +40,7 @@
                         <div class="selectBusca">
                             <p>Localidade</p>
                             <select name="localidade">
-                                <option value="Valaor 1">São paulo</option>
+                                <option value="valaor1">São paulo</option>
                             </select>
                         </div>
                         <div class="textoBusca">
@@ -56,27 +56,30 @@
     </div>
     <div class="fundo">
         <div class="osMaisPro">
+        <!--
+            formulario para ir direto para o resultado da busca de medico de cada especialidade.
+        -->
             <form action="">
                 <h1>Os mais procurados</h1>
-                <input type="submit" value="Alergista" name="tipoMed">
-                <input type="submit" value="Cardiologista" name="tipoMed">
-                <input type="submit" value="Dentista" name="tipoMed">
-                <input type="submit" value="Dermatologista" name="tipoMed">
-                <input type="submit" value="Endocrinologista" name="tipoMed">
-                <input type="submit" value="Geriatria" name="tipoMed">
-                <input type="submit" value="Ginecologista" name="tipoMed">
-                <input type="submit" value="Nefrologia" name="tipoMed">
-                <input type="submit" value="Neurologista" name="tipoMed">
-                <input type="submit" value="Nutricionista" name="tipoMed">
-                <input type="submit" value="Oftalmologista" name="tipoMed">
-                <input type="submit" value="Oncologia" name="tipoMed">
-                <input type="submit" value="Ortopedista - Traumatologista" name="tipoMed" id="tam305">
-                <input type="submit" value="Otorrinolaringologista" name="tipoMed" id="tam305">
-                <input type="submit" value="Pediatria" name="tipoMed">
-                <input type="submit" value="Pneumologia" name="tipoMed">
-                <input type="submit" value="Psiquiatra" name="tipoMed">
-                <input type="submit" value="Reumatologia" name="tipoMed">
-                <input type="submit" value="Urologista" name="tipoMed">
+                <input type="submit" value="Alergista" name="especMed">
+                <input type="submit" value="Cardiologista" name="especMed">
+                <input type="submit" value="Dentista" name="especMed">
+                <input type="submit" value="Dermatologista" name="especMed">
+                <input type="submit" value="Endocrinologista" name="especMed">
+                <input type="submit" value="Geriatria" name="especMed">
+                <input type="submit" value="Ginecologista" name="especMed">
+                <input type="submit" value="Nefrologia" name="especMed">
+                <input type="submit" value="Neurologista" name="especMed">
+                <input type="submit" value="Nutricionista" name="especMed">
+                <input type="submit" value="Oftalmologista" name="especMed">
+                <input type="submit" value="Oncologia" name="especMed">
+                <input type="submit" value="Ortopedista - Traumatologista" name="especMed" id="tam305">
+                <input type="submit" value="Otorrinolaringologista" name="especMed" id="tam305">
+                <input type="submit" value="Pediatria" name="especMed">
+                <input type="submit" value="Pneumologia" name="especMed">
+                <input type="submit" value="Psiquiatra" name="especMed">
+                <input type="submit" value="Reumatologia" name="especMed">
+                <input type="submit" value="Urologista" name="especMed">
             </form>
         </div>
         
@@ -205,9 +208,9 @@
             </div>
             <div class="atendForm">
             <!--
-                form do canal de atendimento
+                form do canal de atendimento.
 
-                É importante manter esse id do form por causa do textarea
+                É importante manter esse id do form por causa do textarea.
             -->    
                 <form action="" id="formAtendimento">
                     <H2>Olá, como nós podemos te ajudar?</H2>
@@ -227,15 +230,71 @@
                 </form>
             </div>
         </div>
+    
+        <div class="duvidasFrequentes">
+            <div class="infoDuvidas">
+                <div class="divDuvidas">
+                    <p>CANAL DE ATENDIMENTO</p>
+                    <div class="barraDuvidas"></div>
+                </div>
+                <div id="textDuvidas1">
+                   <h2>Qual é o valor para o agendamento?</h2>
+                   <p>Não há nenhum custo para realizar o agendamento na 
+                    plataforma, você paga somente a consulta no consultório 
+                    que você realizou o seu agendamento. Ou seja, nós somos 
+                    apenas um meio para você fazer o seu agendamento e &nbsp; 
+                    ter um atendimento melhor e pontual.</p> 
+                </div>
+                <div id="textDuvidas2">
+                    <h2>A pontualidade é verdadeira?</h2>
+                    <p>Sim! Nosso algoritmo é capaz de reduzir os números de reclamações por 
+                        atraso em consultas.  Além disso, você acompanha o tempo de consulta, 
+                        ou seja, você pode acompanhar em tempo real as outras consultas que o 
+                        médico está realizado. Se o nosso algoritmo identificar um possível 
+                        atraso você é notificado e o médico é alertado imediatamente.</p> 
+                 </div>
 
-
-
-
+                <div id="textDuvidas3">
+                    <h2>Os feedbacks são anônimos?</h2>
+                    <p>Totalmente, para que nosso algoritmo funcione eles &nbsp; 
+                        são necessários, pois com eles são gerados pontuações
+                        para os médicos. São feitas apenas 2 perguntas dura menos de 30 segundos. </p> 
+                 </div>
+                 <div id="textDuvidas4">
+                    <h2>O que acontece quando damos um Feedback negativo?</h2>
+                    <p>É gerado uma pontuação, não só isso mas além do feedback, temos 
+                        outras váriaves para julgar o atendimento. O importante é ser justo e 
+                        honesto com seu feedback. E importante ressaltar que o médico, avalia
+                        a consulta também.</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fundoParceiros">
+        <div class="parceiros">
+            <h1>Conheça alguns parceiros</h1>
+            <div class="logoParceiros">
+                <img src="/web/imagens/bradesco.png" alt="" id="bradesco">
+                <img src="/web/imagens/samed.png" alt="" id="samed">
+                <img src="/web/imagens/porto.png" alt="" id="porto">
+                <img src="/web/imagens/amil.png" alt="" id="amil">
+                <img src="/web/imagens/metlife.png" alt="" id="metlife">
+                <img src="/web/imagens/sulamerica.png" alt="" id="sulamerica">
+                <img src="/web/imagens/samp.png" alt="" id="samp">
+                <img src="/web/imagens/promed.png" alt="" id="promed">
+                <img src="/web/imagens/hapvida.png" alt="" id="hapvida">
+                <img src="/web/imagens/allianz.png" alt="" id="allianz">
+            </div>
+        </div>    
+            
+            
+            
+            
     </div>
 
 
     <!--
-        Script para animacao 
+        Script para animacao. 
     -->
     <script src="/web/javascript/animacaoIndex.js"></script>
 

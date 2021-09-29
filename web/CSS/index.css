@@ -111,7 +111,12 @@
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
 }
+/*
+    ccs do background
+*/
 .fundo{
+    width: 100%;
+    /*height: 2984px;*/
     background-image: linear-gradient(135deg, transparent 25%,  rgba(34, 196, 190, 0.1));
 }
 /*
@@ -119,8 +124,8 @@
 */
 .osMaisPro{
     width: 1072px;
-    height: 265px;
-    padding-top: 19px;
+    height: 266px;
+    padding-top: 76px;
     margin: 0 auto;
 }
 .osMaisPro h1, .tituloPq h1{
@@ -141,9 +146,17 @@
 
     font-family: 'Mulish', sans-serif;
     font-size: 15.5px;
-    font-weight: 600;
+    font-weight: 400;
     text-align: center;
     color: #505F79;
+}
+.osMaisPro input:hover{
+    color: #B9BFC9;
+}
+.osMaisPro input:focus{
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+    box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
+    color: #fff;
 }
 #tam305{
     width: 297px;
@@ -178,7 +191,7 @@
     height: 282px;
     padding:  55px 60px;
     background: #fff;
-    background-image: linear-gradient(145deg, transparent 20%,  rgba(92, 92, 92, 0.089) 50%, transparent 80%);
+    background-image: linear-gradient(150deg, transparent 25%,  rgba(180, 180, 180, 0.089) 50%, transparent 75%);
     border: 1px solid rgba(205, 205, 205, 0.06);
     border-radius: 60px;
     float: left;
@@ -206,14 +219,14 @@
     margin: 0 29px;
 }
 /*
-    css da divisoria para empresas e da divisoria canal de atendimento
+    css da divisoria para empresas, divisoria canal de atendimento e da divisoria duvidas frequntes.
 */
-.divParaEm, .divCanal{
+.divParaEm, .divCanal, .divDuvidas{
     width: 1080px;
     height: 105px;
     margin: 0 auto;
 }
-.divParaEm p, .divCanal p{
+.divParaEm p, .divCanal p, .divDuvidas p{
     margin: 0;
     margin-right: 10px;
     font-family: 'Mulish', sans-serif;
@@ -221,7 +234,7 @@
     color: #505F79;
     float: left;
 }
-.barraPara, .barraCanal{
+.barraPara, .barraCanal, .barraDuvidas{
     height: 1px;
     margin: 10px 0;
     background-color: rgba(80, 95, 121, 0.1);
@@ -233,16 +246,20 @@
 .barraCanal{
     width: 846px;
 }
+.barraDuvidas{
+    width: 847px;
+}
 /*
     css das vantagens
 */
 .vantagens{
     width: 1080px;
-    height: 790px;
+    height: 717px;
     margin: auto;
     font-family: 'Mulish', sans-serif;
     color: #546582;
-    background-image: url("/web/imagens/Group78.png") ;
+    background-image: url("/web/imagens/Group78.png");
+    background-size: 550px 550px;
     background-repeat: no-repeat;
     background-position: top right;   
 }
@@ -310,7 +327,7 @@
 */
 [data-anima]{
     opacity: 0;
-    transition: 3s;
+    transition: 2s;
 }
 [data-anima="top"]{
     transform: translate3d(0,50px,0);
@@ -325,7 +342,7 @@
 
 .canalAtend{
     width: 1080px;
-    height: 854px;
+    height: 732px;
     margin: 0 auto;
 
     font-family: 'Mulish', sans-serif;
@@ -354,7 +371,7 @@
     background-color: #fff;
     border-radius: 60px;
     box-shadow: 9px 12px 20px rgba(117, 117, 117, 0.144);
-    background-image: linear-gradient(150deg, transparent 25%,  rgba(180, 180, 180, 0.089) 50%, transparent 75%)
+    background-image: linear-gradient(150deg, transparent 25%,  rgba(180, 180, 180, 0.089) 50%, transparent 75%);
 }
 .atendContato h2{
     margin: 0 0 12px 0;
@@ -456,4 +473,132 @@
 }
 .atendMsg textarea::placeholder{
     color:#858FA1;
+}
+/*
+        css das duvidas frequentes.
+*/
+.duvidasFrequentes{
+    width: 100%;
+    height: 437px;
+    padding: 50px 0 66px 0;
+    background-color:rgba(100, 100, 100, 0.04);
+}
+.infoDuvidas{
+    width: 1080px;
+    margin: 0 auto;
+}
+#textDuvidas1, #textDuvidas2, #textDuvidas3, #textDuvidas4{
+    width: 540px;
+    height: 141px;
+    float: left;
+
+    font-family: 'Mulish', sans-serif;
+    color: #546582;
+}
+#textDuvidas1, #textDuvidas3{
+    width: 439px;
+    margin-right: 101px;
+}
+#textDuvidas1, #textDuvidas2{
+    margin-bottom: 76px;
+}
+#textDuvidas1 h2, #textDuvidas2 h2, #textDuvidas3 h2, #textDuvidas4 h2{
+    margin: 0 0 16px 0;
+    font-size: 20px;
+}
+#textDuvidas1 p, #textDuvidas2 p, #textDuvidas3 p, #textDuvidas4 p{
+    margin: 0;
+    font-size: 16px;
+}
+#textDuvidas1 p{
+    width: 424px;
+}
+#textDuvidas2 p{
+    width: 526px;
+}
+#textDuvidas3 p{
+    width: 405px;
+}
+#textDuvidas4 p{
+    width: 510px;
+}
+/*
+    css parceiros.
+*/
+.fundoParceiros{
+    width: 100%;
+    height: 277px;
+    padding: 82px 0 93px 0;
+}
+.parceiros{
+    width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+}
+.parceiros h1{
+    font-family: 'Mulish', sans-serif;
+    font-size: 30px;
+    color: #1CC4BF;
+}
+.logoParceiros{
+    height: 175px;
+    margin-top: 47px;
+}
+#bradesco, #samed, #porto, #amil, #metlife, #sulamerica, #samp, #promed, #hapvida, #allianz{
+    float: left;
+}
+#bradesco{
+    width: 196.25px;
+    height: 70px;
+    margin-bottom:9px;
+}
+#samed{
+    width: 137.14px;
+    height: 80px;
+    margin: 0 78px 0 65px; 
+}
+#porto{
+    width: 153.55px;
+    height: 55px;
+    margin: 8px 70px 16px 0; 
+}
+#amil{
+    width: 124px;
+    height: 46px;
+    margin: 16px 70px 4px 0; 
+}
+#metlife{
+    width: 167.66px;
+    height: 40px;
+    margin: 23px 0 21px 0;
+}
+#sulamerica{
+    width: 200px;
+    height: 100px;
+}
+#samp{
+    width: 144.91px;
+    height: 60px;
+    margin: 21px 65px 0 65px; 
+}
+#promed{
+    width: 167px;
+    height: 51px;
+    margin: 25px 56px 0 0; 
+}
+#hapvida{
+    width: 166.23px;
+    height: 40px;
+    margin: 31px 55px 0 0; 
+}
+#allianz{
+    width: 142.21px;
+    height: 35px;
+    margin: 31px 0 0 0;
+}
+.abobrinha1{
+    height: 78px;
+}
+.abobrinha1, .abobrinha{
+    border: solid 1px #000;
 }

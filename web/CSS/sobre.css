@@ -1,0 +1,71 @@
+@import url(global.css);
+
+
+
+.introFundo{
+    width: 1080px;
+    height: 619px;
+    padding: 0 160px;
+    margin: 65px auto 0 auto;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 620px 620px;
+    background-image: url(/web/imagens/sobre1.png);
+}
+
+.intro{
+    width: 523px;
+    margin-top: 72px;
+    color: #546582;
+    float: left;
+    font-family: 'Mulish', sans-serif;
+}
+.intro h1{
+    margin: 0 0 15px 0;
+    
+    font-style: normal;
+    font-size: 33px;
+}
+.intro p{
+    margin: 0;
+    width: 375px;
+    font-size: 22px;
+}
+#hashtagIntro{
+    margin-top: 54px;
+    font-size: 22px;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    color: #1CC4BF;
+}
+.fundoOQE{
+    height: 422px;
+    background: linear-gradient(131.22deg, rgba(0, 255, 255, 0.42) 40.91%, rgba(0, 255, 240, 0) 72.09%, rgba(255, 255, 255, 0) 72.09%), #1CC4BF;
+    position: relative;
+}
+.fundoOQE img{
+    position: absolute;
+    bottom: 0px;
+}
+.OQEAgenda{
+    width: 1080px;
+    height: 326px;
+    padding: 32px 160px 64px 85px;
+    margin: 0 auto;
+}
+.txtOQE{
+    width: 530px;
+    margin-left: 710px;
+
+    font-family: 'Mulish', sans-serif;
+    color: #fff;
+}
+.txtOQE h1{
+    width: 195px;
+    font-size: 30px;
+}
+.txtOQE p{
+    width: 495px;
+    font-size: 18px;
+}

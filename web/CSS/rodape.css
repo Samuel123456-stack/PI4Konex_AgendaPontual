@@ -6,6 +6,7 @@
 
     O css para o rodapé simples começa na lina 128 e termina na linha 144.
 */
+
 .rodapeComposto{
     width: 100%;
     padding-top: 93px;
@@ -91,7 +92,7 @@
 .email:hover{
     border: 1.4px solid #858FA1;
 }
-#emailRodape input{
+#emailRodape{
     width: 384px;
     height: 60px;
     border: transparent;

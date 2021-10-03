@@ -1,5 +1,7 @@
 create database agendapontual;
 
+drop database agendapontual;
+
 CREATE USER 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
 GRANT ALL PRIVILEGES ON agendapontual. * TO 'agendaPontual'@'localhost';
 FLUSH PRIVILEGES;
@@ -41,7 +43,8 @@ CREATE TABLE receita (
 CREATE TABLE pagamento (
     id_pag Integer AUTO_INCREMENT PRIMARY KEY,
     data_pgto Date null,
-    forma_pagamento varchar(30) null
+    forma_pagamento varchar(30) null,
+    valor_pgto decimal(5,2)
 );
 
 CREATE TABLE plano (
@@ -52,8 +55,8 @@ CREATE TABLE plano (
     qte_medico Integer null,
     detalhes varchar(50) null,
     tolerancia Integer null,
-    fk_pagamento Integer null,
-    FOREIGN KEY (fk_pagamento) REFERENCES pagamento (id_pag)
+    fk_pag_plan Integer null,
+    FOREIGN KEY (fk_pag_plan) REFERENCES pagamento (id_pag)
 );
 
 
@@ -66,10 +69,10 @@ CREATE TABLE clinica (
     licenca varchar(30) null,
     email varchar(30) null,
     senha varchar(8) null,
-    fk_plano Integer null,
-    fk_endereco Integer null,
-    FOREIGN KEY (fk_plano) REFERENCES plano (id_plan),
-    FOREIGN KEY (fk_endereco) REFERENCES endereco (id_end)
+    fk_plan_cli Integer null,
+    fk_end_cli Integer null,
+    FOREIGN KEY (fk_plan_cli) REFERENCES plano (id_plan),
+    FOREIGN KEY (fk_end_cli) REFERENCES endereco (id_end)
 );
 
 CREATE TABLE medico (
@@ -85,11 +88,13 @@ CREATE TABLE medico (
     fone varchar(11) null,
     valor decimal(5,2) null,
     data_formatura Date null,
-    sobre_mim varchar(50) not null,
-    fk_clinica Integer null,
-    fk_endereco Integer null,
-    FOREIGN KEY (fk_clinica) REFERENCES clinica (id_cli),
-    FOREIGN KEY (fk_endereco) REFERENCES endereco (id_end)
+    sobre_mim varchar(50) null,
+    biografia text null,
+    sala varchar(10) null,
+    fk_cli_med Integer null,
+    fk_end_med Integer null,
+    FOREIGN KEY (fk_cli_med) REFERENCES clinica (id_cli),
+    FOREIGN KEY (fk_end_med) REFERENCES endereco (id_end)
 );
 
 CREATE TABLE convenio (
@@ -99,10 +104,10 @@ CREATE TABLE convenio (
 );
 
 CREATE TABLE convenio_medico (
-    fk_medico Integer null,
-    fk_convenio Integer null,
-    FOREIGN KEY (fk_medico) REFERENCES medico (id_med),
-    FOREIGN KEY (fk_convenio) REFERENCES convenio (id_conv)
+    fk_med_conv Integer null,
+    fk_conv_med Integer null,
+    FOREIGN KEY (fk_med_conv) REFERENCES medico (id_med),
+    FOREIGN KEY (fk_conv_med) REFERENCES convenio (id_conv)
 );
 
 CREATE TABLE triagem (
@@ -119,10 +124,10 @@ CREATE TABLE Paciente (
     convenio varchar(20) null,
     email varchar(30) null,
     senha varchar(8) null,
-    fk_triagem Integer null,
-    fk_endereco Integer null,
-    FOREIGN KEY (fk_triagem) REFERENCES triagem (id_tria),
-    FOREIGN KEY (fk_endereco) REFERENCES endereco (id_end)
+    fk_tri_paci Integer null,
+    fk_end_paci Integer null,
+    FOREIGN KEY (fk_tri_paci) REFERENCES triagem (id_tria),
+    FOREIGN KEY (fk_end_paci) REFERENCES endereco (id_end)
 );
 
 CREATE TABLE dias_semana (
@@ -139,11 +144,12 @@ insert into dias_semana (dia) values
     ('Sexta-feira'),
     ('Sábado');
 
+
 CREATE TABLE horario (
     id_hor Integer AUTO_INCREMENT PRIMARY KEY,
     horario Time null,
-    fk_medico Integer null,
-    FOREIGN KEY (fk_medico) REFERENCES medico (id_med)
+    fk_med_hor Integer null,
+    FOREIGN KEY (fk_med_hor) REFERENCES medico (id_med)
 );
 
 INSERT INTO horario (horario) values
@@ -164,15 +170,15 @@ INSERT INTO horario (horario) values
 
 CREATE TABLE agenda_medica(
 	id_agen integer AUTO_INCREMENT PRIMARY KEY,
-    fk_dias_semana integer null,
-    fk_horario Integer null,
-    fk_medico Integer null,
+    fk_dia_agen integer null,
+    fk_hor_agen Integer null,
+    fk_med_agen Integer null,
     data_agendada date null,
-    fk_paciente Integer null,
-    FOREIGN KEY (fk_dias_semana) REFERENCES dias_semana (id_dia),
-    FOREIGN KEY (fk_horario) REFERENCES horario (id_hor),
-    FOREIGN KEY (fk_medico) REFERENCES medico (id_med),
-    FOREIGN KEY (fk_paciente) REFERENCES paciente (id_paci)
+    fk_paci_agen Integer null,
+    FOREIGN KEY (fk_dia_agen) REFERENCES dias_semana (id_dia),
+    FOREIGN KEY (fk_hor_agen) REFERENCES horario (id_hor),
+    FOREIGN KEY (fk_med_agen) REFERENCES medico (id_med),
+    FOREIGN KEY (fk_paci_agen) REFERENCES paciente (id_paci)
 );
 
 CREATE TABLE recepcionista (
@@ -183,10 +189,10 @@ CREATE TABLE recepcionista (
     cpf varchar(11) null,
     email varchar(30) null,
     senha varchar(8) null,
-    fk_clinica Integer null,
-    fk_endereco Integer null,
-    FOREIGN KEY (fk_clinica) REFERENCES clinica (id_cli),
-    FOREIGN KEY (fk_endereco) REFERENCES endereco (id_end)
+    fk_cli_rece Integer null,
+    fk_end_rece Integer null,
+    FOREIGN KEY (fk_cli_rece) REFERENCES clinica (id_cli),
+    FOREIGN KEY (fk_end_rece) REFERENCES endereco (id_end)
 );
 
 CREATE TABLE notificacao (
@@ -199,23 +205,60 @@ CREATE TABLE notificacao (
 CREATE TABLE consulta (
 	id_con Integer AUTO_INCREMENT PRIMARY KEY,
 	data_consulta Date null,
-	hora Time null,
+	fk_hor_cons integer null,
 	confirmada Boolean null,
 	retorno Boolean null,
 	hora_chegada Time null,
 	hora_saida Time null,
 	duracao Time null,
 	concluida Boolean null,
-	fk_medico Integer null,
-    fk_paciente Integer null,
-    fk_receita Integer null,
-    fk_feedback Integer null,
-    fk_notificacao Integer null,
-    fk_pagamento Integer null,
-    FOREIGN KEY (fk_medico) REFERENCES medico (id_med),
-    FOREIGN KEY (fk_paciente) REFERENCES paciente (id_paci),
-    FOREIGN KEY (fk_receita) REFERENCES receita (id_rece),
-    FOREIGN KEY (fk_notificacao) REFERENCES notificacao (id_notif),
-    FOREIGN KEY (fk_pagamento) REFERENCES pagamento (id_pag),
-    FOREIGN KEY (fk_feedback) REFERENCES feedback (id_feed)
+    nao_compareceu Boolean null,
+    cancelada Boolean null,
+	fk_med_cons Integer null,
+    fk_paci_cons Integer null,
+    fk_rec_agen Integer null,
+    fk_feed_cons Integer null,
+    fk_not_agen Integer null,
+    fk_pag_agen Integer null,
+    FOREIGN KEY (fk_med_cons) REFERENCES medico (id_med),
+    FOREIGN KEY (fk_paci_cons) REFERENCES paciente (id_paci),
+    FOREIGN KEY (fk_rec_agen) REFERENCES receita (id_rece),
+    FOREIGN KEY (fk_not_agen) REFERENCES notificacao (id_notif),
+    FOREIGN KEY (fk_pag_agen) REFERENCES pagamento (id_pag),
+    FOREIGN KEY (fk_feed_cons) REFERENCES feedback (id_feed),
+    FOREIGN KEY (fk_hor_cons) REFERENCES horario (id_hor)
 );
+
+/* Triggers*/
+
+delimiter $$
+create trigger tr_consulta after update on agenda_medica for each row
+begin
+insert into consulta (data_consulta,fk_hor_cons,fk_med_cons,fk_paci_cons) values (new.data_agendada,old.fk_hor_agen,old.fk_med_agen,new.fk_paci_agen);
+end $$
+
+
+/*Viewers*/
+create or replace view vw_cont_atend_concl
+as
+select nome as 'Médico', crm as 'CRM', count(concluida) as 'Qte.Atendido(s)' from consulta
+inner join medico
+on fk_med_cons = id_med
+where concluida = true;
+
+create or replace view vw_agenda_medica
+as
+select data_agendada as 'Data agendamento', dia as Dia, horario as 'Horário', m.nome as 'Dr(a)', p.nome as 'Paciente' from agenda_medica
+	inner join dias_semana
+	on fk_dia_agen = id_dia
+	inner join horario
+	on fk_hor_agen = id_hor
+	inner join paciente p
+	on fk_paci_agen = id_paci
+	inner join medico m 
+    on fk_med_agen = id_med; 
+    
+create view vw_med_pesq
+as
+SELECT nome as 'Médico', sobre_mim, TIMESTAMPDIFF(YEAR, data_formatura, CURDATE()) as 'Experiência', sexo, especialidade, valor
+FROM medico

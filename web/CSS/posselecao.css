@@ -1,0 +1,102 @@
+@import url(global.css);
+
+.todo{
+    width: 1080px;
+    margin: 0 auto;
+}
+.topoPos{
+    height: 60px;
+    margin: 146px 0 63px 0;
+    margin-top: 146px;
+    font-family: 'Mulish', sans-serif;
+}
+.topoPos h2{
+    margin: 0;
+    float: left;
+    font-size: 25px;
+    color: #546582;
+}
+#voltar{
+    margin-right: 690px;
+    float: left;
+    font-size: 25px;
+    color: #1CC4BF;
+}
+/*
+    divisorias
+*/
+.divFin{
+    width: 1080px;
+    height: 123px;
+    margin: 0 auto;
+}
+.divFin p{
+    margin: 0;
+    margin-right: 10px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    color: #505F79;
+    float: left;
+}
+.barraFin{
+    height: 1px;
+    margin: 10px 0;
+    background-color: rgba(80, 95, 121, 0.1);
+    float: left;
+}
+.barraFin{
+    width: 795px;
+}
+
+.finalizaCompra{
+    height: 342px;
+}
+.infoPlano{
+    width: 602px;
+    height: 140px;
+    padding: 20px;
+    border: 1.4px solid rgba(84, 101, 130, 0.1);
+    border-radius: 8px;
+}
+.infoPlano h3{
+        width: 175px;
+        height: 28.5px;
+        margin: 0 0 30px 0;
+        padding-top: 11.5px;
+        border-radius: 8px;
+        float: left;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 300;
+        text-align: center;
+}
+#persNome{
+    background: #1CC4BF;
+}
+#ecoNome{
+    background: #CC009F;
+}    
+#premNome{
+    background: #4AB8DB;
+} 
+.infoPlano p{
+    width: 270px;
+    margin: 0;
+    float: left;
+}
+#persQuad, #ecoQuad, #premQuad{
+    width: 140px;
+    height: 140px;
+    margin-right: 40px;
+    border-radius: 8px;
+    float: left;
+}
+#persQuad{
+    background: #1CC4BF;
+}
+#ecoQuad{
+    background: #CC009F;
+}
+#premQuad{
+    background: #4AB8DB;
+}

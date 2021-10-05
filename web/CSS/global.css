@@ -3,6 +3,7 @@
     cada página ou ao próprio html.
 */
 html,body{
+    min-width: 1400px;
     height: 100%;
 }
 
@@ -222,7 +223,7 @@ select{
 
     font-family: 'Mulish', sans-serif;
 */
-@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
 
 /*
     regra para especificar essa familia:

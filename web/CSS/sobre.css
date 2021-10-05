@@ -41,6 +41,7 @@
 }
 .fundoOQE{
     height: 422px;
+    width: 100%;
     background: linear-gradient(131.22deg, rgba(0, 255, 255, 0.42) 40.91%, rgba(0, 255, 240, 0) 72.09%, rgba(255, 255, 255, 0) 72.09%), #1CC4BF;
     position: relative;
 }
@@ -74,7 +75,9 @@
     padding-top: 66px;
     background-image: linear-gradient(135deg, transparent 25%,  rgba(34, 196, 190, 0.1));
 }
-
+/*
+    divisorias
+*/
 .divTeam, .divBene, .divCanal{
     width: 1080px;
     height: 105px;

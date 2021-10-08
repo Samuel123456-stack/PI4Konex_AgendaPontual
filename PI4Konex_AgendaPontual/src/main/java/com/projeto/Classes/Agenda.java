@@ -4,6 +4,7 @@ public class Agenda {
     // Atributos
     private int idAgenda;
     private int idMedico;
+    private int idPaciente;
     private int idConsulta;
     private String dataAgenda;
     private String horaAgenda;
@@ -14,9 +15,10 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgenda, int idMedico, int idConsulta, String dataAgenda, String horaAgenda) {
+    public Agenda(int idAgenda, int idMedico, int idPaciente, int idConsulta, String dataAgenda, String horaAgenda) {
         this.idAgenda = idAgenda;
         this.idMedico = idMedico;
+        this.idPaciente = idPaciente;
         this.idConsulta = idConsulta;
         this.dataAgenda = dataAgenda;
         this.horaAgenda = horaAgenda;
@@ -37,6 +39,14 @@ public class Agenda {
 
     public void setIdMedico(int idMedico) {
         this.idMedico = idMedico;
+    }
+
+    public int getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public int getIdConsulta() {

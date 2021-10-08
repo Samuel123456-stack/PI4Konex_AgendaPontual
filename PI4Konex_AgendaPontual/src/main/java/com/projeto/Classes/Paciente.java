@@ -8,7 +8,10 @@ public class Paciente {
     private String cpf;
     private String telefone;
     private String convenio;
+    private String email;
+    private String senha;
     private String comorbidade;
+    private int idEndereco;
 
     // Metodo Construtor
     public Paciente() {
@@ -16,13 +19,17 @@ public class Paciente {
     }
 
     // Metodo Construtor com Atributos
-    public Paciente(int idPaci, String nomePaci, String cpf, String telefone, String convenio, String comorbidade) {
+    public Paciente(int idPaci, String nomePaci, String cpf, String telefone, String convenio, String email,
+            String senha, String comorbidade, int idEndereco) {
         this.idPaci = idPaci;
         this.nomePaci = nomePaci;
         this.cpf = cpf;
         this.telefone = telefone;
         this.convenio = convenio;
+        this.email = email;
+        this.senha = senha;
         this.comorbidade = comorbidade;
+        this.idEndereco = idEndereco;
     }
 
     // Getters e Setters
@@ -66,6 +73,22 @@ public class Paciente {
         this.convenio = convenio;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getComorbidade() {
         return comorbidade;
     }
@@ -73,4 +96,13 @@ public class Paciente {
     public void setComorbidade(String comorbidade) {
         this.comorbidade = comorbidade;
     }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
 }

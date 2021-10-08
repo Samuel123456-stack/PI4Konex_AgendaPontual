@@ -10,6 +10,10 @@ public class Clinica {
     private String assinatura;
     private int qntAssentos;
     private String licenca;
+    private String email;
+    private String senha;
+    private int idPlano;
+    private int idEndereco;
 
     // Metodo Construtor
     public Clinica() {
@@ -18,7 +22,7 @@ public class Clinica {
 
     // Metodo Construtor com Atributos
     public Clinica(int idCli, String nomeCli, String cnpj, String telefone, String assinatura, int qntAssentos,
-            String licenca) {
+            String licenca, String email, String senha, int idPlano, int idEndereco) {
         this.idCli = idCli;
         this.nomeCli = nomeCli;
         this.cnpj = cnpj;
@@ -26,6 +30,10 @@ public class Clinica {
         this.assinatura = assinatura;
         this.qntAssentos = qntAssentos;
         this.licenca = licenca;
+        this.email = email;
+        this.senha = senha;
+        this.idPlano = idPlano;
+        this.idEndereco= idEndereco;
     }
 
     // Getters e Setters
@@ -84,4 +92,38 @@ public class Clinica {
     public void setLicenca(String licenca) {
         this.licenca = licenca;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public int getIdPlano() {
+        return idPlano;
+    }
+
+    public void setIdPlano(int idPlano) {
+        this.idPlano = idPlano;
+    }
+
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    
 }

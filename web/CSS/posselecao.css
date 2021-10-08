@@ -25,12 +25,12 @@
 /*
     divisorias
 */
-.divFin{
+.divFin, .divMen{
     width: 1080px;
     height: 123px;
     margin: 0 auto;
 }
-.divFin p{
+.divFin p, .divMen p{
     margin: 0;
     margin-right: 10px;
     font-family: 'Mulish', sans-serif;
@@ -38,7 +38,7 @@
     color: #505F79;
     float: left;
 }
-.barraFin{
+.barraFin, .barraMen{
     height: 1px;
     margin: 10px 0;
     background-color: rgba(80, 95, 121, 0.1);
@@ -47,18 +47,23 @@
 .barraFin{
     width: 795px;
 }
+.barraMen{
+    width: 684px;
+}
 
 .finalizaCompra{
     height: 342px;
 }
-.infoPlano{
-    width: 602px;
+.tipoPlano{
+    width: 600px;
     height: 140px;
+    margin-right: 40px;
     padding: 20px;
+    float: left;
     border: 1.4px solid rgba(84, 101, 130, 0.1);
     border-radius: 8px;
 }
-.infoPlano h3{
+.tipoPlano h3{
         width: 175px;
         height: 28.5px;
         margin: 0 0 30px 0;
@@ -79,7 +84,7 @@
 #premNome{
     background: #4AB8DB;
 } 
-.infoPlano p{
+.tipoPlano p{
     width: 270px;
     margin: 0;
     float: left;
@@ -99,4 +104,81 @@
 }
 #premQuad{
     background: #4AB8DB;
+}
+.cupomFina{
+    width: 384.2px;
+    height: 67.2px;
+    padding: 10px 0 0 10px;
+    margin-bottom: 40px;
+    border: 1.4px solid rgba(84, 101, 130, 0.1);
+    border-radius: 8px;
+    float: left;
+    font-family: 'Mulish', sans-serif;
+}
+.cupomFina:hover{
+    border: 1.4px solid #858FA1;
+}
+.cupomFina p{
+    margin: 0;
+    font-size: 11px;
+    color: rgba(80, 95, 121, 0.4);
+}
+.cupomFina input[type='text']{
+    width: 370.53px;
+    height: 19px;
+    margin: 16px 0 0 0;
+    font-size: 15px;
+    border: none;
+}
+.cupomFina input[type='text']::placeholder{
+    color: rgba(80, 95, 121, 0.7);
+}
+.finalizaCompra input[type='submit']{
+    width: 396px;
+    height: 60px;
+    background: #1CC4BF;
+    border: none;
+    border-radius: 8px;
+    float: left;
+    color: #FFFFFF;
+    font-size: 15.5px;
+}
+.finalizaCompra input[type='submit']:hover{
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+}
+.finalizaCompra input[type='submit']:focus{
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+    box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
+}
+.opcMen{
+    height: 396px;
+    font-family: 'Mulish', sans-serif;
+}
+.infoplano{
+    width: 319.2px;
+    height: 233.2px;
+    padding: 40px 0 0 18px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+}
+.qntRece, .qntMed, .funcio, .qntTole{
+    width: 320px;
+    height: 20px;
+    margin-bottom: 30px;
+    clear: both;
+}
+.qntRece p, .qntRece svg, .qntMed p, .qntMed svg, .funcio p, .funcio svg, .qntTole p, .qntTole svg{
+    float: left;
+}
+.qntRece p, .qntMed p, .funcio p, .qntTole p{
+    margin: 0;
+}
+.qntRece svg, .qntMed svg, .funcio svg, .qntTole svg{
+    margin-right: 14px;
+}
+#qntRece, #qntMed{
+    margin-right: 5px;
+}
+#qntTole{
+    margin: 0 5px;
 }

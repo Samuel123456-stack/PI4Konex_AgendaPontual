@@ -54,16 +54,15 @@ main.confirm-landing .circle-icon-confirm img{
     margin:0 10px;
     padding:20px;
     width:300px;
-    font-size:15.5px;
-    font-family:'Mulish', sans-serif;
+    font:700 15.5px 'Mulish', sans-serif;
     cursor:pointer;
     letter-spacing:0.2px;
 }
 .confirm-landing .login-download button:first-child{
     background: rgba(28, 196, 191, 1);
     color:#fff;
-    border:0;
     border-radius:8px;
+    border: 2px solid rgba(28, 196, 191, 1);
 }
 .confirm-landing .login-download button:first-child:hover{
     filter:brightness(0.9);
@@ -80,6 +79,10 @@ main.confirm-landing .circle-icon-confirm img{
     background: rgba(28, 196, 191, 1);
     color:#fff !important;
     text-shadow: #fff;
+    background-image: url('../images/white-download-icon.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center left 50px;
 }
 .confirm-landing .login-download button:last-child:hover::before{
     top: 0%;
@@ -98,4 +101,10 @@ main.confirm-landing .circle-icon-confirm img{
 	color: #1CC4BF !important;
 	background: #fff;
 	transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.confirm-landing .login-download button:last-child{
+    background-image: url('../images/green-download-icon.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center left 50px;
 }

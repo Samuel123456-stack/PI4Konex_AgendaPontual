@@ -6,7 +6,6 @@ public class Clinica {
     private int idCli;
     private String nomeCli;
     private String cnpj;
-    private String telefone;
     private String assinatura;
     private int qntAssentos;
     private String licenca;
@@ -21,19 +20,18 @@ public class Clinica {
     }
 
     // Metodo Construtor com Atributos
-    public Clinica(int idCli, String nomeCli, String cnpj, String telefone, String assinatura, int qntAssentos,
-            String licenca, String email, String senha, int idPlano, int idEndereco) {
+    public Clinica(int idCli, String nomeCli, String cnpj, String assinatura, int qntAssentos, String licenca,
+            String email, String senha, int idPlano, int idEndereco) {
         this.idCli = idCli;
         this.nomeCli = nomeCli;
         this.cnpj = cnpj;
-        this.telefone = telefone;
         this.assinatura = assinatura;
         this.qntAssentos = qntAssentos;
         this.licenca = licenca;
         this.email = email;
         this.senha = senha;
         this.idPlano = idPlano;
-        this.idEndereco= idEndereco;
+        this.idEndereco = idEndereco;
     }
 
     // Getters e Setters
@@ -59,14 +57,6 @@ public class Clinica {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getAssinatura() {
@@ -125,5 +115,4 @@ public class Clinica {
         this.idEndereco = idEndereco;
     }
 
-    
 }

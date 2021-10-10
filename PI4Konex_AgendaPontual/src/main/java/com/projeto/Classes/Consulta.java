@@ -4,7 +4,6 @@ public class Consulta {
 
     // Atributos
     private int idConsulta;
-    private int idPaci;
     private String dataConsulta;
     private int horaConsulta;
     private boolean confirmada;
@@ -22,19 +21,16 @@ public class Consulta {
     private int idNot;
     private int idPag;
 
-
     // Metodo Construtor
     public Consulta() {
 
     }
 
     // Metodo Construtor com Atributos
-    public Consulta(int idConsulta, int idPaci, String dataConsulta, int horaConsulta, boolean confirmada,
-            boolean retorno, String horaChegada, String horaSaida, String duracao, boolean concluida,
-            boolean naoCompareceu, boolean cancelada, int idMedico, int idPaciente, int idReceita, int idFeed,
-            int idNot, int idPag) {
+    public Consulta(int idConsulta, String dataConsulta, int horaConsulta, boolean confirmada, boolean retorno,
+            String horaChegada, String horaSaida, String duracao, boolean concluida, boolean naoCompareceu,
+            boolean cancelada, int idMedico, int idPaciente, int idReceita, int idFeed, int idNot, int idPag) {
         this.idConsulta = idConsulta;
-        this.idPaci = idPaci;
         this.dataConsulta = dataConsulta;
         this.horaConsulta = horaConsulta;
         this.confirmada = confirmada;
@@ -60,14 +56,6 @@ public class Consulta {
 
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
-    }
-
-    public int getIdPaci() {
-        return idPaci;
-    }
-
-    public void setIdPaci(int idPaci) {
-        this.idPaci = idPaci;
     }
 
     public String getDataConsulta() {

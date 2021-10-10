@@ -3,11 +3,11 @@ package com.projeto.Classes;
 public class Agenda {
     // Atributos
     private int idAgenda;
-    private int idMedico;
-    private int idPaciente;
-    private int idConsulta;
-    private String dataAgenda;
-    private String horaAgenda;
+    private int idDia;
+    private int idHora;
+    private int idMed;
+    private int idPaci;
+    private String dataAgendada;
 
     // Metodo Construtor
     public Agenda() {
@@ -15,13 +15,13 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgenda, int idMedico, int idPaciente, int idConsulta, String dataAgenda, String horaAgenda) {
+    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, String dataAgendada) {
         this.idAgenda = idAgenda;
-        this.idMedico = idMedico;
-        this.idPaciente = idPaciente;
-        this.idConsulta = idConsulta;
-        this.dataAgenda = dataAgenda;
-        this.horaAgenda = horaAgenda;
+        this.idDia = idDia;
+        this.idHora = idHora;
+        this.idMed = idMed;
+        this.idPaci = idPaci;
+        this.dataAgendada = dataAgendada;
     }
 
     // Getters e Setters
@@ -33,44 +33,44 @@ public class Agenda {
         this.idAgenda = idAgenda;
     }
 
-    public int getIdMedico() {
-        return idMedico;
+    public int getIdDia() {
+        return idDia;
     }
 
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
+    public void setIdDia(int idDia) {
+        this.idDia = idDia;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public int getIdHora() {
+        return idHora;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setIdHora(int idHora) {
+        this.idHora = idHora;
     }
 
-    public int getIdConsulta() {
-        return idConsulta;
+    public int getIdMed() {
+        return idMed;
     }
 
-    public void setIdConsulta(int idConsulta) {
-        this.idConsulta = idConsulta;
+    public void setIdMed(int idMed) {
+        this.idMed = idMed;
     }
 
-    public String getDataAgenda() {
-        return dataAgenda;
+    public int getIdPaci() {
+        return idPaci;
     }
 
-    public void setDataAgenda(String dataAgenda) {
-        this.dataAgenda = dataAgenda;
+    public void setIdPaci(int idPaci) {
+        this.idPaci = idPaci;
     }
 
-    public String getHoraAgenda() {
-        return horaAgenda;
+    public String getDataAgendada() {
+        return dataAgendada;
     }
 
-    public void setHoraAgenda(String horaAgenda) {
-        this.horaAgenda = horaAgenda;
+    public void setDataAgendada(String dataAgendada) {
+        this.dataAgendada = dataAgendada;
     }
 
 }

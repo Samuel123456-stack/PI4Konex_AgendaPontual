@@ -21,8 +21,6 @@ public class Medico {
     private int idCli;
     private int idEndereco;
 
-
-
     // Metodo Construtor
     public Medico() {
 
@@ -51,7 +49,7 @@ public class Medico {
         this.idEndereco = idEndereco;
     }
 
-        // Getters e Setters
+    // Getters e Setters
     public int getIdMed() {
         return idMed;
     }

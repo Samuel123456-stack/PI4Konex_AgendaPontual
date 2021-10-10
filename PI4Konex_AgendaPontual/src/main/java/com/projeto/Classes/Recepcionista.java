@@ -103,5 +103,5 @@ public class Recepcionista {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
-    
+
 }

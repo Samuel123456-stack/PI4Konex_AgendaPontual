@@ -213,6 +213,47 @@ select{
     Fim do css do rodapé.
 */
 
+/*
+    Inicio css menu lateral.
+*/
+.menulat{
+    width: 274px;
+    min-height: 100%;
+    float: left;
+    padding-left: 81px;
+    border-right: 1px solid rgba(84, 101, 130, 0.2);
+    font-family: 'Mulish', sans-serif;
+    color: #546582;
+    position: relative;
+}
+.menulat p{
+    margin: 30px 0 0 30px;
+    font-size: 16px;
+}
+.menulat svg{
+    margin-right: 24px;
+}
+#logoLat{
+    margin: 38px 0 85px 0;
+}
+.meioLat{
+    width: 274px;
+    height: 144px;
+    margin: 166px 0 10px 0;
+    padding: 12px 0 0 0;
+    border: 1px solid rgba(84, 101, 130, 0.2);
+    border-left: none;
+    border-right: none;
+}
+
+.bottomLat{
+    margin-bottom: 30px;
+    position: absolute;
+    bottom: 0;
+}
+/*
+    Fim do css menu lateral.
+*/
 
 /*
     Import das fontes utilizadas.

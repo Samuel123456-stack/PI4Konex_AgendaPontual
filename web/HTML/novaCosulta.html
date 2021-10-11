@@ -40,7 +40,7 @@
             </a>
         </p>
         <p id="consul">
-            <a href="" >
+            <a href="/web/HTML/consultas.html" >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86364 20V18.3019H2.04545V1.69811H17.9545V10H20V0H0V20H8.86364ZM4 6V4H16V6H4ZM4 8V10H10V8H4Z" fill="#546582"/>
                 </svg>
@@ -98,134 +98,135 @@
     </div>
     <div class="todo">
         
-    <div class="titulo">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="9" width="2" height="20" fill="#166CD0"/>
-            <rect y="11" width="2" height="20" transform="rotate(-90 0 11)" fill="#166CD0"/>
-        </svg>   
-        <h1>Nova Consulta</h1>
-    </div>
-    <div class="busca">
-        <div class="cidade">
-            <select name="cidade">
-                <option value="" disabled selected>Cidade</option>
-              </select>
+        <div class="titulo">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" width="2" height="20" fill="#166CD0"/>
+                <rect y="11" width="2" height="20" transform="rotate(-90 0 11)" fill="#166CD0"/>
+            </svg>   
+            <h1>Nova Consulta</h1>
         </div>
-        <div class="bairro">
-            <select name="bairro">
-                <option value="" disabled selected>Bairro</option>
-              </select>
+        <div class="busca">
+            <div class="cidade">
+                <select name="cidade">
+                    <option value="" disabled selected>Cidade</option>
+                </select>
+            </div>
+            <div class="bairro">
+                <select name="bairro">
+                    <option value="" disabled selected>Bairro</option>
+                </select>
+            </div>
+            <div class="cosulEspe">
+                <input type="text" name="cosulEspe" placeholder="Consultório ou especialidade.">
+            </div>
+            <input type="submit" value="Buscar">
         </div>
-        <div class="cosulEspe">
-            <input type="text" name="cosulEspe" placeholder="Consultório ou especialidade.">
-        </div>
-        <input type="submit" value="Buscar">
-    </div>
 
-    <div class="formFiltro">
-        <form action="">
-            <div class="filtro">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 24H10C9.46957 24 8.96086 23.7893 8.58579 23.4142C8.21071 23.0391 8 22.5304 8 22V14.41L0.59 7C0.214412 6.62665 0.00223279 6.11958 0 5.59V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H22C22.5304 0 23.0391 0.210714 23.4142 0.585786C23.7893 0.960859 24 1.46957 24 2V5.59C23.9978 6.11958 23.7856 6.62665 23.41 7L16 14.41V22C16 22.5304 15.7893 23.0391 15.4142 23.4142C15.0391 23.7893 14.5304 24 14 24ZM2 2V5.59L10 13.59V22H14V13.59L22 5.59V2H2Z" fill="#1CC4BF"/>
-                </svg>
-                <H3>Filtrar</H3>
-                <h2>Genêrow</h2>
-                <label class="container-label">
-                    <input type="checkbox" name="">
-                    <span class="checkmark"></span>
-                </label>
-                <p>Feminino</p>
-                <label class="container-label">
-                    <input type="checkbox" name="">
-                    <span class="checkmark"></span>
-                </label>
-                <p>Masculino</p>
-                <h2>Valor da Consulta</h2>
-                <input type="text" name="min" placeholder="R$80">
-                <div style="width: 30px; height: 1px; float: left;"></div>
-                <input type="text" name="max" placeholder="R$150">
-                <h2>Exériência(anos)</h2>
-                <div class="slide">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <p style="width: 170px;">0</p>
-                    <p>+10</p>
-                </div>
-                <input type="submit" value="FILTRAR">
-                <button type="reset">
-                    <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 13px;">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15385 0C0.516595 0 0 0.516594 0 1.15385V2.88462C0 3.52187 0.516595 4.03846 1.15385 4.03846H1.78765L2.76799 13.4638L2.76817 13.4656L2.76885 13.4716C2.8184 13.8927 3.0208 14.2809 3.33764 14.5627C3.65448 14.8444 4.06372 15.0001 4.48772 15.0001H12.8203C13.2443 15.0001 13.6535 14.8444 13.9704 14.5627C14.2872 14.2809 14.4896 13.8927 14.5392 13.4716L14.54 13.4638L15.52 4.03846H16.1538C16.7911 4.03846 17.3077 3.52187 17.3077 2.88462V1.15385C17.3077 0.516594 16.7911 0 16.1538 0H1.15385ZM14.36 4.03846H2.94772L3.91517 13.3399C3.93233 13.4791 3.99957 13.6072 4.10438 13.7004C4.21 13.7943 4.34641 13.8462 4.48774 13.8462H12.8203C12.9616 13.8462 13.098 13.7943 13.2036 13.7004C13.3085 13.6072 13.3757 13.4791 13.3929 13.3399L14.36 4.03846ZM1.15385 1.15385H16.1538V2.88462H1.15385V1.15385ZM11.0812 6.51505C11.3065 6.74035 11.3065 7.10564 11.0812 7.33094L9.46991 8.94222L11.0812 10.5535C11.3065 10.7788 11.3065 11.1441 11.0812 11.3694C10.8559 11.5947 10.4906 11.5947 10.2653 11.3694L8.65402 9.75812L7.04273 11.3694C6.81743 11.5947 6.45214 11.5947 6.22684 11.3694C6.00154 11.1441 6.00154 10.7788 6.22684 10.5535L7.83812 8.94222L6.22684 7.33094C6.00154 7.10564 6.00154 6.74035 6.22684 6.51505C6.45214 6.28974 6.81743 6.28974 7.04273 6.51505L8.65402 8.12633L10.2653 6.51505C10.4906 6.28974 10.8559 6.28974 11.0812 6.51505Z" fill="#546582" fill-opacity="0.5"/>
+        <div class="formFiltro">
+            <form action="">
+                <div class="filtro">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 24H10C9.46957 24 8.96086 23.7893 8.58579 23.4142C8.21071 23.0391 8 22.5304 8 22V14.41L0.59 7C0.214412 6.62665 0.00223279 6.11958 0 5.59V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H22C22.5304 0 23.0391 0.210714 23.4142 0.585786C23.7893 0.960859 24 1.46957 24 2V5.59C23.9978 6.11958 23.7856 6.62665 23.41 7L16 14.41V22C16 22.5304 15.7893 23.0391 15.4142 23.4142C15.0391 23.7893 14.5304 24 14 24ZM2 2V5.59L10 13.59V22H14V13.59L22 5.59V2H2Z" fill="#1CC4BF"/>
                     </svg>
-                    Limpar filtro
-                </button>
-            </div>
-        </form>
-            <div class="resulBusca">
-                <div class="med">
-                    <form action="">
-                        <img src="/web/imagens/med1.png">
-                        <div class="ptMed">
-                            <h3>1985 PT</h3>
-                        </div>
-                        <div class="dadosMed">
-                            <h2>Dr. Wilson Santos</h2>
-                            <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                        </div>
-                        <input type="submit" value="AGENDAR"> 
-                    </form>
-                </div>   
-                <div class="med">
-                    <form action="">
-                        <img src="/web/imagens/med1.png">
-                        <div class="ptMed">
-                            <h3>1985 PT</h3>
-                        </div>
-                        <div class="dadosMed">
-                            <h2>Dr. Wilson Santos</h2>
-                            <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                        </div>
-                        <input type="submit" value="AGENDAR"> 
-                    </form>
-                </div>   
-                <div class="med">
-                    <form action="">
-                        <img src="/web/imagens/med1.png">
-                        <div class="ptMed">
-                            <h3>1985 PT</h3>
-                        </div>
-                        <div class="dadosMed">
-                            <h2>Dr. Wilson Santos</h2>
-                            <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                        </div>
-                        <input type="submit" value="AGENDAR"> 
-                    </form>
-                </div>   
-                <div class="med">
-                    <form action="">
-                        <img src="/web/imagens/med1.png">
-                        <div class="ptMed">
-                            <h3>1985 PT</h3>
-                        </div>
-                        <div class="dadosMed">
-                            <h2>Dr. Wilson Santos</h2>
-                            <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                        </div>
-                        <input type="submit" value="AGENDAR"> 
-                    </form>
-                </div>   
-                <div class="med">
-                    <form action="">
-                        <img src="/web/imagens/med1.png">
-                        <div class="ptMed">
-                            <h3>1985 PT</h3>
-                        </div>
-                        <div class="dadosMed">
-                            <h2>Dr. Wilson Santos</h2>
-                            <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                        </div>
-                        <input type="submit" value="AGENDAR"> 
-                    </form>
-                </div>   
-            </div>
+                    <H3>Filtrar</H3>
+                    <h2>Genêrow</h2>
+                    <label class="container-label">
+                        <input type="checkbox" name="">
+                        <span class="checkmark"></span>
+                    </label>
+                    <p>Feminino</p>
+                    <label class="container-label">
+                        <input type="checkbox" name="">
+                        <span class="checkmark"></span>
+                    </label>
+                    <p>Masculino</p>
+                    <h2>Valor da Consulta</h2>
+                    <input type="text" name="min" placeholder="R$80">
+                    <div style="width: 30px; height: 1px; float: left;"></div>
+                    <input type="text" name="max" placeholder="R$150">
+                    <h2>Exériência(anos)</h2>
+                    <div class="slide">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        <p style="width: 170px;">0</p>
+                        <p>+10</p>
+                    </div>
+                    <input type="submit" value="FILTRAR">
+                    <button type="reset">
+                        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 13px;">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.15385 0C0.516595 0 0 0.516594 0 1.15385V2.88462C0 3.52187 0.516595 4.03846 1.15385 4.03846H1.78765L2.76799 13.4638L2.76817 13.4656L2.76885 13.4716C2.8184 13.8927 3.0208 14.2809 3.33764 14.5627C3.65448 14.8444 4.06372 15.0001 4.48772 15.0001H12.8203C13.2443 15.0001 13.6535 14.8444 13.9704 14.5627C14.2872 14.2809 14.4896 13.8927 14.5392 13.4716L14.54 13.4638L15.52 4.03846H16.1538C16.7911 4.03846 17.3077 3.52187 17.3077 2.88462V1.15385C17.3077 0.516594 16.7911 0 16.1538 0H1.15385ZM14.36 4.03846H2.94772L3.91517 13.3399C3.93233 13.4791 3.99957 13.6072 4.10438 13.7004C4.21 13.7943 4.34641 13.8462 4.48774 13.8462H12.8203C12.9616 13.8462 13.098 13.7943 13.2036 13.7004C13.3085 13.6072 13.3757 13.4791 13.3929 13.3399L14.36 4.03846ZM1.15385 1.15385H16.1538V2.88462H1.15385V1.15385ZM11.0812 6.51505C11.3065 6.74035 11.3065 7.10564 11.0812 7.33094L9.46991 8.94222L11.0812 10.5535C11.3065 10.7788 11.3065 11.1441 11.0812 11.3694C10.8559 11.5947 10.4906 11.5947 10.2653 11.3694L8.65402 9.75812L7.04273 11.3694C6.81743 11.5947 6.45214 11.5947 6.22684 11.3694C6.00154 11.1441 6.00154 10.7788 6.22684 10.5535L7.83812 8.94222L6.22684 7.33094C6.00154 7.10564 6.00154 6.74035 6.22684 6.51505C6.45214 6.28974 6.81743 6.28974 7.04273 6.51505L8.65402 8.12633L10.2653 6.51505C10.4906 6.28974 10.8559 6.28974 11.0812 6.51505Z" fill="#546582" fill-opacity="0.5"/>
+                        </svg>
+                        Limpar filtro
+                    </button>
+                </div>
+            </form>
+                <div class="resulBusca">
+                    <div class="med">
+                        <form action="">
+                            <img src="/web/imagens/med1.png">
+                            <div class="ptMed">
+                                <h3>1985 PT</h3>
+                            </div>
+                            <div class="dadosMed">
+                                <h2>Dr. Wilson Santos</h2>
+                                <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                            </div>
+                            <input type="submit" value="AGENDAR"> 
+                        </form>
+                    </div>   
+                    <div class="med">
+                        <form action="">
+                            <img src="/web/imagens/med1.png">
+                            <div class="ptMed">
+                                <h3>1985 PT</h3>
+                            </div>
+                            <div class="dadosMed">
+                                <h2>Dr. Wilson Santos</h2>
+                                <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                            </div>
+                            <input type="submit" value="AGENDAR"> 
+                        </form>
+                    </div>   
+                    <div class="med">
+                        <form action="">
+                            <img src="/web/imagens/med1.png">
+                            <div class="ptMed">
+                                <h3>1985 PT</h3>
+                            </div>
+                            <div class="dadosMed">
+                                <h2>Dr. Wilson Santos</h2>
+                                <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                            </div>
+                            <input type="submit" value="AGENDAR"> 
+                        </form>
+                    </div>   
+                    <div class="med">
+                        <form action="">
+                            <img src="/web/imagens/med1.png">
+                            <div class="ptMed">
+                                <h3>1985 PT</h3>
+                            </div>
+                            <div class="dadosMed">
+                                <h2>Dr. Wilson Santos</h2>
+                                <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                            </div>
+                            <input type="submit" value="AGENDAR"> 
+                        </form>
+                    </div>   
+                    <div class="med">
+                        <form action="">
+                            <img src="/web/imagens/med1.png">
+                            <div class="ptMed">
+                                <h3>1985 PT</h3>
+                            </div>
+                            <div class="dadosMed">
+                                <h2>Dr. Wilson Santos</h2>
+                                <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                            </div>
+                            <input type="submit" value="AGENDAR"> 
+                        </form>
+                    </div>   
+                </div>
+        </div>
     </div>
 </body>
 </html>

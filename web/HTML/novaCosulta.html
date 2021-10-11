@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/web/CSS/novaCosulta.css">
-    <title>Document</title>
+    <title>Nova Consulta</title>
 </head>
 <body>
     <div class="menulat">
@@ -98,6 +98,28 @@
     </div>
     <div class="todo">
         
+    <div class="titulo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9" width="2" height="20" fill="#166CD0"/>
+            <rect y="11" width="2" height="20" transform="rotate(-90 0 11)" fill="#166CD0"/>
+        </svg>   
+        <h1>Nova Consulta</h1>
+    </div>
+    <div class="busca">
+        <div class="cidade">
+            <select name="cidade">
+                <option value="" disabled selected>Cidade</option>
+              </select>
+        </div>
+        <div class="bairro">
+            <select name="bairro">
+                <option value="" disabled selected>Bairro</option>
+              </select>
+        </div>
+        <div class="cosulEspe">
+            <input type="text" name="cosulEspe" placeholder="Consultório ou especialidade.">
+        </div>
+        <input type="submit" value="Buscar">
     </div>
 </body>
 </html>

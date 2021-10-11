@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/web/CSS/planos.css">
-    <title>Planos</title>
+    <link rel="stylesheet" href="/web/CSS/posselecao.css">
+    <title>Pós selecao</title>
 </head>
 <body>
     <header>
@@ -33,215 +33,95 @@
         </div>
     </header>
 
-
-    <div class="topoPlanos">
-        <div class="topoComp">
-            <div class="topoTxt">
-                <h1>Quando cabe no bolso todo mundo fica feliz</h1>
-                <h2>Além de 3 opções você pode personalizar o plano.</h2>
-                <img src="/web/imagens/Ellipse 30.png" alt="" id="topo1">
-            </div>
-            <img src="/web/imagens/Group 366.png" alt="" id="topo2">
+    <div class="todo">
+        <div class="topoPos">
+            <a href="/web/HTML/planos.html" id="voltar">
+                <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9L9.27651 -4.05489e-07L11 1.67211L3.44698 9L11 16.3279L9.27651 18L-3.93402e-07 9Z" fill="#1CC4BF"/>
+                </svg>
+                Voltar
+            </a>
+            <h2>Nº da compra: #</h2>
+            <h2 id="numCompra">10254869</h2>
         </div>
-    </div>
-
-    <div class="planos">
-        <h1>Planos</h1>
-        <div class="plano">
-            <div class="personal">
-                <h3>PERSONAL</h3>
-                <p>Recomendado para médicos individuais/ iniciantes na carreira.</p>
-                <h1>R$99,90</h1>
-                <p id="mesPlano">/mês</p>
-
-                <form action="">
-                    <input type="hidden" name="tipoPlano" value="personal">
-                    <input type="submit" value="CONTRATAR">
-                </form>
-
-            </div>
-            <div class="itensPlano">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>01 Recepcionista.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>01 Médico usuário.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Todas funcionalidades inclusas.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Tolerância de 3 avisos.</P>                    
-            </div>
+    
+        <div class="divFin">
+            <p>FINZALIZAÇÃO DA COMPRA</p>
+            <div class="barraFin"></div>
         </div>
-        <div class="plano" id="meioPlanos">
-            <div class="economy">
-                <h3>ECONOMY</h3>
-                <p>Recomendado para pequenos consultórios, ou seja, de infraestrutura menor.</p>
-                <h1>R$279,80</h1>
-                <p id="mesPlano">/mês</p>
 
-                <form action="">
-                    <input type="hidden" name="tipoPlano" value="economy">
-                    <input type="submit" value="CONTRATAR">
-                </form>
-
+        <div class="finalizaCompra">
+            <div class="tipoPlano">
+                <div id="persQuad"></div>
+                <h3 id="persNome">PERSONAL</h3>
+                <p id="persTxt">Recomendado para pequenos consultórios, ou seja, de infraestrutura menor.</p>
             </div>
-            <div class="itensPlano">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Até 03 Recepcionista.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Até 05 Médicos.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Todas funcionalidades inclusas.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Tolerância: 5 avisos por médico.</P>                    
-            </div>
-        </div>
-        <div class="plano">
-            <div class="premium">
-                <h3>PREMIUM</h3>
-                <p>Para consultórios de médio porte, que tenham até 15 médicos.</p>
-                <h1>R$679,80</h1>
-                <p id="mesPlano">/mês</p>
 
-                <form action="">
-                    <input type="hidden" name="tipoPlano" value="premium">
-                    <input type="submit" value="CONTRATAR">
-                </form>
-
-            </div>
-            <div class="itensPlano">
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Até 05 Recepcionista.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Até 15 Médicos.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Todas funcionalidades inclusas.</P>                    
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                </svg>
-                <P>Tolerância: 7 avisos por médico.</P>                    
-            </div>
-        </div>
-    </div>
-
-    <div class="divPers">
-        <p>PERSONALIZAÇÃO</p>
-        <div class="barraPers"></div>
-    </div>
-
-    <div class="personalizacao">
-        <div class="persTxt">
-            <h1>Não encontrou um plano adequado para você?</h1>
-            <p>Fique tranquilo(a), informe o que se pede nos campos e será gerado automaticamente um plano.</p>
-        </div>
-        <div class="persForm">
-            
             <form action="">
-                <div class="qtdRecep">
-                    <p>Quantidade de recepcionista</p>
-                    <input type="text" name="" placeholder="Digite a qtd. de recepcionistas">
+                <div class="cupomFina">
+                    <p>CUPOM DE DESCONTO</p>
+                    <input type="text" name="cupomDesc" placeholder="Digite o código para o desconto">
                 </div>
-                <div class="qtdMed">
-                    <p>Quantidade de médicos</p>
-                    <input type="text" name="" placeholder="Informe a qtd. de médicos">
-                </div>
-                <div class="qtdTol">
-                    <p>Quantidade de tolerância</p>
-                    <input type="text" name="" placeholder="Digite a tolerância para cada médico">
-                </div>
-                <input type="submit" value="ENVIAR">
+                <input type="submit" value="APLICAR CUPOM">
             </form>
 
+
         </div>
-        <div class="persResul">
-            <div class="valResul">
-                <h1>Valor do plano:</h1>
-                <h1 id="moeda">R$</h1>
-                <h1 id="valorVari">00,00</h1>
-            </div>
-            <div class="itensResul">
-                <div class="receResul">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                    </svg>
-                    <p id="receResul">XX</p>
-                    <P> Recepcionista</P>
-                </div>
-                <div class="medResul">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                    </svg>
-                    <p id="medResul">XX</p>
-                    <P> Médico usuário</P>
-                </div>
-                <div class="funResul">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                    </svg>
-                    <P>Todas funcionalidades inclusas</P>
-                </div>
-                <div class="toleResul">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 11.5L10 14.5L15 8.5" stroke="#1CC4BF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="#1CC4BF" stroke-width="1.4"/>
-                    </svg>
-                    <P>Tolerância: </P>
-                    <p id="toleResul">XX</p>
-                    <p> avisos por médico</p> 
-                </div>
 
-                <form action="">
-                    <input type="submit" value="CONTRATAR">
-                </form>
+        <div class="divMen">
+            <p>INFORMAÇÕES E OPÇÃO DE MENSALIDADE</p>
+            <div class="barraMen"></div>
+        </div>
+
+        <div class="opcMen">
+            <div class="infoplano">
+                <div class="qntRece">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
+                        <path d="M7 11.5L10 14.5L15 8.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p id="qntRece">XX</p>
+                    <p>Recepcionista</p>
+                </div>
+                <div class="qntMed">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
+                        <path d="M7 11.5L10 14.5L15 8.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p id="qntMed">XX</p>
+                    <p>Médico usuário </p> 
+                </div>
+                <div class="funcio">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
+                        <path d="M7 11.5L10 14.5L15 8.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Todas funcionalidades inclusas</p>
+                </div>
+                <div class="qntTole">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
+                        <path d="M7 11.5L10 14.5L15 8.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Tolerância:</p>
+                    <p id="qntTole">XX</p>
+                    <p>avisos por médico</p>
+
+                </div>
+            </div>
+            <div class="opcPag">
+                
+            </div>
+            <div class="valorTotal">
 
             </div>
         </div>
-    </div>
-    
-    <div class="formasPag">
-        <hr>
-        <h1>Formas de pagamento</h1>
-        <img src="/web/imagens/formasPag.png" alt="Todos os metodos de pagamento aceitos.">
-        <hr>
-        <img src="/web/imagens/segPag.png" alt="Comprovação de segurança ao realizar pagamentos.">
-    </div>
 
+
+
+
+
+    </div>
 
     <div class="rodapeComposto">
         <div class="colunas">

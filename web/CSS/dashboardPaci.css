@@ -1,7 +1,17 @@
 @import url(global.css);
+
 body{
     width: 1400px;
     margin: 0 auto;
+}
+#dashCli{
+    border-right: solid 4px #166CD0;
+}
+#dashCli a{
+    color: #166CD0;
+}
+#dashCli rect{
+    fill: #166CD0;
 }
 .todo{
     width: 828px;

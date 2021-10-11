@@ -1,0 +1,21 @@
+@import url(global.css);
+
+body{
+    width: 1400px;
+    margin: 0 auto;
+}
+
+#nvConsul{
+    border-right: solid 4px #166CD0;
+}
+#nvConsul a{
+    color: #166CD0;
+}
+#nvConsul rect{
+    fill: #166CD0;
+}
+.todo{
+    width: 828px;
+    height: 100%;
+    float: left;
+}

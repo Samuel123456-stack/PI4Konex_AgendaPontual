@@ -15,7 +15,10 @@ body{
     position: relative;
 }
 .menulat p{
-    margin: 30px 0 0 30px;
+    width: 241px;
+    height: 33px;
+    margin: 14px 0 0 30px;
+    padding-top: 16px;
     font-size: 16px;
 }
 .menulat svg{
@@ -39,3 +42,18 @@ body{
     position: absolute;
     bottom: 0;
 }
+
+
+/*
+    Css para o id de cada pagina só precisa alterar o nome no css
+
+#dashCli{
+    border-right: solid 4px #166CD0;
+}
+#dashCli a{
+    color: #166CD0;
+}
+#dashCli rect{
+    fill: #166CD0;
+}
+*/

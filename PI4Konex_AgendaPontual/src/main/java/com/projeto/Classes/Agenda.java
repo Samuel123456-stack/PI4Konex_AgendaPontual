@@ -8,6 +8,7 @@ public class Agenda {
     private int idMed;
     private int idPaci;
     private String dataAgendada;
+    private String infoAdicAgen;
 
     // Metodo Construtor
     public Agenda() {
@@ -15,13 +16,14 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, String dataAgendada) {
+    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, String dataAgendada, String infoAdicAgen) {
         this.idAgenda = idAgenda;
         this.idDia = idDia;
         this.idHora = idHora;
         this.idMed = idMed;
         this.idPaci = idPaci;
         this.dataAgendada = dataAgendada;
+        this.infoAdicAgen = infoAdicAgen;
     }
 
     // Getters e Setters
@@ -73,4 +75,12 @@ public class Agenda {
         this.dataAgendada = dataAgendada;
     }
 
+    public String getInfoAdicAgen() {
+        return infoAdicAgen;
+    }
+
+    public void setInfoAdicAgen(String infoAdicAgen) {
+        this.infoAdicAgen = infoAdicAgen;
+    }
+    
 }

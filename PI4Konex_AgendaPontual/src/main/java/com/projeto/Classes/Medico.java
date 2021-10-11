@@ -10,7 +10,6 @@ public class Medico {
     private String cpfMed;
     private String email;
     private String senha;
-    private String especialidade;
     private String crm;
     private String telefone;
     private String valorMed;
@@ -20,6 +19,8 @@ public class Medico {
     private String sala;
     private int idCli;
     private int idEndereco;
+    private int idUsu;
+    private int idEsp;
 
     // Metodo Construtor
     public Medico() {
@@ -28,8 +29,8 @@ public class Medico {
 
     // Metodo Construtor com Atributos
     public Medico(int idMed, String nomeMed, String dataNasc, String sexoMed, String cpfMed, String email, String senha,
-            String especialidade, String crm, String telefone, String valorMed, String dataFormatura, String sobreMed,
-            String bioMed, String sala, int idCli, int idEndereco) {
+            String crm, String telefone, String valorMed, String dataFormatura, String sobreMed, String bioMed,
+            String sala, int idCli, int idEndereco, int idUsu, int idEsp) {
         this.idMed = idMed;
         this.nomeMed = nomeMed;
         this.dataNasc = dataNasc;
@@ -37,7 +38,6 @@ public class Medico {
         this.cpfMed = cpfMed;
         this.email = email;
         this.senha = senha;
-        this.especialidade = especialidade;
         this.crm = crm;
         this.telefone = telefone;
         this.valorMed = valorMed;
@@ -47,6 +47,8 @@ public class Medico {
         this.sala = sala;
         this.idCli = idCli;
         this.idEndereco = idEndereco;
+        this.idUsu = idUsu;
+        this.idEsp = idEsp;
     }
 
     // Getters e Setters
@@ -104,14 +106,6 @@ public class Medico {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
     }
 
     public String getCrm() {
@@ -184,6 +178,22 @@ public class Medico {
 
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
+    }
+
+    public int getIdUsu() {
+        return idUsu;
+    }
+
+    public void setIdUsu(int idUsu) {
+        this.idUsu = idUsu;
+    }
+
+    public int getIdEsp() {
+        return idEsp;
+    }
+
+    public void setIdEsp(int idEsp) {
+        this.idEsp = idEsp;
     }
 
 }

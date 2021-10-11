@@ -11,6 +11,7 @@ public class Recepcionista {
     private String senha;
     private int idCli;
     private int idEndereco;
+    private int idUsu;
 
     // Metodo Construtor
     public Recepcionista() {
@@ -19,7 +20,7 @@ public class Recepcionista {
 
     // Metodo Construtor com Atributos
     public Recepcionista(int idRec, String nomeRec, String sexoRec, String dataNasc, String cpfRec, String email,
-            String senha, int idCli, int idEndereco) {
+            String senha, int idCli, int idEndereco, int idUsu) {
         this.idRec = idRec;
         this.nomeRec = nomeRec;
         this.sexoRec = sexoRec;
@@ -29,6 +30,7 @@ public class Recepcionista {
         this.senha = senha;
         this.idCli = idCli;
         this.idEndereco = idEndereco;
+        this.idUsu = idUsu;
     }
 
     // Getters e Setters
@@ -103,5 +105,13 @@ public class Recepcionista {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
+
+    public int getIdUsu() {
+        return idUsu;
+    }
+
+    public void setIdUsu(int idUsu) {
+        this.idUsu = idUsu;
+    } 
 
 }

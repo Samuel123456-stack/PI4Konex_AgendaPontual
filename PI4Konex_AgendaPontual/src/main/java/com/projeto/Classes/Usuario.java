@@ -2,10 +2,12 @@ package com.projeto.Classes;
 
 public class Usuario {
     // Atributos
+    private int idUsu;
     private String email;
+    private String confirmaEmail;
     private String senha;
-    private String cep;
-    private String endereco;
+    private String confirmaSenha;
+    private String perfil;
 
     // Metodo Construtor
     public Usuario() {
@@ -13,20 +15,38 @@ public class Usuario {
     }
 
     // Metodo Construtor com Atributos
-    public Usuario(String email, String senha, String cep, String endereco) {
+    public Usuario(int idUsu, String email, String confirmaEmail, String senha, String confirmaSenha, String perfil) {
+        this.idUsu = idUsu;
         this.email = email;
+        this.confirmaEmail = confirmaEmail;
         this.senha = senha;
-        this.cep = cep;
-        this.endereco = endereco;
+        this.confirmaSenha = confirmaSenha;
+        this.perfil = perfil;
     }
 
     // Getters e Setters
+    public int getIdUsu() {
+        return idUsu;
+    }
+
+    public void setIdUsu(int idUsu) {
+        this.idUsu = idUsu;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getConfirmaEmail() {
+        return confirmaEmail;
+    }
+
+    public void setConfirmaEmail(String confirmaEmail) {
+        this.confirmaEmail = confirmaEmail;
     }
 
     public String getSenha() {
@@ -37,20 +57,20 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getCep() {
-        return cep;
+    public String getConfirmaSenha() {
+        return confirmaSenha;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getPerfil() {
+        return perfil;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 
 }

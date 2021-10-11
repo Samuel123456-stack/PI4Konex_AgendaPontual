@@ -5,7 +5,9 @@ public class Clinica {
     // Atributos
     private int idCli;
     private String nomeCli;
+    private String nomeMedRes;
     private String cnpj;
+    private String rg;
     private String assinatura;
     private int qntAssentos;
     private String licenca;
@@ -13,6 +15,7 @@ public class Clinica {
     private String senha;
     private int idPlano;
     private int idEndereco;
+    private int idUsu;
 
     // Metodo Construtor
     public Clinica() {
@@ -20,11 +23,13 @@ public class Clinica {
     }
 
     // Metodo Construtor com Atributos
-    public Clinica(int idCli, String nomeCli, String cnpj, String assinatura, int qntAssentos, String licenca,
-            String email, String senha, int idPlano, int idEndereco) {
+    public Clinica(int idCli, String nomeCli, String nomeMedRes, String cnpj, String rg, String assinatura,
+            int qntAssentos, String licenca, String email, String senha, int idPlano, int idEndereco, int idUsu) {
         this.idCli = idCli;
         this.nomeCli = nomeCli;
+        this.nomeMedRes = nomeMedRes;
         this.cnpj = cnpj;
+        this.rg = rg;
         this.assinatura = assinatura;
         this.qntAssentos = qntAssentos;
         this.licenca = licenca;
@@ -32,6 +37,7 @@ public class Clinica {
         this.senha = senha;
         this.idPlano = idPlano;
         this.idEndereco = idEndereco;
+        this.idUsu = idUsu;
     }
 
     // Getters e Setters
@@ -51,12 +57,28 @@ public class Clinica {
         this.nomeCli = nomeCli;
     }
 
+    public String getNomeMedRes() {
+        return nomeMedRes;
+    }
+
+    public void setNomeMedRes(String nomeMedRes) {
+        this.nomeMedRes = nomeMedRes;
+    }
+
     public String getCnpj() {
         return cnpj;
     }
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getAssinatura() {
@@ -114,5 +136,13 @@ public class Clinica {
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
     }
+
+    public int getIdUsu() {
+        return idUsu;
+    }
+
+    public void setIdUsu(int idUsu) {
+        this.idUsu = idUsu;
+    }  
 
 }

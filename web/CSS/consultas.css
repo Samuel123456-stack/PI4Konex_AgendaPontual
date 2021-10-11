@@ -1,0 +1,38 @@
+@import url(global.css);
+body{
+    width: 1400px;
+    margin: 0 auto;
+    height: 1500px;
+}
+
+#consul{
+    border-right: solid 4px #166CD0;
+}
+#consul a{
+    color: #166CD0;
+}
+#consul path{
+    fill: #166CD0;
+}
+.todo{
+    width: 909px;
+    MAX-height: 769PX;
+    margin-top: 91px;
+    padding: 27px 0 0 55px;
+    height: 100%;
+    float: left;
+    border-top: 1px solid rgba(84, 101, 130, 0.3);
+    font-family: 'Mulish', sans-serif;
+}
+.titulo {
+    height: 55px;
+}
+.titulo svg{
+    float: left;
+}
+.titulo h1{
+    margin: 0 0 0 10px;
+    float: left;
+    font-size: 20px;
+    color: #166CD0;
+}

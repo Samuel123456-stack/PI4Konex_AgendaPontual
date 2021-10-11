@@ -1,5 +1,3 @@
-drop database agendapontual;
-
 CREATE USER 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
 GRANT ALL PRIVILEGES ON agendapontual. * TO 'agendaPontual'@'localhost';
 FLUSH PRIVILEGES;
@@ -20,25 +18,26 @@ CREATE TABLE endereco (
 );
 
 insert into endereco(logradouro,numero,complemento,bairro, cidade,estado,cep) values
-	('Avenida Bem-te-vi',791,'Casa','Indianópolis','São Paulo','SP','04524-911'),
-    ('Rua Francisco Enes',434,'Casa','Balneário Mar Paulista','São Paulo','SP','04464-020'),
-    ('Rua Piratininga',909,'Casa','Brás','São Paulo','SP','03042-000'),
-    ('Rua da Consolação',2697,'Casa','Cerqueira César','São Paulo','SP','01416-900'),
-    ('Rua Manuel Correia Penteado',770,'Casa','Vila Seabra','São Paulo','SP','08180-140'),
-    ('Rua Domingos de Matos',850,'Casa','Jardim Íris','São Paulo','SP','05144-020'),
-    ('Rua Ângelo Pedroso',207,'Casa','Vila ABC','São Paulo','SP','08460-345'),
-    ('Avenida Euclides',860,'Casa','Vila Fachini','São Paulo','SP','04326-080'),
-    ('Rua Frei Durão',732,'Casa','Vila São José (Ipiranga)','São Paulo','SP','04274-000'),
-    ('Rua Igati',915,'Casa','Vila Anhangüera','São Paulo','SP','04673-040'),
-    ('Rua Professor Carlos Benjamin de Lyra',211,'Casa','Chácara São João','São Paulo','SP','05110-050'),
-    ('Rua Ana Ribeiro',645,'Casa','Vila Ester','São Paulo','SP','02536-010'),
-    ('Praça Nicola Antônio Camardo',685,'Casa','Vila Gomes Cardim','São Paulo','SP','03319-130'),
-    ('Rua Banco das Palmas',664,'Casa','Santana','São Paulo','SP','02016-020'),
-    ('Rua Amico Aspertini',382,'Casa','Vila Tiradentes','São Paulo','SP','05367-250'),
-    ('Rua Itapeva',500,'Casa','Bela Vista','São Paulo','SP','01332-903'),
-    ('Rua Maquerobi',744,'Casa','Saúde','São Paulo','SP','04053-030'),
-    ('Rua Piedade do Paraopeba',386,'Casa','Jardim Peri','São Paulo','SP','02679-010'),
-    ('Rua Mercado de Ferro',408,'Casa','Vila Aurea','São Paulo','SP','08411-210');
+/*1*/	 ('Avenida Bem-te-vi',791,'Casa','Indianópolis','São Paulo','SP','04524-911'),
+/*2*/    ('Rua Francisco Enes',434,'Casa','Balneário Mar Paulista','São Paulo','SP','04464-020'),
+/*3*/    ('Rua Piratininga',909,'Casa','Brás','São Paulo','SP','03042-000'),
+/*4*/    ('Rua da Consolação',2697,'Casa','Cerqueira César','São Paulo','SP','01416-900'),
+/*5*/    ('Rua Manuel Correia Penteado',770,'Casa','Vila Seabra','São Paulo','SP','08180-140'),
+/*6*/    ('Rua Domingos de Matos',850,'Casa','Jardim Íris','São Paulo','SP','05144-020'),
+/*7*/    ('Rua Ângelo Pedroso',207,'Casa','Vila ABC','São Paulo','SP','08460-345'),
+/*8*/    ('Avenida Euclides',860,'Casa','Vila Fachini','São Paulo','SP','04326-080'),
+/*9*/    ('Rua Frei Durão',732,'Casa','Vila São José (Ipiranga)','São Paulo','SP','04274-000'),
+/*10*/   ('Rua Igati',915,'Casa','Vila Anhangüera','São Paulo','SP','04673-040'),
+/*11*/   ('Rua Professor Carlos Benjamin de Lyra',211,'Casa','Chácara São João','São Paulo','SP','05110-050'),
+/*12*/   ('Rua Ana Ribeiro',645,'Casa','Vila Ester','São Paulo','SP','02536-010'),
+/*13*/   ('Praça Nicola Antônio Camardo',685,'Casa','Vila Gomes Cardim','São Paulo','SP','03319-130'),
+/*14*/   ('Rua Banco das Palmas',664,'Casa','Santana','São Paulo','SP','02016-020'),
+/*15*/   ('Rua Amico Aspertini',382,'Casa','Vila Tiradentes','São Paulo','SP','05367-250'),
+/*16*/   ('Rua Itapeva',500,'Casa','Bela Vista','São Paulo','SP','01332-903'),
+/*17*/   ('Rua Maquerobi',744,'Casa','Saúde','São Paulo','SP','04053-030'),
+/*18*/   ('Rua Piedade do Paraopeba',386,'Casa','Jardim Peri','São Paulo','SP','02679-010'),
+/*19*/   ('Rua Mercado de Ferro',408,'Casa','Vila Aurea','São Paulo','SP','08411-210'),
+/*20*/   ('Rua Doutor Tomás Carvalhal',300,'Casa','Paraíso','São Paulo','SP','04006-000');
 
 CREATE TABLE feedback (
     id_feed Integer AUTO_INCREMENT PRIMARY KEY,
@@ -67,7 +66,19 @@ insert into usuario(email,email_confirma,senha,senha_confirma,perfil) values
 /*5*/   ('andreia.medeiros@medico.com','andreia.medeiros@medico.com','123456','123456','médico'), 
 /*6*/   ('sophia.iaf@medico.com','sophia.iaf@medico.com','123456','123456','médico'),
 /*7*/   ('wilson.santos@medico.com','wilson.santos@medico.com','123456','123456','médico'),
-/*8*/	('Isaac.batista@medico.com','Isaac.batista@medico.com','123456','123456','médico');
+/*8*/	('Isaac.batista@medico.com','Isaac.batista@medico.com','123456','123456','médico'),
+/*9*/	('elisa.sabrina@uol.com.br','elisa.sabrina@uol.com.br','123456','123456','paciente'),
+/*10*/	('osvaldo.nogueira@outlook.com','osvaldo.nogueira@outlook.com','123456','123456','paciente'),
+/*11*/	('victor.neves@ig.com.br','victor.neves@ig.com.br','123456','123456','paciente'),
+/*12*/	('marina.rosa@hotmail.com','marina.rosa@hotmail.com','123456','123456','paciente'),
+/*13*/	('luan.caldeira@globo.com','eluan.caldeira@globo.com','123456','123456','paciente'),
+/*14*/	('ricardo.teixeira@hotmail.com','ricardo.teixeira@hotmail.com','123456','123456','paciente'),
+/*15*/	('tatiane.cardoso@bol.com.br','tatiane.cardoso@bol.com.br','123456','123456','paciente'),
+/*16*/	('rita.carvalho@gmail.com','rita.carvalho@gmail.com','123456','123456','paciente'),
+/*17*/	('davi.rodrigues@msn.com','davi.rodrigues@msn.com','123456','123456','paciente'),
+/*18*/	('sara.araujo@gmail.com','sara.araujo@gmail.com','123456','123456','paciente'),
+/*19*/	('raimunda.almada@outlook.com','raimunda.almada@outlook.com','123456','123456','paciente'),
+/*20*/	('fatima.freitas@yahoo.com','fatima.freitas@yahoo.com','123456','123456','paciente');
 
 CREATE TABLE adm (
     id_adm Integer AUTO_INCREMENT PRIMARY KEY,
@@ -86,7 +97,7 @@ CREATE TABLE pagamento (
     id_pag Integer AUTO_INCREMENT PRIMARY KEY,
     dt_pgto timestamp default current_timestamp(),
     forma_pagamento varchar(30) null,
-    valor_pgto decimal(5,2)
+    valor decimal(6,2)
 );
 
 CREATE TABLE plano (
@@ -220,19 +231,14 @@ CREATE TABLE medico (
 insert into medico(nome,data_nasci,sexo,cpf,rg,crm,celular,valor,data_formatura,sobre_mim,biografia,sala,fk_cli_med,fk_end_med,fk_usu_med,fk_esp_med) values
 	('Sophia Isabel Ayla Farias','1949-02-19','Feminino','554.955.177-25','46.681.022-2','1234','(11) 98661-0781','150.00',
     '1969-02-19','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','1',1,3,6,1),  
-    
     ('Wilson Santos','1975-08-12','Masculino','362.830.798-81','21.207.729-6','171428','(11) 98657-0621','150.00',
     '1995-05-21','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','2',1,4,7,5),
-    
     ('Ricardo Davies','1999-02-22','Masculino','113.638.718-89','22.147.686-6','44855','(11) 99927-4317','150.00',
     '2000-04-24','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','3',1,5,3,10),
-    
     ('Marta Perez','1972-03-19','Feminino','982.656.338-23','41.879.754-7','44855','(11) 98487-7992','150.00',
     '1992-04-19','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','1',2,6,4,1),
-    
     ('Andreia Medeiros','1978-06-03','Feminino','339.497.718-40','34.110.465-6','28894','(11) 99346-1802','150.00',
     '1990-12-19','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','2',2,7,5,5),
-    
     ('Isaac Otávio Baptista','1965-07-01','Masculino','621.326.558-98','18.860.455-8','28964','(11) 99427-7829','150.00',
     '1988-12-01','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','3',2,8,8,10);
 
@@ -243,13 +249,14 @@ CREATE TABLE convenio (
 );
 
 insert into convenio(nome,valor) values
-	('Amil','20.00'),
+	('Particular','150.00'),
+    ('Amil','20.00'),
     ('Sul América', '15.50'), 
     ('Unimed', '16.98'),
     ('Notre Dame Intermédica', '18.50'),
     ('Porto seguro saúde', '19.00'),
     ('Bradesco', '21.00');
-
+    
 CREATE TABLE convenio_medico (
     fk_med_conv Integer null,
     fk_conv_med Integer null,
@@ -267,14 +274,27 @@ CREATE TABLE paciente (
     rg varchar (13) null,
     celular varchar(15) null,
     sexo varchar(9) null,
-    convenio varchar(30) null,
     primeira_consulta boolean,
     sintomas_gripe boolean,
+    fk_conv_paci Integer null,
     fk_end_paci Integer null,
     fk_usu_paci Integer null,
     FOREIGN KEY (fk_end_paci) REFERENCES endereco (id_end),
-    FOREIGN KEY (fk_usu_paci) REFERENCES usuario (id_usu)
+    FOREIGN KEY (fk_usu_paci) REFERENCES usuario (id_usu),
+    FOREIGN KEY (fk_conv_paci) REFERENCES convenio (id_conv)
 );
+
+insert into paciente(nome,cpf,data_nasci,rg,celular,sexo,primeira_consulta,sintomas_gripe,fk_conv_paci,fk_end_paci,fk_usu_paci)values
+	('Elisa Lara Sabrina Fernandes','570.840.078-14','1964-02-27','32.266.700-8','(11) 98818-3740','Feminino',1,0,2,9,9),
+    ('Osvaldo Erick Calebe Nogueira','251.166.328-73','1974-09-19','43.877.631-8','(11) 98845-2508','Masculino',1,0,2,10,10),
+    ('Victor Matheus das Neves','096.480.838-27','1979-10-06','20.901.924-4','(11) 99579-5031','Masculino',1,0,1,11,11),
+    ('Marina Julia da Rosa','725.569.828-02','1954-10-02','13.411.804-2','(11) 98978-6567','Feminino',1,0,1,12,12),
+    ('Luan Yago Renato Caldeira','192.394.768-06','1972-02-21','14.940.867-5','(11) 99620-3117','Masculino',1,0,3,13,13),
+    ('Ricardo Davi Caio Teixeira','347.852.818-63','1962-03-13','32.402.071-5','(11) 98639-6054','Masculino',1,0,3,14,14),
+    ('Tatiane Rebeca Jaqueline Cardoso','813.008.548-80','1988-08-12','40.456.015-5','(11) 98279-6383','Feminino',1,0,4,15,15),
+    ('Rita Ayla Carvalho','162.581.058-07','1980-01-25','33.511.994-3','(11) 99970-2497','Feminino',1,0,4,16,16),
+    ('Davi Danilo Bryan Rodrigues','511.249.128-00','2000-09-20','35.500.550-5','(11) 99371-7482','Masculino',1,0,5,17,17),
+    ('Sara Alana Débora Araújo','189.159.978-08','1990-03-15','42.238.660-1','(11) 98274-6578','Feminino',1,0,5,18,18);
 
  CREATE TABLE triagem (
     dt_criacao datetime default current_timestamp(),
@@ -307,7 +327,6 @@ CREATE TABLE horario (
     ON DELETE CASCADE
 );
 
-
 CREATE TABLE agenda_medica(
 	id_agen integer AUTO_INCREMENT PRIMARY KEY,
     fk_dia_agen integer null,
@@ -327,18 +346,19 @@ CREATE TABLE recepcionista (
     id_recep Integer AUTO_INCREMENT PRIMARY KEY,
     foto blob null,
     nome varchar(30) null,
-    sexo varchar(1)null,
-    data_nasci Date null,
     cpf varchar(14) null, 
-	rg varchar (13) null,
-    celular varchar(10) null,
+    sexo varchar(9)null,                        
+    data_nasci Date null, 
+    celular varchar(15) null,
     fk_cli_recep Integer null,
-    fk_end_recep Integer null,
     fk_usu_recep Integer null,
     FOREIGN KEY (fk_cli_recep) REFERENCES clinica (id_cli),
-    FOREIGN KEY (fk_end_recep) REFERENCES endereco (id_end),
     FOREIGN KEY (fk_usu_recep) REFERENCES usuario (id_usu)
 );
+
+insert into recepcionista(nome,cpf,sexo,data_nasci,celular,fk_cli_recep,fk_usu_recep)values
+	('Raimunda Sophia Clara Almada','405.724.908-79','Feminino','1996-10-10','(11) 98822-8252',1,19),
+    ('Fátima Catarina Freitas','860.620.058-18','Feminino','1998-11-13','(11) 98125-8675',2,20);
 
 CREATE TABLE ajuda_paci (
 	dt_criacao datetime default current_timestamp(),
@@ -453,6 +473,8 @@ CREATE TABLE exame_consulta (
 );
 
 /*Viewers*/
+/* Foram realizadas várias alterações no scrip, logo as viewers necessitam de revisão.
+
 create view vw_cont_atend_concl
 as
 select nome as 'medico', crm as 'crm', count(concluida) as 'qte.atendido(s)' from consulta
@@ -476,4 +498,4 @@ create view vw_med_pesq
 as
 SELECT nome as 'Médico', sobre_mim, TIMESTAMPDIFF(YEAR, data_formatura, CURDATE()) as 'Experiência', sexo, especialidade, valor
 FROM medico;
-
+*/

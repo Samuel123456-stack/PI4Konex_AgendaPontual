@@ -5,6 +5,7 @@ public class Planos {
     // Atributos
     private int idPlano;
     private String nomePlano;
+    private String comenPlano;
     private float valorPlano;
     private int qntRec;
     private int qntMed;
@@ -18,10 +19,11 @@ public class Planos {
     }
 
     // Metodo Construtor com Atributos
-    public Planos(int idPlano, String nomePlano, float valorPlano, int qntRec, int qntMed, String detalhes,
-            int qntTolerancia, int idPag) {
+    public Planos(int idPlano, String nomePlano, String comenPlano, float valorPlano, int qntRec, int qntMed,
+            String detalhes, int qntTolerancia, int idPag) {
         this.idPlano = idPlano;
         this.nomePlano = nomePlano;
+        this.comenPlano = comenPlano;
         this.valorPlano = valorPlano;
         this.qntRec = qntRec;
         this.qntMed = qntMed;
@@ -45,6 +47,14 @@ public class Planos {
 
     public void setNomePlano(String nomePlano) {
         this.nomePlano = nomePlano;
+    }
+
+    public String getComenPlano() {
+        return comenPlano;
+    }
+
+    public void setComenPlano(String comenPlano) {
+        this.comenPlano = comenPlano;
     }
 
     public float getValorPlano() {

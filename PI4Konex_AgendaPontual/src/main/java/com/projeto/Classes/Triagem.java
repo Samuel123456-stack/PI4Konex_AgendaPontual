@@ -1,18 +1,18 @@
 package com.projeto.Classes;
 
 public class Triagem {
-    //Atributos
+    // Atributos
     private String dataCriaTriagem;
     private String horaCriaTriagem;
     private int idDoenca;
     private int idPaci;
 
-    //Metodo Construtor
-    public Triagem(){
+    // Metodo Construtor
+    public Triagem() {
 
     }
 
-    //Metodo Construtor com Atributos
+    // Metodo Construtor com Atributos
     public Triagem(String dataCriaTriagem, String horaCriaTriagem, int idDoenca, int idPaci) {
         this.dataCriaTriagem = dataCriaTriagem;
         this.horaCriaTriagem = horaCriaTriagem;
@@ -20,7 +20,7 @@ public class Triagem {
         this.idPaci = idPaci;
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public String getDataCriaTriagem() {
         return dataCriaTriagem;
     }
@@ -52,10 +52,5 @@ public class Triagem {
     public void setIdPaci(int idPaci) {
         this.idPaci = idPaci;
     }
-
-    
-    
-
-    
 
 }

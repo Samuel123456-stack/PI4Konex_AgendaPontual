@@ -4,8 +4,10 @@ public class Notificacao {
     // Atributos
     private int idNoti;
     private String dataNoti;
+    private String horaNoti;
     private String assunto;
-    private String motivo;
+    private String mensagem;
+    private String resposta;
 
     // Metodo Construtor
     public Notificacao() {
@@ -13,11 +15,13 @@ public class Notificacao {
     }
 
     // Metodo Construtor com Atributos
-    public Notificacao(int idNoti, String dataNoti, String assunto, String motivo) {
+    public Notificacao(int idNoti, String dataNoti, String horaNoti, String assunto, String mensagem, String resposta) {
         this.idNoti = idNoti;
         this.dataNoti = dataNoti;
+        this.horaNoti = horaNoti;
         this.assunto = assunto;
-        this.motivo = motivo;
+        this.mensagem = mensagem;
+        this.resposta = resposta;
     }
 
     // Getters e Setters
@@ -37,6 +41,14 @@ public class Notificacao {
         this.dataNoti = dataNoti;
     }
 
+    public String getHoraNoti() {
+        return horaNoti;
+    }
+
+    public void setHoraNoti(String horaNoti) {
+        this.horaNoti = horaNoti;
+    }
+
     public String getAssunto() {
         return assunto;
     }
@@ -45,12 +57,20 @@ public class Notificacao {
         this.assunto = assunto;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public String getMensagem() {
+        return mensagem;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 
 }

@@ -3,14 +3,14 @@ package com.projeto.Classes;
 public class Recepcionista {
     // Atributos
     private int idRec;
+    private String dataCriaRec;
+    private String horaCriaRec;
     private String nomeRec;
+    private String cpfRec;
     private String sexoRec;
     private String dataNasc;
-    private String cpfRec;
-    private String email;
-    private String senha;
+    private String celular;
     private int idCli;
-    private int idEndereco;
     private int idUsu;
 
     // Metodo Construtor
@@ -19,17 +19,18 @@ public class Recepcionista {
     }
 
     // Metodo Construtor com Atributos
-    public Recepcionista(int idRec, String nomeRec, String sexoRec, String dataNasc, String cpfRec, String email,
-            String senha, int idCli, int idEndereco, int idUsu) {
+
+    public Recepcionista(int idRec, String dataCriaRec, String horaCriaRec, String nomeRec, String cpfRec,
+            String sexoRec, String dataNasc, String celular, int idCli, int idUsu) {
         this.idRec = idRec;
+        this.dataCriaRec = dataCriaRec;
+        this.horaCriaRec = horaCriaRec;
         this.nomeRec = nomeRec;
+        this.cpfRec = cpfRec;
         this.sexoRec = sexoRec;
         this.dataNasc = dataNasc;
-        this.cpfRec = cpfRec;
-        this.email = email;
-        this.senha = senha;
+        this.celular = celular;
         this.idCli = idCli;
-        this.idEndereco = idEndereco;
         this.idUsu = idUsu;
     }
 
@@ -42,12 +43,36 @@ public class Recepcionista {
         this.idRec = idRec;
     }
 
+    public String getDataCriaRec() {
+        return dataCriaRec;
+    }
+
+    public void setDataCriaRec(String dataCriaRec) {
+        this.dataCriaRec = dataCriaRec;
+    }
+
+    public String getHoraCriaRec() {
+        return horaCriaRec;
+    }
+
+    public void setHoraCriaRec(String horaCriaRec) {
+        this.horaCriaRec = horaCriaRec;
+    }
+
     public String getNomeRec() {
         return nomeRec;
     }
 
     public void setNomeRec(String nomeRec) {
         this.nomeRec = nomeRec;
+    }
+
+    public String getCpfRec() {
+        return cpfRec;
+    }
+
+    public void setCpfRec(String cpfRec) {
+        this.cpfRec = cpfRec;
     }
 
     public String getSexoRec() {
@@ -66,28 +91,12 @@ public class Recepcionista {
         this.dataNasc = dataNasc;
     }
 
-    public String getCpfRec() {
-        return cpfRec;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setCpfRec(String cpfRec) {
-        this.cpfRec = cpfRec;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
     public int getIdCli() {
@@ -98,20 +107,12 @@ public class Recepcionista {
         this.idCli = idCli;
     }
 
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
-    }
-
     public int getIdUsu() {
         return idUsu;
     }
 
     public void setIdUsu(int idUsu) {
         this.idUsu = idUsu;
-    } 
+    }
 
 }

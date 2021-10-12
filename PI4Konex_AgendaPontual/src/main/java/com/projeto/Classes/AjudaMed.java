@@ -1,7 +1,7 @@
 package com.projeto.Classes;
 
 public class AjudaMed {
-    //Atributos
+    // Atributos
     private String dataAjudaMed;
     private String horaAjudaMed;
     private int idAjuda;
@@ -10,77 +10,77 @@ public class AjudaMed {
     private String statusSoli;
     private String descSolucao;
 
-    //Metodo Construtor
-    public AjudaMed(){
+    // Metodo Construtor
+    public AjudaMed() {
 
     }
-    
-    //Metodo Construtor com Atributos
+
+    // Metodo Construtor com Atributos
     public AjudaMed(String dataAjudaMed, String horaAjudaMed, int idAjuda, int idMed, int idAdm, String statusSoli,
-    String descSolucao) {
-this.dataAjudaMed = dataAjudaMed;
-this.horaAjudaMed = horaAjudaMed;
-this.idAjuda = idAjuda;
-this.idMed = idMed;
-this.idAdm = idAdm;
-this.statusSoli = statusSoli;
-this.descSolucao = descSolucao;
-}
+            String descSolucao) {
+        this.dataAjudaMed = dataAjudaMed;
+        this.horaAjudaMed = horaAjudaMed;
+        this.idAjuda = idAjuda;
+        this.idMed = idMed;
+        this.idAdm = idAdm;
+        this.statusSoli = statusSoli;
+        this.descSolucao = descSolucao;
+    }
 
-//Getters e Setters
-public String getDataAjudaMed() {
-    return dataAjudaMed;
-}
+    // Getters e Setters
+    public String getDataAjudaMed() {
+        return dataAjudaMed;
+    }
 
-public void setDataAjudaMed(String dataAjudaMed) {
-    this.dataAjudaMed = dataAjudaMed;
-}
+    public void setDataAjudaMed(String dataAjudaMed) {
+        this.dataAjudaMed = dataAjudaMed;
+    }
 
-public String getHoraAjudaMed() {
-    return horaAjudaMed;
-}
+    public String getHoraAjudaMed() {
+        return horaAjudaMed;
+    }
 
-public void setHoraAjudaMed(String horaAjudaMed) {
-    this.horaAjudaMed = horaAjudaMed;
-}
+    public void setHoraAjudaMed(String horaAjudaMed) {
+        this.horaAjudaMed = horaAjudaMed;
+    }
 
-public int getIdAjuda() {
-    return idAjuda;
-}
+    public int getIdAjuda() {
+        return idAjuda;
+    }
 
-public void setIdAjuda(int idAjuda) {
-    this.idAjuda = idAjuda;
-}
+    public void setIdAjuda(int idAjuda) {
+        this.idAjuda = idAjuda;
+    }
 
-public int getIdMed() {
-    return idMed;
-}
+    public int getIdMed() {
+        return idMed;
+    }
 
-public void setIdMed(int idMed) {
-    this.idMed = idMed;
-}
+    public void setIdMed(int idMed) {
+        this.idMed = idMed;
+    }
 
-public int getIdAdm() {
-    return idAdm;
-}
+    public int getIdAdm() {
+        return idAdm;
+    }
 
-public void setIdAdm(int idAdm) {
-    this.idAdm = idAdm;
-}
+    public void setIdAdm(int idAdm) {
+        this.idAdm = idAdm;
+    }
 
-public String getStatusSoli() {
-    return statusSoli;
-}
+    public String getStatusSoli() {
+        return statusSoli;
+    }
 
-public void setStatusSoli(String statusSoli) {
-    this.statusSoli = statusSoli;
-}
+    public void setStatusSoli(String statusSoli) {
+        this.statusSoli = statusSoli;
+    }
 
-public String getDescSolucao() {
-    return descSolucao;
-}
+    public String getDescSolucao() {
+        return descSolucao;
+    }
 
-public void setDescSolucao(String descSolucao) {
-    this.descSolucao = descSolucao;
-}
+    public void setDescSolucao(String descSolucao) {
+        this.descSolucao = descSolucao;
+    }
 }

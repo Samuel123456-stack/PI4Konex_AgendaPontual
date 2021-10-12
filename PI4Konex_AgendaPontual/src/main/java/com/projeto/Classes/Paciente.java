@@ -4,19 +4,17 @@ public class Paciente {
 
     // Atributos
     private int idPaci;
-    private String dataCriacao;
-    private String horaCriacao;
+    private String dataCriaPaci;
+    private String horaCriaPaci;
     private String nomePaci;
     private String cpf;
     private String dataNasc;
     private String rg;
     private String celular;
     private String sexo;
-    private String convenio;
-    private String email;
-    private String senha;
     private boolean primeiraConsulta;
     private boolean sintomasGripe;
+    private int idConv;
     private int idEndereco;
     private int idUsu;
 
@@ -26,23 +24,21 @@ public class Paciente {
     }
 
     // Metodo Construtor com Atributos
-    public Paciente(int idPaci, String dataCriacao, String horaCriacao, String nomePaci, String cpf, String dataNasc,
-            String rg, String celular, String sexo, String convenio, String email, String senha,
-            boolean primeiraConsulta, boolean sintomasGripe, int idEndereco, int idUsu) {
+    public Paciente(int idPaci, String dataCriaPaci, String horaCriaPaci, String nomePaci, String cpf, String dataNasc,
+            String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, int idConv,
+            int idEndereco, int idUsu) {
         this.idPaci = idPaci;
-        this.dataCriacao = dataCriacao;
-        this.horaCriacao = horaCriacao;
+        this.dataCriaPaci = dataCriaPaci;
+        this.horaCriaPaci = horaCriaPaci;
         this.nomePaci = nomePaci;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
         this.rg = rg;
         this.celular = celular;
         this.sexo = sexo;
-        this.convenio = convenio;
-        this.email = email;
-        this.senha = senha;
         this.primeiraConsulta = primeiraConsulta;
         this.sintomasGripe = sintomasGripe;
+        this.idConv = idConv;
         this.idEndereco = idEndereco;
         this.idUsu = idUsu;
     }
@@ -56,20 +52,20 @@ public class Paciente {
         this.idPaci = idPaci;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getDataCriaPaci() {
+        return dataCriaPaci;
     }
 
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataCriaPaci(String dataCriaPaci) {
+        this.dataCriaPaci = dataCriaPaci;
     }
 
-    public String getHoraCriacao() {
-        return horaCriacao;
+    public String getHoraCriaPaci() {
+        return horaCriaPaci;
     }
 
-    public void setHoraCriacao(String horaCriacao) {
-        this.horaCriacao = horaCriacao;
+    public void setHoraCriaPaci(String horaCriaPaci) {
+        this.horaCriaPaci = horaCriaPaci;
     }
 
     public String getNomePaci() {
@@ -120,30 +116,6 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    public String getConvenio() {
-        return convenio;
-    }
-
-    public void setConvenio(String convenio) {
-        this.convenio = convenio;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public boolean isPrimeiraConsulta() {
         return primeiraConsulta;
     }
@@ -158,6 +130,14 @@ public class Paciente {
 
     public void setSintomasGripe(boolean sintomasGripe) {
         this.sintomasGripe = sintomasGripe;
+    }
+
+    public int getIdConv() {
+        return idConv;
+    }
+
+    public void setIdConv(int idConv) {
+        this.idConv = idConv;
     }
 
     public int getIdEndereco() {
@@ -175,6 +155,5 @@ public class Paciente {
     public void setIdUsu(int idUsu) {
         this.idUsu = idUsu;
     }
-    
 
 }

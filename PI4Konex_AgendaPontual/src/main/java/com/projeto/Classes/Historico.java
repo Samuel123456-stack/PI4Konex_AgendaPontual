@@ -1,19 +1,19 @@
 package com.projeto.Classes;
 
 public class Historico {
-    //Atributos
+    // Atributos
     private int idHis;
     private String dataHisCria;
     private String horaHisCria;
     private String historico;
     private int idConsulta;
 
-    //Metodo Construtor
-    public Historico(){
+    // Metodo Construtor
+    public Historico() {
 
     }
-    
-    //Metodo Construtor com Atributos
+
+    // Metodo Construtor com Atributos
     public Historico(int idHis, String dataHisCria, String horaHisCria, String historico, int idConsulta) {
         this.idHis = idHis;
         this.dataHisCria = dataHisCria;
@@ -22,7 +22,7 @@ public class Historico {
         this.idConsulta = idConsulta;
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public int getIdHis() {
         return idHis;
     }
@@ -62,5 +62,5 @@ public class Historico {
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
     }
-      
+
 }

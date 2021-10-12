@@ -5,6 +5,7 @@ public class Pagamento {
     // Atributos
     private int idPag;
     private String dataPag;
+    private String horaPag;
     private String formaPag;
     private float valor;
 
@@ -14,12 +15,12 @@ public class Pagamento {
     }
 
     // Metodo Construtor com Atributos
-    public Pagamento(int idPag, String dataPag, String formaPag, float valor) {
+    public Pagamento(int idPag, String dataPag, String horaPag, String formaPag, float valor) {
         this.idPag = idPag;
         this.dataPag = dataPag;
+        this.horaPag = horaPag;
         this.formaPag = formaPag;
         this.valor = valor;
-
     }
 
     // Getters e Setters
@@ -37,6 +38,14 @@ public class Pagamento {
 
     public void setDataPag(String dataPag) {
         this.dataPag = dataPag;
+    }
+
+    public String getHoraPag() {
+        return horaPag;
+    }
+
+    public void setHoraPag(String horaPag) {
+        this.horaPag = horaPag;
     }
 
     public String getFormaPag() {

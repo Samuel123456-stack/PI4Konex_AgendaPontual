@@ -1,23 +1,23 @@
 package com.projeto.Classes;
 
 public class Doenca {
-    //Atributos
+    // Atributos
     private int idDoenca;
     private String nomeDoenca;
     private int idEsp;
 
-    //Metodo Construtor
+    // Metodo Construtor
     public Doenca() {
     }
 
-    //Metodo Construtor com Atributos
+    // Metodo Construtor com Atributos
     public Doenca(int idDoenca, String nomeDoenca, int idEsp) {
         this.idDoenca = idDoenca;
         this.nomeDoenca = nomeDoenca;
         this.idEsp = idEsp;
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public int getIdDoenca() {
         return idDoenca;
     }
@@ -40,7 +40,6 @@ public class Doenca {
 
     public void setIdEsp(int idEsp) {
         this.idEsp = idEsp;
-    } 
-    
-    
+    }
+
 }

@@ -4,15 +4,14 @@ public class Clinica {
 
     // Atributos
     private int idCli;
+    private String dataCriaCli;
+    private String horaCriaCli;
     private String nomeCli;
-    private String nomeMedRes;
+    private String nomeMedResp;
     private String cnpj;
     private String rg;
-    private String assinatura;
     private int qntAssentos;
-    private String licenca;
-    private String email;
-    private String senha;
+    private String telefone;
     private int idPlano;
     private int idEndereco;
     private int idUsu;
@@ -23,18 +22,17 @@ public class Clinica {
     }
 
     // Metodo Construtor com Atributos
-    public Clinica(int idCli, String nomeCli, String nomeMedRes, String cnpj, String rg, String assinatura,
-            int qntAssentos, String licenca, String email, String senha, int idPlano, int idEndereco, int idUsu) {
+    public Clinica(int idCli, String dataCriaCli, String horaCriaCli, String nomeCli, String nomeMedResp, String cnpj,
+            String rg, int qntAssentos, String telefone, int idPlano, int idEndereco, int idUsu) {
         this.idCli = idCli;
+        this.dataCriaCli = dataCriaCli;
+        this.horaCriaCli = horaCriaCli;
         this.nomeCli = nomeCli;
-        this.nomeMedRes = nomeMedRes;
+        this.nomeMedResp = nomeMedResp;
         this.cnpj = cnpj;
         this.rg = rg;
-        this.assinatura = assinatura;
         this.qntAssentos = qntAssentos;
-        this.licenca = licenca;
-        this.email = email;
-        this.senha = senha;
+        this.telefone = telefone;
         this.idPlano = idPlano;
         this.idEndereco = idEndereco;
         this.idUsu = idUsu;
@@ -49,6 +47,22 @@ public class Clinica {
         this.idCli = idCli;
     }
 
+    public String getDataCriaCli() {
+        return dataCriaCli;
+    }
+
+    public void setDataCriaCli(String dataCriaCli) {
+        this.dataCriaCli = dataCriaCli;
+    }
+
+    public String getHoraCriaCli() {
+        return horaCriaCli;
+    }
+
+    public void setHoraCriaCli(String horaCriaCli) {
+        this.horaCriaCli = horaCriaCli;
+    }
+
     public String getNomeCli() {
         return nomeCli;
     }
@@ -57,12 +71,12 @@ public class Clinica {
         this.nomeCli = nomeCli;
     }
 
-    public String getNomeMedRes() {
-        return nomeMedRes;
+    public String getNomeMedResp() {
+        return nomeMedResp;
     }
 
-    public void setNomeMedRes(String nomeMedRes) {
-        this.nomeMedRes = nomeMedRes;
+    public void setNomeMedResp(String nomeMedResp) {
+        this.nomeMedResp = nomeMedResp;
     }
 
     public String getCnpj() {
@@ -81,14 +95,6 @@ public class Clinica {
         this.rg = rg;
     }
 
-    public String getAssinatura() {
-        return assinatura;
-    }
-
-    public void setAssinatura(String assinatura) {
-        this.assinatura = assinatura;
-    }
-
     public int getQntAssentos() {
         return qntAssentos;
     }
@@ -97,28 +103,12 @@ public class Clinica {
         this.qntAssentos = qntAssentos;
     }
 
-    public String getLicenca() {
-        return licenca;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setLicenca(String licenca) {
-        this.licenca = licenca;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public int getIdPlano() {
@@ -143,6 +133,6 @@ public class Clinica {
 
     public void setIdUsu(int idUsu) {
         this.idUsu = idUsu;
-    }  
+    }
 
 }

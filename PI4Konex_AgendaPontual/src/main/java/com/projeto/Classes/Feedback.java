@@ -3,6 +3,8 @@ package com.projeto.Classes;
 public class Feedback {
     // Atributos
     private int idFeed;
+    private String dataCriaFeed;
+    private String horaCriaFeed;
     private int avaliacao;
     private String comentario;
     private boolean paraMed;
@@ -14,8 +16,11 @@ public class Feedback {
     }
 
     // Metodo Construtor com Atributos
-    public Feedback(int idFeed, int avaliacao, String comentario, boolean paraMed, boolean paraCli, boolean feedAno) {
+    public Feedback(int idFeed, String dataCriaFeed, String horaCriaFeed, int avaliacao, String comentario,
+            boolean paraMed, boolean paraCli, boolean feedAno) {
         this.idFeed = idFeed;
+        this.dataCriaFeed = dataCriaFeed;
+        this.horaCriaFeed = horaCriaFeed;
         this.avaliacao = avaliacao;
         this.comentario = comentario;
         this.paraMed = paraMed;
@@ -30,6 +35,22 @@ public class Feedback {
 
     public void setIdFeed(int idFeed) {
         this.idFeed = idFeed;
+    }
+
+    public String getDataCriaFeed() {
+        return dataCriaFeed;
+    }
+
+    public void setDataCriaFeed(String dataCriaFeed) {
+        this.dataCriaFeed = dataCriaFeed;
+    }
+
+    public String getHoraCriaFeed() {
+        return horaCriaFeed;
+    }
+
+    public void setHoraCriaFeed(String horaCriaFeed) {
+        this.horaCriaFeed = horaCriaFeed;
     }
 
     public int getAvaliacao() {

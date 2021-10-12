@@ -4,15 +4,16 @@ public class Medico {
 
     // Atributos
     private int idMed;
+    private String dataCriaMed;
+    private String horaCriaMed;
     private String nomeMed;
     private String dataNasc;
     private String sexoMed;
     private String cpfMed;
-    private String email;
-    private String senha;
+    private String rgMed;
     private String crm;
-    private String telefone;
-    private String valorMed;
+    private String celular;
+    private float valorMed;
     private String dataFormatura;
     private String sobreMed;
     private String bioMed;
@@ -28,18 +29,19 @@ public class Medico {
     }
 
     // Metodo Construtor com Atributos
-    public Medico(int idMed, String nomeMed, String dataNasc, String sexoMed, String cpfMed, String email, String senha,
-            String crm, String telefone, String valorMed, String dataFormatura, String sobreMed, String bioMed,
-            String sala, int idCli, int idEndereco, int idUsu, int idEsp) {
+    public Medico(int idMed, String dataCriaMed, String horaCriaMed, String nomeMed, String dataNasc, String sexoMed,
+            String cpfMed, String rgMed, String crm, String celular, float valorMed, String dataFormatura,
+            String sobreMed, String bioMed, String sala, int idCli, int idEndereco, int idUsu, int idEsp) {
         this.idMed = idMed;
+        this.dataCriaMed = dataCriaMed;
+        this.horaCriaMed = horaCriaMed;
         this.nomeMed = nomeMed;
         this.dataNasc = dataNasc;
         this.sexoMed = sexoMed;
         this.cpfMed = cpfMed;
-        this.email = email;
-        this.senha = senha;
+        this.rgMed = rgMed;
         this.crm = crm;
-        this.telefone = telefone;
+        this.celular = celular;
         this.valorMed = valorMed;
         this.dataFormatura = dataFormatura;
         this.sobreMed = sobreMed;
@@ -58,6 +60,22 @@ public class Medico {
 
     public void setIdMed(int idMed) {
         this.idMed = idMed;
+    }
+
+    public String getDataCriaMed() {
+        return dataCriaMed;
+    }
+
+    public void setDataCriaMed(String dataCriaMed) {
+        this.dataCriaMed = dataCriaMed;
+    }
+
+    public String getHoraCriaMed() {
+        return horaCriaMed;
+    }
+
+    public void setHoraCriaMed(String horaCriaMed) {
+        this.horaCriaMed = horaCriaMed;
     }
 
     public String getNomeMed() {
@@ -92,20 +110,12 @@ public class Medico {
         this.cpfMed = cpfMed;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRgMed() {
+        return rgMed;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setRgMed(String rgMed) {
+        this.rgMed = rgMed;
     }
 
     public String getCrm() {
@@ -116,19 +126,19 @@ public class Medico {
         this.crm = crm;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCelular() {
+        return celular;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 
-    public String getValorMed() {
+    public float getValorMed() {
         return valorMed;
     }
 
-    public void setValorMed(String valorMed) {
+    public void setValorMed(float valorMed) {
         this.valorMed = valorMed;
     }
 

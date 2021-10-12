@@ -4,8 +4,7 @@ public class Consulta {
 
     // Atributos
     private int idConsulta;
-    private String dataConsulta;
-    private int horaConsulta;
+    private int idAgen;
     private boolean confirmada;
     private boolean retorno;
     private String horaChegada;
@@ -14,8 +13,6 @@ public class Consulta {
     private boolean concluida;
     private boolean naoCompareceu;
     private boolean cancelada;
-    private int idMedico;
-    private int idPaciente;
     private int idReceita;
     private int idFeed;
     private int idNot;
@@ -27,12 +24,11 @@ public class Consulta {
     }
 
     // Metodo Construtor com Atributos
-    public Consulta(int idConsulta, String dataConsulta, int horaConsulta, boolean confirmada, boolean retorno,
-            String horaChegada, String horaSaida, String duracao, boolean concluida, boolean naoCompareceu,
-            boolean cancelada, int idMedico, int idPaciente, int idReceita, int idFeed, int idNot, int idPag) {
+    public Consulta(int idConsulta, int idAgen, boolean confirmada, boolean retorno, String horaChegada,
+            String horaSaida, String duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
+            int idReceita, int idFeed, int idNot, int idPag) {
         this.idConsulta = idConsulta;
-        this.dataConsulta = dataConsulta;
-        this.horaConsulta = horaConsulta;
+        this.idAgen = idAgen;
         this.confirmada = confirmada;
         this.retorno = retorno;
         this.horaChegada = horaChegada;
@@ -41,8 +37,6 @@ public class Consulta {
         this.concluida = concluida;
         this.naoCompareceu = naoCompareceu;
         this.cancelada = cancelada;
-        this.idMedico = idMedico;
-        this.idPaciente = idPaciente;
         this.idReceita = idReceita;
         this.idFeed = idFeed;
         this.idNot = idNot;
@@ -58,20 +52,12 @@ public class Consulta {
         this.idConsulta = idConsulta;
     }
 
-    public String getDataConsulta() {
-        return dataConsulta;
+    public int getIdAgen() {
+        return idAgen;
     }
 
-    public void setDataConsulta(String dataConsulta) {
-        this.dataConsulta = dataConsulta;
-    }
-
-    public int getHoraConsulta() {
-        return horaConsulta;
-    }
-
-    public void setHoraConsulta(int horaConsulta) {
-        this.horaConsulta = horaConsulta;
+    public void setIdAgen(int idAgen) {
+        this.idAgen = idAgen;
     }
 
     public boolean isConfirmada() {
@@ -136,22 +122,6 @@ public class Consulta {
 
     public void setCancelada(boolean cancelada) {
         this.cancelada = cancelada;
-    }
-
-    public int getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
-    }
-
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
     }
 
     public int getIdReceita() {

@@ -2,11 +2,12 @@ package com.projeto.Classes;
 
 public class Endereco {
     // Atributos
-    private int idEnde;
+    private int idEnd;
     private String logadouro;
     private int numero;
     private String complemento;
     private String bairro;
+    private String cidade;
     private String estado;
     private String cep;
 
@@ -15,24 +16,25 @@ public class Endereco {
     }
 
     // Metodo Construtor com Atributos
-    public Endereco(int idEnde, String logadouro, int numero, String complemento, String bairro, String estado,
-            String cep) {
-        this.idEnde = idEnde;
+    public Endereco(int idEnd, String logadouro, int numero, String complemento, String bairro, String cidade,
+            String estado, String cep) {
+        this.idEnd = idEnd;
         this.logadouro = logadouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
+        this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
     }
-    // Getters e Setters
 
-    public int getIdEnde() {
-        return idEnde;
+    // Getters e Setters
+    public int getIdEnd() {
+        return idEnd;
     }
 
-    public void setIdEnde(int idEnde) {
-        this.idEnde = idEnde;
+    public void setIdEnd(int idEnd) {
+        this.idEnd = idEnd;
     }
 
     public String getLogadouro() {
@@ -65,6 +67,14 @@ public class Endereco {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getEstado() {

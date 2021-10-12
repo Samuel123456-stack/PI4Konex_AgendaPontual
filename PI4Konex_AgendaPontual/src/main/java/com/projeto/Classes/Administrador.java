@@ -5,8 +5,7 @@ public class Administrador {
     // Atributos
     private int idADM;
     private String nome;
-    private String email;
-    private String senha;
+    private int idUsu;
 
     // Metodo Construtor
     public Administrador() {
@@ -14,11 +13,10 @@ public class Administrador {
     }
 
     // Metodo Construtor com Atributos
-    public Administrador(int idADM, String nome, String email, String senha) {
+    public Administrador(int idADM, String nome, int idUsu) {
         this.idADM = idADM;
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+        this.idUsu = idUsu;
     }
 
     // Getters e Setters
@@ -38,20 +36,12 @@ public class Administrador {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public int getIdUsu() {
+        return idUsu;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setIdUsu(int idUsu) {
+        this.idUsu = idUsu;
     }
 
 }

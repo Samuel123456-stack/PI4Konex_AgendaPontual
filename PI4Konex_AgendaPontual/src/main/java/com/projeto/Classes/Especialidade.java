@@ -1,22 +1,22 @@
 package com.projeto.Classes;
 
 public class Especialidade {
-    //Atributos
+    // Atributos
     private int idEsp;
     private String nomeEsp;
 
-    //Metodo Construtor
-    public Especialidade(){
+    // Metodo Construtor
+    public Especialidade() {
 
     }
 
-    //Metodo Construtor com atributos
+    // Metodo Construtor com atributos
     public Especialidade(int idEsp, String nomeEsp) {
         this.idEsp = idEsp;
         this.nomeEsp = nomeEsp;
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public int getIdEsp() {
         return idEsp;
     }
@@ -32,7 +32,5 @@ public class Especialidade {
     public void setNomeEsp(String nomeEsp) {
         this.nomeEsp = nomeEsp;
     }
-    
- 
-    
+
 }

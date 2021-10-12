@@ -16,7 +16,8 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, String dataAgendada, String infoAdicAgen) {
+    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, String dataAgendada,
+            String infoAdicAgen) {
         this.idAgenda = idAgenda;
         this.idDia = idDia;
         this.idHora = idHora;
@@ -82,5 +83,5 @@ public class Agenda {
     public void setInfoAdicAgen(String infoAdicAgen) {
         this.infoAdicAgen = infoAdicAgen;
     }
-    
+
 }

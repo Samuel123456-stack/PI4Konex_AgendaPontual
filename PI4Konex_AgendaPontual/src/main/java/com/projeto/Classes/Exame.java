@@ -1,18 +1,18 @@
 package com.projeto.Classes;
 
 public class Exame {
-    //Atributos
+    // Atributos
     private int idExame;
     private String nomeExame;
     private String codAmbExame;
     private int tussExame;
 
-    //Metodo Construtor
-    public Exame(){
+    // Metodo Construtor
+    public Exame() {
 
     }
 
-    //Metodo Construtor com Atributos
+    // Metodo Construtor com Atributos
     public Exame(int idExame, String nomeExame, String codAmbExame, int tussExame) {
         this.idExame = idExame;
         this.nomeExame = nomeExame;
@@ -20,7 +20,7 @@ public class Exame {
         this.tussExame = tussExame;
     }
 
-    //Getters e Setters
+    // Getters e Setters
     public int getIdExame() {
         return idExame;
     }
@@ -52,5 +52,5 @@ public class Exame {
     public void setTussExame(int tussExame) {
         this.tussExame = tussExame;
     }
-    
+
 }

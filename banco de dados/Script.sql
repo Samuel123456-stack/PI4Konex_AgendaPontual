@@ -43,17 +43,28 @@ CREATE TABLE feedback (
     id_feed Integer AUTO_INCREMENT PRIMARY KEY,
     dt_criacao datetime default current_timestamp(),
     avaliacao Integer null,
-    comentario Integer null,
+    comentario varchar(150) null,
     para_medico Boolean null,
     para_consultorio Boolean null,
     anonimo Boolean null
 );
+select * from feedback;
+insert into feedback(avaliacao,comentario,para_medico,para_consultorio,anonimo)values
+	(10,'Um excelente médico é muito atencioso me recomendou alguns medicamentos e fiquei melhor já na primeira consulta.',1,0,0),
+    (10,'Algum tempo atrás perdi o contato com o Dr.Wilson, agenda pontual me ajudou encontrá-lo Dr Wilson é muito sorridente e atencioso.',1,0,0),
+    (10,'Conheço o Dr.Willians desde pequena ele é o médico da família, sempre foi calmo, gentil e principalmente empático.',1,0,0),
+    (10,'Me surpreendi com a Agenda.ual as opiniões que li foram verdadeiras, o Dr.Wilson é digno de estar em primeiro! Excelente médico.',1,0,0),
+    (10,'Minha tireoide estava muita inchada, contei o meu problema para o Sr.Wilson, fiz alguns exames e iniciei o tratamento e hoje já me sinto bem agora!',1,0,0),
+    (10,'Alguns meses atrás descobri que estava com hipotireodismo, o Dr.Wilson me ajudou com alguns tratamentos  e me sinto bem agora!',1,0,0),
+    (10,'Alguns meses atrás sofri um acidente e fui atendido pelo Dr. Wilson, ele foi calmo e tomou decisões boas e já estou bem recuperado.',1,0,0),
+    (10,'Eu descobri que tinha asma aos 12 anos de idade, minha família me levou até o Dr. Wilson, no qual faço acompanhamentos até hoje.',1,0,0),
+    (10,'O Dr.Wilson sabe o que faz, é um médico cheio de experiência, conseguiu reduzir a minha tireoide sem fazer cirurgia.',1,0,0);
 
 CREATE TABLE usuario (
     id_usu Integer AUTO_INCREMENT PRIMARY KEY,
     email varchar(50) null,
     email_confirma varchar(50) null,
-    senha varchar(8) null,
+    senha varchar(8) null,      
     senha_confirma varchar(8) null,
     perfil varchar(13) null
 );
@@ -232,7 +243,7 @@ insert into medico(nome,data_nasci,sexo,cpf,rg,crm,celular,valor,data_formatura,
 	('Sophia Isabel Ayla Farias','1949-02-19','Feminino','554.955.177-25','46.681.022-2','1234','(11) 98661-0781','150.00',
     '1969-02-19','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','1',1,3,6,1),  
     ('Wilson Santos','1975-08-12','Masculino','362.830.798-81','21.207.729-6','171428','(11) 98657-0621','150.00',
-    '1995-05-21','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','2',1,4,7,5),
+    '1995-05-21','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','2',1,4,7,1),
     ('Ricardo Davies','1999-02-22','Masculino','113.638.718-89','22.147.686-6','44855','(11) 99927-4317','150.00',
     '2000-04-24','Uma pessoa super simpática, atenciosa, e super eficaz.', 'Profissional de vasta experiência e referência na área','3',1,5,3,10),
     ('Marta Perez','1972-03-19','Feminino','982.656.338-23','41.879.754-7','44855','(11) 98487-7992','150.00',
@@ -327,20 +338,42 @@ CREATE TABLE horario (
     ON DELETE CASCADE
 );
 
+insert into horario(horario)values
+	('08:00'),('08:30'),
+    ('09:00'),('09:30'),
+    ('10:00'),('10:30'),
+    ('11:00'),('11:30'),
+    ('13:00'),('13:30'),
+    ('14:00'),('14:30'),
+    ('15:00'),('15:30'),
+    ('16:00'),('16:30'),
+    ('17:00'),('17:30');
+
 CREATE TABLE agenda_medica(
 	id_agen integer AUTO_INCREMENT PRIMARY KEY,
+    data_agendada date null,
     fk_dia_agen integer null,
     fk_hor_agen Integer null,
     fk_med_agen Integer null,
-    data_agendada date null,
-    informacoes_adic text null,
-    fk_paci_agen Integer null,
+	fk_paci_agen Integer null,
+	informacoes_adic text null,
     FOREIGN KEY (fk_dia_agen) REFERENCES dias_semana (id_dia),
     FOREIGN KEY (fk_hor_agen) REFERENCES horario (id_hor),
     FOREIGN KEY (fk_med_agen) REFERENCES medico (id_med),
     FOREIGN KEY (fk_paci_agen) REFERENCES paciente (id_paci),
     unique (data_agendada, fk_dia_agen,fk_hor_agen,fk_med_agen)
 );
+
+insert into agenda_medica(fk_dia_agen,fk_hor_agen,fk_med_agen,data_agendada,fk_paci_agen)values
+	(2,1,2,'2021-03-05',1),
+	(3,2,2,'2021-05-05',2),
+    (4,1,2,'2021-07-08',3),
+    (6,1,2,'2021-03-07',4),
+    (5,1,2,'2021-03-10',5),
+    (4,1,2,'2021-03-20',5),
+    (2,1,2,'2021-02-26',4),
+    (3,1,2,'2021-04-28',3),
+    (2,1,2,'2021-06-10',1);
 
 CREATE TABLE recepcionista (
     id_recep Integer AUTO_INCREMENT PRIMARY KEY,
@@ -438,6 +471,17 @@ CREATE TABLE consulta (
     FOREIGN KEY (fk_feed_cons) REFERENCES feedback (id_feed)
 );
 
+insert into consulta(fk_agen_cons,retorno,hora_chegada,hora_saida,concluida,duracao,nao_compareceu,cancelada,fk_feed_cons)values
+	(1,0,'08:00','08:15',1,'00:15',0,0,1),
+    (2,0,'08:00','08:20',1,'00:20',0,0,2),
+    (3,0,'08:00','08:15',1,'00:15',0,0,3),
+    (4,0,'08:00','08:15',1,'00:15',0,0,4),
+    (5,0,'08:00','08:15',1,'00:15',0,0,5),
+    (6,1,'08:00','08:15',1,'00:15',0,0,6),
+    (7,0,'08:00','08:15',1,'00:15',0,0,7),
+    (8,0,'08:00','08:15',1,'00:15',0,0,8),
+    (9,0,'08:00','08:15',1,'00:15',0,0,9);
+
 CREATE TABLE historico (
     id_his Integer AUTO_INCREMENT PRIMARY KEY,
     dt_criacao datetime default current_timestamp(),
@@ -473,18 +517,17 @@ CREATE TABLE exame_consulta (
 );
 
 /*Viewers*/
-/* Foram realizadas várias alterações no scrip, logo as viewers necessitam de revisão.
 
 create view vw_cont_atend_concl
-as
-select nome as 'medico', crm as 'crm', count(concluida) as 'qte.atendido(s)' from consulta
-inner join medico
-on fk_med_cons = id_med
-where concluida = true;
+	as
+	select nome as 'medico', crm as 'crm', count(concluida) as 'qte.atendido(s)' from consulta
+	join agenda_medica
+	on fk_agen_cons = id_agen
+	join medico m
+	on fk_med_agen = id_med;
 
-create view vw_agenda_medica
-as
-select data_agendada as 'data agendamento', dia as Dia, horario as 'horario', m.nome as 'dr_a', p.nome as 'paciente' from agenda_medica
+create view vw_agenda_medica  as
+	select data_agendada as 'data agendamento', dia as Dia, horario as 'horario', m.nome as 'dr_a', p.nome as 'paciente' from agenda_medica
 	inner join dias_semana
 	on fk_dia_agen = id_dia
 	inner join horario
@@ -494,8 +537,66 @@ select data_agendada as 'data agendamento', dia as Dia, horario as 'horario', m.
 	inner join medico m 
     on fk_med_agen = id_med; 
     
-create view vw_med_pesq
-as
-SELECT nome as 'Médico', sobre_mim, TIMESTAMPDIFF(YEAR, data_formatura, CURDATE()) as 'Experiência', sexo, especialidade, valor
-FROM medico;
-*/
+create view vw_feed_med_maior7 as
+	select foto, comentario, nome  from consulta
+	join feedback
+	on fk_feed_cons = id_feed
+	join agenda_medica
+	on fk_agen_cons = id_agen
+	join paciente
+	on fk_paci_agen = id_paci
+	where avaliacao >= 7;
+
+create view vw_pesq_med	as
+	select avg(avaliacao) as pontuacao, m.nome as medico, sobre_mim, TIMESTAMPDIFF(YEAR, data_formatura, CURDATE()) as experiencia, sexo, e.nome as especialidade, valor 
+	from consulta
+	inner join agenda_medica a
+	on fk_agen_cons = id_agen
+	inner join medico m
+	on fk_med_agen = id_med
+	inner join especialidade e
+	on fk_esp_med = id_esp
+	inner join endereco
+	on fk_end_med = id_end
+	inner join feedback f
+	on fk_feed_cons = id_feed;
+    
+create view vw_feed_detalhes as
+	select p.nome as paciente, m.nome as medico, avaliacao, comentario 
+    from consulta
+	inner join agenda_medica a
+	on fk_agen_cons = id_agen
+	inner join medico m
+	on fk_med_agen = id_med
+    join paciente p
+    on fk_paci_agen = id_paci
+	inner join especialidade e
+	on fk_esp_med = id_esp
+	inner join endereco
+	on fk_end_med = id_end
+	inner join feedback f
+	on fk_feed_cons = id_feed;
+ 
+create view vw_best_medicos as
+	select m.nome, e.nome as especialidade, avg(avaliacao) as pontos from consulta
+	join feedback
+	on fk_feed_cons = id_feed
+	join agenda_medica
+	on fk_agen_cons = id_agen
+	join medico m
+	on fk_med_agen = id_med
+    join especialidade e
+    on fk_esp_med = id_esp;
+
+create view vw_historico_agendamento as
+	select p.nome, concat(data_agendada, '- ',horario) as data_horario, m.nome as medico, id_cons as consulta, e.nome as especialidade from consulta
+	join agenda_medica
+	on fk_agen_cons = id_agen
+	join paciente p
+	on fk_paci_agen = id_paci
+	join medico m
+	on fk_med_agen = id_med
+	join especialidade e
+	on fk_esp_med = id_esp
+    join horario
+    on fk_hor_agen = id_hor;

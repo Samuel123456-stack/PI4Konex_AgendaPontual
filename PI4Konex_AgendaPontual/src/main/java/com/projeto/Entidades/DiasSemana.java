@@ -1,8 +1,16 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dias_semana")
 public class DiasSemana {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDia;
+
+    @Column(nullable = true)
     private String dia;
 
     // Metodo Construtor

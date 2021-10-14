@@ -1,11 +1,23 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "receita")
 public class Receita {
 
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRec;
-    private String dataRec;
-    private String horaRec;
+
+    @Column(name = "data_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataRec;
+
+    @Column(name = "informacoes", nullable = true)
     private String infoRec;
 
     // Metodo Construtor
@@ -13,10 +25,9 @@ public class Receita {
     }
 
     // Metodo Construtor com Atributos
-    public Receita(int idRec, String dataRec, String horaRec, String infoRec) {
+    public Receita(int idRec, LocalDateTime dataRec, String infoRec) {
         this.idRec = idRec;
         this.dataRec = dataRec;
-        this.horaRec = horaRec;
         this.infoRec = infoRec;
     }
 
@@ -29,20 +40,12 @@ public class Receita {
         this.idRec = idRec;
     }
 
-    public String getDataRec() {
+    public LocalDateTime getDataRec() {
         return dataRec;
     }
 
-    public void setDataRec(String dataRec) {
+    public void setDataRec(LocalDateTime dataRec) {
         this.dataRec = dataRec;
-    }
-
-    public String getHoraRec() {
-        return horaRec;
-    }
-
-    public void setHoraRec(String horaRec) {
-        this.horaRec = horaRec;
     }
 
     public String getInfoRec() {

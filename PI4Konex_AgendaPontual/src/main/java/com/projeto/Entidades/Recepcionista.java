@@ -1,16 +1,37 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDate;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "recepcionista")
 public class Recepcionista {
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRec;
-    private String dataCriaRec;
-    private String horaCriaRec;
+
+    @Column(name = "nome", nullable = true)
     private String nomeRec;
+
+    @Column(name = "cpf", nullable = true)
     private String cpfRec;
+
+    @Column(name = "sexo", nullable = true)
     private String sexoRec;
-    private String dataNasc;
+
+    @Column(name = "data_nasci", nullable = true, columnDefinition = "DATE")
+    private LocalDate dataNasc;
+
+    @Column(nullable = true)
     private String celular;
+
+    @JoinColumn(name = "fk_cli_recep")
     private int idCli;
+
+    @JoinColumn(name = "fk_usu_recep")
     private int idUsu;
 
     // Metodo Construtor
@@ -20,11 +41,9 @@ public class Recepcionista {
 
     // Metodo Construtor com Atributos
 
-    public Recepcionista(int idRec, String dataCriaRec, String horaCriaRec, String nomeRec, String cpfRec,
-            String sexoRec, String dataNasc, String celular, int idCli, int idUsu) {
+    public Recepcionista(int idRec, String nomeRec, String cpfRec, String sexoRec, LocalDate dataNasc, String celular,
+            int idCli, int idUsu) {
         this.idRec = idRec;
-        this.dataCriaRec = dataCriaRec;
-        this.horaCriaRec = horaCriaRec;
         this.nomeRec = nomeRec;
         this.cpfRec = cpfRec;
         this.sexoRec = sexoRec;
@@ -41,22 +60,6 @@ public class Recepcionista {
 
     public void setIdRec(int idRec) {
         this.idRec = idRec;
-    }
-
-    public String getDataCriaRec() {
-        return dataCriaRec;
-    }
-
-    public void setDataCriaRec(String dataCriaRec) {
-        this.dataCriaRec = dataCriaRec;
-    }
-
-    public String getHoraCriaRec() {
-        return horaCriaRec;
-    }
-
-    public void setHoraCriaRec(String horaCriaRec) {
-        this.horaCriaRec = horaCriaRec;
     }
 
     public String getNomeRec() {
@@ -83,11 +86,11 @@ public class Recepcionista {
         this.sexoRec = sexoRec;
     }
 
-    public String getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
 

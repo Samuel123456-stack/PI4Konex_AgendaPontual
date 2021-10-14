@@ -1,14 +1,34 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "endereco")
 public class Endereco {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEnd;
+
+    @Column(nullable = true)
     private String logadouro;
+
+    @Column(nullable = true)
     private int numero;
+
+    @Column(nullable = true)
     private String complemento;
+
+    @Column(nullable = true)
     private String bairro;
+
+    @Column(nullable = true)
     private String cidade;
+
+    @Column(nullable = true)
     private String estado;
+
+    @Column(nullable = true, unique = true)
     private String cep;
 
     // Metodo Construtor

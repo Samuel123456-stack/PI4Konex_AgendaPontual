@@ -1,21 +1,53 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "paciente")
 public class Paciente {
 
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPaci;
-    private String dataCriaPaci;
-    private String horaCriaPaci;
+
+    @Column(name = "dt_criacao", nullable = true, columnDefinition = "DATE")
+    private LocalDateTime dataCriaPaci;
+
+    @Column(name = "nome", nullable = true)
     private String nomePaci;
+
+    @Column(nullable = true, unique = true)
     private String cpf;
-    private String dataNasc;
+
+    @Column(name = "data_nasci", nullable = true, columnDefinition = "DATE")
+    private LocalDate dataNasc;
+
+    @Column(nullable = true, unique = true)
     private String rg;
+
+    @Column(nullable = true, unique = true)
     private String celular;
+
+    @Column(nullable = true, unique = true)
     private String sexo;
+
+    @Column(nullable = true, unique = true)
     private boolean primeiraConsulta;
+
+    @Column(nullable = true, unique = true)
     private boolean sintomasGripe;
+
+    @JoinColumn(name = "fk_conv_paci")
     private int idConv;
+
+    @JoinColumn(name = "fk_end_paci")
     private int idEndereco;
+
+    @JoinColumn(name = "fk_usu_paci")
     private int idUsu;
 
     // Metodo Construtor
@@ -24,12 +56,11 @@ public class Paciente {
     }
 
     // Metodo Construtor com Atributos
-    public Paciente(int idPaci, String dataCriaPaci, String horaCriaPaci, String nomePaci, String cpf, String dataNasc,
-            String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, int idConv,
-            int idEndereco, int idUsu) {
+    public Paciente(int idPaci, LocalDateTime dataCriaPaci, String horaCriaPaci, String nomePaci, String cpf,
+            LocalDate dataNasc, String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe,
+            int idConv, int idEndereco, int idUsu) {
         this.idPaci = idPaci;
         this.dataCriaPaci = dataCriaPaci;
-        this.horaCriaPaci = horaCriaPaci;
         this.nomePaci = nomePaci;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
@@ -52,20 +83,12 @@ public class Paciente {
         this.idPaci = idPaci;
     }
 
-    public String getDataCriaPaci() {
+    public LocalDateTime getDataCriaPaci() {
         return dataCriaPaci;
     }
 
-    public void setDataCriaPaci(String dataCriaPaci) {
+    public void setDataCriaPaci(LocalDateTime dataCriaPaci) {
         this.dataCriaPaci = dataCriaPaci;
-    }
-
-    public String getHoraCriaPaci() {
-        return horaCriaPaci;
-    }
-
-    public void setHoraCriaPaci(String horaCriaPaci) {
-        this.horaCriaPaci = horaCriaPaci;
     }
 
     public String getNomePaci() {
@@ -84,11 +107,11 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    public String getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
 

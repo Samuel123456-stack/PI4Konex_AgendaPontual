@@ -1,21 +1,55 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Consulta {
 
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idConsulta;
+
+    @JoinColumn(name = "fk_agen_cons")
     private int idAgen;
+
+    @Column(nullable = true)
     private boolean confirmada;
+
+    @Column(nullable = true)
     private boolean retorno;
-    private String horaChegada;
-    private String horaSaida;
-    private String duracao;
+
+    @Column(name = "hora_chegada", nullable = true)
+    private LocalTime horaChegada;
+
+    @Column(name = "hora_saida", nullable = true)
+    private LocalTime horaSaida;
+
+    @Column(name = "duracao", nullable = true)
+    private LocalTime duracao;
+
+    @Column(name = "concluida", nullable = true)
     private boolean concluida;
+
+    @Column(name = "nao_compareceu", nullable = true)
     private boolean naoCompareceu;
+
+    @Column(name = "cancelada", nullable = true)
     private boolean cancelada;
+
+    @JoinColumn(name = "fk_rec_cons", nullable = true)
     private int idReceita;
+
+    @JoinColumn(name = "fk_feed_cons", nullable = true)
     private int idFeed;
+
+    @JoinColumn(name = "fk_not_cons", nullable = true)
     private int idNot;
+
+    @JoinColumn(name = "fk_pag_cons", nullable = true)
     private int idPag;
 
     // Metodo Construtor
@@ -24,8 +58,8 @@ public class Consulta {
     }
 
     // Metodo Construtor com Atributos
-    public Consulta(int idConsulta, int idAgen, boolean confirmada, boolean retorno, String horaChegada,
-            String horaSaida, String duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
+    public Consulta(int idConsulta, int idAgen, boolean confirmada, boolean retorno, LocalTime horaChegada,
+            LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
             int idReceita, int idFeed, int idNot, int idPag) {
         this.idConsulta = idConsulta;
         this.idAgen = idAgen;
@@ -76,27 +110,27 @@ public class Consulta {
         this.retorno = retorno;
     }
 
-    public String getHoraChegada() {
+    public LocalTime getHoraChegada() {
         return horaChegada;
     }
 
-    public void setHoraChegada(String horaChegada) {
+    public void setHoraChegada(LocalTime horaChegada) {
         this.horaChegada = horaChegada;
     }
 
-    public String getHoraSaida() {
+    public LocalTime getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(String horaSaida) {
+    public void setHoraSaida(LocalTime horaSaida) {
         this.horaSaida = horaSaida;
     }
 
-    public String getDuracao() {
+    public LocalTime getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(String duracao) {
+    public void setDuracao(LocalTime duracao) {
         this.duracao = duracao;
     }
 

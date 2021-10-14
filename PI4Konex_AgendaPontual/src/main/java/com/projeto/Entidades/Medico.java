@@ -1,26 +1,69 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "medico")
 public class Medico {
 
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMed;
-    private String dataCriaMed;
-    private String horaCriaMed;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataCriaMed;
+
+    @Column(name = "nome", nullable = true)
     private String nomeMed;
-    private String dataNasc;
+
+    @Column(name = "data_nasci", nullable = true)
+    private LocalDate dataNasc;
+
+    @Column(name = "sexo", nullable = true)
     private String sexoMed;
+
+    @Column(name = "cpf", nullable = true, unique = true)
     private String cpfMed;
+
+    @Column(name = "rg", nullable = true, unique = true)
     private String rgMed;
+
+    @Column(nullable = true)
     private String crm;
+
+    @Column(nullable = true, unique = true)
     private String celular;
+
+    @Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
     private float valorMed;
-    private String dataFormatura;
+
+    @Column(name = "data_formatura", nullable = true, columnDefinition = "DATE")
+    private LocalDate dataFormatura;
+
+    @Column(name = "sobre_mim", nullable = true)
     private String sobreMed;
+
+    @Column(name = "biografia", nullable = true)
     private String bioMed;
+
+    @Column(nullable = true, length = 4)
     private String sala;
+
+    @JoinColumn(name = "fk_cli_med")
     private int idCli;
+
+    @JoinColumn(name = "fk_end_med")
     private int idEndereco;
+
+    @JoinColumn(name = "fk_usu_med")
     private int idUsu;
+
+    @JoinColumn(name = "fk_esp_med")
     private int idEsp;
 
     // Metodo Construtor
@@ -29,12 +72,11 @@ public class Medico {
     }
 
     // Metodo Construtor com Atributos
-    public Medico(int idMed, String dataCriaMed, String horaCriaMed, String nomeMed, String dataNasc, String sexoMed,
-            String cpfMed, String rgMed, String crm, String celular, float valorMed, String dataFormatura,
+    public Medico(int idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
+            String cpfMed, String rgMed, String crm, String celular, float valorMed, LocalDate dataFormatura,
             String sobreMed, String bioMed, String sala, int idCli, int idEndereco, int idUsu, int idEsp) {
         this.idMed = idMed;
         this.dataCriaMed = dataCriaMed;
-        this.horaCriaMed = horaCriaMed;
         this.nomeMed = nomeMed;
         this.dataNasc = dataNasc;
         this.sexoMed = sexoMed;
@@ -62,20 +104,12 @@ public class Medico {
         this.idMed = idMed;
     }
 
-    public String getDataCriaMed() {
+    public LocalDateTime getDataCriaMed() {
         return dataCriaMed;
     }
 
-    public void setDataCriaMed(String dataCriaMed) {
+    public void setDataCriaMed(LocalDateTime dataCriaMed) {
         this.dataCriaMed = dataCriaMed;
-    }
-
-    public String getHoraCriaMed() {
-        return horaCriaMed;
-    }
-
-    public void setHoraCriaMed(String horaCriaMed) {
-        this.horaCriaMed = horaCriaMed;
     }
 
     public String getNomeMed() {
@@ -86,11 +120,11 @@ public class Medico {
         this.nomeMed = nomeMed;
     }
 
-    public String getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
 
@@ -142,11 +176,11 @@ public class Medico {
         this.valorMed = valorMed;
     }
 
-    public String getDataFormatura() {
+    public LocalDate getDataFormatura() {
         return dataFormatura;
     }
 
-    public void setDataFormatura(String dataFormatura) {
+    public void setDataFormatura(LocalDate dataFormatura) {
         this.dataFormatura = dataFormatura;
     }
 

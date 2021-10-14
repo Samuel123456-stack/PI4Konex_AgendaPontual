@@ -1,10 +1,21 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "triagem")
 public class Triagem {
     // Atributos
-    private String dataCriaTriagem;
-    private String horaCriaTriagem;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataCriaTriagem;
+
+    @JoinColumn(name = "fk_doe_paci")
     private int idDoenca;
+
+    @JoinColumn(name = "fk_paci_doe")
     private int idPaci;
 
     // Metodo Construtor
@@ -13,28 +24,19 @@ public class Triagem {
     }
 
     // Metodo Construtor com Atributos
-    public Triagem(String dataCriaTriagem, String horaCriaTriagem, int idDoenca, int idPaci) {
+    public Triagem(LocalDateTime dataCriaTriagem, int idDoenca, int idPaci) {
         this.dataCriaTriagem = dataCriaTriagem;
-        this.horaCriaTriagem = horaCriaTriagem;
         this.idDoenca = idDoenca;
         this.idPaci = idPaci;
     }
 
     // Getters e Setters
-    public String getDataCriaTriagem() {
+    public LocalDateTime getDataCriaTriagem() {
         return dataCriaTriagem;
     }
 
-    public void setDataCriaTriagem(String dataCriaTriagem) {
+    public void setDataCriaTriagem(LocalDateTime dataCriaTriagem) {
         this.dataCriaTriagem = dataCriaTriagem;
-    }
-
-    public String getHoraCriaTriagem() {
-        return horaCriaTriagem;
-    }
-
-    public void setHoraCriaTriagem(String horaCriaTriagem) {
-        this.horaCriaTriagem = horaCriaTriagem;
     }
 
     public int getIdDoenca() {

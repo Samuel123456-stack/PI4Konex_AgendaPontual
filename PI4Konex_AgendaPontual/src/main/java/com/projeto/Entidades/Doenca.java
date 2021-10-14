@@ -1,9 +1,19 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "doenca")
 public class Doenca {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDoenca;
+
+    @Column(name = "nome", nullable = true)
     private String nomeDoenca;
+
+    @JoinColumn(name = "fk_esp_doe")
     private int idEsp;
 
     // Metodo Construtor

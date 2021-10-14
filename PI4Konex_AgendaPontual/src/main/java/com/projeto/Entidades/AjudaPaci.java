@@ -1,13 +1,30 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ajuda_paci")
 public class AjudaPaci {
     // Atributos
-    private String dataAjudaPaci;
-    private String horaAjudaPaci;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataAjudaPaci;
+
+    @JoinColumn(name = "fk_aju_paci")
     private int idAjuda;
+
+    @JoinColumn(name = "fk_paci_aju")
     private int idPaci;
+
+    @JoinColumn(name = "fk_adm_aju_paci")
     private int idAdm;
+
+    @Column(name = "status_soli", nullable = true, length = 12)
     private String statusSoli;
+
+    @Column(name = "desc_solucao", nullable = true, length = 100)
     private String descSolucao;
 
     // Metodo Construtor
@@ -16,10 +33,9 @@ public class AjudaPaci {
     }
 
     // Metodo Construtor com atributos
-    public AjudaPaci(String dataAjudaPaci, String horaAjudaPaci, int idAjuda, int idPaci, int idAdm, String statusSoli,
+    public AjudaPaci(LocalDateTime dataAjudaPaci, int idAjuda, int idPaci, int idAdm, String statusSoli,
             String descSolucao) {
         this.dataAjudaPaci = dataAjudaPaci;
-        this.horaAjudaPaci = horaAjudaPaci;
         this.idAjuda = idAjuda;
         this.idPaci = idPaci;
         this.idAdm = idAdm;
@@ -28,20 +44,12 @@ public class AjudaPaci {
     }
 
     // Getters e Setters
-    public String getDataAjudaPaci() {
+    public LocalDateTime getDataAjudaPaci() {
         return dataAjudaPaci;
     }
 
-    public void setDataAjudaPaci(String dataAjudaPaci) {
+    public void setDataAjudaPaci(LocalDateTime dataAjudaPaci) {
         this.dataAjudaPaci = dataAjudaPaci;
-    }
-
-    public String getHoraAjudaPaci() {
-        return horaAjudaPaci;
-    }
-
-    public void setHoraAjudaPaci(String horaAjudaPaci) {
-        this.horaAjudaPaci = horaAjudaPaci;
     }
 
     public int getIdAjuda() {

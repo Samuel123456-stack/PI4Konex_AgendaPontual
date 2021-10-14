@@ -1,47 +1,55 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
-public class AjudaMed {
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ajuda_cli")
+public class AjudaCli {
     // Atributos
-    private String dataAjudaMed;
-    private String horaAjudaMed;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataAjudaCli;
+
+    @JoinColumn(name = "fk_aju_cli")
     private int idAjuda;
-    private int idMed;
+
+    @JoinColumn(name = "fk_cli_aju")
+    private int idCli;
+
+    @JoinColumn(name = "fk_adm_ajud_cli")
     private int idAdm;
+
+    @Column(name = "status_soli", nullable = true, length = 12)
     private String statusSoli;
+
+    @Column(name = "desc_solucao", nullable = true, length = 100)
     private String descSolucao;
 
     // Metodo Construtor
-    public AjudaMed() {
+    public AjudaCli() {
 
     }
 
     // Metodo Construtor com Atributos
-    public AjudaMed(String dataAjudaMed, String horaAjudaMed, int idAjuda, int idMed, int idAdm, String statusSoli,
+    public AjudaCli(LocalDateTime dataAjudaCli, int idAjuda, int idCli, int idAdm, String statusSoli,
             String descSolucao) {
-        this.dataAjudaMed = dataAjudaMed;
-        this.horaAjudaMed = horaAjudaMed;
+        this.dataAjudaCli = dataAjudaCli;
         this.idAjuda = idAjuda;
-        this.idMed = idMed;
+        this.idCli = idCli;
         this.idAdm = idAdm;
         this.statusSoli = statusSoli;
         this.descSolucao = descSolucao;
     }
 
     // Getters e Setters
-    public String getDataAjudaMed() {
-        return dataAjudaMed;
+    public LocalDateTime getDataAjudaCli() {
+        return dataAjudaCli;
     }
 
-    public void setDataAjudaMed(String dataAjudaMed) {
-        this.dataAjudaMed = dataAjudaMed;
-    }
-
-    public String getHoraAjudaMed() {
-        return horaAjudaMed;
-    }
-
-    public void setHoraAjudaMed(String horaAjudaMed) {
-        this.horaAjudaMed = horaAjudaMed;
+    public void setDataAjudaCli(LocalDateTime dataAjudaCli) {
+        this.dataAjudaCli = dataAjudaCli;
     }
 
     public int getIdAjuda() {
@@ -52,12 +60,12 @@ public class AjudaMed {
         this.idAjuda = idAjuda;
     }
 
-    public int getIdMed() {
-        return idMed;
+    public int getIdCli() {
+        return idCli;
     }
 
-    public void setIdMed(int idMed) {
-        this.idMed = idMed;
+    public void setIdCli(int idCli) {
+        this.idCli = idCli;
     }
 
     public int getIdAdm() {
@@ -83,4 +91,5 @@ public class AjudaMed {
     public void setDescSolucao(String descSolucao) {
         this.descSolucao = descSolucao;
     }
+
 }

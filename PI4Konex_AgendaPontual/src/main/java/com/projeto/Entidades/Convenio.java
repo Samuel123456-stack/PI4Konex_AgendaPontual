@@ -1,9 +1,20 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "convenio")
 public class Convenio {
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idConv;
+
+    @Column(name = "nome", nullable = true)
     private String nomeConv;
+
+    @Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
     private float valorConv;
 
     // Metodo Construtor

@@ -1,12 +1,28 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "notificacao")
 public class Notificacao {
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNoti;
-    private String dataNoti;
-    private String horaNoti;
+
+    @Column(name = "data_notificacao", nullable = true, columnDefinition = "DATE")
+    private LocalDateTime dataNoti;
+
+    @Column(nullable = true)
     private String assunto;
+
+    @Column(nullable = true)
     private String mensagem;
+
+    @Column(nullable = true)
     private String resposta;
 
     // Metodo Construtor
@@ -15,10 +31,9 @@ public class Notificacao {
     }
 
     // Metodo Construtor com Atributos
-    public Notificacao(int idNoti, String dataNoti, String horaNoti, String assunto, String mensagem, String resposta) {
+    public Notificacao(int idNoti, LocalDateTime dataNoti, String assunto, String mensagem, String resposta) {
         this.idNoti = idNoti;
         this.dataNoti = dataNoti;
-        this.horaNoti = horaNoti;
         this.assunto = assunto;
         this.mensagem = mensagem;
         this.resposta = resposta;
@@ -33,20 +48,12 @@ public class Notificacao {
         this.idNoti = idNoti;
     }
 
-    public String getDataNoti() {
+    public LocalDateTime getDataNoti() {
         return dataNoti;
     }
 
-    public void setDataNoti(String dataNoti) {
+    public void setDataNoti(LocalDateTime dataNoti) {
         this.dataNoti = dataNoti;
-    }
-
-    public String getHoraNoti() {
-        return horaNoti;
-    }
-
-    public void setHoraNoti(String horaNoti) {
-        this.horaNoti = horaNoti;
     }
 
     public String getAssunto() {

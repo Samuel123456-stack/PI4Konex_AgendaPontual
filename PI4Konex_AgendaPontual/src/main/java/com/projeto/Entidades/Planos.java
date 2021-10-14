@@ -1,16 +1,39 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "plano")
 public class Planos {
 
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPlano;
+
+    @Column(name = "nome", nullable = true)
     private String nomePlano;
+
+    @Column(name = "comentario", nullable = true)
     private String comenPlano;
+
+    @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
+
+    @Column(name = "qte_recep", nullable = true)
     private int qntRec;
+
+    @Column(name = "qte_medico", nullable = true)
     private int qntMed;
+
+    @Column(nullable = true)
     private String detalhes;
+
+    @Column(name = "tolerancia", nullable = true)
     private int qntTolerancia;
+
+    @JoinColumn(name = "fk_pag_plan")
     private int idPag;
 
     // Metodo Construtor

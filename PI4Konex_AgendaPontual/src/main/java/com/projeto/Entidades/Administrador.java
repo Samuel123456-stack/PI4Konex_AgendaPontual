@@ -1,10 +1,20 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "adm")
 public class Administrador {
 
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idADM;
+
+    @Column(nullable = true, unique = true)
     private String nome;
+
+    @JoinColumn(name = "fk_usu_adm")
     private int idUsu;
 
     // Metodo Construtor

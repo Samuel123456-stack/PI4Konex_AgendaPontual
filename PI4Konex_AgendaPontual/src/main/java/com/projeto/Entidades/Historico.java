@@ -1,11 +1,25 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "historico")
 public class Historico {
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idHis;
-    private String dataHisCria;
-    private String horaHisCria;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataHisCria;
+
+    @Column(nullable = true)
     private String historico;
+
+    @JoinColumn(name = "fk_cons_his")
     private int idConsulta;
 
     // Metodo Construtor
@@ -14,10 +28,9 @@ public class Historico {
     }
 
     // Metodo Construtor com Atributos
-    public Historico(int idHis, String dataHisCria, String horaHisCria, String historico, int idConsulta) {
+    public Historico(int idHis, LocalDateTime dataHisCria, String historico, int idConsulta) {
         this.idHis = idHis;
         this.dataHisCria = dataHisCria;
-        this.horaHisCria = horaHisCria;
         this.historico = historico;
         this.idConsulta = idConsulta;
     }
@@ -31,20 +44,12 @@ public class Historico {
         this.idHis = idHis;
     }
 
-    public String getDataHisCria() {
+    public LocalDateTime getDataHisCria() {
         return dataHisCria;
     }
 
-    public void setDataHisCria(String dataHisCria) {
+    public void setDataHisCria(LocalDateTime dataHisCria) {
         this.dataHisCria = dataHisCria;
-    }
-
-    public String getHoraHisCria() {
-        return horaHisCria;
-    }
-
-    public void setHoraHisCria(String horaHisCria) {
-        this.horaHisCria = horaHisCria;
     }
 
     public String getHistorico() {

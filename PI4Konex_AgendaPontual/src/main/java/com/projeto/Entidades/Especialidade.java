@@ -1,8 +1,16 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "especialidade")
 public class Especialidade {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEsp;
+
+    @Column(name = "nome", nullable = true)
     private String nomeEsp;
 
     // Metodo Construtor

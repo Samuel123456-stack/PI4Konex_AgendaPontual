@@ -1,14 +1,33 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "feedback")
 public class Feedback {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFeed;
-    private String dataCriaFeed;
-    private String horaCriaFeed;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataCriaFeed;
+
+    @Column(nullable = true)
     private int avaliacao;
+
+    @Column(nullable = true)
     private String comentario;
+
+    @Column(nullable = true)
     private boolean paraMed;
+
+    @Column(nullable = true)
     private boolean paraCli;
+
+    @Column(nullable = true)
     private boolean feedAno;
 
     // Metodo Construtor
@@ -16,11 +35,10 @@ public class Feedback {
     }
 
     // Metodo Construtor com Atributos
-    public Feedback(int idFeed, String dataCriaFeed, String horaCriaFeed, int avaliacao, String comentario,
-            boolean paraMed, boolean paraCli, boolean feedAno) {
+    public Feedback(int idFeed, LocalDateTime dataCriaFeed, int avaliacao, String comentario, boolean paraMed,
+            boolean paraCli, boolean feedAno) {
         this.idFeed = idFeed;
         this.dataCriaFeed = dataCriaFeed;
-        this.horaCriaFeed = horaCriaFeed;
         this.avaliacao = avaliacao;
         this.comentario = comentario;
         this.paraMed = paraMed;
@@ -37,20 +55,12 @@ public class Feedback {
         this.idFeed = idFeed;
     }
 
-    public String getDataCriaFeed() {
+    public LocalDateTime getDataCriaFeed() {
         return dataCriaFeed;
     }
 
-    public void setDataCriaFeed(String dataCriaFeed) {
+    public void setDataCriaFeed(LocalDateTime dataCriaFeed) {
         this.dataCriaFeed = dataCriaFeed;
-    }
-
-    public String getHoraCriaFeed() {
-        return horaCriaFeed;
-    }
-
-    public void setHoraCriaFeed(String horaCriaFeed) {
-        this.horaCriaFeed = horaCriaFeed;
     }
 
     public int getAvaliacao() {

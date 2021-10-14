@@ -1,47 +1,54 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
-public class AjudaCli {
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ajuda_recep")
+public class AjudaRec {
     // Atributos
-    private String dataAjudaCli;
-    private String horaAjudaCli;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataAjudaRec;
+
+    @JoinColumn(name = "fk_aju_recep")
     private int idAjuda;
-    private int idCli;
+
+    @JoinColumn(name = "fk_recep_aju")
+    private int idRec;
+
+    @JoinColumn(name = "fk_adm_aju_recep")
     private int idAdm;
+
+    @Column(name = "status_soli", nullable = true, length = 12)
     private String statusSoli;
+
+    @Column(name = "desc_solucao", nullable = true, length = 100)
     private String descSolucao;
 
     // Metodo Construtor
-    public AjudaCli() {
-
+    public AjudaRec() {
     }
 
     // Metodo Construtor com Atributos
-    public AjudaCli(String dataAjudaCli, String horaAjudaCli, int idAjuda, int idCli, int idAdm, String statusSoli,
+    public AjudaRec(LocalDateTime dataAjudaRec, int idAjuda, int idRec, int idAdm, String statusSoli,
             String descSolucao) {
-        this.dataAjudaCli = dataAjudaCli;
-        this.horaAjudaCli = horaAjudaCli;
+        this.dataAjudaRec = dataAjudaRec;
         this.idAjuda = idAjuda;
-        this.idCli = idCli;
+        this.idRec = idRec;
         this.idAdm = idAdm;
         this.statusSoli = statusSoli;
         this.descSolucao = descSolucao;
     }
 
     // Getters e Setters
-    public String getDataAjudaCli() {
-        return dataAjudaCli;
+    public LocalDateTime getDataAjudaRec() {
+        return dataAjudaRec;
     }
 
-    public void setDataAjudaCli(String dataAjudaCli) {
-        this.dataAjudaCli = dataAjudaCli;
-    }
-
-    public String getHoraAjudaCli() {
-        return horaAjudaCli;
-    }
-
-    public void setHoraAjudaCli(String horaAjudaCli) {
-        this.horaAjudaCli = horaAjudaCli;
+    public void setDataAjudaRec(LocalDateTime dataAjudaRec) {
+        this.dataAjudaRec = dataAjudaRec;
     }
 
     public int getIdAjuda() {
@@ -52,12 +59,12 @@ public class AjudaCli {
         this.idAjuda = idAjuda;
     }
 
-    public int getIdCli() {
-        return idCli;
+    public int getIdRec() {
+        return idRec;
     }
 
-    public void setIdCli(int idCli) {
-        this.idCli = idCli;
+    public void setIdRec(int idRec) {
+        this.idRec = idRec;
     }
 
     public int getIdAdm() {

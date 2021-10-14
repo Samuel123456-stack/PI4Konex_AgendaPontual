@@ -1,19 +1,46 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "clinica")
 public class Clinica {
 
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCli;
-    private String dataCriaCli;
-    private String horaCriaCli;
+
+    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    private LocalDateTime dataCriaCli;
+
+    @Column(name = "nome_cli", nullable = true)
     private String nomeCli;
+
+    @Column(name = "nome_med_resp", nullable = true)
     private String nomeMedResp;
+
+    @Column(nullable = true, unique = true)
     private String cnpj;
+
+    @Column(nullable = true, unique = true)
     private String rg;
+
+    @Column(name = "qte_assentos", nullable = true)
     private int qntAssentos;
+
+    @Column(name = "fone", nullable = true)
     private String telefone;
+
+    @JoinColumn(name = "fk_plan_cli", nullable = true)
     private int idPlano;
+
+    @JoinColumn(name = "fk_end_cli", nullable = true)
     private int idEndereco;
+
+    @JoinColumn(name = "fk_usu_cli", nullable = true)
     private int idUsu;
 
     // Metodo Construtor
@@ -22,11 +49,10 @@ public class Clinica {
     }
 
     // Metodo Construtor com Atributos
-    public Clinica(int idCli, String dataCriaCli, String horaCriaCli, String nomeCli, String nomeMedResp, String cnpj,
-            String rg, int qntAssentos, String telefone, int idPlano, int idEndereco, int idUsu) {
+    public Clinica(int idCli, LocalDateTime dataCriaCli, String nomeCli, String nomeMedResp, String cnpj, String rg,
+            int qntAssentos, String telefone, int idPlano, int idEndereco, int idUsu) {
         this.idCli = idCli;
         this.dataCriaCli = dataCriaCli;
-        this.horaCriaCli = horaCriaCli;
         this.nomeCli = nomeCli;
         this.nomeMedResp = nomeMedResp;
         this.cnpj = cnpj;
@@ -47,20 +73,12 @@ public class Clinica {
         this.idCli = idCli;
     }
 
-    public String getDataCriaCli() {
+    public LocalDateTime getDataCriaCli() {
         return dataCriaCli;
     }
 
-    public void setDataCriaCli(String dataCriaCli) {
+    public void setDataCriaCli(LocalDateTime dataCriaCli) {
         this.dataCriaCli = dataCriaCli;
-    }
-
-    public String getHoraCriaCli() {
-        return horaCriaCli;
-    }
-
-    public void setHoraCriaCli(String horaCriaCli) {
-        this.horaCriaCli = horaCriaCli;
     }
 
     public String getNomeCli() {

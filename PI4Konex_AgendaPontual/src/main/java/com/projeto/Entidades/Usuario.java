@@ -1,12 +1,29 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
     // Atributos
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsu;
+
+    @Column(nullable = true)
     private String email;
+
+    @Column(nullable = true)
     private String confirmaEmail;
+
+    @Column(nullable = true)
     private String senha;
+
+    @Column(nullable = true)
     private String confirmaSenha;
+
+    @Column(nullable = true)
     private String perfil;
 
     // Metodo Construtor

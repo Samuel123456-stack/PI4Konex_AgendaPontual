@@ -1,11 +1,24 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ajuda")
 public class Ajuda {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAjuda;
-    private String dataSolic;
-    private String horaSolic;
+
+    @Column(name = "dt_solic", nullable = true, columnDefinition = "DATE")
+    private LocalDateTime dataSolic;
+
+    @Column(nullable = true, length = 20)
     private String assunto;
+
+    @Column(nullable = true)
     private String mensagem;
 
     // Metodo Construtor
@@ -14,10 +27,9 @@ public class Ajuda {
     }
 
     // Metodo Construtor com Atributos
-    public Ajuda(int idAjuda, String dataSolic, String horaSolic, String assunto, String mensagem) {
+    public Ajuda(int idAjuda, LocalDateTime dataSolic, String assunto, String mensagem) {
         this.idAjuda = idAjuda;
         this.dataSolic = dataSolic;
-        this.horaSolic = horaSolic;
         this.assunto = assunto;
         this.mensagem = mensagem;
     }
@@ -31,20 +43,12 @@ public class Ajuda {
         this.idAjuda = idAjuda;
     }
 
-    public String getDataSolic() {
+    public LocalDateTime getDataSolic() {
         return dataSolic;
     }
 
-    public void setDataSolic(String dataSolic) {
+    public void setDataSolic(LocalDateTime dataSolic) {
         this.dataSolic = dataSolic;
-    }
-
-    public String getHoraSolic() {
-        return horaSolic;
-    }
-
-    public void setHoraSolic(String horaSolic) {
-        this.horaSolic = horaSolic;
     }
 
     public String getAssunto() {

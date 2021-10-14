@@ -1,8 +1,15 @@
-package com.projeto.Classes;
+package com.projeto.Entidades;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "exame_consulta")
 public class ExameConsulta {
     // Atributos
+    @JoinColumn(name = "fk_exame_cons")
     private int idExame;
+
+    @JoinColumn(name = "fk_cons_exame")
     private int idConsulta;
 
     // Metodo Construtor

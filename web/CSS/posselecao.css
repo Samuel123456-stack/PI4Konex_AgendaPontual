@@ -25,12 +25,12 @@
 /*
     divisorias
 */
-.divFin, .divMen{
+.divFin, .divMen, .divpessoa, .divpag{
     width: 1080px;
     height: 123px;
     margin: 0 auto;
 }
-.divFin p, .divMen p{
+.divFin p, .divMen p, .divpessoa p, .divpag p{
     margin: 0;
     margin-right: 10px;
     font-family: 'Mulish', sans-serif;
@@ -38,7 +38,7 @@
     color: #505F79;
     float: left;
 }
-.barraFin, .barraMen{
+.barraFin, .barraMen, .barrapessoa, .barrapag{
     height: 1px;
     margin: 10px 0;
     background-color: rgba(80, 95, 121, 0.1);
@@ -49,6 +49,12 @@
 }
 .barraMen{
     width: 684px;
+}
+.barrapessoa{
+    width:  757px;
+}
+.barrapag{
+    width:  855px;
 }
 
 .finalizaCompra{
@@ -62,6 +68,7 @@
     float: left;
     border: 1.4px solid rgba(84, 101, 130, 0.1);
     border-radius: 8px;
+    font-family: 'Mulish', sans-serif;
 }
 .tipoPlano h3{
         width: 175px;
@@ -160,6 +167,7 @@
     padding: 40px 0 0 18px;
     border: 1.4px solid rgba(80, 95, 121, 0.1);
     border-radius: 8px;
+    float:left;
 }
 .qntRece, .qntMed, .funcio, .qntTole{
     width: 320px;
@@ -181,4 +189,257 @@
 }
 #qntTole{
     margin: 0 5px;
+}
+.opcPag{
+    width: 701px;
+    height: 133px;
+    padding: 35px 0 0 20px;
+    margin: 0 0 15px 16px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+    float: left;
+}
+.opcPag h2{
+    margin: 0 0 20px 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #5F5482;
+}
+.opcPag label{
+    font-size: 16px;
+    color: #5F5482;
+}
+.opcPag p{
+    margin: 32px 0 0 0;
+    font-size: 10px;
+    color: rgba(127, 139, 161, 0.8);
+}
+#anual{
+    margin-left: 40px;
+}
+.valorTotal{
+    width: 701px;
+    height: 70px;
+    margin: 0 0 0 16px;
+    float: left;
+    padding: 20px 0 0 20px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+}
+.valorTotal h1{
+    margin: 0;
+    float: left;
+    font-weight: 800;
+    font-size: 30px;
+    color: #546582;
+}
+.valorTotal p{
+    margin: 23px 0 0 8px;
+    font-weight: 600;
+    font-size: 10px;
+    color: #546582;
+    float: left;
+}
+#valor{
+    margin-left: 141px;
+}
+.dadosPessoa{
+    height: 405px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.nomeDados, .cpfDados, .emailDados, .confiEmailDados, .senhaDados, .confisenhaDados, .sexoDados, .dataDados, .rgDados, .celDados, .logDados, .numDados, .cepDados, .compDados{
+    height: 50px;
+    padding: 10px 0 0 13px;
+    float: left;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+}
+.nomeDados p, .cpfDados p, .emailDados p, .confiEmailDados p, .senhaDados p, .confisenhaDados p, .sexoDados p, .dataDados p, .rgDados p, .celDados p, .logDados p, .numDados p, .cepDados p, .compDados p{
+    margin: 0 0 5px 0;
+    font-size: 10px;
+    color: #B9BFC9;
+}
+.nomeDados input, .cpfDados input, .emailDados input, .confiEmailDados input, .senhaDados input, .confisenhaDados input, .dataDados input, .rgDados input, .celDados input, .logDados input, .numDados input, .cepDados input, .compDados input{
+    padding: 0;
+    font-size: 16px;
+    border: none;
+}
+.nomeDados, .cpfDados, .confiEmailDados, .senhaDados, .sexoDados, .dataDados, .rgDados, .logDados, .numDados, .cepDados{
+    margin-right: 15px;
+}
+.nomeDados, .cpfDados, .emailDados, .confiEmailDados, .senhaDados, .confisenhaDados, .sexoDados, .dataDados, .rgDados, .celDados{
+    margin-bottom: 15px;
+}
+.nomeDados::placeholder, .cpfDados::placeholder, .emailDados::placeholder, .confiEmailDados::placeholder, .senhaDados::placeholder, .confisenhaDados::placeholder, .sexoDados::placeholder, .dataDados::placeholder, .rgDados::placeholder, .celDados::placeholder, .logDados::placeholder, .numDados::placeholder, .cepDados::placeholder, .compDados::placeholder{
+    color: #858FA1;
+}
+.nomeDados, .confiEmailDados, .sexoDados{
+    width: 360px;
+}
+.nomeDados input, .confiEmailDados input{
+    width: 340px;
+}
+.cpfDados, .senhaDados{
+    width: 287px;
+}
+.cpfDados input, .senhaDados input{
+    width: 245px;
+}
+.emailDados, .confisenhaDados{
+    width: 355px;    
+}
+.emailDados input, .confisenhaDados input{
+    width: 340px;
+}
+.dataDados, .rgDados{
+    width: 203px;
+}
+.dataDados input, .rgDados input{
+    width: 193px;
+}
+.celDados, .compDados{
+    width: 205px;
+}
+.celDados input, .compDados input{
+    width: 193px;
+}
+.logDados{
+    width: 527px;
+}
+.logDados input{
+    width: 500px;
+}
+.numDados, .cepDados{
+    width: 118px;
+}
+.numDados input, .cepDados input{
+    width: 110px;
+}
+.sexoDados{
+    padding-top: 15px;
+    height: 45px;
+}
+#feminino{
+    margin-left: 28px;
+}
+.dadosPag{
+    height: 684px;
+    font-family: 'Mulish', sans-serif;
+}
+.formaPag, .dadosTit, .dadosCar{
+    height: 144px;
+    padding: 20px 0 0 20px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+    float: left;
+}
+.formaPag h1, .dadosTit h1, .dadosCar h1{
+    margin: 0 0 24px 0;
+    font-size: 18px;
+    color: #546582;
+}
+.formaPag select, .dadosTit  input, .dadosCar input{
+    font-size: 16px;
+}
+.formaPag{
+    width: 353px;
+}
+.formaPag select{
+    width: 333px;
+    height: 57px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+}
+.dadosTit{
+    width: 665px;
+    margin-left: 15px;
+}
+.dadosCar{
+    width: 1057px;
+    margin: 15px 0 25px 0;
+}
+.nomeTit, .cpfTit, .nomeCard, .numCard, .valCard, .cvv{
+    height: 50px;
+    padding: 10px 0 0 13px;
+    border: 1.4px solid rgba(80, 95, 121, 0.1);
+    border-radius: 8px;
+    float: left;
+}
+.nomeTit input, .cpfTit input, .nomeCard input, .numCard input, .valCard input, .cvv input{
+    border: none;
+}
+.nomeTit p, .cpfTit p, .nomeCard p, .numCard p, .valCard p, .cvv p{
+    margin: 0 0 5px 0;
+    font-size: 10px;
+    color: #B9BFC9;
+}
+.nomeTit{
+    width: 339px;
+    margin-right: 15px;
+}
+.nomeTit input{
+    width: 320px;
+}
+.cpfTit{
+    width: 261px;
+}
+.cpfTit input{
+    width: 245.65px;
+}
+.nomeCard{
+    width: 356px;
+    margin-right: 15px;
+}
+.nomeCard  input{
+    width: 325px;
+}
+.numCard{
+    width: 239px;
+    margin-right: 15px;
+}
+.numCard  input{
+    width: 221px;
+}
+.valCard{
+    width: 155px;
+    margin-right: 15px;
+}
+.valCard input{
+    width: 125px;
+}
+.cvv{
+    width: 180px;
+}
+.cvv  input{
+    width: 162px;
+}
+.checkTerm{
+    margin: 3px 85px 0 0;
+    float: left;
+    font-size: 16px;
+    color: #858FA1;
+}
+.checkTerm label{
+    margin: 3px 0 0 0;
+}
+.dadosPag input[type='submit']{
+    width: 403px;
+    height: 60px;
+    background: #1CC4BF;
+    border: none;
+    border-radius: 8px;
+    float: left;
+    color: #FFFFFF;
+    font-size: 15.5px;
+}
+.dadosPag input[type='submit']:hover{
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+}
+.dadosPag input[type='submit']:focus{
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+    box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
+}
+.nomeDados:hover, .cpfDados:hover, .emailDados:hover, .confiEmailDados:hover, .senhaDados:hover, .confisenhaDados:hover, .sexoDados:hover, .dataDados:hover, .rgDados:hover, .celDados:hover, .logDados:hover, .numDados:hover, .cepDados:hover, .compDados:hover, .nomeTit:hover, .cpfTit:hover, .nomeCard:hover, .numCard:hover, .valCard:hover, .cvv:hover, .formaPag select:hover{
+    border: 1.4px solid #858FA1;
 }

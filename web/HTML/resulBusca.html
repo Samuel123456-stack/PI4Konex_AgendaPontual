@@ -77,11 +77,29 @@
                     <input type="text" name="max" placeholder="R$150,00">
                 </div>
                 <h2>Exériência(anos)</h2>
-                <div class="slide">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <p style="width: 206px;">0</p>
-                    <p>+10</p>
-                </div>
+                
+                <div class="filter level-filter level-req">
+                    <div id="rangeSlider" class="range-slider">
+                      
+                      
+                      <div class="range-group">
+                          <input class="range-input" value="1" min="1" max="10" step="1" type="range" />
+                          <input class="range-input" value="10" min="1" max="10" step="1" type="range" />
+                        </div>
+                     
+                        <div class="number-group">
+                          <input class="number-input" type="number" value="1" min="1" max="10" id="esquerda" disabled/>
+                          <div data-anima="top" class="mais">+</div> 
+                          <input class="number-input" type="number" value="10" min="1" max="10" disabled/>
+                      </div>
+                        
+                    </div>
+                    
+                </div> 
+
+
+
+
                 <input type="submit" value="FILTRAR">
                 <button type="reset">
                     <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px;">
@@ -215,6 +233,7 @@
 
 
 
+    <script src="/web/javascript/resulBusca.js"></script>
 
     <div class="rodapeComposto">
         <div class="colunas">

@@ -12,6 +12,7 @@ public class AjudaPaci {
     @Column(name = "dt_criacao", columnDefinition = "DATE")
     private LocalDateTime dataAjudaPaci;
 
+    @Id
     @JoinColumn(name = "fk_aju_paci")
     private int idAjuda;
 

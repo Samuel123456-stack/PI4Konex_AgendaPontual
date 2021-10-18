@@ -11,6 +11,8 @@ public class AjudaMed {
 
     @Column(name = "dt_criacao", columnDefinition = "DATE")
     private LocalDateTime dataAjudaMed;
+    
+    @Id
     @JoinColumn(name = "fk_aju_med")
     private int idAjuda;
 

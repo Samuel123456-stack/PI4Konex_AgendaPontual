@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Table(name = "triagem")
 public class Triagem {
     // Atributos
+    @Id
+    private int idTriagem;
 
     @Column(name = "dt_criacao", columnDefinition = "DATE")
     private LocalDateTime dataCriaTriagem;

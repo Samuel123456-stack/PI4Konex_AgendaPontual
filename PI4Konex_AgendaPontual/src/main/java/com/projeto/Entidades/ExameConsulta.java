@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "exame_consulta")
 public class ExameConsulta {
     // Atributos
+    @Id
+    private int idExameCons;
+
     @JoinColumn(name = "fk_exame_cons")
     private int idExame;
 

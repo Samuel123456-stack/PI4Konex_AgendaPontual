@@ -12,6 +12,7 @@ public class AjudaCli {
     @Column(name = "dt_criacao", columnDefinition = "DATE")
     private LocalDateTime dataAjudaCli;
 
+    @Id
     @JoinColumn(name = "fk_aju_cli")
     private int idAjuda;
 

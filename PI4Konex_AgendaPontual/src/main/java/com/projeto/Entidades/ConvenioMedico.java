@@ -7,6 +7,9 @@ import javax.persistence.*;
 public class ConvenioMedico {
     // Atributos
 
+    @Id
+    private int idConvMed;
+
     @JoinColumn(name = "fk_med_conv", nullable = true)
     private int idMed;
 

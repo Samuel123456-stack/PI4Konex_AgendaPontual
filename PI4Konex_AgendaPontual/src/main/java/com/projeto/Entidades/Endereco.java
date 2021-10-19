@@ -11,7 +11,7 @@ public class Endereco {
     private int idEnd;
 
     @Column(nullable = true)
-    private String logadouro;
+    private String logradouro;
 
     @Column(nullable = true)
     private int numero;
@@ -36,10 +36,10 @@ public class Endereco {
     }
 
     // Metodo Construtor com Atributos
-    public Endereco(int idEnd, String logadouro, int numero, String complemento, String bairro, String cidade,
+    public Endereco(int idEnd, String logradouro, int numero, String complemento, String bairro, String cidade,
             String estado, String cep) {
         this.idEnd = idEnd;
-        this.logadouro = logadouro;
+        this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
@@ -57,12 +57,12 @@ public class Endereco {
         this.idEnd = idEnd;
     }
 
-    public String getLogadouro() {
-        return logadouro;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setLogadouro(String logadouro) {
-        this.logadouro = logadouro;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public int getNumero() {

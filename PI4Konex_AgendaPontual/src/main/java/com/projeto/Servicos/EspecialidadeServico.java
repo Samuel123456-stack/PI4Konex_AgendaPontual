@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Repositorios.EspecialidadeRepositorio;
+import com.projeto.Servicos.Excecoes.ErroRegistroInexistente;
 
 @Service
 public class EspecialidadeServico {
@@ -24,7 +25,7 @@ public class EspecialidadeServico {
 	@Transactional(readOnly = true)
 	public Especialidade findById(Integer id) {
 		Optional<Especialidade> obj = repositorio.findById(id);
-		Especialidade entity = obj.get();
+		Especialidade entity = obj.orElseThrow(() -> new ErroRegistroInexistente("Registro não existe") );
 		return entity;
 	}
 }

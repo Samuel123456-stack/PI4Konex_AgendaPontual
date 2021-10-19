@@ -1,13 +1,24 @@
 package com.projeto.Entidades;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "especialidade")
-public class Especialidade {
-    // Atributos
+public class Especialidade implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_esp")
     private int idEsp;
 
     @Column(name = "nome", nullable = true)
@@ -41,4 +52,20 @@ public class Especialidade {
         this.nomeEsp = nomeEsp;
     }
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(idEsp);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Especialidade other = (Especialidade) obj;
+		return idEsp == other.idEsp;
+	}
 }

@@ -600,3 +600,9 @@ create view vw_historico_agendamento as
 	on fk_esp_med = id_esp
     join horario
     on fk_hor_agen = id_hor;
+    use agendapontual;
+    
+create view vw_lista_esp_doenca as
+select d.nome as Doença, e.nome as Especialidade from doenca d
+join especialidade e
+on fk_esp_doe = id_esp;

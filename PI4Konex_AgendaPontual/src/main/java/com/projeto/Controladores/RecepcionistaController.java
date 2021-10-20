@@ -24,7 +24,7 @@ public class RecepcionistaController {
         return "/tela_painelRecep";
     }
 
-    @RequestMapping("/addPaci")
+    @RequestMapping("/mostraPaci")
     private String paginaAddPaci(Model model) {
         Paciente paci = new Paciente();
         Usuario usu = new Usuario();
@@ -35,7 +35,7 @@ public class RecepcionistaController {
         return "/tela_cadClientes";
 
     }
-    @RequestMapping("/agendamento")
+    @RequestMapping("/cadPaci")
     public String salvaInfoPaciBD(@ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end){
         recepServ.criaPaci(paci);
         recepServ.criaUsu(usu);

@@ -83,35 +83,21 @@
                         </svg>    
                         <span>Busca</span>
 
-                        <form action="" method="">
+                        <form action="#" method="">
                             <div class="first-block">
                                 <div class="input-block">
                                     <p>Especialidade</p>
-                                    <select name="skills" id="subject">
+                                    <select name="especialidade" id="subject">
                                         <option value="">Selecione a especialidade</option>
-                                        <option value="1">Pediatria</option>
-                                        <option value="2">Radiologia</option>
-                                        <option value="3">Oftamologia</option>
-                                        <option value="4">Medicina esportiva</option>
-                                        <option value="5">Oncologia</option>
-                                        <option value="6">Dermatologia</option>
-                                        <option value="7">Epidemiologia</option>
-                                        <option value="8">Gastrointerologia</option>
+                                        <option th:each="esp : ${listaEsp}"th:value="*{esp.idEsp}" th:text="*{esp.nomeEsp}"></option>
                                     </select>
                                 </div>
 
                                 <div class="input-block">
                                     <p>Unidade</p>
-                                    <select name="city" id="subject">
+                                    <select name="cidade" id="subject">
                                         <option value="">Selecione a cidade</option>
-                                        <option value="1">São Paulo</option>
-                                        <option value="2">Brasilia</option>
-                                        <option value="3">Belo Horizonte</option>
-                                        <option value="4">Belem</option>
-                                        <option value="5">Londrina</option>
-                                        <option value="6">Curitiba</option>
-                                        <option value="7">Manaus</option>
-                                        <option value="8">Porto Alegre</option>
+                                        <option th:each="cid : ${listaCid}"th:value="*{cid.idCid}" th:text="*{cid.nome}"></option>
                                     </select>
                                 </div>
 

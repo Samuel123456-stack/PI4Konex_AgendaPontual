@@ -3,12 +3,14 @@ package com.projeto.Servicos;
 import java.util.List;
 
 import com.projeto.Entidades.Agenda;
+import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.AgendaRepositorio;
+import com.projeto.Repositorios.CidadeRepositorio;
 import com.projeto.Repositorios.ClinicaRepositorio;
 import com.projeto.Repositorios.EnderecoRepositorio;
 import com.projeto.Repositorios.PacienteRepositorio;
@@ -35,6 +37,8 @@ public class RecepcionistaServico {
     private AgendaRepositorio repoAgen;
     @Autowired
     private ClinicaRepositorio repoCli;
+    @Autowired
+    private CidadeRepositorio repoCid;
 
     //Metodos do Crud
     public void AtualizaRecep(Recepcionista recep){
@@ -110,6 +114,11 @@ public class RecepcionistaServico {
     //Metodos CRUD Clinica 
     public Clinica pegaCliPorId(Integer id){
         return repoCli.getById(id);
+     }
+
+     //Metodos CRUD Cidade
+     public List<Cidade> listarTodosCid(){
+         return repoCid.findAll();
      }
 
     

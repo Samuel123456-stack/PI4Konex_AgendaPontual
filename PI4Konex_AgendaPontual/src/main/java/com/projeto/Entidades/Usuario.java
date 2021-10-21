@@ -14,13 +14,13 @@ public class Usuario {
     @Column(nullable = true)
     private String email;
 
-    @Column(nullable = true)
+    @Column(name="email_confirma",nullable = true)
     private String confirmaEmail;
 
     @Column(nullable = true)
     private String senha;
 
-    @Column(nullable = true)
+    @Column(name="senha_confirma",nullable = true)
     private String confirmaSenha;
 
     @Column(nullable = true)

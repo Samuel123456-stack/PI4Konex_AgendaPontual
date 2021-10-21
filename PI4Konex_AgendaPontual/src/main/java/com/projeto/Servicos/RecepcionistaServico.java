@@ -2,10 +2,14 @@ package com.projeto.Servicos;
 
 import java.util.List;
 
+import com.projeto.Entidades.Agenda;
+import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.AgendaRepositorio;
+import com.projeto.Repositorios.ClinicaRepositorio;
 import com.projeto.Repositorios.EnderecoRepositorio;
 import com.projeto.Repositorios.PacienteRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
@@ -27,23 +31,16 @@ public class RecepcionistaServico {
     private UsuarioRepositorio repoUsu;
     @Autowired
     private EnderecoRepositorio repoEnd;
+    @Autowired
+    private AgendaRepositorio repoAgen;
+    @Autowired
+    private ClinicaRepositorio repoCli;
 
     //Metodos do Crud
-    public List<Recepcionista> listarTodosRecep(){
-        return repoRecep.findAll();
-    }
-
-    public void criaEAtualizaRecep(Recepcionista recep){
+    public void AtualizaRecep(Recepcionista recep){
         repoRecep.save(recep);
     }
 
-    public Recepcionista pegaRecepPorId(Integer id){
-       return repoRecep.getById(id);
-    }
-
-    public void deletaRecepPorId(Integer id){
-        repoRecep.deleteById(id);
-    }
 
     //Metodos do CRUD Paciente
     public List<Paciente> listarTodosPaci(){
@@ -96,6 +93,24 @@ public class RecepcionistaServico {
         repoEnd.deleteById(id);
     }
 
+    //Metodos CRUD Agenda
+    public void criaAgen(Endereco end){
+        repoEnd.save(end);
+    }
+
+    public Agenda pegaAgenPorId(Integer id){
+        return repoAgen.getById(id);
+    }
+
+    public void deletaAgenPorId(Integer id){
+        repoAgen.deleteById(id);
+    }
+
+
+    //Metodos CRUD Clinica 
+    public Clinica pegaCliPorId(Integer id){
+        return repoCli.getById(id);
+     }
 
     
 }

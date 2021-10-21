@@ -1,5 +1,6 @@
 package com.projeto.Controladores;
 
+import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
@@ -35,11 +36,16 @@ public class RecepcionistaController {
         return "/tela_cadClientes";
 
     }
-    @RequestMapping("/cadPaci")
-    public String salvaInfoPaciBD(@ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end){
+    @RequestMapping("/addAgenda")
+    public String salvaInfoPaciBD(@ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end, Model model){
         recepServ.criaPaci(paci);
         recepServ.criaUsu(usu);
         recepServ.criaEnd(end);
+
+        Agenda agen = new Agenda();
+        model.addAttribute("agenda", agen);
+        
         return "/tela_agendamento";
     }
+
 }

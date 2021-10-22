@@ -28,4 +28,9 @@ public class EspecialidadeServico {
 		Especialidade entity = obj.orElseThrow(() -> new ErroRegistroInexistente("Registro não existe") );
 		return entity;
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Especialidade> buscaEsp(String keyword) {
+		 return repositorio.buscaEsp(keyword);
+	}
 }

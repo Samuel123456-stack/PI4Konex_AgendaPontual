@@ -7,19 +7,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.projeto.Entidades.Cidade;
-import com.projeto.Servicos.CidadeServico;
+import com.projeto.Entidades.Bairro;
+import com.projeto.Servicos.BairroServico;
 
 @Controller
-public class CidadeController {
+public class BairroController {
 	
 	@Autowired
-	private CidadeServico servico;
+	private BairroServico servico;
 	
-	@GetMapping("/cidades")
-	public ResponseEntity<List<Cidade>> findAll(){
+	@GetMapping("/bairros")
+	public ResponseEntity<List<Bairro>> findAll(){
 		
-		List<Cidade> list = servico.findAll();
+		List<Bairro> list = servico.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 }

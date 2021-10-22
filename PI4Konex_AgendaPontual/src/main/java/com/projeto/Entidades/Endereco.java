@@ -1,6 +1,7 @@
 package com.projeto.Entidades;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -28,7 +29,7 @@ public class Endereco implements Serializable {
     @JoinColumn(name = "fk_bai_end")
     private Bairro bairro;
 
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true)
     private String cep;
 
     // Metodo Construtor
@@ -92,5 +93,22 @@ public class Endereco implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idEnd);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereco other = (Endereco) obj;
+		return idEnd == other.idEnd;
 	}
 }

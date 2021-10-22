@@ -2,6 +2,7 @@ package com.projeto.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,29 +18,37 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="bairro")
+@Table(name = "bairro")
 public class Bairro implements Serializable {
 	private static final long serialVersionUID = 1L;
-	//Atributos
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_bai")
-    private int idBai;
 
-    @Column(nullable = true)
-    private String nome;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_cid_bai")
-    private Cidade cidade;
-    
-    @OneToMany
-    private List<Endereco> endereco;
+	// Atributos
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_bai")
+	private int idBai;
 
-    public Bairro() {
-    }
+	@Column(nullable = true)
+	private String nome;
 
-  //Getters e Setters
+	@ManyToOne
+	@JoinColumn(name = "fk_cid_bai")
+	private Cidade cidade;
+
+	@JsonIgnore
+	@OneToMany
+	private List<Endereco> endereco;
+
+	public Bairro() {
+	}
+
+	public Bairro(int idBai, String nome, Cidade cidade) {
+		this.idBai = idBai;
+		this.nome = nome;
+		this.cidade = cidade;
+	}
+
+//Getters e Setters
 	public int getIdBai() {
 		return idBai;
 	}
@@ -70,5 +79,22 @@ public class Bairro implements Serializable {
 
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
-	}   
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idBai);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bairro other = (Bairro) obj;
+		return idBai == other.idBai;
+	}
 }

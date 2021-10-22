@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="bairro")
 public class Bairro implements Serializable {
@@ -31,7 +33,7 @@ public class Bairro implements Serializable {
     @JoinColumn(name = "fk_cid_bai")
     private Cidade cidade;
     
-    @OneToMany(mappedBy = "bairro", fetch = FetchType.EAGER)
+    @OneToMany
     private List<Endereco> endereco;
 
     public Bairro() {

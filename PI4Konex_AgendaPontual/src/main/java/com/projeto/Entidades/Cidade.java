@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="cidade")
@@ -28,10 +30,11 @@ public class Cidade implements Serializable {
 
     @Column(nullable = true)
     private String nome;
- 
-    @OneToMany()
-    private List<Bairro> bairros = new ArrayList<>();
-
+    
+    @OneToMany
+    private List<Bairro> bairro;
+    
+    
     //Metodo Construtor
     public Cidade() {
     }
@@ -58,9 +61,6 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Bairro> getBairros() {
-		return bairros;
-	}
 
 	@Override
 	public int hashCode() {

@@ -12,6 +12,7 @@ public class Endereco implements Serializable {
 	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_end")
     private int idEnd;
 
     @Column(nullable = true)

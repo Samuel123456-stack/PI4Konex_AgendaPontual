@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.projeto.Entidades.Bairro;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Servicos.CidadeServico;
 

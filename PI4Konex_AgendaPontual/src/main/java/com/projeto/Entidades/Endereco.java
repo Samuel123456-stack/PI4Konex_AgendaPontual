@@ -1,11 +1,15 @@
 package com.projeto.Entidades;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "endereco")
-public class Endereco {
-    // Atributos
+public class Endereco implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEnd;
@@ -19,14 +23,9 @@ public class Endereco {
     @Column(nullable = true)
     private String complemento;
 
-    @Column(nullable = true)
-    private String bairro;
-
-    @Column(nullable = true)
-    private String cidade;
-
-    @Column(nullable = true)
-    private String estado;
+    @ManyToOne
+    @JoinColumn(name = "fk_bai_end")
+    private Bairro bairro;
 
     @Column(nullable = true, unique = true)
     private String cep;
@@ -34,83 +33,63 @@ public class Endereco {
     // Metodo Construtor
     public Endereco() {
     }
+    
+ // Metodo Construtor com Atributos
+ public Endereco(int idEnd, String logradouro, int numero, String complemento, Bairro bairro, String cep) {
+		this.idEnd = idEnd;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cep = cep;
+	}
 
-    // Metodo Construtor com Atributos
-    public Endereco(int idEnd, String logradouro, int numero, String complemento, String bairro, String cidade,
-            String estado, String cep) {
-        this.idEnd = idEnd;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
-    }
+	// Getters e Setters
+	public int getIdEnd() {
+		return idEnd;
+	}
 
-    // Getters e Setters
-    public int getIdEnd() {
-        return idEnd;
-    }
+	public void setIdEnd(int idEnd) {
+		this.idEnd = idEnd;
+	}
 
-    public void setIdEnd(int idEnd) {
-        this.idEnd = idEnd;
-    }
+	public String getLogradouro() {
+		return logradouro;
+	}
 
-    public String getLogradouro() {
-        return logradouro;
-    }
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
+	public int getNumero() {
+		return numero;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+	public String getComplemento() {
+		return complemento;
+	}
 
-    public String getComplemento() {
-        return complemento;
-    }
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
+	public Bairro getBairro() {
+		return bairro;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public void setBairro(Bairro bairro) {
+		this.bairro = bairro;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public String getCep() {
+		return cep;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 }

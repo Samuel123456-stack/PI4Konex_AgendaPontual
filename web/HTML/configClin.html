@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/web/CSS/consulPagClin.css">
-    <title>Consulta de pagamentos</title>
+    <link rel="stylesheet" href="/web/CSS/configClin.css">
+    <title>Configurações</title>
 </head>
 <body>
     <header>
@@ -72,143 +72,79 @@
         </div>
 
         <div id="titulo">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.5303 20V18.3019H2.04545V1.69811H17.9545V20H20V0H0V20H11.5303Z" fill="#166CD0"/>
-                <rect x="4" y="3" width="2" height="2.66667" fill="#166CD0"/>
-                <rect x="3.33398" y="13.666" width="2" height="12.6667" transform="rotate(-90 3.33398 13.666)" fill="#166CD0"/>
+            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7344 1.10732C13.2244 0.904331 13.775 0.904331 14.2651 1.10732L21.7213 4.19578C22.2114 4.39877 22.6007 4.78811 22.8037 5.27817L25.8922 12.7344C26.0951 13.2244 26.0951 13.775 25.8922 14.2651L22.8037 21.7213C22.6007 22.2114 22.2114 22.6007 21.7213 22.8037L14.2651 25.8922C13.7751 26.0951 13.2244 26.0951 12.7344 25.8922L5.27817 22.8037C4.78812 22.6007 4.39877 22.2114 4.19578 21.7213L1.10732 14.2651C0.904331 13.7751 0.904331 13.2244 1.10732 12.7344L4.19578 5.27817C4.39877 4.78812 4.78811 4.39877 5.27817 4.19578L12.7344 1.10732ZM12.9441 3.85834C13.4342 3.65535 13.9848 3.65535 14.4749 3.85834L20.1337 6.2023C20.6237 6.40529 21.0131 6.79464 21.2161 7.28469L23.56 12.9435C23.763 13.4336 23.763 13.9842 23.56 14.4742L21.2161 20.1331C21.0131 20.6231 20.6237 21.0125 20.1337 21.2154L14.4749 23.5594C13.9848 23.7624 13.4342 23.7624 12.9441 23.5594L7.28531 21.2154C6.79526 21.0125 6.40591 20.6231 6.20292 20.1331L3.85896 14.4742C3.65598 13.9842 3.65598 13.4336 3.85896 12.9435L6.20292 7.28469C6.40591 6.79464 6.79526 6.40529 7.28531 6.2023L12.9441 3.85834ZM13.7095 18.0636C11.3044 18.0636 9.35477 16.1139 9.35477 13.7089C9.35477 11.3038 11.3044 9.35415 13.7095 9.35415C16.1145 9.35415 18.0642 11.3038 18.0642 13.7089C18.0642 16.1139 16.1145 18.0636 13.7095 18.0636ZM7.35477 13.7089C7.35477 10.1993 10.1999 7.35415 13.7095 7.35415C17.2191 7.35415 20.0642 10.1993 20.0642 13.7089C20.0642 17.2185 17.2191 20.0636 13.7095 20.0636C10.1999 20.0636 7.35477 17.2185 7.35477 13.7089Z" fill="#166CD0"/>
             </svg>                
-            <h1>Histórico de agendamentos</h1>
+            <h1>Configurações</h1>
         </div>
-
-        <div class="filtroLista">
-            <h1>Lista de consultas</h1>
-            <h3>Você pode filtrar por período.</h3>
-                <form action="">
-                    <div class="dataDe">
-                        <p>DE</p>
-                        <input type="date" name="dataDe">
-                    </div>
-                    <div class="dataAte">
-                        <p>ATÉ</p>
-                        <input type="date" name="dataAte">
-                    </div>
-                    <input type="submit" value="LISTAR">
-                    <button type="reset">
-                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.53846 0C0.688793 0 0 0.688793 0 1.53846V3.84615C0 4.69582 0.688793 5.38462 1.53846 5.38462H2.38354L3.69066 17.9517L3.6909 17.954L3.6918 17.962C3.75787 18.5235 4.02774 19.0411 4.45019 19.4168C4.87265 19.7925 5.4183 20 5.98363 20H17.0937C17.6591 20 18.2047 19.7925 18.6272 19.4168C19.0497 19.0411 19.3195 18.5235 19.3856 17.962L19.3867 17.9517L20.6934 5.38462H21.5385C22.3881 5.38462 23.0769 4.69582 23.0769 3.84615V1.53846C23.0769 0.688793 22.3881 0 21.5385 0H1.53846ZM20.0086 3.84615H19.9895H3.08739H3.0683H1.53846V1.53846H21.5385V3.84615H20.0086ZM3.9303 5.38462H19.1466L17.8571 17.7865C17.8343 17.972 17.7446 18.1429 17.6049 18.2671C17.4641 18.3924 17.2822 18.4615 17.0937 18.4615H5.98366C5.79522 18.4615 5.61334 18.3924 5.47252 18.2671C5.33277 18.1429 5.24312 17.972 5.22023 17.7865L3.9303 5.38462ZM14.7747 8.68684C15.0751 8.98724 15.0751 9.47429 14.7747 9.7747L12.6263 11.9231L14.7747 14.0715C15.0751 14.3719 15.0751 14.8589 14.7747 15.1593C14.4743 15.4597 13.9872 15.4597 13.6868 15.1593L11.5385 13.0109L9.39008 15.1593C9.08968 15.4597 8.60263 15.4597 8.30223 15.1593C8.00182 14.8589 8.00182 14.3719 8.30223 14.0715L10.4506 11.9231L8.30223 9.7747C8.00182 9.47429 8.00182 8.98724 8.30223 8.68684C8.60263 8.38644 9.08968 8.38644 9.39008 8.68684L11.5385 10.8352L13.6868 8.68684C13.9872 8.38644 14.4743 8.38644 14.7747 8.68684Z" fill="#546582" fill-opacity="0.5"/>
+        <div class="dados">
+            <form action="">
+                <div class="topoDados">
+                    <img src="/web/imagens/Group639.svg">
+                    <h1>Clínica Consi</h1>
+                    <p>Cliente des.: 23/05/2020</p>
+                    <p id="attFt">
+                        <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.55621 7.66667L8.77843 5.44444M6.55621 7.66667V1V7.66667ZM6.55621 7.66667L4.33398 5.44444L6.55621 7.66667Z" stroke="#1CC4BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1 8.77734L1.345 10.1579C1.40508 10.3983 1.54379 10.6117 1.73907 10.7642C1.93435 10.9167 2.175 10.9995 2.42278 10.9996H10.6883C10.9361 10.9995 11.1768 10.9167 11.372 10.7642C11.5673 10.6117 11.706 10.3983 11.7661 10.1579L12.1111 8.77734" stroke="#1CC4BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        Limpar período   
-                    </button>
-                </form>
+                        Atualizar foto
+                    </p>
+                </div>
+                <div class="nome">
+                    <p>NOME</p>
+                    <input type="text" name="" id="">
+                </div>
+                <div class="cpf">
+                    <p>CPF/CNPJ</p>
+                    <input type="text" name="" id="" placeholder="" disabled> 
+                </div>
+                <div class="emailDados">
+                    <p>E-MAIL</p>
+                    <input type="email" name="" id="" placeholder=""> 
+                </div>
+                <div class="senha">
+                    <p>SENHA</p>
+                    <input type="password" name="" id="" placeholder="">
+                </div>
+                <div class="sexo">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.5 20C15.7467 20 20 15.7467 20 10.5C20 5.25329 15.7467 1 10.5 1C5.25329 1 1 5.25329 1 10.5C1 15.7467 5.25329 20 10.5 20Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
+                        <path d="M6.69922 10.975L9.54922 13.825L14.2992 8.125" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                        
+                    <h3>Masculino</h3>    
+                </div>
+                <div class="data">
+                    <p>DATA DE NASCIMENTO</p>
+                    <input type="date" name="" id="" placeholder="">
+                </div>
+                <div class="rg">
+                    <p>RG</p>
+                    <input type="text" name="" id="" placeholder="">
+                </div>
+                <div class="tel">
+                    <p>TELEFONE</p>
+                    <input type="tel" name="" id="" placeholder="">
+                </div>
+                <div class="log">
+                    <p>LOGRADOURO DO CONSULTÓRIO</p>
+                    <input type="text" name="" id="" placeholder="">
+                </div>
+                <div class="num">
+                    <p>NUMERAÇÃO</p>
+                    <input type="text" name="" id="" placeholder="">
+                </div>
+                <div class="cep">
+                    <p>CEP</p>
+                    <input type="text" name="" id="" placeholder="">
+                </div>
+                <div class="comp">
+                    <p>COMPLEMENTO</p>
+                    <input type="text" name="" id="" placeholder="">
+                </div>
+                <button value="submit">Salvar</button>
+            </form>
         </div>
-        <div class="info">
-            <div class="totalPag">
-                <p>Total de pagamentos</p>
-                <h4>0234</h4>
-            </div>
-            <div class="qntPagDin">
-                <p>Qtd. Pag. em Dinheiro</p>
-                <h4>0234</h4>
-            </div>
-            <div class="qntPagDeb">
-                <p>Qtd. Pag.  em Débito</p>
-                <h4>0150</h4>
-            </div>
-            <div class="qntPagCred">
-                <p>Qtd. Pag. em Crédito</p>
-                <h4>0985</h4>
-            </div>
-        </div>
-        <div class="listaConsul">
-                <table id="tbNot">
-                    <thead>
-                        <tr>
-                        <th style="width: 221px;">Nome</th>
-                        <th style="width: 195px; text-align: left;">For. Pagamento</th>
-                        <th style="width: 135px; text-align: left;">Pagamento</th>
-                        <th style="width: 103px; text-align: left;">Consulta</th>
-                        <th style="width: 94px; text-align: left;">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        
-                        
-                        
-                        
-                    </tbody>
-                </table>
-        </div>
-
     </div>
 
 

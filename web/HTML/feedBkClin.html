@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/web/CSS/consulPagClin.css">
-    <title>Consulta de pagamentos</title>
+    <link rel="stylesheet" href="/web/CSS/feedBkClin.css">
+    <title>Feedbacks</title>
 </head>
 <body>
     <header>
@@ -72,143 +72,189 @@
         </div>
 
         <div id="titulo">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.5303 20V18.3019H2.04545V1.69811H17.9545V20H20V0H0V20H11.5303Z" fill="#166CD0"/>
-                <rect x="4" y="3" width="2" height="2.66667" fill="#166CD0"/>
-                <rect x="3.33398" y="13.666" width="2" height="12.6667" transform="rotate(-90 3.33398 13.666)" fill="#166CD0"/>
-            </svg>                
-            <h1>Histórico de agendamentos</h1>
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 14.1H5.12721L4.8636 14.3636L0.9 18.3272V0.9H19.1V14.1H5.5Z" stroke="#166CD0" stroke-width="1.8"/>
+            </svg>
+            <h1>Feedbacks</h1>
         </div>
 
-        <div class="filtroLista">
-            <h1>Lista de consultas</h1>
-            <h3>Você pode filtrar por período.</h3>
-                <form action="">
-                    <div class="dataDe">
-                        <p>DE</p>
-                        <input type="date" name="dataDe">
-                    </div>
-                    <div class="dataAte">
-                        <p>ATÉ</p>
-                        <input type="date" name="dataAte">
-                    </div>
-                    <input type="submit" value="LISTAR">
-                    <button type="reset">
-                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.53846 0C0.688793 0 0 0.688793 0 1.53846V3.84615C0 4.69582 0.688793 5.38462 1.53846 5.38462H2.38354L3.69066 17.9517L3.6909 17.954L3.6918 17.962C3.75787 18.5235 4.02774 19.0411 4.45019 19.4168C4.87265 19.7925 5.4183 20 5.98363 20H17.0937C17.6591 20 18.2047 19.7925 18.6272 19.4168C19.0497 19.0411 19.3195 18.5235 19.3856 17.962L19.3867 17.9517L20.6934 5.38462H21.5385C22.3881 5.38462 23.0769 4.69582 23.0769 3.84615V1.53846C23.0769 0.688793 22.3881 0 21.5385 0H1.53846ZM20.0086 3.84615H19.9895H3.08739H3.0683H1.53846V1.53846H21.5385V3.84615H20.0086ZM3.9303 5.38462H19.1466L17.8571 17.7865C17.8343 17.972 17.7446 18.1429 17.6049 18.2671C17.4641 18.3924 17.2822 18.4615 17.0937 18.4615H5.98366C5.79522 18.4615 5.61334 18.3924 5.47252 18.2671C5.33277 18.1429 5.24312 17.972 5.22023 17.7865L3.9303 5.38462ZM14.7747 8.68684C15.0751 8.98724 15.0751 9.47429 14.7747 9.7747L12.6263 11.9231L14.7747 14.0715C15.0751 14.3719 15.0751 14.8589 14.7747 15.1593C14.4743 15.4597 13.9872 15.4597 13.6868 15.1593L11.5385 13.0109L9.39008 15.1593C9.08968 15.4597 8.60263 15.4597 8.30223 15.1593C8.00182 14.8589 8.00182 14.3719 8.30223 14.0715L10.4506 11.9231L8.30223 9.7747C8.00182 9.47429 8.00182 8.98724 8.30223 8.68684C8.60263 8.38644 9.08968 8.38644 9.39008 8.68684L11.5385 10.8352L13.6868 8.68684C13.9872 8.38644 14.4743 8.38644 14.7747 8.68684Z" fill="#546582" fill-opacity="0.5"/>
-                        </svg>
-                        Limpar período   
-                    </button>
-                </form>
-        </div>
-        <div class="info">
-            <div class="totalPag">
-                <p>Total de pagamentos</p>
-                <h4>0234</h4>
-            </div>
-            <div class="qntPagDin">
-                <p>Qtd. Pag. em Dinheiro</p>
-                <h4>0234</h4>
-            </div>
-            <div class="qntPagDeb">
-                <p>Qtd. Pag.  em Débito</p>
-                <h4>0150</h4>
-            </div>
-            <div class="qntPagCred">
-                <p>Qtd. Pag. em Crédito</p>
-                <h4>0985</h4>
-            </div>
-        </div>
-        <div class="listaConsul">
-                <table id="tbNot">
-                    <thead>
-                        <tr>
-                        <th style="width: 221px;">Nome</th>
-                        <th style="width: 195px; text-align: left;">For. Pagamento</th>
-                        <th style="width: 135px; text-align: left;">Pagamento</th>
-                        <th style="width: 103px; text-align: left;">Consulta</th>
-                        <th style="width: 94px; text-align: left;">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        <tr>
-                            <td id="nomeTb">
-                                <img src="/web/imagens/doctor.png">
-                                <p>Arnaldo Campos</p>
-                            </td>
-                            <td id="dataTb">23/09/2021- 15:50h</td>
-                            <td id="pagTb">Débito</td>
-                            <td id="consulTb">#215030</td>
-                            <td id="valTb"> <div class="divVal">170,00</div></td>
-                        </tr>
-                        
-                        
-                        
-                        
+        <div class="listaFeed">
+            <table id="tbNot">
+                <thead>
+                    <tr>
+                        <th style="width: 220px;">Nome</th>
+                        <th style="width: 195px; text-align: left;">Data/horário</th>
+                        <th style="width: 88px; text-align: left;">Feedback p/</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Médico">
+                                Médico
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td id="nomeTb">
+                            <img src="/web/imagens/doctor.png">
+                            <p>Arnaldo Campos</p>
+                        </td>
+                        <td id="dataTb">23/09/2021- 15:50h</td>
+                        <td id="feedTb">
+                            <div id="Clínica">
+                                Clínica
+                            </div>
+                        </td>
+                    </tr> 
                     </tbody>
                 </table>
         </div>
+        <div class="direitaFeed">
+            <div class="dadosFeed">
+                <div class="dadosCli">
+                    <img src="/web/imagens/doctor.png">
+                    <h3>Anônimo</h3>
+                    <p>28/09/2021 - 15:50h</p>
+                    <p>Médico: Ricardo Pires</p>
+                </div>
+                <!--
+                    colocar a variavel no lugar do Médico
 
+                    exemplo: variavelFeed
+
+                    assim vcs vao usar a mesma variavel do texto pra a classe
+                -->
+                <div class="MédicoFeed">
+                    Médico
+                </div>
+
+                <h4>Nota: 8 de 10.</h4>
+                <h3>Comentário</h3>
+                <p>“Um excelente médico, é muito atencioso, o tempo de consulta foi 
+                    com me recomedou alguns medicamentos e fiquei bem melhor.
+                    Acredito que ele possa melhorar a comunicação, me ouviu bastante,
+                    mas não conversou bastante, contudo, o fato dele ter prestado atenção ao invés de ficar digitando no computador, já foi um 
+                    grande diferencial dos outros médicos.</p>
+            </div>
+            <div class="opcs">
+                <button>
+                    <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9L9.27651 -4.05489e-07L11 1.67211L3.44698 9L11 16.3279L9.27651 18L-3.93402e-07 9Z" fill="#1CC4BF"/>
+                    </svg>
+                    <p>Anterior</p>
+                </button>
+                <div class="meioBtns"></div>
+                <button>
+                    <p>Próximo</p>
+                    <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 9L1.72349 18L-7.58966e-07 16.3279L7.55302 9L-9.33735e-07 1.67212L1.72349 1.10621e-07L11 9Z" fill="#1CC4BF"/>
+                    </svg>
+                </button>        
+                
+            </div>
+        </div>
     </div>
 
 

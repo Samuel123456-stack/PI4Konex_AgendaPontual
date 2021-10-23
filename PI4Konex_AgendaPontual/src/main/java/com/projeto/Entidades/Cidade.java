@@ -31,8 +31,8 @@ public class Cidade implements Serializable {
     @Column(nullable = true)
     private String nome;
     
-    @OneToMany
-    private List<Bairro> bairro;
+    @OneToMany(mappedBy = "cidade")
+    private List<Bairro> bairro = new ArrayList<>();
     
     
     //Metodo Construtor

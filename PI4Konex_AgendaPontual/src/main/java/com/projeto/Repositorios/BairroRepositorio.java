@@ -7,5 +7,5 @@ import com.projeto.Entidades.Bairro;
 
 @Repository
 public interface BairroRepositorio extends JpaRepository<Bairro, Integer> {
-
+	
 }

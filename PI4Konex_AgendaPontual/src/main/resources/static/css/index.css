@@ -92,6 +92,9 @@
     font-weight: 600;
     font-size: 15px;
 }
+.ui-autocomplete {
+    background: url("image/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
 #btnBusca{
     width: 260px;
     height: 60px;

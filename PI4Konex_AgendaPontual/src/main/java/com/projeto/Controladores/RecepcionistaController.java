@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
+import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Paciente;
@@ -51,9 +52,13 @@ public class RecepcionistaController {
         recepServ.criaEnd(end);
         //Cria a listagem do filtro e seus atributos
         Agenda agen = new Agenda();
+
+        List<Clinica> listaCli = recepServ.listarTodasCli();
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = recepEsp.findAll();
+
         model.addAttribute("listaCid", listaCid);
+        model.addAttribute("listaCli", listaCli);
         model.addAttribute("listaEsp", listaEsp);
         model.addAttribute("agenda", agen);
         
@@ -61,8 +66,16 @@ public class RecepcionistaController {
     }
     //Filtra os Medicos
     @RequestMapping("/filtraMedico")
-    public String filtraMedicos(){
-        return "";
+    public void filtraMedicos(){
+
+    }
+
+    //Salva Informaçoes Adicionais
+    @RequestMapping("/salvaInfoAdic")
+    public String salvaInfoAdici(@ModelAttribute("agenda")Agenda agen){
+        recepServ.criaAtualizaAgen(agen);
+
+        return "/tela_agendamento";
     }
 
 }

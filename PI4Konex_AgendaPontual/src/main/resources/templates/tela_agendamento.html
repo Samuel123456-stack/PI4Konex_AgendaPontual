@@ -83,7 +83,7 @@
                         </svg>    
                         <span>Busca</span>
 
-                        <form action="#" method="">
+                        <form action="#" th:action="@{/recepcionista/filtraMedico}" method="">
                             <div class="first-block">
                                 <div class="input-block">
                                     <p>Especialidade</p>
@@ -105,6 +105,7 @@
                                     <p>Localidade</p>
                                     <select name="unity" id="subject">
                                         <option value="">Selecione a unidade</option>
+                                        <option th:each="cli:${listaCli}" th:value="*{cli.idCli}" th:text="*{cli.nomeCli}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -175,10 +176,11 @@
                 <div class="score">
                     <p>1985 PONTOS DE ATENDIMENTO</p>
                 </div>
-
+                <form>
                 <div class="button-select">
                     <button type="button">SELECIONAR</button>
                 </div>
+                </form>
             </div>
             
             <div class="second-expert">
@@ -195,10 +197,11 @@
                 <div class="score">
                     <p>1890 PONTOS DE ATENDIMENTO</p>
                 </div>
-
+            <form>
                 <div class="button-select">
                     <button type="button">SELECIONAR</button>
                 </div>
+            </form>
             </div>
 
             <div class="third-expert">
@@ -215,10 +218,11 @@
                 <div class="score">
                     <p>1850 PONTOS DE ATENDIMENTO</p>
                 </div>
-
+            <form>
                 <div class="button-select">
                     <button type="button">SELECIONAR</button>
                 </div>
+            </form>
             </div>
         </main>
 
@@ -436,10 +440,10 @@
                 <h3>Informações adicionais para o doutor</h3>
 
                 <div class="form">
-                    <form action="" method="">
+                    <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
-                            <textarea name="message" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
+                            <textarea name="infoAdicAgen" th:field="*{agenda.infoAdicAgen}" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
                         </div>
 
                         <input type="submit" value="SALVAR">

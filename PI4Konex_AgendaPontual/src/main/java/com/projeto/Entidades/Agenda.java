@@ -10,7 +10,7 @@ public class Agenda {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAgenda;
+    private int idAgen;
 
     @JoinColumn(name = "fk_dia_agen", unique = true)
     private int idDia;
@@ -36,9 +36,9 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgenda, int idDia, int idHora, int idMed, int idPaci, LocalDate dataAgendada,
+    public Agenda(int idAgen, int idDia, int idHora, int idMed, int idPaci, LocalDate dataAgendada,
             String infoAdicAgen) {
-        this.idAgenda = idAgenda;
+        this.idAgen = idAgen;
         this.idDia = idDia;
         this.idHora = idHora;
         this.idMed = idMed;
@@ -48,12 +48,12 @@ public class Agenda {
     }
 
     // Getters e Setters
-    public int getIdAgenda() {
-        return idAgenda;
+    public int getIdAgen() {
+        return idAgen;
     }
 
-    public void setIdAgenda(int idAgenda) {
-        this.idAgenda = idAgenda;
+    public void setIdAgen(int idAgen) {
+        this.idAgen = idAgen;
     }
 
     public int getIdDia() {

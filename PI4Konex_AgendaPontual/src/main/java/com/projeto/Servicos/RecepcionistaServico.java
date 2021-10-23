@@ -98,8 +98,8 @@ public class RecepcionistaServico {
     }
 
     //Metodos CRUD Agenda
-    public void criaAgen(Endereco end){
-        repoEnd.save(end);
+    public void criaAtualizaAgen(Agenda agen){
+        repoAgen.save(agen);
     }
 
     public Agenda pegaAgenPorId(Integer id){
@@ -115,6 +115,12 @@ public class RecepcionistaServico {
     public Clinica pegaCliPorId(Integer id){
         return repoCli.getById(id);
      }
+     
+     //Rever melhor o metodo
+     public List<Clinica> listarTodasCli(){
+         return repoCli.findAll();
+     }
+
 
      //Metodos CRUD Cidade
      public List<Cidade> listarTodosCid(){

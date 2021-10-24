@@ -6,6 +6,7 @@ import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
+import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
@@ -13,6 +14,7 @@ import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.CidadeRepositorio;
 import com.projeto.Repositorios.ClinicaRepositorio;
 import com.projeto.Repositorios.EnderecoRepositorio;
+import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Repositorios.PacienteRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Repositorios.RecepcionistaRepositorio;
@@ -39,6 +41,8 @@ public class RecepcionistaServico {
     private ClinicaRepositorio repoCli;
     @Autowired
     private CidadeRepositorio repoCid;
+    @Autowired
+    private MedicoRepositorio repoMed;
 
     //Metodos do Crud
     public void AtualizaRecep(Recepcionista recep){
@@ -116,16 +120,27 @@ public class RecepcionistaServico {
         return repoCli.getById(id);
      }
      
-     //Rever melhor o metodo
-     public List<Clinica> listarTodasCli(){
-         return repoCli.findAll();
+     public List<Clinica> listaCliCidade(Integer idCid){
+         return repoCli.buscaCliOpCid(idCid);
      }
 
-
+     public List<Clinica> listarTodosCli(){
+        return repoCli.findAll();
+    }
+     
      //Metodos CRUD Cidade
      public List<Cidade> listarTodosCid(){
          return repoCid.findAll();
      }
+
+     //Metodos CRUD Medico
+     //Rever melhor Metodos com o ID
+     public List<Medico> listarMedCli(Integer idMed){
+         return repoMed.listaMedPorCli(idMed);
+     }
+     public List<Medico> listarTodosMed(){
+        return repoMed.findAll();
+    }
 
     
 }

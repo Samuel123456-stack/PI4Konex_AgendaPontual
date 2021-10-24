@@ -7,6 +7,7 @@ import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
+import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Servicos.EspecialidadeServico;
@@ -53,7 +54,7 @@ public class RecepcionistaController {
         //Cria a listagem do filtro e seus atributos
         Agenda agen = new Agenda();
 
-        List<Clinica> listaCli = recepServ.listarTodasCli();
+        List<Clinica> listaCli = recepServ.listarTodosCli();
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = recepEsp.findAll();
 
@@ -66,8 +67,11 @@ public class RecepcionistaController {
     }
     //Filtra os Medicos
     @RequestMapping("/filtraMedico")
-    public void filtraMedicos(){
+    public String filtraMedicos(Model model){
+        List<Medico> listaMed = recepServ.listarTodosMed();
+        model.addAttribute("listaMed", listaMed);
 
+        return "/tela_agendamento";
     }
 
     //Salva Informaçoes Adicionais
@@ -76,6 +80,28 @@ public class RecepcionistaController {
         recepServ.criaAtualizaAgen(agen);
 
         return "/tela_agendamento";
+    }
+
+    //Seleciona o Medico para saber suas informações
+    @RequestMapping("/selecMed")
+    public String infoEspecialista(@ModelAttribute("listaMed")Medico med, Model model){
+        model.getAttribute("listaMed");
+
+        return "/tela_agendamento";
+    }
+
+    //Passa para a tela de Consulta da Recepcionista
+    @RequestMapping("/consRecep")
+    public String consultaRecep(){
+        
+        return "/tela_consRes";
+    }
+
+    //Passa para a tela de Confirmação
+    @RequestMapping("/posConfirma")
+    public String posConfirma(){
+
+        return "/tela_proconfirmation";
     }
 
 }

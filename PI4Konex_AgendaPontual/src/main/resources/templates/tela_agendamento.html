@@ -103,7 +103,7 @@
 
                                 <div class="input-block">
                                     <p>Localidade</p>
-                                    <select name="unity" id="subject">
+                                    <select name="clinica" id="subject">
                                         <option value="">Selecione a unidade</option>
                                         <option th:each="cli:${listaCli}" th:value="*{cli.idCli}" th:text="*{cli.nomeCli}"></option>
                                     </select>
@@ -130,12 +130,12 @@
                                     <p>Genêro</p>
                                     <div class="input-block">
                                        <div class="male">
-                                        <input type="checkbox" name="female-checkbox" />
+                                        <input type="checkbox" name="Feminino" value="Feminino" />
                                         <span>Feminino</span>
                                        </div>
 
                                        <div class="female">
-                                        <input type="checkbox" name="male-checkbox" />
+                                        <input type="checkbox" name="Masculino" value="Masculino" />
                                         <span>Masculino</span>
                                        </div>
                                     </div>
@@ -159,76 +159,34 @@
             </section>
         </main>
 
-        <main class="find-skills">
+        <main class="find-skills" >
             <h3>ESPECIALISTAS ENCONTRADOS</h3>
 
-            <div class="first-expert">
+            <div class="first-expert" th:each="med:${listaMed}">
                 <div class="wilson-profile">
                     <section class="wilson-photo">
                         <img src="/image/small-doctor-wilson.png" alt="image" />
                     </section>
                     <section class="wilson-biography">
-                        <h4>Dr. Wilson Santos</h4>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                        <h4 th:text="*{med.nomeMed}"></h4>
+                        <p th:text="*{med.sobreMed}"></p>
                     </section>
                 </div>
 
                 <div class="score">
                     <p>1985 PONTOS DE ATENDIMENTO</p>
                 </div>
-                <form>
+                <form action="#" th:action="@{/recepcionista/selecMed}" method="">
                 <div class="button-select">
                     <button type="button">SELECIONAR</button>
                 </div>
                 </form>
             </div>
-            
-            <div class="second-expert">
-                <div class="ricardo-profile">
-                    <section class="ricardo-photo">
-                        <img src="/image/doctor-ricardo.png" alt="image" />
-                    </section>
-                    <section class="ricardo-biography">
-                        <h4>Dr. Ricardo Davies </h4>
-                        <p>Tem experiência a mais de 30 anos, é atencioso e bem recomendado.</p>
-                    </section>
-                </div>
-
-                <div class="score">
-                    <p>1890 PONTOS DE ATENDIMENTO</p>
-                </div>
-            <form>
-                <div class="button-select">
-                    <button type="button">SELECIONAR</button>
-                </div>
-            </form>
-            </div>
-
-            <div class="third-expert">
-                <div class="marta-profile">
-                    <section class="marta-photo">
-                        <img src="/image/doctor-marta.png" alt="image" />
-                    </section>
-                    <section class="marta-biography">
-                        <h4>Dra. Marta Perez</h4>
-                        <p>Uma profissional empática, que sabe se colocar no lugar do paciente.</p>
-                    </section>
-                </div>
-
-                <div class="score">
-                    <p>1850 PONTOS DE ATENDIMENTO</p>
-                </div>
-            <form>
-                <div class="button-select">
-                    <button type="button">SELECIONAR</button>
-                </div>
-            </form>
-            </div>
         </main>
 
         <h3 class="information-expert">INFORMAÇÕES DO ESPECIALISTA</h3>
 
-        <main class="main-container-page">
+        <main class="main-container-page" th:each="med:${listaMed}">
             <div class="first-container">
                 <div class="profile-container">
                     <section class="profile-photo">
@@ -237,20 +195,20 @@
     
                     <article class="data-profile">
                         <p>1985 PT</p>
-                        <h3>Dr. Wilson Santos</h3>
-                        <p>Clinico Geral</p>
+                        <h3 th:text="*{med.nomeMed}"></h3>
+                        <p th:text="*{med.idEsp.nomeEsp}">Clinico Geral</p>
     
                         <div class="service-status">
-                            <img src="../images/user-icon.png" alt="icon" />
+                            <img src="/image/user-icon.png" alt="icon" />
                             <span class="first">
                                 2670 atendimentos
                             </span>
                             <span>
-                                <img src="../images/hapy-face.png" alt="icon-face" class="happy-face"/>
+                                <img src="/image/hapy-face.png" alt="icon-face" class="happy-face"/>
                                 <span class="number1">2532</span>
                             </span>
                             <span>
-                                <img src="../images/sad-face.png" alt="icon-face" class="sad-face"/>
+                                <img src="/image/sad-face.png" alt="icon-face" class="sad-face"/>
                                 <span class="number2">138</span>
                             </span>
                         </div>
@@ -258,21 +216,9 @@
                 </div>
 
                 <article class="biography">
-                    <h3>Biografia</h3>
+                    <h3 th:text="Biografia"></h3>
 
-                    <p>Sou um médico com experiência em Clínica Médica e Emergência, 
-                    formado em 1980 pela USP- Faculdade de Medicina da Universidade de São Paulo</p>
-
-                    <p>Toda minha carreira foi construída dentro de Salas de Emergência, de UTI´s, 
-                        e nas Enfermarias dos grandes hospitais de São Paulo. 
-                        Durante 10 anos, me especializei em Endocrinologia. 
-                    </p>
-
-                    <p>
-                        Hoje, acompanhando as tendências da medicina e 
-                        visando dar mais conforto aos meus pacientes, 
-                        trabalho com clínico geral, estou a 12 anos nesta área.
-                    </p>
+                    <p th:text="*{med.sobreMed}"></p>
                 </article>
             </div>
 
@@ -280,8 +226,8 @@
                 <div class="content">
                     <h3>Register</h3>
 
-                    <p>CRM: MC0190-SP</p>
-                    <p>Data de Emissão: 23 de janeiro de 1978</p>
+                    <p th:text="*{med.crm}"></p>
+                    <p th:text="Data de Emissão: *{med.dataFormatura}"></p>
 
                     <h3>Principais condições que trato</h3>
 
@@ -453,7 +399,9 @@
         </main>
 
         <footer class="button-next">
+            <a style="text-decoration: none;" th:href="@{/recepcionista/posConfirma}">
             <button type="button">CONFIRMAR O AGENDAMENTO</button>
+            </a>
         </footer>
     </div>
 </body>

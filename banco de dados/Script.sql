@@ -3526,6 +3526,7 @@ CREATE TABLE medico (
     sobre_mim varchar(100) null,
     biografia text null,
     sala varchar(4) null,
+    pontos integer null,
     fk_cli_med Integer null,
     fk_end_med Integer null,
     fk_usu_med Integer null,
@@ -3902,3 +3903,12 @@ create view vw_lista_esp_doenca as
 select d.nome as Doença, e.nome as Especialidade from doenca d
 join especialidade e
 on fk_esp_doe = id_esp;
+
+/*
+select m.nome, m.sobre_mim from medico m
+inner join clinica cl on fk_cli_med = id_cli
+inner join endereco e on fk_end_cli = id_end
+inner join bairro b on fk_bai_end = id_bai
+inner join cidade c on fk_cid_bai = id_cid
+inner join especialidade es on fk_esp_med = id_esp where c.nome = "São Paulo" and es.nome = "Clinico(a) geral";
+*/

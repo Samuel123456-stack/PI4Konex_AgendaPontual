@@ -13,9 +13,10 @@ public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_med")
     private int idMed;
 
-    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    @Column(name = "dt_criacao", columnDefinition = "TIMESTAMP")
     private LocalDateTime dataCriaMed;
 
     @Column(name = "nome", nullable = true)
@@ -53,191 +54,161 @@ public class Medico {
 
     @Column(nullable = true, length = 4)
     private String sala;
-
+    
+    
+    private Integer pontos;
+    
+    @ManyToOne
     @JoinColumn(name = "fk_cli_med")
-    private int idCli;
-
+    private Clinica clinica;
+    
+    @ManyToOne
     @JoinColumn(name = "fk_end_med")
-    private int idEndereco;
-
+    private Endereco endereco;
+    
+    @ManyToOne
     @JoinColumn(name = "fk_usu_med")
-    private int idUsu;
-
+    private Usuario usuario;
+    
+    @ManyToOne
     @JoinColumn(name = "fk_esp_med")
-    private int idEsp;
+    private Especialidade especialidade;
 
     // Metodo Construtor
     public Medico() {
 
     }
-
     // Metodo Construtor com Atributos
-    public Medico(int idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
-            String cpfMed, String rgMed, String crm, String celular, float valorMed, LocalDate dataFormatura,
-            String sobreMed, String bioMed, String sala, int idCli, int idEndereco, int idUsu, int idEsp) {
-        this.idMed = idMed;
-        this.dataCriaMed = dataCriaMed;
-        this.nomeMed = nomeMed;
-        this.dataNasc = dataNasc;
-        this.sexoMed = sexoMed;
-        this.cpfMed = cpfMed;
-        this.rgMed = rgMed;
-        this.crm = crm;
-        this.celular = celular;
-        this.valorMed = valorMed;
-        this.dataFormatura = dataFormatura;
-        this.sobreMed = sobreMed;
-        this.bioMed = bioMed;
-        this.sala = sala;
-        this.idCli = idCli;
-        this.idEndereco = idEndereco;
-        this.idUsu = idUsu;
-        this.idEsp = idEsp;
-    }
-
-    // Getters e Setters
-    public int getIdMed() {
-        return idMed;
-    }
-
-    public void setIdMed(int idMed) {
-        this.idMed = idMed;
-    }
-
-    public LocalDateTime getDataCriaMed() {
-        return dataCriaMed;
-    }
-
-    public void setDataCriaMed(LocalDateTime dataCriaMed) {
-        this.dataCriaMed = dataCriaMed;
-    }
-
-    public String getNomeMed() {
-        return nomeMed;
-    }
-
-    public void setNomeMed(String nomeMed) {
-        this.nomeMed = nomeMed;
-    }
-
-    public LocalDate getDataNasc() {
-        return dataNasc;
-    }
-
-    public void setDataNasc(LocalDate dataNasc) {
-        this.dataNasc = dataNasc;
-    }
-
-    public String getSexoMed() {
-        return sexoMed;
-    }
-
-    public void setSexoMed(String sexoMed) {
-        this.sexoMed = sexoMed;
-    }
-
-    public String getCpfMed() {
-        return cpfMed;
-    }
-
-    public void setCpfMed(String cpfMed) {
-        this.cpfMed = cpfMed;
-    }
-
-    public String getRgMed() {
-        return rgMed;
-    }
-
-    public void setRgMed(String rgMed) {
-        this.rgMed = rgMed;
-    }
-
-    public String getCrm() {
-        return crm;
-    }
-
-    public void setCrm(String crm) {
-        this.crm = crm;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public float getValorMed() {
-        return valorMed;
-    }
-
-    public void setValorMed(float valorMed) {
-        this.valorMed = valorMed;
-    }
-
-    public LocalDate getDataFormatura() {
-        return dataFormatura;
-    }
-
-    public void setDataFormatura(LocalDate dataFormatura) {
-        this.dataFormatura = dataFormatura;
-    }
-
-    public String getSobreMed() {
-        return sobreMed;
-    }
-
-    public void setSobreMed(String sobreMed) {
-        this.sobreMed = sobreMed;
-    }
-
-    public String getBioMed() {
-        return bioMed;
-    }
-
-    public void setBioMed(String bioMed) {
-        this.bioMed = bioMed;
-    }
-
-    public String getSala() {
-        return sala;
-    }
-
-    public void setSala(String sala) {
-        this.sala = sala;
-    }
-
-    public int getIdCli() {
-        return idCli;
-    }
-
-    public void setIdCli(int idCli) {
-        this.idCli = idCli;
-    }
-
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
-    }
-
-    public int getIdUsu() {
-        return idUsu;
-    }
-
-    public void setIdUsu(int idUsu) {
-        this.idUsu = idUsu;
-    }
-
-    public int getIdEsp() {
-        return idEsp;
-    }
-
-    public void setIdEsp(int idEsp) {
-        this.idEsp = idEsp;
-    }
-
+	public Medico(int idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
+			String cpfMed, String rgMed, String crm, String celular, float valorMed, LocalDate dataFormatura,
+			String sobreMed, String bioMed, String sala, Clinica clinica, Endereco endereco, Usuario usuario,
+			Especialidade especialidade) {
+		super();
+		this.idMed = idMed;
+		this.dataCriaMed = dataCriaMed;
+		this.nomeMed = nomeMed;
+		this.dataNasc = dataNasc;
+		this.sexoMed = sexoMed;
+		this.cpfMed = cpfMed;
+		this.rgMed = rgMed;
+		this.crm = crm;
+		this.celular = celular;
+		this.valorMed = valorMed;
+		this.dataFormatura = dataFormatura;
+		this.sobreMed = sobreMed;
+		this.bioMed = bioMed;
+		this.sala = sala;
+		this.clinica = clinica;
+		this.endereco = endereco;
+		this.usuario = usuario;
+		this.especialidade = especialidade;
+	}
+	public int getIdMed() {
+		return idMed;
+	}
+	public void setIdMed(int idMed) {
+		this.idMed = idMed;
+	}
+	public LocalDateTime getDataCriaMed() {
+		return dataCriaMed;
+	}
+	public void setDataCriaMed(LocalDateTime dataCriaMed) {
+		this.dataCriaMed = dataCriaMed;
+	}
+	public String getNomeMed() {
+		return nomeMed;
+	}
+	public void setNomeMed(String nomeMed) {
+		this.nomeMed = nomeMed;
+	}
+	public LocalDate getDataNasc() {
+		return dataNasc;
+	}
+	public void setDataNasc(LocalDate dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+	public String getSexoMed() {
+		return sexoMed;
+	}
+	public void setSexoMed(String sexoMed) {
+		this.sexoMed = sexoMed;
+	}
+	public String getCpfMed() {
+		return cpfMed;
+	}
+	public void setCpfMed(String cpfMed) {
+		this.cpfMed = cpfMed;
+	}
+	public String getRgMed() {
+		return rgMed;
+	}
+	public void setRgMed(String rgMed) {
+		this.rgMed = rgMed;
+	}
+	public String getCrm() {
+		return crm;
+	}
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+	public float getValorMed() {
+		return valorMed;
+	}
+	public void setValorMed(float valorMed) {
+		this.valorMed = valorMed;
+	}
+	public LocalDate getDataFormatura() {
+		return dataFormatura;
+	}
+	public void setDataFormatura(LocalDate dataFormatura) {
+		this.dataFormatura = dataFormatura;
+	}
+	public String getSobreMed() {
+		return sobreMed;
+	}
+	public void setSobreMed(String sobreMed) {
+		this.sobreMed = sobreMed;
+	}
+	public String getBioMed() {
+		return bioMed;
+	}
+	public void setBioMed(String bioMed) {
+		this.bioMed = bioMed;
+	}
+	public String getSala() {
+		return sala;
+	}
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+	public Clinica getClinica() {
+		return clinica;
+	}
+	public void setClinica(Clinica clinica) {
+		this.clinica = clinica;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Especialidade getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
 }

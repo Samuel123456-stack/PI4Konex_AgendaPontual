@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +24,7 @@ public class Especialidade implements Serializable {
 
     @Column(name = "nome", nullable = true)
     private String nomeEsp;
-
+    
     // Metodo Construtor
     public Especialidade() {
 
@@ -35,37 +36,20 @@ public class Especialidade implements Serializable {
         this.nomeEsp = nomeEsp;
     }
 
-    // Getters e Setters
-    public int getIdEsp() {
-        return idEsp;
-    }
-
-    public void setIdEsp(int idEsp) {
-        this.idEsp = idEsp;
-    }
-
-    public String getNomeEsp() {
-        return nomeEsp;
-    }
-
-    public void setNomeEsp(String nomeEsp) {
-        this.nomeEsp = nomeEsp;
-    }
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(idEsp);
+ // Getters e Setters
+	public int getIdEsp() {
+		return idEsp;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Especialidade other = (Especialidade) obj;
-		return idEsp == other.idEsp;
+	public void setIdEsp(int idEsp) {
+		this.idEsp = idEsp;
+	}
+
+	public String getNomeEsp() {
+		return nomeEsp;
+	}
+
+	public void setNomeEsp(String nomeEsp) {
+		this.nomeEsp = nomeEsp;
 	}
 }

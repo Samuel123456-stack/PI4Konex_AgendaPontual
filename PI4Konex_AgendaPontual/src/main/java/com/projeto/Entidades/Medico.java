@@ -1,5 +1,6 @@
 package com.projeto.Entidades;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -7,9 +8,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "medico")
-public class Medico {
+public class Medico implements Serializable{
+	private static final long serialVersionUID = 1L;
 
-    // Atributos
+	// Atributos
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +64,7 @@ public class Medico {
     @JoinColumn(name = "fk_cli_med")
     private Clinica clinica;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "fk_end_med")
     private Endereco endereco;
     

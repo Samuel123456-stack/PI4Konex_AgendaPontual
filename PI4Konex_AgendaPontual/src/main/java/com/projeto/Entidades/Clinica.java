@@ -1,12 +1,16 @@
 package com.projeto.Entidades;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "clinica")
-public class Clinica {
+public class Clinica implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	// Atributos
 	@Id
@@ -35,6 +39,7 @@ public class Clinica {
 	@Column(name = "fone", nullable = true)
 	private String telefone;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fk_plan_cli", nullable = true)
 	private Planos plano;

@@ -27,7 +27,7 @@ public class HomeController {
 	private EspecialidadeServico espServ;
 	
 	@Autowired
-	private MedicoServico medSer;
+	private MedicoServico medServ;
 	
 	
 	private String ftc;
@@ -58,8 +58,8 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/resultado")
-	public ResponseEntity<List<Medico>> buscaMed(){
-		List<Medico> list = medSer.listaMedCli(1);
+	public ResponseEntity<List<Medico>> buscaMed(String termo){
+		List<Medico> list = medServ.buscaMedCidEsp("Ricardo");
 		return ResponseEntity.ok().body(list);
 	}
 	

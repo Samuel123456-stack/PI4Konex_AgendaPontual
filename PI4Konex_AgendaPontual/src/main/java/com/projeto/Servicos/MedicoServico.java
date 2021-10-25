@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projeto.Entidades.Medico;
 import com.projeto.Repositorios.MedicoRepositorio;
+import com.projeto.projecao.MedicoProjecao;
 
 @Service
 public class MedicoServico {
@@ -16,8 +17,8 @@ public class MedicoServico {
 	private MedicoRepositorio repoMed;
 	
 	@Transactional(readOnly = true)
-	public List<Medico> buscaMedCidEsp(String cidade, String esp){
-		return repoMed.buscaMedCidEsp(cidade, esp);
+	public List<Medico> buscaMedCidEsp(String termo){
+		return repoMed.buscaMedCidEsp(termo);
 	}
 	
 	@Transactional(readOnly = true)

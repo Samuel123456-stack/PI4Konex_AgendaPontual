@@ -57,4 +57,6 @@ public class HomeController {
 		List<MedicoDTO> list = medServ.buscaMedEsp("São Paulo", "Clinico(a) Geral");
 		return ResponseEntity.ok().body(list);
 	}
+	
+	
 }

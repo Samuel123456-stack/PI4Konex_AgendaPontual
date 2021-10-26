@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MedicoRepositorio extends JpaRepository<Medico,Integer> {
     
-    @Query(nativeQuery = true, value="select * from medico as m join clinica as c on m.fk_cli_med=c.id_cli where c.id_cli= ?1")
+    @Query(nativeQuery = true, value="select * from medico as m join clinica as c on m.fk_cli_med=c.idcli where c.idcli= ?1")
     List<Medico> listaMedPorCli(Integer id);
     
 //    @Query(nativeQuery = true, value="select * from medico m where m.nome like concat('%',:termo,'%')")

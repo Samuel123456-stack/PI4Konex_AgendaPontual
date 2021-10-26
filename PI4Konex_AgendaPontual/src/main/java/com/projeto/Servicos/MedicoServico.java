@@ -25,7 +25,7 @@ public class MedicoServico {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<MedicoDTO> buscaMedEsp(String cidade, String esp){
+	public List<MedicoDTO> buscaMedEsp(Integer cidade, String esp){
 		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCidEsp(cidade, esp);
 		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
 	}

@@ -27,8 +27,8 @@ public interface MedicoRepositorio extends JpaRepository<Medico,Integer> {
     		+ "inner join endereco e on c.fk_end_cli = e.idend "
     		+ "inner join bairro b on e.fk_bai_end = b.idbai "
     		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid "
-    		+ "where cid.nome = :cidade and esp.nome = :esp")
-    List<ResultadoPesqMedProjecao> buscaMedCidEsp (String cidade, String esp);
+    		+ "where cid.idcid = :cidade and esp.nome = :esp")
+    List<ResultadoPesqMedProjecao> buscaMedCidEsp (Integer cidade, String esp);
     
     
 }

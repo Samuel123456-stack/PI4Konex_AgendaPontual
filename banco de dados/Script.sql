@@ -3472,7 +3472,7 @@ CREATE TABLE especialidade (
 ); 
 
 insert into especialidade(nome) values
-/*1*/ ('Clinico(a) geral'),
+/*1*/ ('Clinico geral'),
 /*2*/ ('Oftalmologia'),
 /*3*/ ('Cardiologia'),
 /*4*/ ('Dermatologia'),
@@ -3487,7 +3487,6 @@ insert into especialidade(nome) values
 /*13*/('Infectologia'),
 /*14*/('Pneumologia'),
 /*15*/('Hepatologista'); 
-
 
 CREATE TABLE doenca (
     iddoe Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3911,3 +3910,58 @@ create view vw_lista_esp_doenca as
 select d.nome as Doença, e.nome as Especialidade from doenca d
 join especialidade e
 on fk_esp_doe = idesp;
+
+
+select m.nome, m.sobre_mim from medico m
+inner join clinica cl on fk_cli_med = idcli
+inner join endereco e on fk_end_cli = idend
+inner join bairro b on fk_bai_end = idbai
+inner join cidade c on fk_cid_bai = idcid
+inner join especialidade es on fk_esp_med = idesp where c.nome = "São Paulo" and es.nome = "Clinico(a) geral";
+
+
+select m.nome, m.sobremim from medico m 
+inner join clinica cl
+on m.fk_cli_med = cl.idcli
+inner join endereco e
+on cl.fk_end_cli = e.idend 
+inner join bairro b
+on e.fk_bai_end = b.idbai
+inner join cidade c
+on b.fk_cid_bai = c.idcid
+inner join especialidade es
+on m.fk_esp_med = es.idesp
+where c.nome = "São Paulo";
+
+select * from medico;
+
+select m.nome medico,nome_cli, c.nome cidade from medico m 
+inner join clinica cl on m.fk_cli_med = cl.id_cli
+inner join endereco e on cl.fk_end_cli = e.id_end
+inner join bairro b on e.fk_bai_end = b.id_bai 
+inner join cidade c on b.fk_cid_bai = c.idcid;
+
+use agendapontual;
+
+select * from medico where nome like 'Ri%';
+
+select * from plano;
+
+select m.nome, m.sobre_mim, e.nome from medico m
+inner join especialidade e
+on m.fk_esp_med = e.id_esp;
+
+select * from clinica;
+
+select m.idmed, m.pontos, m.nome medico, m.sobremim from clinica c
+inner join medico m
+on m.fk_cli_med = c.idcli
+inner join especialidade esp
+on m.fk_esp_med = esp.idesp
+inner join endereco e
+on c.fk_end_cli = e.idend
+inner join bairro b
+on e.fk_bai_end = b.idbai
+inner join cidade cid
+on b.fk_cid_bai = cid.idcid
+where cid.nome = 'São Paulo';

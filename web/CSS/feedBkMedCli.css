@@ -108,21 +108,16 @@ background: #546582;
 }
 #dataTb{
     width: 195px;
+    color: #546582;
 }
-#Médico, #Clínica{
+#pnt{
     width: 88px;
     height: 23px;
     padding-top: 7px;
     border-radius: 6px;
     text-align: center;
-}
-#Médico{
-    background: rgba(100, 247, 202, 0.18);
-    color: #1CC4BF;
-}
-#Clínica{
-    background: rgba(246, 205, 100, 0.18);
-    color: rgba(157, 132, 67, 0.65);
+    background: #546582;
+    color: #fff;
 }
 
 .direitaFeed{
@@ -173,7 +168,7 @@ background: #546582;
     font-size: 14px;
     margin: 0 0 5px 0;
 }
-.MédicoFeed, .ClínicaFeed{
+.ptnFeed{
     width: 88px;
     height: 23px;
     padding-top: 7px;
@@ -182,14 +177,8 @@ background: #546582;
     float: left;
     text-align: center;
     font-size: 14px;
-}
-.MédicoFeed{
-    background: rgba(100, 247, 202, 0.18);
-    color: #1CC4BF;
-}
-.ClínicaFeed{
-    background: rgba(246, 205, 100, 0.18);
-    color: rgba(157, 132, 67, 0.65);
+    background: #546582;
+    color: #fff;
 }
 .opcs {
     width: 487px;

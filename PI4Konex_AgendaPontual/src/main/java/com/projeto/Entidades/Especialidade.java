@@ -19,7 +19,7 @@ public class Especialidade implements Serializable {
 	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_esp")
+    @Column(name = "idesp")
     private int idEsp;
 
     @Column(name = "nome", nullable = true)

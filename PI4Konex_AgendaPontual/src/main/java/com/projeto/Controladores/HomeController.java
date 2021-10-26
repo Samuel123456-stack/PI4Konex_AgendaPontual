@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.projeto.Dto.MedicoDTO;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Servicos.CidadeServico;
@@ -50,17 +51,10 @@ public class HomeController {
 
 		return ("/resulBusca");
 	}
-	
-//	@GetMapping("/resultado")
-//	public ResponseEntity<List<Medico>> buscaMed(){
-//		List<Medico> list = medSer.buscaMedCidEsp("São Paulo", "Clinico(a) geral");
-//		return ResponseEntity.ok().body(list);
-//	}
-	
+		
 	@GetMapping("/resultado")
-	public ResponseEntity<List<Medico>> buscaMed(String termo){
-		List<Medico> list = medServ.buscaMedCidEsp("Ricardo");
+	public ResponseEntity<List<MedicoDTO>> buscaMed(String cidade, String esp){
+		List<MedicoDTO> list = medServ.buscaMedEsp("São Paulo", "Clinico(a) Geral");
 		return ResponseEntity.ok().body(list);
 	}
-	
 }

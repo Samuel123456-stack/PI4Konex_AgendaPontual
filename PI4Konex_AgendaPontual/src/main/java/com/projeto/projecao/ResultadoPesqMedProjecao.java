@@ -1,9 +1,12 @@
 package com.projeto.projecao;
 
-public interface MedicoProjecao {
+public interface ResultadoPesqMedProjecao {
 	
-	Integer getId();
+	Integer getIdMed();
+	
 	Integer getPontos();
+	
 	String getNome();
+	
 	String getSobreMim();
 }

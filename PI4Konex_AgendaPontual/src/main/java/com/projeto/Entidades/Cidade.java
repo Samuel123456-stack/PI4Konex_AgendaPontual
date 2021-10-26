@@ -25,7 +25,7 @@ public class Cidade implements Serializable {
 	//Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cid")
+    @Column(name = "idcid")
     private int idCid;
 
     @Column(nullable = true)

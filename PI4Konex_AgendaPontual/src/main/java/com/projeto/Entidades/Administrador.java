@@ -9,49 +9,42 @@ public class Administrador {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idADM;
+    private int idadm;
 
     @Column(nullable = true, unique = true)
     private String nome;
-
+    
+    @OneToOne
     @JoinColumn(name = "fk_usu_adm")
-    private int idUsu;
+    private Usuario usuario;
 
     // Metodo Construtor
     public Administrador() {
 
     }
-
     // Metodo Construtor com Atributos
-    public Administrador(int idADM, String nome, int idUsu) {
-        this.idADM = idADM;
-        this.nome = nome;
-        this.idUsu = idUsu;
-    }
-
-    // Getters e Setters
-    public int getIdADM() {
-        return idADM;
-    }
-
-    public void setIdADM(int idADM) {
-        this.idADM = idADM;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdUsu() {
-        return idUsu;
-    }
-
-    public void setIdUsu(int idUsu) {
-        this.idUsu = idUsu;
-    }
-
+	public Administrador(int idadm, String nome, Usuario usuario) {
+		this.idadm = idadm;
+		this.nome = nome;
+		this.usuario = usuario;
+	}
+	// Getters e Setters
+	public int getIdadm() {
+		return idadm;
+	}
+	public void setIdadm(int idadm) {
+		this.idadm = idadm;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }

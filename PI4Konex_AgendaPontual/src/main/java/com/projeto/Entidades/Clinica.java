@@ -15,7 +15,7 @@ public class Clinica implements Serializable{
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cli")
+	@Column(name = "idcli")
 	private int idCli;
 
 	@Column(name = "dt_criacao", columnDefinition = "TIMESTAMP")

@@ -22,7 +22,7 @@ public class Planos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_plan")
+    @Column(name = "idplan")
     private int idPlano;
 
     @Column(name = "nome", nullable = true)

@@ -27,9 +27,9 @@
     font:normal 16px 'Mulish', sans-serif;
     cursor:pointer;
 }
-#container-landing ul li:not(li:nth-child(3)){
+#container-landing ul li:nth-child(2){
     position:relative;
-    bottom:13px;
+    top:10px;
 }
 #container-landing ul li span{
     margin-left:20px;

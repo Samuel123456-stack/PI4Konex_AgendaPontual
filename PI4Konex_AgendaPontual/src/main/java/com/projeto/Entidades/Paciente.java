@@ -12,6 +12,7 @@ public class Paciente {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_paci")
     private int idPaci;
 
     @Column(name = "dt_criacao", nullable = true, columnDefinition = "DATE")

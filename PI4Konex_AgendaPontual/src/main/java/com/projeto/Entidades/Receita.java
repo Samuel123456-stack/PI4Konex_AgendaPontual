@@ -12,6 +12,7 @@ public class Receita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_rece")
     private int idRec;
 
     @Column(name = "data_criacao", columnDefinition = "DATE")

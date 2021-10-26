@@ -5,6 +5,7 @@ import java.util.List;
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
+import com.projeto.Entidades.Convenio;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
@@ -13,6 +14,7 @@ import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.CidadeRepositorio;
 import com.projeto.Repositorios.ClinicaRepositorio;
+import com.projeto.Repositorios.ConvenioRepositorio;
 import com.projeto.Repositorios.EnderecoRepositorio;
 import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Repositorios.PacienteRepositorio;
@@ -43,6 +45,8 @@ public class RecepcionistaServico {
     private CidadeRepositorio repoCid;
     @Autowired
     private MedicoRepositorio repoMed;
+    @Autowired
+    private ConvenioRepositorio repoConv;
 
     //Metodos do Crud
     public void AtualizaRecep(Recepcionista recep){
@@ -140,6 +144,11 @@ public class RecepcionistaServico {
      }
      public List<Medico> listarTodosMed(){
         return repoMed.findAll();
+    }
+
+    //Metodos Convenio
+    public List<Convenio> listarTodasConv(){
+        return repoConv.findAll();
     }
 
     

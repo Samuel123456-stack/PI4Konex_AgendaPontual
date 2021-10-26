@@ -11,20 +11,21 @@ public class Horario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private int idHora;
 
     @Column(nullable = true)
     private LocalTime horario;
 
     @JoinColumn(name = "fk_med_hor")
-    private int idMed;
+    private Medico idMed;
 
     // Metodo Construtor
     public Horario() {
     }
 
     // Metodo Construtor com Atributos
-    public Horario(int idHora, LocalTime horario, int idMed) {
+    public Horario(int idHora, LocalTime horario, Medico idMed) {
         this.idHora = idHora;
         this.horario = horario;
         this.idMed = idMed;
@@ -47,11 +48,11 @@ public class Horario {
         this.horario = horario;
     }
 
-    public int getIdMed() {
+    public Medico getIdMed() {
         return idMed;
     }
 
-    public void setIdMed(int idMed) {
+    public void setIdMed(Medico idMed) {
         this.idMed = idMed;
     }
 

@@ -186,7 +186,7 @@
 
         <h3 class="information-expert">INFORMAÇÕES DO ESPECIALISTA</h3>
 
-        <main class="main-container-page" th:each="med:${listaMed}">
+        <main class="main-container-page">
             <div class="first-container">
                 <div class="profile-container">
                     <section class="profile-photo">
@@ -195,8 +195,8 @@
     
                     <article class="data-profile">
                         <p>1985 PT</p>
-                        <h3 th:text="*{med.nomeMed}"></h3>
-                        <p th:text="*{med.idEsp.nomeEsp}">Clinico Geral</p>
+                        <h3>Nome</h3>
+                        <p>Clinico Geral</p>
     
                         <div class="service-status">
                             <img src="/image/user-icon.png" alt="icon" />
@@ -216,9 +216,9 @@
                 </div>
 
                 <article class="biography">
-                    <h3 th:text="Biografia"></h3>
+                    <h3></h3>
 
-                    <p th:text="*{med.sobreMed}"></p>
+                    <p></p>
                 </article>
             </div>
 
@@ -226,8 +226,8 @@
                 <div class="content">
                     <h3>Register</h3>
 
-                    <p th:text="*{med.crm}"></p>
-                    <p th:text="Data de Emissão: *{med.dataFormatura}"></p>
+                    <p></p>
+                    <p></p>
 
                     <h3>Principais condições que trato</h3>
 

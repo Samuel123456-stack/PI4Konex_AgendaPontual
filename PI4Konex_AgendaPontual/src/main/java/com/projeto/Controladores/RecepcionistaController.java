@@ -5,6 +5,7 @@ import java.util.List;
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
+import com.projeto.Entidades.Convenio;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
@@ -93,13 +94,15 @@ public class RecepcionistaController {
     //Passa para a tela de Consulta da Recepcionista
     @RequestMapping("/consRecep")
     public String consultaRecep(){
-        
+
         return "/tela_consRes";
     }
 
     //Passa para a tela de Confirmação
     @RequestMapping("/posConfirma")
-    public String posConfirma(){
+    public String posConfirma(Model model){
+        List<Convenio> listaConv = recepServ.listarTodasConv();
+        model.addAttribute("listaConv", listaConv);
 
         return "/tela_proconfirmation";
     }

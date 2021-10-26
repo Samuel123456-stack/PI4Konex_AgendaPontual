@@ -21,13 +21,13 @@ public class Feedback {
     @Column(nullable = true)
     private String comentario;
 
-    @Column(nullable = true)
+    @Column(name = "para_medico", nullable = true)
     private boolean paraMed;
 
-    @Column(nullable = true)
+    @Column(name = "para_consultorio",nullable = true)
     private boolean paraCli;
 
-    @Column(nullable = true)
+    @Column(name = "anonimo",nullable = true)
     private boolean feedAno;
 
     // Metodo Construtor

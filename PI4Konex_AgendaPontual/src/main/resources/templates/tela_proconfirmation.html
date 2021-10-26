@@ -46,7 +46,7 @@
                         <span>Ajuda</span> 
                        </li>
                        <li>
-                           <img src="../images/user-recep.png" alt="user-photo" />
+                           <img src="/image/user-recep.png" alt="user-photo" />
                        </li>
                        <li>
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,21 +74,21 @@
                     <h3>Resumo</h3>
 
                     <div class="timezone-data">
-                        <img src="../images/timezone-icon.png" alt="icon" />
+                        <img src="/image/timezone-icon.png" alt="icon" />
                         <span>23 Out 2021, 16:40 Fuso Horário: Brasília</span>
                     </div>
                     <div class="address-data">
-                        <img src="../images/address-icon.png" alt="icon" />
+                        <img src="/image/address-icon.png" alt="icon" />
                         <span>Rua Antônio Mendes da Rocha Filho, nº 695 Bloco A Sala 49. São Paulo, SP
                             Cep: 02.996-215
                         </span>
                     </div>
                     <div class="phone-number">
-                        <img src="../images/phone-icon.png" alt="icon" />
+                        <img src="/image/phone-icon.png" alt="icon" />
                         <span>(11) 5600-2030</span>
                     </div>
                     <div class="appointment-value">
-                        <img src="../images/cash-icon.png" alt="icon" />
+                        <img src="/image/cash-icon.png" alt="icon" />
                         <span>Valor da consulta: R$ 100,00</span>
                     </div>
 
@@ -97,6 +97,7 @@
                         <p>
                             <select name="subject">
                                 <option value="1">A consulta pode ter gratuidade</option>
+                                <option th:each="conv: ${listaConv}" th:value="*{conv.idConv}" th:text="*{conv.nomeConv}"></option>
                             </select>
                         </p>
                         <button type="button">CONSULTAR DISPONIBILIDADE</button>
@@ -113,7 +114,7 @@
         <template>
             <main class="confirm-landing">
                 <div class="circle-icon-confirm">
-                    <img src="../images/icon-confirm.png" alt="icon-confirm" />
+                    <img src="/image/icon-confirm.png" alt="icon-confirm" />
                 </div>
                 <section class="phrase-confirmation">
                     <h2>Agendamento validado com sucesso</h2>

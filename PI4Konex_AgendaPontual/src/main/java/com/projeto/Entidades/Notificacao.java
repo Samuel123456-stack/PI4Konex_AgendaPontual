@@ -11,6 +11,7 @@ public class Notificacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_noti")
     private int idNoti;
 
     @Column(name = "data_notificacao", nullable = true, columnDefinition = "DATE")

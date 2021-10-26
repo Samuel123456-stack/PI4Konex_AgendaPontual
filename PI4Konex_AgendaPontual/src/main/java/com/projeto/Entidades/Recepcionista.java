@@ -11,6 +11,7 @@ public class Recepcionista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_recep")
     private int idRec;
 
     @Column(name = "nome", nullable = true)

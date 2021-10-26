@@ -1,15 +1,15 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Painel do Recepcionista</title>
-
+    <title>Resultado da Consulta</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS">
     <meta name="description" content="Agenda Pontual">
     <meta name="author" content="konex-group">
 
-    <link rel="stylesheet" href="/css/tela_painelRecep.css">
+    <link rel="stylesheet" href="/css/tela_consRes.css">
 </head>
 
 <body>
@@ -96,166 +96,198 @@
             </section>
         </header>
 
-        <main class="dashboard-page">
-            <div class="schedule-list">
-                <div class="content-dashboard">
-                    <h2>Lista de agendamento</h2>
-                    <p>Você pode filtrar por período.</p>
-
-                    <div class="form-block">
-                        <form action="" method="">
-                            <div class="form-input">
-                                <div class="input-block">
-                                    <p>DE</p>
-                                    <input type="date" name="date-since" />
-                                </div>
-
-                                <div class="input-block">
-                                    <p>ATÉ</p>
-                                    <input type="date" name="date-until" />
-                                </div>
-                                <input type="submit" name="button-list" value="LISTAR" />
+        <main class="main-page">
+            <div class="form-container">
+                <h3>Resultado da consulta</h3>
+                <div class="form-structure">
+                    <form action="#" method="">
+                        <div class="first-block">
+                            <div class="input-block">
+                                <p>NOME</p>
+                                <p class="name-input">Fernanda Soares de Mendonca</p>
                             </div>
-                        </form>
-                    </div>
 
-                    <div class="table-patience-list">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>PACIENTE</td>
-                                    <td>ESPECIALISTA</td>
-                                    <td>DATA-HORARIO</td>
-                                    <td>SALA</td>
-                                    <td>UPD</td>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>João Mendes</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>26/08/2021 - 13:00h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Cleber Ribeiro</td>
-                                    <td>Diana C. - Neurologis...</td>
-                                    <td>25/08/2021 - 16:00h</td>
-                                    <td>E030</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Jorge Silva</td>
-                                    <td>Roberto M. - Clinico G.</td>
-                                    <td>25/08/2021 - 15:00h</td>
-                                    <td>A040</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mariana G.</td>
-                                    <td>Marta S. - Ortopedista</td>
-                                    <td>25/08/2021 - 14:00h</td>
-                                    <td>B032</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mirelle C.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 14:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Rogrigo M.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 13:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Sebastian A.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 12:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="button-block">
-                <div class="button-list">
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/mostraPaci}">
-                            <img src="/image/plus-icon.png" alt="icon" />
-                            CADASTRAR CLIENTE
-                        </a>
-                    </button>
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/addAgenda}">
-                        <img src="/image/clock-icon.png" alt="icon" />
-                        CRIAR AGENDAMENTO
-                    </a>
-                    </button>
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/consRecep}">
-                        <img src="/image/note-icon.png" alt="icon" />
-                        CONSULTAR AGENDAMENTOS
-                    </a>
-                    </button>
-                    <button type="button">
-                        <img src="/image/cancel-icon.png" alt="icon" />
-                        CANCELAR AGENDAMENTOS
-                    </button>
-                    <button type="button">
-                        <img src="/image/payment-icon.png" alt="icon" />
-                        REGISTRAR PAGAMENTO
-                    </button>
-                </div>
-
-                <footer class="quick-view">
-                    <h3>Consulta Rápida</h3>
-                    <p>Serve ter informações do cliente.</p>
-
-                    <div class="form-cep">
-                        <form action="" method="">
-                            <div class="main-input">
-                                <div class="cep-input">
-                                    <p>CEP</p>
-                                    <input type="text" name="cep" placeholder="___.___.___-__" />
-                                </div>
-
-                                <input type="submit" value="CONSULTAR" />
+                            <div class="input-block">
+                                <p>CPF/CNPJ</p>
+                                <p class="cpf_cnpj">230.001.265-32</p>
                             </div>
-                        </form>
-                    </div>
-                </footer>
+
+                            <div class="input-block">
+                                <p>DATA DE NASCIMENTO</p>
+                                <p class="birht-date">18/03/1990</p>
+                            </div>
+                            <div class="input-block">
+                                <p>ESTADO NASC</p>
+                                <select name="state-birth" id="subject" disabled="disabled">
+                                    <option value="">PR</option>
+                                </select>
+                            </div>
+                            <div class="input-block">
+                                <p>CIDADE NATAL</p>
+                                <select name="hometown" id="subject" disabled="disabled">
+                                    <option value="">Londrina</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="second-block">
+                            <div class="input-block">
+                                <input type="checkbox" name="checkbox-female" checked="checked" />
+                                <span class="female">Feminino</span>
+                            </div>
+
+                            <div class="input-block">
+                                <p>E-MAIL</p>
+                                <p class="email">nanda.so@gmail.com</p>
+                            </div>
+
+                            <div class="input-block">
+                                <p>SUA RESIDENCIA</p>
+                                <p class="residence">Rua Jorge Silva Tamanduá </p>
+                            </div>
+
+                            <div class="input-block">
+                                <p>NUMERAÇÃO</p>
+                                <p class="number">78</p>
+                            </div>
+
+                            <div class="input-block">
+                                <p>CEP</p>
+                                <p class="cep">07.551-130</p>
+                            </div>
+                        </div>
+
+                        <div class="third-block">
+                            <div class="input-block">
+                                <p>COMPLEMENTO</p>
+                                <p class="complemento">Casa A</p>
+                            </div>
+
+                            <div class="input-block">
+                                <input type="checkbox" name="subscriber-input" checked="checked"/>
+                                <span>Não assinante de Newslatter</span>
+                            </div>
+
+                            <div class="input-block">
+                                <p>DATA DE CADASTRO</p>
+                                <p class="register-date">18/09/2021</p>
+                            </div>
+
+                            <div class="submit-button">
+                                <input type="button" value="ALTERAR DADOS" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
+
+        <div class="table-patience-list">
+            <h3>Lista de Agendamentos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>CÓDIGO</td>
+                        <td>NOME DO ESPECIALISTA</td>
+                        <td>ESPECIALIDADE</td>
+                        <td>DATA/HORÁRIO</td>
+                        <td>ATENDIMENTO</td>
+                        <td>UPD</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
+                            </svg>
+                            </td>
+                        <td>#236035</td>
+                        <td>Silva Ribeiro de Aragão</td>
+                        <td>Cardiologista</td>
+                        <td>30/08/2021 - 14:00h</td>
+                        <td>14:35h</td>
+                        <td>
+                            <img src="/image/check-icon.png" alt="icon" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
+                            </svg>
+                            </td>
+                        <td>#659307</td>
+                        <td>Amanda Alky Costa</td>
+                        <td>Ginegologia</td>
+                        <td>15/08/2021 - 14:30h</td>
+                        <td>14:35h</td>
+                        <td>
+                            <img src="/image/check-icon.png" alt="icon" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
+                            </svg>
+                            </td>
+                        <td>#854478</td>
+                        <td>Piter Rodriguez de Paiva</td>
+                        <td>Endocrinologia</td>
+                        <td>05/08/2021 - 11:15h</td>
+                        <td>11:20h</td>
+                        <td>
+                            <img src="/image/check-icon.png" alt="icon" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5" cy="5.78906" r="5" fill="#7B61FF"/>
+                            </svg>
+                            </td>
+                        <td>#965784</td>
+                        <td>Silva Ribeiro de Aragão</td>
+                        <td>Cardiologista</td>
+                        <td>15/03/2021 - 14:00h</td>
+                        <td>NDA</td>
+                        <td>
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 0.789062C4.44444 0.789062 0 5.23351 0 10.7891C0 16.3446 4.44444 20.7891 10 20.7891C15.5556 20.7891 20 16.3446 20 10.7891C20 5.23351 15.5556 0.789062 10 0.789062ZM10 18.5668C5.66667 18.5668 2.22222 15.1224 2.22222 10.7891C2.22222 6.45573 5.66667 3.01128 10 3.01128C14.3333 3.01128 17.7778 6.45573 17.7778 10.7891C17.7778 15.1224 14.3333 18.5668 10 18.5668Z" fill="#E5E5E5"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2071 8.20328L9 14.7891H7V7.49617H9V11.582L13.7929 6.78906L15.2071 8.20328Z" fill="#E5E5E5"/>
+                            </svg>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+           <section class="description">
+            <div class="meaning-arrow">
+                <h4>LEGENDA</h4>
+            <div>
+                <svg width="71" height="8" viewBox="0 0 71 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70.3536 4.14262C70.5488 3.94735 70.5488 3.63077 70.3536 3.43551L67.1716 0.253529C66.9763 0.0582664 66.6597 0.0582664 66.4645 0.253529C66.2692 0.448791 66.2692 0.765373 66.4645 0.960635L69.2929 3.78906L66.4645 6.61749C66.2692 6.81275 66.2692 7.12933 66.4645 7.3246C66.6597 7.51986 66.9763 7.51986 67.1716 7.3246L70.3536 4.14262ZM0 4.28906H70V3.28906H0V4.28906Z" fill="#546582" fill-opacity="0.2"/>
+                 </svg>
+                    
+            </div>
+            </div>
+
+            <div class="green_purple">
+                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
+                </svg>
+                <span>: Presença confirmada</span>
+
+                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="5" cy="5.78906" r="5" fill="#7B61FF"/>
+                </svg>
+                <span>:Não compareceu</span>
+            </div>
+           </section>
+        </div>
     </div>
 </body>
 

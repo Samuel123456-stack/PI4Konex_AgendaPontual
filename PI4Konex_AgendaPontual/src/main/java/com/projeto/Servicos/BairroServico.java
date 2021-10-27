@@ -16,7 +16,7 @@ public class BairroServico {
 	private BairroRepositorio repositorio;
 	
 	@Transactional(readOnly = true)
-	public List<Bairro> findAll(){
+	public List<Bairro> buscaBairro(){
 		return repositorio.findAll();
 	}
 }

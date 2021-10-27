@@ -30,7 +30,7 @@ public class EspecialidadeServico {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Especialidade> buscaEsp(String keyword) {
-		 return repositorio.buscaEsp(keyword);
+	public List<Especialidade> buscaEsp() {
+		 return repositorio.findAll();
 	}
 }

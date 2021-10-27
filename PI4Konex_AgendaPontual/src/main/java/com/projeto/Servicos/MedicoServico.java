@@ -25,8 +25,26 @@ public class MedicoServico {
 	}
 	
 	@Transactional(readOnly = true)
+	public List<MedicoDTO> buscaMed(){
+		List<ResultadoPesqMedProjecao> result = repoMed.buscaMed();
+		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
+	}
+	
+	@Transactional(readOnly = true)
+	public List<MedicoDTO> buscaMedCid(Integer cidade){
+		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCid(cidade);
+		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
+	}
+	
+	@Transactional(readOnly = true)
 	public List<MedicoDTO> buscaMedEsp(Integer cidade, String esp){
 		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCidEsp(cidade, esp);
+		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
+	}
+	
+	@Transactional(readOnly = true)
+	public List<MedicoDTO> buscaEsp(String esp){
+		List<ResultadoPesqMedProjecao> result = repoMed.buscaEsp(esp);
 		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
 	}
 }

@@ -20,6 +20,15 @@ public interface MedicoRepositorio extends JpaRepository<Medico,Integer> {
 //    @Query(nativeQuery = true, value="select * from medico m where m.nome like concat('%',:termo,'%')")
 //    List<Medico> buscaMedCidEsp (String termo);
     
+    @Query(nativeQuery = true, value="select m.idmed, m.pontos, m.nome, m.sobremim, TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) as experiencia "
+    		+ "from clinica c "
+    		+ "inner join medico m on m.fk_cli_med = c.idcli "
+    		+ "inner join especialidade esp on m.fk_esp_med = esp.idesp "
+    		+ "inner join endereco e on c.fk_end_cli = e.idend "
+    		+ "inner join bairro b on e.fk_bai_end = b.idbai "
+    		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid ")
+    List<ResultadoPesqMedProjecao> buscaMed();
+    
     @Query(nativeQuery = true, value="select m.idmed, m.pontos, m.nome, m.sobremim "
     		+ "from clinica c "
     		+ "inner join medico m on m.fk_cli_med = c.idcli "
@@ -29,6 +38,29 @@ public interface MedicoRepositorio extends JpaRepository<Medico,Integer> {
     		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid "
     		+ "where cid.idcid = :cidade and esp.nome = :esp")
     List<ResultadoPesqMedProjecao> buscaMedCidEsp (Integer cidade, String esp);
+    
+    @Query(nativeQuery = true, value="select m.idmed, m.pontos, m.nome, m.sobremim "
+    		+ "from clinica c "
+    		+ "inner join medico m on m.fk_cli_med = c.idcli "
+    		+ "inner join especialidade esp on m.fk_esp_med = esp.idesp "
+    		+ "inner join endereco e on c.fk_end_cli = e.idend "
+    		+ "inner join bairro b on e.fk_bai_end = b.idbai "
+    		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid "
+    		+ "where cid.idcid = :cidade")
+    List<ResultadoPesqMedProjecao> buscaMedCid(Integer cidade);
+
+    
+    @Query(nativeQuery = true, value="select m.idmed, m.pontos, m.nome, m.sobremim "
+    		+ "from clinica c "
+    		+ "inner join medico m on m.fk_cli_med = c.idcli "
+    		+ "inner join especialidade esp on m.fk_esp_med = esp.idesp "
+    		+ "inner join endereco e on c.fk_end_cli = e.idend "
+    		+ "inner join bairro b on e.fk_bai_end = b.idbai "
+    		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid "
+    		+ "where upper(trim(esp.nome)) = :esp")
+	List<ResultadoPesqMedProjecao> buscaEsp(String esp);
+    
+    
     
     
 }

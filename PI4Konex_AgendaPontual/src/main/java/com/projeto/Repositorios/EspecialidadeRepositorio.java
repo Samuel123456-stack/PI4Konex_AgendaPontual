@@ -11,6 +11,6 @@ import com.projeto.Entidades.Especialidade;
 @Repository
 public interface EspecialidadeRepositorio extends JpaRepository<Especialidade, Integer> {
 	
-	@Query(nativeQuery = true, value = "SELECT * FROM especialidade e WHERE e.nome = %?1%")
-	List<Especialidade> buscaEsp(String nome);
+//	@Query(nativeQuery = true, value = "SELECT * FROM especialidade e WHERE e.nome = %?1%")
+//	List<Especialidade> buscaEsp(String termo);
 }

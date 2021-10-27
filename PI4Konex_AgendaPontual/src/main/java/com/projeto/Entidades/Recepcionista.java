@@ -1,6 +1,5 @@
 package com.projeto.Entidades;
 
-import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -24,7 +23,7 @@ public class Recepcionista {
     private String sexoRec;
 
     @Column(name = "data_nasci", nullable = true, columnDefinition = "DATE")
-    private LocalDate dataNasc;
+    private String dataNasc;
 
     @Column(nullable = true)
     private String celular;
@@ -42,7 +41,7 @@ public class Recepcionista {
 
     // Metodo Construtor com Atributos
 
-    public Recepcionista(int idRec, String nomeRec, String cpfRec, String sexoRec, LocalDate dataNasc, String celular,
+    public Recepcionista(int idRec, String nomeRec, String cpfRec, String sexoRec, String dataNasc, String celular,
             int idCli, int idUsu) {
         this.idRec = idRec;
         this.nomeRec = nomeRec;
@@ -87,11 +86,11 @@ public class Recepcionista {
         this.sexoRec = sexoRec;
     }
 
-    public LocalDate getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(LocalDate dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 

@@ -13,4 +13,7 @@ public interface RecepcionistaRepositorio extends JpaRepository<Recepcionista, I
 
     @Query(nativeQuery = true,  value = "select p.nome as Paciente,e.nome as Especialidade, m.nome as Medico, m.sala, a.data_agendada, h.horario from agenda_medica as a join paciente as p on a.fk_paci_agen=p.id_paci join medico as m on a.fk_med_agen=m.id_med join horario as h on a.fk_hor_agen=h.id_hor join especialidade as e on m.fk_esp_med=e.id_esp")
     List<String> listagemPainel(); 
+
+    @Query(nativeQuery = true, value = "update recepcionista set nome=?1, cpf=?2, sexo=?3, data_nasci=?4, celular=?5 where id_recep=?6")
+    Recepcionista atualizaRecep(String nome, String cpf, String sexo, String data_nasci, String celular, Integer id_recep );
 }

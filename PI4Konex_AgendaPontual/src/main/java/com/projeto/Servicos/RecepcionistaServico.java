@@ -10,7 +10,6 @@ import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
-import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.CidadeRepositorio;
 import com.projeto.Repositorios.ClinicaRepositorio;
@@ -18,7 +17,6 @@ import com.projeto.Repositorios.ConvenioRepositorio;
 import com.projeto.Repositorios.EnderecoRepositorio;
 import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Repositorios.PacienteRepositorio;
-import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Repositorios.RecepcionistaRepositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +32,6 @@ public class RecepcionistaServico {
     @Autowired
     private PacienteRepositorio repoPaci;
     @Autowired
-    private UsuarioRepositorio repoUsu;
-    @Autowired
     private EnderecoRepositorio repoEnd;
     @Autowired
     private AgendaRepositorio repoAgen;
@@ -49,8 +45,26 @@ public class RecepcionistaServico {
     private ConvenioRepositorio repoConv;
 
     //Metodos do Crud
-    public void AtualizaRecep(Recepcionista recep){
-        repoRecep.save(recep);
+    public Recepcionista AtualizaRecep(Recepcionista recep){
+        String nomeAtualizado = recep.getNomeRec();
+        String cpfAtualizado = recep.getCpfRec();
+        String sexoAtualizado = recep.getSexoRec();
+        String dataNascAtualizado = recep.getDataNasc();
+        String celAtualizado = recep.getCelular();
+        Integer idRecep = recep.getIdRec();
+
+
+
+        recep.setNomeRec(nomeAtualizado);
+        recep.setCpfRec(cpfAtualizado);
+        recep.setSexoRec(sexoAtualizado);
+        recep.setDataNasc(dataNascAtualizado);
+        recep.setCelular(celAtualizado);
+
+        
+        
+        repoRecep.atualizaRecep(nomeAtualizado,cpfAtualizado,sexoAtualizado,dataNascAtualizado,celAtualizado,idRecep);
+        return recep;
     }
 
 
@@ -69,23 +83,6 @@ public class RecepcionistaServico {
 
     public void deletaPaciPorId(Integer id){
         repoPaci.deleteById(id);
-    }
-
-    //Metodos do CRUD Usuario
-    public List<Usuario> listarTodosUsu(){
-        return repoUsu.findAll();
-    }
-
-    public void criaUsu(Usuario usu){
-        repoUsu.save(usu);
-    }
-
-    public Usuario pegaUsuPorId(Integer id){
-       return repoUsu.getById(id);
-    }
-
-    public void deletaUsuPorId(Integer id){
-        repoUsu.deleteById(id);
     }
 
     //Metodos do CRUD Endereco

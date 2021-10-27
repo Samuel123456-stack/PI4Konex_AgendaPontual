@@ -1,17 +1,16 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Painel do Recepcionista</title>
-
+    <title>Configurações</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS">
     <meta name="description" content="Agenda Pontual">
     <meta name="author" content="konex-group">
 
-    <link rel="stylesheet" href="/css/tela_painelRecep.css">
+    <link rel="stylesheet" href="/css/tela_configuracoes.css">
 </head>
-
 <body>
     <div id="container-landing">
         <header class="menu-bar">
@@ -53,7 +52,6 @@
                 <div class="menu-selection">
                     <ul>
                         <li>
-                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaAtualizaRecep}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -61,7 +59,6 @@
                                     fill="#546582" />
                             </svg>
                             <span>Configurações</span>
-                            </a>
                         </li>
                         <li>
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
@@ -76,7 +73,7 @@
                             <span>Ajuda</span>
                         </li>
                         <li>
-                            <img src="/image/user-recep.png" alt="user-photo" />
+                            <img src="../images/user-recep.png" alt="user-photo" />
                         </li>
                         <li>
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
@@ -98,167 +95,81 @@
             </section>
         </header>
 
-        <main class="dashboard-page">
-            <div class="schedule-list">
-                <div class="content-dashboard">
-                    <h2>Lista de agendamento</h2>
-                    <p>Você pode filtrar por período.</p>
+        <main class="main-page">
+            <section class="back">
+                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9.78955L9.27651 0.78955L11 2.46167L3.44698 9.78955L11 17.1174L9.27651 18.7896L-3.93402e-07 9.78955Z" fill="#1CC4BF"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 9.78955L18.2765 0.78955L20 2.46167L12.447 9.78955L20 17.1174L18.2765 18.7896L9 9.78955Z" fill="#1CC4BF"/>
+                </svg> 
 
-                    <div class="form-block">
-                        <form action="" method="">
-                            <div class="form-input">
-                                <div class="input-block">
-                                    <p>DE</p>
-                                    <input type="date" name="date-since" />
-                                </div>
-
-                                <div class="input-block">
-                                    <p>ATÉ</p>
-                                    <input type="date" name="date-until" />
-                                </div>
-                                <input type="submit" name="button-list" value="LISTAR" />
-                            </div>
-                        </form>
+                <section class="theme-page">
+                    <div class="margin">
+                        <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7344 0.897358C13.2244 0.69437 13.775 0.69437 14.2651 0.897358L21.7213 3.98582C22.2114 4.18881 22.6007 4.57815 22.8037 5.06821L25.8922 12.5244C26.0951 13.0145 26.0951 13.5651 25.8922 14.0551L22.8037 21.5113C22.6007 22.0014 22.2114 22.3908 21.7213 22.5937L14.2651 25.6822C13.7751 25.8852 13.2244 25.8852 12.7344 25.6822L5.27817 22.5937C4.78812 22.3908 4.39877 22.0014 4.19578 21.5113L1.10732 14.0551C0.904331 13.5651 0.904331 13.0145 1.10732 12.5244L4.19578 5.06821C4.39877 4.57815 4.78811 4.18881 5.27817 3.98582L12.7344 0.897358ZM12.9441 3.64838C13.4342 3.44539 13.9848 3.44539 14.4749 3.64838L20.1337 5.99234C20.6237 6.19533 21.0131 6.58468 21.2161 7.07473L23.56 12.7335C23.763 13.2236 23.763 13.7742 23.56 14.2643L21.2161 19.9231C21.0131 20.4131 20.6237 20.8025 20.1337 21.0055L14.4749 23.3494C13.9848 23.5524 13.4342 23.5524 12.9441 23.3494L7.28531 21.0055C6.79526 20.8025 6.40591 20.4131 6.20292 19.9231L3.85896 14.2643C3.65598 13.7742 3.65598 13.2236 3.85896 12.7335L6.20292 7.07473C6.40591 6.58468 6.79526 6.19533 7.28531 5.99234L12.9441 3.64838ZM13.7095 17.8536C11.3044 17.8536 9.35477 15.904 9.35477 13.4989C9.35477 11.0939 11.3044 9.14419 13.7095 9.14419C16.1145 9.14419 18.0642 11.0939 18.0642 13.4989C18.0642 15.904 16.1145 17.8536 13.7095 17.8536ZM7.35477 13.4989C7.35477 9.9893 10.1999 7.14419 13.7095 7.14419C17.2191 7.14419 20.0642 9.9893 20.0642 13.4989C20.0642 17.0085 17.2191 19.8536 13.7095 19.8536C10.1999 19.8536 7.35477 17.0085 7.35477 13.4989Z" fill="#166CD0"/>
+                        </svg>   
+                        <span>Configurações</span>
                     </div>
 
-                    <div class="table-patience-list">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>PACIENTE</td>
-                                    <td>ESPECIALISTA</td>
-                                    <td>DATA-HORARIO</td>
-                                    <td>SALA</td>
-                                    <td>UPD</td>
-                                </tr>
-                            </thead>
+                    <div class="form-container">
+                        <h3>Suas informações</h3>
 
-                            <tbody>
-                                <tr>
-                                    <td>João Mendes</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>26/08/2021 - 13:00h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
+                        <div class="form-structure">
+                            <section class="update-profile">
+                                   <img src="../images/big-photo-profile.png" alt="icon" />
+                                <div class="button-update">
+                                    <img src="../images/green-download-icon.png" alt="icon" />
+                                    <span>Atualizar foto</span>
+                                </div>
+                            </section>
 
-                                <tr>
-                                    <td>Cleber Ribeiro</td>
-                                    <td>Diana C. - Neurologis...</td>
-                                    <td>25/08/2021 - 16:00h</td>
-                                    <td>E030</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
+                            <form action="#" th:action="@{/recepcionista/atualizaRecep}" method="">
+                                <div class="first-block">
+                                    <div class="input-block">
+                                        <p>NOME</p>
+                                        <input class="name" name="nomeRec" th:field="*{recep.nomeRec}" th:text="*{recep.nomeRec}"></p>
+                                    </div>
+    
+                                    <div class="input-block">
+                                        <p>CPF/CNPJ</p>
+                                       <input name="cpfRec" th:field="*{recep.cpfRec}" th:text="*{recep.cpfRec}" class="cpf-cnpj"></p>
+                                    </div>
+    
+                                    <div class="input-block">
+                                        <p>DATA DE NASCIMENTO</p>
+                                        <input name="dataNasc" th:field="*{recep.dataNasc}" th:text="*{recep.dataNasc}" class="date-birth"></p>
+                                    </div>
 
-                                <tr>
-                                    <td>Jorge Silva</td>
-                                    <td>Roberto M. - Clinico G.</td>
-                                    <td>25/08/2021 - 15:00h</td>
-                                    <td>A040</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mariana G.</td>
-                                    <td>Marta S. - Ortopedista</td>
-                                    <td>25/08/2021 - 14:00h</td>
-                                    <td>B032</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mirelle C.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 14:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Rogrigo M.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 13:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Sebastian A.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 12:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="button-block">
-                <div class="button-list">
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/mostraPaci}">
-                            <img src="/image/plus-icon.png" alt="icon" />
-                            CADASTRAR CLIENTE
-                        </a>
-                    </button>
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/addAgenda}">
-                        <img src="/image/clock-icon.png" alt="icon" />
-                        CRIAR AGENDAMENTO
-                    </a>
-                    </button>
-                    <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/consRecep}">
-                        <img src="/image/note-icon.png" alt="icon" />
-                        CONSULTAR AGENDAMENTOS
-                    </a>
-                    </button>
-                    <button type="button">
-                        <img src="/image/cancel-icon.png" alt="icon" />
-                        CANCELAR AGENDAMENTOS
-                    </button>
-                    <button type="button">
-                        <img src="/image/payment-icon.png" alt="icon" />
-                        REGISTRAR PAGAMENTO
-                    </button>
-                </div>
-
-                <footer class="quick-view">
-                    <h3>Consulta Rápida</h3>
-                    <p>Serve ter informações do cliente.</p>
-
-                    <div class="form-cep">
-                        <form action="" method="">
-                            <div class="main-input">
-                                <div class="cep-input">
-                                    <p>CEP</p>
-                                    <input type="text" name="cep" placeholder="___.___.___-__" />
+                                    <div class="input-block">
+                                        <p>CARGO</p>
+                                        <p class="occupation">Recepcionista</p>
+                                    </div>
                                 </div>
 
-                                <input type="submit" value="CONSULTAR" />
-                            </div>
-                        </form>
+                                <div class="second-block">
+                                    <div class="input-block">
+                                        <p>E-MAIL</p>
+                                        <input class="email" name="email" th:field="*{usu.email}" th:text="*{usu.email}"></p>
+                                    </div>
+
+                                    <div class="input-block">
+                                        <p>SENHA</p>
+                                        <input class="password" name="senha" th:field="*{usu.senha}" th:text="*{usu.senha}"></p>
+                                    </div>
+
+                                    <div class="input-block">
+                                        <input type="checkbox" name="female-checkbox" checked="checked" />
+                                        <span class="female">Feminino</span>
+                    
+                                    </div>
+
+                                    <button type="submit">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </footer>
-            </div>
+                </section>
+            </section>
         </main>
     </div>
 </body>
-
 </html>

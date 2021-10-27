@@ -10,9 +10,11 @@ import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
+import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.RecepcionistaServico;
+import com.projeto.Servicos.UsuarioServico;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,9 @@ public class RecepcionistaController {
     @Autowired
     RecepcionistaServico recepServ;
     @Autowired
-    EspecialidadeServico recepEsp;
+    EspecialidadeServico espServ;
+    @Autowired
+    UsuarioServico usuServ;
 
     @GetMapping("/painelRecep")
     private String painelRecep() {
@@ -50,14 +54,14 @@ public class RecepcionistaController {
     public String salvaInfoPaciBD(@ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end, Model model){
         //Salva as Informações
         recepServ.criaPaci(paci);
-        recepServ.criaUsu(usu);
+        usuServ.criaUsu(usu);
         recepServ.criaEnd(end);
         //Cria a listagem do filtro e seus atributos
         Agenda agen = new Agenda();
 
         List<Clinica> listaCli = recepServ.listarTodosCli();
         List<Cidade> listaCid = recepServ.listarTodosCid();
-        List<Especialidade> listaEsp = recepEsp.findAll();
+        List<Especialidade> listaEsp = espServ.findAll();
 
         model.addAttribute("listaCid", listaCid);
         model.addAttribute("listaCli", listaCli);
@@ -105,6 +109,28 @@ public class RecepcionistaController {
         model.addAttribute("listaConv", listaConv);
 
         return "/tela_proconfirmation";
+    }
+   
+
+    //Passa para a tela de Atualizar Recepcionista
+    @RequestMapping("/telaAtualizaRecep")
+    public String telaAtualizaRecep(Model model){
+        Recepcionista recep = new Recepcionista();
+        Usuario usu = new Usuario();
+        usu.setIdUsu(19);
+        recep.setIdRec(1);
+        model.addAttribute("recep", recep);
+        model.addAttribute("usu", usu);
+
+        return "/tela_configuracoes";
+    }
+
+    @RequestMapping("/atualizaRecep")
+    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu){
+        //recep = recepServ.AtualizaRecep(recep);
+        //usu = usuServ.atualizaUsu(usu); 
+
+        return "/tela_painelRecep";
     }
 
 }

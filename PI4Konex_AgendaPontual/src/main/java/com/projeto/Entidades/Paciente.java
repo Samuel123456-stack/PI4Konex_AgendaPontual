@@ -12,10 +12,10 @@ public class Paciente {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_paci")
+    @Column(name = "idpaci")
     private int idPaci;
 
-    @Column(name = "dt_criacao", nullable = true, columnDefinition = "DATE")
+    @Column(name = "dtcriacao", nullable = true, columnDefinition = "DATE")
     private LocalDateTime dataCriaPaci;
 
     @Column(name = "nome", nullable = true)
@@ -24,7 +24,7 @@ public class Paciente {
     @Column(nullable = true, unique = true)
     private String cpf;
 
-    @Column(name = "data_nasci", nullable = true, columnDefinition = "DATE")
+    @Column(name = "datanasci", nullable = true, columnDefinition = "DATE")
     private LocalDate dataNasc;
 
     @Column(nullable = true, unique = true)

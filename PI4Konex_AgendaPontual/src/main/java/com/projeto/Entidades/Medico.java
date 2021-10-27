@@ -3,6 +3,7 @@ package com.projeto.Entidades;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -15,8 +16,8 @@ public class Medico implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_med")
-    private int idMed;
+    @Column(name = "idmed")
+    private Integer idMed;
 
     @Column(name = "dt_criacao", columnDefinition = "TIMESTAMP")
     private LocalDateTime dataCriaMed;
@@ -57,7 +58,7 @@ public class Medico implements Serializable{
     @Column(nullable = true, length = 4)
     private String sala;
     
-    
+    @Column(nullable = true)
     private Integer pontos;
     
     @ManyToOne
@@ -81,11 +82,11 @@ public class Medico implements Serializable{
 
     }
     // Metodo Construtor com Atributos
-	public Medico(int idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
+
+	public Medico(Integer idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
 			String cpfMed, String rgMed, String crm, String celular, float valorMed, LocalDate dataFormatura,
-			String sobreMed, String bioMed, String sala, Clinica clinica, Endereco endereco, Usuario usuario,
-			Especialidade especialidade) {
-		super();
+			String sobreMed, String bioMed, String sala, Integer pontos, Clinica clinica, Endereco endereco,
+			Usuario usuario, Especialidade especialidade) {
 		this.idMed = idMed;
 		this.dataCriaMed = dataCriaMed;
 		this.nomeMed = nomeMed;
@@ -100,117 +101,179 @@ public class Medico implements Serializable{
 		this.sobreMed = sobreMed;
 		this.bioMed = bioMed;
 		this.sala = sala;
+		this.pontos = pontos;
 		this.clinica = clinica;
 		this.endereco = endereco;
 		this.usuario = usuario;
 		this.especialidade = especialidade;
 	}
-	public int getIdMed() {
+
+	public Integer getIdMed() {
 		return idMed;
 	}
-	public void setIdMed(int idMed) {
+
+	public void setIdMed(Integer idMed) {
 		this.idMed = idMed;
 	}
+
 	public LocalDateTime getDataCriaMed() {
 		return dataCriaMed;
 	}
+
 	public void setDataCriaMed(LocalDateTime dataCriaMed) {
 		this.dataCriaMed = dataCriaMed;
 	}
+
 	public String getNomeMed() {
 		return nomeMed;
 	}
+
 	public void setNomeMed(String nomeMed) {
 		this.nomeMed = nomeMed;
 	}
+
 	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
+
 	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
+
 	public String getSexoMed() {
 		return sexoMed;
 	}
+
 	public void setSexoMed(String sexoMed) {
 		this.sexoMed = sexoMed;
 	}
+
 	public String getCpfMed() {
 		return cpfMed;
 	}
+
 	public void setCpfMed(String cpfMed) {
 		this.cpfMed = cpfMed;
 	}
+
 	public String getRgMed() {
 		return rgMed;
 	}
+
 	public void setRgMed(String rgMed) {
 		this.rgMed = rgMed;
 	}
+
 	public String getCrm() {
 		return crm;
 	}
+
 	public void setCrm(String crm) {
 		this.crm = crm;
 	}
+
 	public String getCelular() {
 		return celular;
 	}
+
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+
 	public float getValorMed() {
 		return valorMed;
 	}
+
 	public void setValorMed(float valorMed) {
 		this.valorMed = valorMed;
 	}
+
 	public LocalDate getDataFormatura() {
 		return dataFormatura;
 	}
+
 	public void setDataFormatura(LocalDate dataFormatura) {
 		this.dataFormatura = dataFormatura;
 	}
+
 	public String getSobreMed() {
 		return sobreMed;
 	}
+
 	public void setSobreMed(String sobreMed) {
 		this.sobreMed = sobreMed;
 	}
+
 	public String getBioMed() {
 		return bioMed;
 	}
+
 	public void setBioMed(String bioMed) {
 		this.bioMed = bioMed;
 	}
+
 	public String getSala() {
 		return sala;
 	}
+
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
+
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
+	}
+
 	public Clinica getClinica() {
 		return clinica;
 	}
+
 	public void setClinica(Clinica clinica) {
 		this.clinica = clinica;
 	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
+
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
 	public Especialidade getEspecialidade() {
 		return especialidade;
 	}
+
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idMed);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medico other = (Medico) obj;
+		return idMed == other.idMed;
 	}
 }

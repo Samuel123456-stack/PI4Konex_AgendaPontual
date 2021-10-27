@@ -10,7 +10,7 @@ public class Recepcionista {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_recep")
+    @Column(name = "idrecep")
     private int idRec;
 
     @Column(name = "nome", nullable = true)

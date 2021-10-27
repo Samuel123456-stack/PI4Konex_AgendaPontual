@@ -76,7 +76,7 @@
                     <p>ATÉ</p>
                     <input type="text" name="max" placeholder="R$150,00">
                 </div>
-                <h2>Experiência(anos)</h2>
+                <h2>Exériência(anos)</h2>
                 
                 <div class="filter level-filter level-req">
                     <div id="rangeSlider" class="range-slider">
@@ -109,130 +109,22 @@
                 </button>
             </div>
         </form>
-        <div class="resulBusca">
-            <div class="med">
+        <div class="resulBusca" th:if="${medicos != null}">
+            <div class="med" th:each="medico, stat: ${medicos}">
                 <form action="">
                     <img src="/image/med1.png">
                     <div class="ptMed">
-                        <h3>1985 PT</h3>
+                        <h3 th:text="${medico.pontos} + PT"></h3>
                     </div>
                     <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
+                        <h2 th:text="${medico.nome}"></h2>
+                        <p th:text="${medico.sobreMim}"></p>
                     </div>
                     <input type="submit" value="AGENDAR"> 
                 </form>
             </div>
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
-            <div class="med">
-                <form action="">
-                    <img src="/image/med1.png">
-                    <div class="ptMed">
-                        <h3>1985 PT</h3>
-                    </div>
-                    <div class="dadosMed">
-                        <h2>Dr. Wilson Santos</h2>
-                        <p>Uma pessoa super simpática e atenciosa, ela consegue ser super eficaz.</p>
-                    </div>
-                    <input type="submit" value="AGENDAR"> 
-                </form>
-            </div>   
         </div>
     </div>
-
-
-
-
     <script src="/js/resulBusca.js"></script>
 
     <div class="rodapeComposto">

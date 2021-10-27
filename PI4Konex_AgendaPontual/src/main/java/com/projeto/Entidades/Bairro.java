@@ -25,7 +25,7 @@ public class Bairro implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_bai")
+	@Column(name = "idbai")
 	private int idBai;
 
 	@Column(nullable = true)

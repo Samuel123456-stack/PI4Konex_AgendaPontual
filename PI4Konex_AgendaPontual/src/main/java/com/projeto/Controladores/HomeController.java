@@ -7,13 +7,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.Dto.MedicoDTO;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.MedicoServico;
+import com.projeto.projecao.ResultadoPesqMedProjecao;
 
 
 
@@ -38,29 +43,11 @@ public class HomeController {
 		model.addAttribute("cidades", cidades);
 		return ("/home");
 	}
-	
-//	@PostMapping("/resulBusca")
-//	public ModelAndView buscaMed(@RequestParam("cidade") String cidade, @RequestParam("esp") String esp) {
-//		ModelAndView modelAndView = new ModelAndView("/resulBusca");
-//		modelAndView.addObject("esp", espServ.)
-//	}
-	
-	@GetMapping("/resulBusca")
-	public String buscaMed(Model model) {
-
-		return ("/resulBusca");
-	}
-	
-//	@GetMapping("/resultado")
-//	public ResponseEntity<List<Medico>> buscaMed(){
-//		List<Medico> list = medSer.buscaMedCidEsp("São Paulo", "Clinico(a) geral");
-//		return ResponseEntity.ok().body(list);
-//	}
-	
-	@GetMapping("/resultado")
-	public ResponseEntity<List<Medico>> buscaMed(String termo){
-		List<Medico> list = medServ.buscaMedCidEsp("Ricardo");
-		return ResponseEntity.ok().body(list);
+		
+	@PostMapping("**/pesquisamedico")
+	public ModelAndView buscaMed(@RequestParam("cidade") Integer cidade, @RequestParam("esp") String esp) {
+		List<MedicoDTO> list = medServ.buscaMedEsp(cidade, esp);
+		return new ModelAndView("/resulBusca").addObject("medicos", list);
 	}
 	
 }

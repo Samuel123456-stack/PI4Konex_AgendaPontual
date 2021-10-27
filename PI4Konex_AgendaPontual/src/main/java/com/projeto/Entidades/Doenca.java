@@ -8,7 +8,7 @@ public class Doenca {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_doe")
+    @Column(name = "iddoe")
     private int idDoenca;
 
     @Column(name = "nome", nullable = true)

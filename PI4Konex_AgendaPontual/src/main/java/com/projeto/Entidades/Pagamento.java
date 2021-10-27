@@ -25,13 +25,13 @@ public class Pagamento implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pag")
+	@Column(name = "idpag")
     private int idPag;
 
-    @Column(name = "dt_pgto", nullable = true, columnDefinition = "DATE")
+    @Column(name = "dtpgto", nullable = true, columnDefinition = "DATE")
     private LocalDateTime dataPag;
 
-    @Column(name = "forma_pagamento", nullable = true)
+    @Column(name = "formapagamento", nullable = true)
     private String formaPag;
 
     @Column(columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
@@ -39,8 +39,8 @@ public class Pagamento implements Serializable {
     
     @ManyToMany
     @JoinTable(name = "pag_plan",
-    joinColumns = @JoinColumn(name = "id_pag"),
-    inverseJoinColumns = @JoinColumn(name = "id_plan"))
+    joinColumns = @JoinColumn(name = "idpag"),
+    inverseJoinColumns = @JoinColumn(name = "idplan"))
     private List<Planos> planos = new ArrayList<>();;
 
     // Metodo Construtor

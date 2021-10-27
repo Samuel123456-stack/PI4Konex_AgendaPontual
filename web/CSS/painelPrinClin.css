@@ -90,6 +90,9 @@
     font-size: 18px;
     color: #546582;
 }
+.melEsp:hover{
+    border: 1.4px solid #858FA1;
+}
 /*scroll tabela*/
 #tbNot tbody::-webkit-scrollbar {
     width: 2px;

@@ -22,17 +22,19 @@ public class Recepcionista {
     @Column(name = "sexo", nullable = true)
     private String sexoRec;
 
-    @Column(name = "data_nasci", nullable = true, columnDefinition = "DATE")
+    @Column(name = "datanasci", nullable = true, columnDefinition = "DATE")
     private String dataNasc;
 
     @Column(nullable = true)
     private String celular;
 
+    @ManyToOne
     @JoinColumn(name = "fk_cli_recep")
-    private int idCli;
-
+    private Clinica idCli;
+    
+    @ManyToOne
     @JoinColumn(name = "fk_usu_recep")
-    private int idUsu;
+    private Usuario idUsu;
 
     // Metodo Construtor
     public Recepcionista() {
@@ -42,7 +44,7 @@ public class Recepcionista {
     // Metodo Construtor com Atributos
 
     public Recepcionista(int idRec, String nomeRec, String cpfRec, String sexoRec, String dataNasc, String celular,
-            int idCli, int idUsu) {
+    Clinica idCli, Usuario idUsu) {
         this.idRec = idRec;
         this.nomeRec = nomeRec;
         this.cpfRec = cpfRec;
@@ -102,19 +104,19 @@ public class Recepcionista {
         this.celular = celular;
     }
 
-    public int getIdCli() {
+    public Clinica getIdCli() {
         return idCli;
     }
 
-    public void setIdCli(int idCli) {
+    public void setIdCli(Clinica idCli) {
         this.idCli = idCli;
     }
 
-    public int getIdUsu() {
+    public Usuario getIdUsu() {
         return idUsu;
     }
 
-    public void setIdUsu(int idUsu) {
+    public void setIdUsu(Usuario idUsu) {
         this.idUsu = idUsu;
     }
 

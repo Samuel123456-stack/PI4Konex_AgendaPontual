@@ -34,10 +34,10 @@ public class Planos implements Serializable {
     @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
 
-    @Column(name = "qte_recep", nullable = true)
+    @Column(name = "qterecep", nullable = true)
     private int qntRec;
 
-    @Column(name = "qte_medico", nullable = true)
+    @Column(name = "qtemedico", nullable = true)
     private int qntMed;
 
     @Column(nullable = true)

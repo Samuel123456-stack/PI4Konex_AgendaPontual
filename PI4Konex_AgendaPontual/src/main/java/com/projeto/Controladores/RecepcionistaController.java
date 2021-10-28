@@ -1,6 +1,7 @@
 package com.projeto.Controladores;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
@@ -12,6 +13,8 @@ import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.RecepcionistaRepositorio;
+import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
@@ -21,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -33,9 +37,15 @@ public class RecepcionistaController {
     EspecialidadeServico espServ;
     @Autowired
     UsuarioServico usuServ;
+    @Autowired
+    RecepcionistaRepositorio repoRecep;
+    @Autowired
+    UsuarioRepositorio repoUsu;
+    
+
 
     @GetMapping("/painelRecep")
-    private String painelRecep() {
+    private String painelRecep(Model model) {
         return "/tela_painelRecep";
     }
 
@@ -115,21 +125,36 @@ public class RecepcionistaController {
     //Passa para a tela de Atualizar Recepcionista
     @RequestMapping("/telaAtualizaRecep")
     public String telaAtualizaRecep(Model model){
+        /*Integer idUsu = 19;
+        Integer idRecep = 1;
+        model.addAttribute("idUsu", idUsu);
+        model.addAttribute("idRecep", idRecep);*/
         Recepcionista recep = new Recepcionista();
         Usuario usu = new Usuario();
-        usu.setIdUsu(19);
-        recep.setIdRec(1);
+        
+
         model.addAttribute("recep", recep);
         model.addAttribute("usu", usu);
 
         return "/tela_configuracoes";
     }
 
-    @RequestMapping("/atualizaRecep")
-    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu){
-        //recep = recepServ.AtualizaRecep(recep);
-        //usu = usuServ.atualizaUsu(usu); 
+    @RequestMapping("/{idUsu}/{idRecep}/atualizaRecep")
+    public String telaAtualizaRecep(@PathVariable Integer idUsu,@PathVariable Integer idRecep,@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu, Model model){
+        /*System.out.println(idUsu);
+        System.out.println(idRecep);
+        Optional<Recepcionista> atualizaRecep = this.repoRecep.findById(idRecep);
+        Optional<Usuario> atualizaUsu = this.repoUsu.findById(idUsu);
+        if(atualizaRecep.isPresent()){
+            recep = atualizaRecep.get();
+            this.repoRecep.save(recep);
+        }
 
+        if(atualizaUsu.isPresent()){
+            usu = atualizaUsu.get();
+            this.repoUsu.save(usu);
+        }
+*/
         return "/tela_painelRecep";
     }
 

@@ -33,7 +33,7 @@ public class Clinica implements Serializable{
 	@Column(nullable = true, unique = true)
 	private String rg;
 
-	@Column(name = "qte_assentos", nullable = true)
+	@Column(name = "qteassentos", nullable = true)
 	private int qntAssentos;
 
 	@Column(name = "fone", nullable = true)

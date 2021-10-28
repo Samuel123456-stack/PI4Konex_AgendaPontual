@@ -9,18 +9,19 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idusu")
     private int idUsu;
 
     @Column(nullable = true)
     private String email;
 
-    @Column(name="email_confirma",nullable = true)
+    @Column(name="emailconfirma",nullable = true)
     private String confirmaEmail;
 
     @Column(nullable = true)
     private String senha;
 
-    @Column(name="senha_confirma",nullable = true)
+    @Column(name="senhaconfirma",nullable = true)
     private String confirmaSenha;
 
     @Column(nullable = true)

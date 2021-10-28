@@ -19,13 +19,13 @@ public class Medico implements Serializable{
     @Column(name = "idmed")
     private Integer idMed;
 
-    @Column(name = "dt_criacao", columnDefinition = "TIMESTAMP")
+    @Column(name = "dtcriacao", columnDefinition = "TIMESTAMP")
     private LocalDateTime dataCriaMed;
 
     @Column(name = "nome", nullable = true)
     private String nomeMed;
 
-    @Column(name = "data_nasci", nullable = true)
+    @Column(name = "datanasci", nullable = true)
     private LocalDate dataNasc;
 
     @Column(name = "sexo", nullable = true)
@@ -46,10 +46,10 @@ public class Medico implements Serializable{
     @Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
     private float valorMed;
 
-    @Column(name = "data_formatura", nullable = true, columnDefinition = "DATE")
+    @Column(name = "dataformatura", nullable = true, columnDefinition = "DATE")
     private LocalDate dataFormatura;
 
-    @Column(name = "sobre_mim", nullable = true)
+    @Column(name = "sobremim", nullable = true)
     private String sobreMed;
 
     @Column(name = "biografia", nullable = true)

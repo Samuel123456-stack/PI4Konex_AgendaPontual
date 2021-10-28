@@ -45,47 +45,38 @@ public class RecepcionistaServico {
     private ConvenioRepositorio repoConv;
 
     //Metodos do Crud
-    public Recepcionista AtualizaRecep(Recepcionista recep){
-        String nomeAtualizado = recep.getNomeRec();
-        String cpfAtualizado = recep.getCpfRec();
-        String sexoAtualizado = recep.getSexoRec();
-        String dataNascAtualizado = recep.getDataNasc();
-        String celAtualizado = recep.getCelular();
-        Integer idRecep = recep.getIdRec();
+    @Transactional(readOnly=true)
+    public void criaAtualizaRecep(Recepcionista recep){
+    	 repoRecep.save(recep);
 
+    }
 
-
-        recep.setNomeRec(nomeAtualizado);
-        recep.setCpfRec(cpfAtualizado);
-        recep.setSexoRec(sexoAtualizado);
-        recep.setDataNasc(dataNascAtualizado);
-        recep.setCelular(celAtualizado);
-
-        
-        
-        repoRecep.atualizaRecep(nomeAtualizado,cpfAtualizado,sexoAtualizado,dataNascAtualizado,celAtualizado,idRecep);
-        return recep;
+    @Transactional(readOnly=true)
+    public Recepcionista pegaRecepPorId(Integer id){
+       return repoRecep.getById(id);
     }
 
 
     //Metodos do CRUD Paciente
+    @Transactional(readOnly=true)
     public List<Paciente> listarTodosPaci(){
         return repoPaci.findAll();
     }
-
+    @Transactional(readOnly=false)
     public void criaPaci(Paciente paci){
         repoPaci.save(paci);
     }
-
+    @Transactional(readOnly=true)
     public Paciente pegaPaciPorId(Integer id){
        return repoPaci.getById(id);
     }
-
+    @Transactional(readOnly=true)
     public void deletaPaciPorId(Integer id){
         repoPaci.deleteById(id);
     }
 
     //Metodos do CRUD Endereco
+    @Transactional(readOnly = true)
     public List<Endereco> listarTodosEnd(){
         return repoEnd.findAll();
     }

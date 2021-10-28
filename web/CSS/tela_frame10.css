@@ -131,7 +131,7 @@
     color:#B9BFC9;
 }
 #container-landing form .input-block p:last-child{
-    font: normal 16px 'Mulish', sans-serif;
+    font: normal 14px 'Mulish', sans-serif;
     color:#858FA1;
     line-height:20px;
 }
@@ -162,4 +162,22 @@
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     letter-spacing: 0.3px;
     transition: letter-spacing 250ms ease-in-out;
+}
+#container-landing .dashboard, .new-encounter, .view-encounter, .radar, .config{
+    margin-bottom:30px;
+}
+#container-landing .config span{
+    font-weight:bold;
+    color:#166CD0;
+}
+#container-landing .dashboard span, .new-encounter span, 
+.view-encounter span, .radar span, .config span, .help span, .feedback span, .sair span{
+    margin-left:22px;
+    font-size:16px;
+    cursor:pointer;
+    position:relative;
+    bottom:5px;
+}
+#container-landing .sair{
+    width:150px;
 }

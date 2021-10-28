@@ -39,8 +39,8 @@ public class Pagamento implements Serializable {
     
     @ManyToMany
     @JoinTable(name = "pag_plan",
-    joinColumns = @JoinColumn(name = "idpag"),
-    inverseJoinColumns = @JoinColumn(name = "idplan"))
+    joinColumns = @JoinColumn(name = "fk_pag_plan"),
+    inverseJoinColumns = @JoinColumn(name = "fk_plan_pag"))
     private List<Planos> planos = new ArrayList<>();;
 
     // Metodo Construtor

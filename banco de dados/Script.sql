@@ -3771,7 +3771,7 @@ CREATE TABLE consulta (
     fk_feed_cons Integer null,
     FOREIGN KEY (fk_agen_cons) REFERENCES agenda_medica (idagen),
     FOREIGN KEY (fk_rec_cons) REFERENCES receita (idrece),
-    FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnotif),
+    FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnot),
     FOREIGN KEY (fk_pag_cons) REFERENCES pagamento (idpag),
     FOREIGN KEY (fk_feed_cons) REFERENCES feedback (idfeed)
 );
@@ -3953,7 +3953,7 @@ on m.fk_esp_med = e.id_esp;
 
 select * from clinica;
 
-select m.idmed, m.pontos, m.nome medico, m.sobremim from clinica c
+select m.idmed, m.pontos, m.nome medico, m.sobremim, TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) as experiencia from clinica c
 inner join medico m
 on m.fk_cli_med = c.idcli
 inner join especialidade esp
@@ -3964,4 +3964,6 @@ inner join bairro b
 on e.fk_bai_end = b.idbai
 inner join cidade cid
 on b.fk_cid_bai = cid.idcid
-where cid.nome = 'São Paulo';
+where cid.idcid = 563;
+
+select * from pag_plan;

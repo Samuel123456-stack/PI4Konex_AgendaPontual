@@ -1,6 +1,7 @@
 package com.projeto.Entidades;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -9,85 +10,91 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "medico")
-public class Medico implements Serializable{
+public class Medico implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// Atributos
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idmed")
-    private Integer idMed;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idmed")
+	private Integer idMed;
 
-    @Column(name = "dtcriacao", columnDefinition = "TIMESTAMP")
-    private LocalDateTime dataCriaMed;
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private String foto;
 
-    @Column(name = "nome", nullable = true)
-    private String nomeMed;
+	@Column(name = "dtcriacao", columnDefinition = "TIMESTAMP")
+	private LocalDateTime dataCriaMed;
 
-    @Column(name = "datanasci", nullable = true)
-    private LocalDate dataNasc;
+	@Column(name = "nome", nullable = true)
+	private String nomeMed;
 
-    @Column(name = "sexo", nullable = true)
-    private String sexoMed;
+	@Column(name = "datanasci", nullable = true)
+	private LocalDate dataNasc;
 
-    @Column(name = "cpf", nullable = true, unique = true)
-    private String cpfMed;
+	@Column(name = "sexo", nullable = true)
+	private String sexoMed;
 
-    @Column(name = "rg", nullable = true, unique = true)
-    private String rgMed;
+	@Column(name = "cpf", nullable = true, unique = true)
+	private String cpfMed;
 
-    @Column(nullable = true)
-    private String crm;
+	@Column(name = "rg", nullable = true, unique = true)
+	private String rgMed;
 
-    @Column(nullable = true, unique = true)
-    private String celular;
+	@Column(nullable = true)
+	private String crm;
 
-    @Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
-    private float valorMed;
+	@Column(nullable = true, unique = true)
+	private String celular;
 
-    @Column(name = "dataformatura", nullable = true, columnDefinition = "DATE")
-    private LocalDate dataFormatura;
+	@Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
+	private float valorMed;
 
-    @Column(name = "sobremim", nullable = true)
-    private String sobreMed;
+	@Column(name = "dataformatura", nullable = true, columnDefinition = "DATE")
+	private LocalDate dataFormatura;
 
-    @Column(name = "biografia", nullable = true)
-    private String bioMed;
+	@Column(name = "sobremim", nullable = true)
+	private String sobreMed;
 
-    @Column(nullable = true, length = 4)
-    private String sala;
-    
-    @Column(nullable = true)
-    private Integer pontos;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_cli_med")
-    private Clinica clinica;
-    
-    @OneToOne
-    @JoinColumn(name = "fk_end_med")
-    private Endereco endereco;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_usu_med")
-    private Usuario usuario;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_esp_med")
-    private Especialidade especialidade;
+	@Column(name = "biografia", nullable = true)
+	private String bioMed;
 
-    // Metodo Construtor
-    public Medico() {
+	@Column(nullable = true, length = 4)
+	private String sala;
 
-    }
-    // Metodo Construtor com Atributos
+	@Column(nullable = true)
+	private Integer pontos;
 
-	public Medico(Integer idMed, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc, String sexoMed,
-			String cpfMed, String rgMed, String crm, String celular, float valorMed, LocalDate dataFormatura,
-			String sobreMed, String bioMed, String sala, Integer pontos, Clinica clinica, Endereco endereco,
-			Usuario usuario, Especialidade especialidade) {
+	@ManyToOne
+	@JoinColumn(name = "fk_cli_med")
+	private Clinica clinica;
+
+	@OneToOne
+	@JoinColumn(name = "fk_end_med")
+	private Endereco endereco;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_usu_med")
+	private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_esp_med")
+	private Especialidade especialidade;
+
+	// Metodo Construtor
+	public Medico() {
+
+	}
+	// Metodo Construtor com Atributos
+
+	public Medico(Integer idMed, String foto, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc,
+			String sexoMed, String cpfMed, String rgMed, String crm, String celular, float valorMed,
+			LocalDate dataFormatura, String sobreMed, String bioMed, String sala, Integer pontos, Clinica clinica,
+			Endereco endereco, Usuario usuario, Especialidade especialidade) {
+		super();
 		this.idMed = idMed;
+		this.foto = foto;
 		this.dataCriaMed = dataCriaMed;
 		this.nomeMed = nomeMed;
 		this.dataNasc = dataNasc;
@@ -114,6 +121,14 @@ public class Medico implements Serializable{
 
 	public void setIdMed(Integer idMed) {
 		this.idMed = idMed;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public LocalDateTime getDataCriaMed() {
@@ -264,7 +279,7 @@ public class Medico implements Serializable{
 	public int hashCode() {
 		return Objects.hash(idMed);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -19,8 +19,6 @@ import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.MedicoServico;
 
-
-
 @Controller
 public class HomeController {
 	
@@ -110,6 +108,13 @@ public class HomeController {
 	@GetMapping("/bairro")
 	public ResponseEntity<List<Bairro>> buscaBairro(){
 		List<Bairro> list = baiServ.buscaBairro();
+		
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping("/medico")
+	public ResponseEntity<List<MedicoDTO>> buscaDados(){
+		List<MedicoDTO> list = medServ.buscaMed();
 		
 		return ResponseEntity.ok(list);
 	}

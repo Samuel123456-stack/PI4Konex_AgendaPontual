@@ -136,8 +136,8 @@ public class RecepcionistaController {
 
     @RequestMapping("/atualizaRecep")
     public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu){
-         usu.setIdUsu(19);
-        recep.setIdRec(1);
+        /*usu.setIdUsu(19);
+        recep.setIdRec(1);*/
         
         usuServ.atualizaUsuario(usu);
         recepServ.atualizaRecep(recep);

@@ -35,4 +35,15 @@ public class UsuarioServico {
             repoUsu.deleteById(id);
         }
 
+        @Transactional(readOnly = false)
+        public Usuario atualizaUsuario(Usuario usu){
+            Integer idUsu = usu.getIdUsu();
+            Usuario usuario = repoUsu.findById(idUsu).get();
+            usuario.setEmail(usu.getEmail());
+            usuario.setConfirmaEmail(usu.getEmail());
+            usuario.setSenha(usu.getSenha());
+            usuario.setConfirmaSenha(usu.getSenha());
+            return repoUsu.save(usuario);
+        }
+
 }

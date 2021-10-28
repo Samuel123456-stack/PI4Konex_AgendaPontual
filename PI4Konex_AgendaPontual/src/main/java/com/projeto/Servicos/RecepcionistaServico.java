@@ -45,8 +45,8 @@ public class RecepcionistaServico {
     private ConvenioRepositorio repoConv;
 
     //Metodos do Crud
-    @Transactional(readOnly=true)
-    public void criaAtualizaRecep(Recepcionista recep){
+    @Transactional(readOnly=false)
+    public void criaRecep(Recepcionista recep){
     	 repoRecep.save(recep);
 
     }
@@ -54,6 +54,16 @@ public class RecepcionistaServico {
     @Transactional(readOnly=true)
     public Recepcionista pegaRecepPorId(Integer id){
        return repoRecep.getById(id);
+    }
+
+    @Transactional(readOnly = false)
+    public Recepcionista atualizaRecep(Recepcionista recep){
+        Integer idRec = recep.getIdRec();
+        Recepcionista recepcionista = repoRecep.findById(idRec).get();
+        recepcionista.setNomeRec(recep.getNomeRec());
+        recepcionista.setCpfRec(recep.getCpfRec());
+        recepcionista.setDataNasc(recep.getDataNasc());
+        return repoRecep.save(recepcionista);
     }
 
 

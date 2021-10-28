@@ -126,17 +126,17 @@
                                 <div class="first-block">
                                     <div class="input-block">
                                         <p>NOME</p>
-                                        <input class="name" name="nomeRec" th:field="*{recep.nomeRec}" th:text="*{recep.nomeRec}"></p>
+                                        <input class="name" name="nomeRec" th:field="*{recep.nomeRec}" th:text="*{recep.nomeRec}">
                                     </div>
     
                                     <div class="input-block">
                                         <p>CPF/CNPJ</p>
-                                       <input name="cpfRec" th:field="*{recep.cpfRec}" th:text="*{recep.cpfRec}" class="cpf-cnpj"></p>
+                                       <input name="cpfRec" th:field="*{recep.cpfRec}" th:text="*{recep.cpfRec}" class="cpf-cnpj">
                                     </div>
     
                                     <div class="input-block">
                                         <p>DATA DE NASCIMENTO</p>
-                                        <input name="dataNasc" th:field="*{recep.dataNasc}" th:text="*{recep.dataNasc}" class="date-birth"></p>
+                                        <input name="dataNasc" th:field="*{recep.dataNasc}" th:text="*{recep.dataNasc}" class="date-birth">
                                     </div>
 
                                     <div class="input-block">
@@ -148,17 +148,19 @@
                                 <div class="second-block">
                                     <div class="input-block">
                                         <p>E-MAIL</p>
-                                        <input class="email" name="email" th:field="*{usu.email}" th:text="*{usu.email}"></p>
+                                        <input class="email" name="email" th:field="*{usu.email}" th:text="*{usu.email}">
                                     </div>
 
                                     <div class="input-block">
                                         <p>SENHA</p>
-                                        <input class="password" name="senha" th:field="*{usu.senha}" th:text="*{usu.senha}"></p>
+                                        <input class="password" name="senha" th:field="*{usu.senha}" th:text="*{usu.senha}">
                                     </div>
 
                                     <div class="input-block">
                                         <input type="checkbox" name="female-checkbox" checked="checked" />
                                         <span class="female">Feminino</span>
+                                        <input type="checkbox" name="male-checkbox" checked="checked" />
+                                        <span class="male">Masculino</span>
                     
                                     </div>
 

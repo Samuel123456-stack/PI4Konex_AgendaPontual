@@ -100,21 +100,21 @@
             <div class="form-container">
                 <h3>Resultado da consulta</h3>
                 <div class="form-structure">
-                    <form action="#" method="">
+                    <form action="#" th:action="@{/recepcionista/formConsRecep}" method="">
                         <div class="first-block">
                             <div class="input-block">
                                 <p>NOME</p>
-                                <p class="name-input">Fernanda Soares de Mendonca</p>
+                                <input name="nomePaci" th:field="*{paci.nomePaci}" class="name-input">
                             </div>
 
                             <div class="input-block">
                                 <p>CPF/CNPJ</p>
-                                <p class="cpf_cnpj">230.001.265-32</p>
+                                <input name="cpf" th:field="*{paci.cpf}" class="cpf_cnpj">
                             </div>
 
                             <div class="input-block">
                                 <p>DATA DE NASCIMENTO</p>
-                                <p class="birht-date">18/03/1990</p>
+                                <input name="dataNasc" th:field="*{paci.dataNasc}" class="birht-date">
                             </div>
                             <div class="input-block">
                                 <p>ESTADO NASC</p>
@@ -132,35 +132,37 @@
 
                         <div class="second-block">
                             <div class="input-block">
-                                <input type="checkbox" name="checkbox-female" checked="checked" />
+                                <input type="checkbox" name="sexo" value="Feminino" th:field="*{paci.sexo}"/>
                                 <span class="female">Feminino</span>
+                                <input type="checkbox" name="sexo" value="Masculino" th:field="*{paci.sexo}"/>
+                                <span class="female">Masculino</span>
                             </div>
 
                             <div class="input-block">
                                 <p>E-MAIL</p>
-                                <p class="email">nanda.so@gmail.com</p>
+                                <input name="email" th:field="*{usu.email}" class="email">
                             </div>
 
                             <div class="input-block">
                                 <p>SUA RESIDENCIA</p>
-                                <p class="residence">Rua Jorge Silva Tamanduá </p>
+                                <input name="logradouro" th:field="*{end.logradouro}" class="residence">
                             </div>
 
                             <div class="input-block">
                                 <p>NUMERAÇÃO</p>
-                                <p class="number">78</p>
+                                <input name="numero" th:field="*{end.numero}" class="number">
                             </div>
 
                             <div class="input-block">
                                 <p>CEP</p>
-                                <p class="cep">07.551-130</p>
+                                <input name="cep" th:field="*{end.cep}" class="cep">
                             </div>
                         </div>
 
                         <div class="third-block">
                             <div class="input-block">
                                 <p>COMPLEMENTO</p>
-                                <p class="complemento">Casa A</p>
+                                <input name="complemento" th:field="*{end.complemento}" class="complemento">
                             </div>
 
                             <div class="input-block">
@@ -170,11 +172,11 @@
 
                             <div class="input-block">
                                 <p>DATA DE CADASTRO</p>
-                                <p class="register-date">18/09/2021</p>
+                                <input name="dataCriaPaci" th:field="*{paci.dataCriaPaci}" class="register-date">
                             </div>
 
                             <div class="submit-button">
-                                <input type="button" value="ALTERAR DADOS" />
+                                <input type="submit" value="ALTERAR DADOS" />
                             </div>
                         </div>
                     </form>
@@ -191,73 +193,27 @@
                         <td>CÓDIGO</td>
                         <td>NOME DO ESPECIALISTA</td>
                         <td>ESPECIALIDADE</td>
-                        <td>DATA/HORÁRIO</td>
+                        <td>DATA</td>
+                        <td>HORÁRIO</td>
                         <td>ATENDIMENTO</td>
                         <td>UPD</td>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
+                    <tr th:each="consAgen:${listaConsulta}" >
                         <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
                             </svg>
                             </td>
-                        <td>#236035</td>
-                        <td>Silva Ribeiro de Aragão</td>
-                        <td>Cardiologista</td>
-                        <td>30/08/2021 - 14:00h</td>
+                        <td th:text="*{consAgen.idAgen}"></td>
+                        <td th:text="*{consAgen.idPaci.nomePaci}"></td>
+                        <td th:text="*{consAgen.idMed.especialidade.nomeEsp}"></td>
+                        <td th:text="*{consAgen.dataAgendada}"></td>
+                        <td th:text="*{consAgen.idHora.horario}"></td>
                         <td>14:35h</td>
                         <td>
                             <img src="/image/check-icon.png" alt="icon" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
-                            </svg>
-                            </td>
-                        <td>#659307</td>
-                        <td>Amanda Alky Costa</td>
-                        <td>Ginegologia</td>
-                        <td>15/08/2021 - 14:30h</td>
-                        <td>14:35h</td>
-                        <td>
-                            <img src="/image/check-icon.png" alt="icon" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
-                            </svg>
-                            </td>
-                        <td>#854478</td>
-                        <td>Piter Rodriguez de Paiva</td>
-                        <td>Endocrinologia</td>
-                        <td>05/08/2021 - 11:15h</td>
-                        <td>11:20h</td>
-                        <td>
-                            <img src="/image/check-icon.png" alt="icon" />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="5" cy="5.78906" r="5" fill="#7B61FF"/>
-                            </svg>
-                            </td>
-                        <td>#965784</td>
-                        <td>Silva Ribeiro de Aragão</td>
-                        <td>Cardiologista</td>
-                        <td>15/03/2021 - 14:00h</td>
-                        <td>NDA</td>
-                        <td>
-                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 0.789062C4.44444 0.789062 0 5.23351 0 10.7891C0 16.3446 4.44444 20.7891 10 20.7891C15.5556 20.7891 20 16.3446 20 10.7891C20 5.23351 15.5556 0.789062 10 0.789062ZM10 18.5668C5.66667 18.5668 2.22222 15.1224 2.22222 10.7891C2.22222 6.45573 5.66667 3.01128 10 3.01128C14.3333 3.01128 17.7778 6.45573 17.7778 10.7891C17.7778 15.1224 14.3333 18.5668 10 18.5668Z" fill="#E5E5E5"/>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2071 8.20328L9 14.7891H7V7.49617H9V11.582L13.7929 6.78906L15.2071 8.20328Z" fill="#E5E5E5"/>
-                            </svg>
                         </td>
                     </tr>
 

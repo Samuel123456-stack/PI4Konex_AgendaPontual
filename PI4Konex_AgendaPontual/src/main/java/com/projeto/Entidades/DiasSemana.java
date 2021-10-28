@@ -8,6 +8,7 @@ public class DiasSemana {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="iddia")
     private int idDia;
 
     @Column(nullable = true)

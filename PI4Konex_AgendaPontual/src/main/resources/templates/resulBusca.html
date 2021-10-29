@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/resulBusca.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script th:src="@{/js/selectedCidBai.js}"></script>
     <title>Resultado Busca</title>
 </head>
 <body>
@@ -51,18 +54,15 @@
                 </svg>
                 <H3>Filtrar</H3>
                 <h2>Localidade</h2>
-                <select>
+                <select name="cidade" id="cidade">
                     <option value="">Selecione a cidade</option>
                     <option th:each="cid : ${cidades}"
                            	th:value="${cid.idCid}"                             	
                             th:text="${cid.nome}">
                 </select>
                 <div style="height: 20px;"></div>
-                <select>
+                <select name="bairro" id="bairro">
                     <option value="">Selecione o bairro</option>
-                    <option th:each="bai :${bairros}"
-                    		th:value="${bai.idBai}"
-                    		th:text="${bai.nome}"></option>
                 </select>
                 <h2>Especialidade</h2>
                 <div style="height: 05px;"></div>
@@ -203,5 +203,6 @@
         <p>©2021- Agenda Pontual.  Todos os direitos reservados. Desenvolvido por 
             Konex - Soluções Tecnológicas.</p>
     </div>
+    
 </body>
 </html>

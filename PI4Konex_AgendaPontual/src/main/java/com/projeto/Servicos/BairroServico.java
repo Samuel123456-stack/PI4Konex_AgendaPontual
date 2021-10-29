@@ -13,10 +13,10 @@ import com.projeto.Repositorios.BairroRepositorio;
 public class BairroServico {
 	
 	@Autowired
-	private BairroRepositorio repositorio;
+	private BairroRepositorio repoBai;
 	
 	@Transactional(readOnly = true)
 	public List<Bairro> buscaBairro(){
-		return repositorio.findAll();
+		return repoBai.findAll();
 	}
 }

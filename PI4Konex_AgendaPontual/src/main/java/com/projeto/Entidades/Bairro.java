@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +31,11 @@ public class Bairro implements Serializable {
 
 	@Column(nullable = true)
 	private String nome;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "fk_cid_bai")
 	private Cidade cidade;
-
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "bairro")
 	private List<Endereco> endereco = new ArrayList<>();
@@ -42,10 +43,9 @@ public class Bairro implements Serializable {
 	public Bairro() {
 	}
 
-	public Bairro(int idBai, String nome, Cidade cidade) {
+	public Bairro(int idBai, String nome) {
 		this.idBai = idBai;
 		this.nome = nome;
-		this.cidade = cidade;
 	}
 
 //Getters e Setters
@@ -60,10 +60,7 @@ public class Bairro implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	
 
 	public Cidade getCidade() {
 		return cidade;
@@ -72,6 +69,11 @@ public class Bairro implements Serializable {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 
 	public List<Endereco> getEndereco() {
 		return endereco;

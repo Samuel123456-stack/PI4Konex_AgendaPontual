@@ -3,15 +3,16 @@ package com.projeto.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Dto.MedicoDTO;
-import com.projeto.Entidades.Bairro;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Servicos.BairroServico;
@@ -59,11 +60,9 @@ public class HomeController {
 		if(esp != null && cidade == null) {
 			List<MedicoDTO> medicos = medServ.buscaEsp(esp.trim().toUpperCase());
 			List<Cidade> cidades = cidServ.findAll();
-			List<Bairro> bairros = baiServ.buscaBairro();
 			List<Especialidade> especs = espServ.buscaEsp();
 			mv.addObject("cidades", cidades);
 			mv.addObject("medicos", medicos);
-			mv.addObject("bairros", bairros);
 			mv.addObject("especs", especs);
 			return mv;
 			
@@ -71,33 +70,27 @@ public class HomeController {
 		else if (cidade != null && esp == null) {
 			List<MedicoDTO> medicos = medServ.buscaMedCid(cidade);
 			List<Cidade> cidades = cidServ.findAll();
-			List<Bairro> bairros = baiServ.buscaBairro();
 			List<Especialidade> especs = espServ.buscaEsp();
 			mv.addObject("medicos", medicos);
 			mv.addObject("cidades", cidades);
-			mv.addObject("bairros", bairros);
 			mv.addObject("especs", especs);
 			return mv;
 		}
 		else if (esp != null && cidade != null) {
 			List<MedicoDTO> medicos = medServ.buscaMedEsp(cidade, esp);
 			List<Cidade> cidades = cidServ.findAll();
-			List<Bairro> bairros = baiServ.buscaBairro();
 			List<Especialidade> especs = espServ.buscaEsp();
 			mv.addObject("cidades", cidades);
 			mv.addObject("medicos", medicos);
-			mv.addObject("bairros", bairros);
 			mv.addObject("especs", especs);
 			return mv;
 		}
 		else {
 			List<MedicoDTO> medicos = medServ.buscaMed();
 			List<Cidade> cidades = cidServ.findAll();
-			List<Bairro> bairros = baiServ.buscaBairro();
 			List<Especialidade> especs = espServ.buscaEsp();
 			mv.addObject("cidades", cidades);
 			mv.addObject("medicos", medicos);
-			mv.addObject("bairros", bairros);
 			mv.addObject("especs", especs);
 			return mv;
 		}
@@ -106,17 +99,16 @@ public class HomeController {
 	}
 	
 	@GetMapping("/bairro")
-	public ResponseEntity<List<Bairro>> buscaBairro(){
-		List<Bairro> list = baiServ.buscaBairro();
+	@ResponseBody
+	public String buscaBairro(@RequestParam Integer idcid){
 		
-		return ResponseEntity.ok(list);
+		String json = null;
+		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
+		try {
+			json = new ObjectMapper().writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
 	}
-	
-	@GetMapping("/medico")
-	public ResponseEntity<List<MedicoDTO>> buscaDados(){
-		List<MedicoDTO> list = medServ.buscaMed();
-		
-		return ResponseEntity.ok(list);
-	}
-	
 }

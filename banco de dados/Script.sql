@@ -658,6 +658,12 @@ INSERT INTO cidade(nome)values
 ("Chavantes"),
 ("Estiva Gerbi");
 
+/*Para excluir cidades sem bairros relacionado*/
+delete c from cidade c
+left join bairro b
+on fk_cid_bai = idcid
+where b.idbai is null and  b.nome is null;
+
 CREATE TABLE bairro(
     idbai INTEGER NOT NULL PRIMARY KEY auto_increment,
     nome VARCHAR(200) NOT NULL,

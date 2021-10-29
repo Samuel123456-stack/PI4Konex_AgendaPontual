@@ -36,10 +36,10 @@ public class Paciente {
     @Column(nullable = true, unique = true)
     private String sexo;
 
-    @Column(nullable = true, unique = true)
+    @Column(name = "primeiraconsulta", nullable = true, unique = true)
     private boolean primeiraConsulta;
 
-    @Column(nullable = true, unique = true)
+    @Column(name = "sintomasgripe",nullable = true, unique = true)
     private boolean sintomasGripe;
 
     @JoinColumn(name = "fk_conv_paci")

@@ -105,7 +105,25 @@ public class RecepcionistaController {
 
     //Passa para a tela de Consulta da Recepcionista
     @RequestMapping("/consRecep")
-    public String consultaRecep(){
+    public String consultaRecep(Model model){
+        Paciente paci = new Paciente();
+        Endereco end = new Endereco();
+        Usuario usu = new Usuario();
+
+        model.addAttribute("paci", paci);
+        model.addAttribute("end", end);
+        model.addAttribute("usu", usu);
+
+        return "/tela_consRes";
+    }
+
+    @RequestMapping("/formConsRecep")
+    public String formConsultaRecep(@ModelAttribute("paci") Paciente paci, @ModelAttribute("end") Endereco end,@ModelAttribute("usu") Usuario usu,  Model model){
+        System.out.println("Saida"+paci.getNomePaci());
+        Integer idPaci = recepServ.buscaIdporNome(paci.getNomePaci());
+        System.out.println("Saida"+idPaci);
+        List<Agenda> listaConsulta = recepServ.listaConsAgenda(idPaci);
+        model.addAttribute("listaConsulta", listaConsulta);
 
         return "/tela_consRes";
     }

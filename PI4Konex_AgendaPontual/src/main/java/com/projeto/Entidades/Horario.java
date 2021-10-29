@@ -11,7 +11,7 @@ public class Horario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @Column(name = "idhor")
     private int idHora;
 
     @Column(nullable = true)

@@ -10,24 +10,29 @@ public class Agenda {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idagen")
     private int idAgen;
 
+    @ManyToOne
     @JoinColumn(name = "fk_dia_agen", unique = true)
-    private int idDia;
+    private DiasSemana idDia;
 
+    @ManyToOne
     @JoinColumn(name = "fk_hor_agen", unique = true)
-    private int idHora;
+    private Horario idHora;
 
+    @ManyToOne
     @JoinColumn(name = "fk_med_agen", unique = true)
-    private int idMed;
+    private Medico idMed;
 
+    @ManyToOne
     @JoinColumn(name = "fk_paci_agen", unique = true)
-    private int idPaci;
+    private Paciente idPaci;
 
-    @Column(name = "data_agendada", nullable = true, unique = true, columnDefinition = "DATE")
+    @Column(name = "dataagendada", nullable = true, unique = true, columnDefinition = "DATE")
     private LocalDate dataAgendada;
 
-    @Column(name = "informacoes_adic", nullable = true)
+    @Column(name = "informacoesadic", nullable = true)
     private String infoAdicAgen;
 
     // Metodo Construtor
@@ -36,7 +41,7 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgen, int idDia, int idHora, int idMed, int idPaci, LocalDate dataAgendada,
+    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico idMed, Paciente idPaci, LocalDate dataAgendada,
             String infoAdicAgen) {
         this.idAgen = idAgen;
         this.idDia = idDia;
@@ -56,35 +61,35 @@ public class Agenda {
         this.idAgen = idAgen;
     }
 
-    public int getIdDia() {
+    public DiasSemana getIdDia() {
         return idDia;
     }
 
-    public void setIdDia(int idDia) {
+    public void setIdDia(DiasSemana idDia) {
         this.idDia = idDia;
     }
 
-    public int getIdHora() {
+    public Horario getIdHora() {
         return idHora;
     }
 
-    public void setIdHora(int idHora) {
+    public void setIdHora(Horario idHora) {
         this.idHora = idHora;
     }
 
-    public int getIdMed() {
+    public Medico getIdMed() {
         return idMed;
     }
 
-    public void setIdMed(int idMed) {
+    public void setIdMed(Medico idMed) {
         this.idMed = idMed;
     }
 
-    public int getIdPaci() {
+    public Paciente getIdPaci() {
         return idPaci;
     }
 
-    public void setIdPaci(int idPaci) {
+    public void setIdPaci(Paciente idPaci) {
         this.idPaci = idPaci;
     }
 

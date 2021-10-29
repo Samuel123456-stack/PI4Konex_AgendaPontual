@@ -84,6 +84,10 @@ public class RecepcionistaServico {
     public void deletaPaciPorId(Integer id){
         repoPaci.deleteById(id);
     }
+    @Transactional(readOnly = true)
+    public Integer buscaIdporNome(String nome){
+        return repoPaci.buscaIdporNome(nome);
+    }
 
     //Metodos do CRUD Endereco
     @Transactional(readOnly = true)
@@ -104,6 +108,9 @@ public class RecepcionistaServico {
     }
 
     //Metodos CRUD Agenda
+    public List<Agenda> listaConsAgenda(Integer idPaci){
+        return repoAgen.consultaAgendamentos(idPaci);
+    }
     public void criaAtualizaAgen(Agenda agen){
         repoAgen.save(agen);
     }

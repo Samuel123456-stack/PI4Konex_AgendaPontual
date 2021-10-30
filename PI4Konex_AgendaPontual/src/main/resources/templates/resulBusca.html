@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/resulBusca.css">
+    <link rel="stylesheet" th:href="@{/css/resulBusca.css}">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script th:src="@{/js/selectedCidBai.js}"></script>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="meioResul">
-        <form action="">
+        <form th:action="@{/busca}">
             <div class="filtro">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 24H10C9.46957 24 8.96086 23.7893 8.58579 23.4142C8.21071 23.0391 8 22.5304 8 22V14.41L0.59 7C0.214412 6.62665 0.00223279 6.11958 0 5.59V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0H22C22.5304 0 23.0391 0.210714 23.4142 0.585786C23.7893 0.960859 24 1.46957 24 2V5.59C23.9978 6.11958 23.7856 6.62665 23.41 7L16 14.41V22C16 22.5304 15.7893 23.0391 15.4142 23.4142C15.0391 23.7893 14.5304 24 14 24ZM2 2V5.59L10 13.59V22H14V13.59L22 5.59V2H2Z" fill="#1CC4BF"/>
@@ -62,33 +62,33 @@
                 </select>
                 <div style="height: 20px;"></div>
                 <select name="bairro" id="bairro">
-                    <option value="">Selecione o bairro</option>
+                    <option value="">Primeiro a cidade</option>
                 </select>
                 <h2>Especialidade</h2>
                 <div style="height: 05px;"></div>
-                <select>
+                <select name="espec">
                     <option value="">Selecione uma especialidade</option>
                     <option th:each="esp :${especs}"
-                    		th:value="${esp.idEsp}"
+                    		th:value="${esp.nomeEsp}"
                     		th:text="${esp.nomeEsp}"></option>
                 </select>
                 <h2>Genêro</h2>
                 <div class="sexFiltro">
-                    <input type="checkbox" id="feminino" name="sexFiltro" value="feminino"class="option-check"/>
+                    <input type="checkbox" id="feminino" name="sexMas" value="feminino"class="option-check"/>
                     <label for="masculino">Feminino</label>
                     <div style="height: 20px;"></div>
-                    <input type="checkbox" id="masculino" name="sexFiltro" value="masculino"class="option-check"/>
+                    <input type="checkbox" id="masculino" name="sexFem" value="masculino"class="option-check"/>
                     <label for="feminino">Masculino</label>
                 </div>
                 <h2>Valor da Consulta</h2>
                 <div class="text">
                     <p>DE</p>
-                    <input type="text" name="min" placeholder="R$80,00">
+                    <input type="text" name="valorMin" placeholder="R$80,00">
                 </div>
                 <div style="width: 20px; height: 1px; float: left;"></div>
                 <div class="text">
                     <p>ATÉ</p>
-                    <input type="text" name="max" placeholder="R$150,00">
+                    <input type="text" name="valorMax" placeholder="R$150,00">
                 </div>
                 <h2>Experiência(anos)</h2>
                 
@@ -97,14 +97,14 @@
                       
                       
                       <div class="range-group">
-                          <input class="range-input" value="1" min="1" max="10" step="1" type="range" />
-                          <input class="range-input" value="10" min="1" max="10" step="1" type="range" />
+                          <input class="range-input" value="1" min="1" max="50" step="1" type="range" />
+                          <input class="range-input" value="1" min="1" max="50" step="1" type="range"/>
                         </div>
                      
                         <div class="number-group">
-                          <input class="number-input" type="number" value="1" min="1" max="10" id="esquerda" name="minimoExp"/>
+                          <input class="number-input" type="number" value="1" min="1" max="50" id="esquerda" name="minExp"/>
                           <div data-anima="top" class="mais">+</div> 
-                          <input class="number-input" type="number" value="10" min="1" max="10" name="maximoExp"/>
+                          <input class="number-input" type="number" value="10" min="1" max="50" name="maxExp"/>
                       </div>
                         
                     </div>

@@ -47,4 +47,12 @@ public class MedicoServico {
 		List<ResultadoPesqMedProjecao> result = repoMed.buscaEsp(esp);
 		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
 	}
+	
+	@Transactional(readOnly = true)
+	public List<MedicoDTO> buscaMedCompleta(Integer cidade,String esp, String sexMas, String sexFem, 
+			Integer bairro,String espec, Integer valorMin,Integer valorMax,Integer minExp,Integer maxExp){
+		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCompleta(cidade, bairro, espec, sexMas, 
+				sexFem, valorMin, valorMax, minExp, maxExp);
+		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
+	}
 }

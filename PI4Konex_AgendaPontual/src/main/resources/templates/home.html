@@ -39,7 +39,7 @@
                 <div class="itensBusca">
                     <h1>Busque um especialista .ual do jeito que você merece</h1>
                     <h2>Milhares profissionais estão prontos para te atender</h2>
-                    <form action="busca" method="get">
+                    <form th:action="@{/busca}">
                         <div class="selectBusca">
                             <p>Localidade</p>
                             <select name="cidade">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="textoBusca">
                             <p>Pelo o que você está procurando?</p>
-                            <input type="text" name="esp" id="espNome" required="Informe uma especialidade!" placeholder="Digite o nome da especialidade.">
+                            <input type="text" name="esp" id="espNome" required placeholder="Digite o nome da especialidade." th:value="${esp}">
                             <input type="hidden" id="espId">
                         </div>
                             <Button value="submit" id="btnBusca">Buscar e agendar</Button>
@@ -66,7 +66,7 @@
         <!--
             formulario para ir direto para o resultado da busca de medico de cada especialidade.
         -->
-            <form action="busca" method="get">
+            <form th:action="@{/busca}">
                 <h1>Os mais procurados</h1>
                 <input type="submit" value="Clinico Geral" name="esp">
                 <input type="submit" value="Cardiologista" name="esp">

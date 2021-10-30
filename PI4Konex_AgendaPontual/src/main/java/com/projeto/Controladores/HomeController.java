@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,11 +52,20 @@ public class HomeController {
 //		return new ModelAndView("/resulBusca").addObject("medicos", list);
 //	}
 	
-	@GetMapping("/busca")
+	@RequestMapping("/busca")
 	public ModelAndView buscaEsp(
-			@RequestParam(required = false) String esp, 
-			@RequestParam(required = false) Integer cidade) {
-		ModelAndView mv = new ModelAndView("/resulBusca");
+			@RequestParam(required = false) Integer cidade,
+			@RequestParam(required = false) String esp,
+			@RequestParam(required = false) Integer bairro,
+			@RequestParam(required = false) String espec,
+			@RequestParam(required = false) String sexMas,
+			@RequestParam(required = false) String sexFem,
+			@RequestParam(required = false) Integer valorMin,
+			@RequestParam(required = false) Integer valorMax,
+			@RequestParam(required = false) Integer minExp,
+			@RequestParam(required = false) Integer maxExp 
+			) {
+		ModelAndView mv = new ModelAndView("resulBusca");
 		
 		if(esp != null && cidade == null) {
 			List<MedicoDTO> medicos = medServ.buscaEsp(esp.trim().toUpperCase());
@@ -76,6 +86,19 @@ public class HomeController {
 			mv.addObject("especs", especs);
 			return mv;
 		}
+		else if (cidade != null && bairro != null && espec != null && 
+				sexMas != null && sexFem != null && valorMin != null && 
+				valorMax != null && minExp != null && maxExp != null) {
+			List<MedicoDTO> medicos = medServ.buscaMedCompleta(cidade, esp, sexMas, sexFem,
+					bairro, espec, valorMin, valorMax, minExp, maxExp);
+			List<Cidade> cidades = cidServ.findAll();
+			List<Especialidade> especs = espServ.buscaEsp();
+			mv.addObject("cidades", cidades);
+			mv.addObject("medicos", medicos);
+			mv.addObject("especs", especs);
+			return mv;
+			
+		}
 		else if (esp != null && cidade != null) {
 			List<MedicoDTO> medicos = medServ.buscaMedEsp(cidade, esp);
 			List<Cidade> cidades = cidServ.findAll();
@@ -84,6 +107,7 @@ public class HomeController {
 			mv.addObject("medicos", medicos);
 			mv.addObject("especs", especs);
 			return mv;
+			
 		}
 		else {
 			List<MedicoDTO> medicos = medServ.buscaMed();

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+@import url('global.css');
 
 *{
     margin:0;
@@ -133,6 +133,21 @@
     letter-spacing: 0.2px;
 }
 #container-landing .exit-button button:hover{
-    filter:brightness(0.9);
-    transition:filter ease-in-out 250ms;
+    letter-spacing: 0.4px;
+    background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
+    transition:letter-spacing ease 250ms;
+}
+#container-landing .dashboard, .new-encounter, .view-encounter, .radar, .config{
+    margin-bottom:30px;
+}
+#container-landing .dashboard span, .new-encounter span, 
+.view-encounter span, .radar span, .config span, .help span, .feedback span, .sair span{
+    margin-left:22px;
+    font-size:16px;
+    cursor:pointer;
+    position:relative;
+    bottom:5px;
+}
+#container-landing .sair{
+    width:150px;
 }

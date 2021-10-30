@@ -128,7 +128,7 @@
     transform: scale(1.5);
     color:#546582;
 }
-#container-landing input[type="button"]{
+#container-landing input[type="submit"]{
     width:100%;
     padding:20px 0;
     text-align: center;
@@ -140,7 +140,7 @@
     letter-spacing: 0.2px;
     cursor:pointer;
 }
-#container-landing input[type="button"]:hover{
+#container-landing input[type="submit"]:hover{
     letter-spacing: 0.4px;
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     transition:letter-spacing ease 250ms;

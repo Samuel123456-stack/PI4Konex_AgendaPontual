@@ -1,8 +1,13 @@
 package com.projeto.Controladores;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.projeto.Entidades.Agenda;
+import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.AjudaRec;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Convenio;
@@ -10,11 +15,14 @@ import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
+import com.projeto.Entidades.Pagamento;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.RecepcionistaRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
+import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
 
@@ -39,6 +47,10 @@ public class RecepcionistaController {
     RecepcionistaRepositorio repoRecep;
     @Autowired
     UsuarioRepositorio repoUsu;
+    @Autowired
+    PagamentoServico pagServ;
+    @Autowired
+    AjudaServico ajuServ;
     
 
 
@@ -160,6 +172,45 @@ public class RecepcionistaController {
         usuServ.atualizaUsuario(usu);
         recepServ.atualizaRecep(recep);
 
+        return "/tela_painelRecep";
+    }
+
+    @RequestMapping("/telaAjuda")
+    public String telaAjuda(Model model){
+        Ajuda aju = new Ajuda();
+        //AjudaRec ajuRec = new AjudaRec();
+        model.addAttribute("aju", aju);
+        //model.addAttribute("ajuRec", ajuRec);
+
+        return "/tela_ajuda";
+    }
+
+    @RequestMapping("/telaFormAjuda")
+    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju){
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String dataSolic = dataFormatada.format(dataAtual);
+        aju.setDataSolic(dataSolic);
+        ajuServ.criaAjuda(aju);
+
+        return "/tela_painelRecep";
+    }
+
+    @RequestMapping("/telaRegPag")
+    public String telaRegisPag(Model model){
+        Pagamento pag = new Pagamento();
+        model.addAttribute("pag", pag);
+
+        return "/tela_regPayment";
+    }
+
+    @RequestMapping("/telaFormPag")
+    public String telaFormaPag(@ModelAttribute("pag")Pagamento pag){
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String dataPag = dataFormatada.format(dataAtual);
+        pag.setDataPag(dataPag);
+        pagServ.criaPag(pag);
         return "/tela_painelRecep";
     }
 

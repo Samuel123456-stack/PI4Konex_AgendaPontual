@@ -169,3 +169,6 @@ body{
 #container-landing .green_purple svg{
     margin:0 23px 0 21px;
 }
+#container-landing table tbody td:first-child{
+    padding-right:15px;
+}

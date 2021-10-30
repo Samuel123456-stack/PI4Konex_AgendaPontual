@@ -1,7 +1,6 @@
 package com.projeto.Entidades;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class Pagamento implements Serializable {
     private int idPag;
 
     @Column(name = "dtpgto", nullable = true, columnDefinition = "DATE")
-    private LocalDateTime dataPag;
+    private String dataPag;
 
     @Column(name = "formapagamento", nullable = true)
     private String formaPag;
@@ -49,7 +48,7 @@ public class Pagamento implements Serializable {
     }
 
     // Metodo Construtor com Atributos
-    public Pagamento(int idPag, LocalDateTime dataPag, String formaPag, float valor) {
+    public Pagamento(int idPag, String dataPag, String formaPag, float valor) {
         this.idPag = idPag;
         this.dataPag = dataPag;
         this.formaPag = formaPag;
@@ -65,11 +64,11 @@ public class Pagamento implements Serializable {
         this.idPag = idPag;
     }
 
-    public LocalDateTime getDataPag() {
+    public String getDataPag() {
         return dataPag;
     }
 
-    public void setDataPag(LocalDateTime dataPag) {
+    public void setDataPag(String dataPag) {
         this.dataPag = dataPag;
     }
 

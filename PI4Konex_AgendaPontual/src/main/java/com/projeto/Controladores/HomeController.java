@@ -3,6 +3,7 @@ package com.projeto.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -134,5 +135,11 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return json;
+	}
+	
+	@GetMapping("/teste")
+	public ResponseEntity<List<MedicoDTO>> buscaTeste(@RequestParam Integer cidade, @RequestParam Integer bairro){
+		List<MedicoDTO> list = medServ.buscaTeste(cidade, bairro);
+		return ResponseEntity.ok().body(list);
 	}
 }

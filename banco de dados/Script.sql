@@ -658,12 +658,6 @@ INSERT INTO cidade(nome)values
 ("Chavantes"),
 ("Estiva Gerbi");
 
-/*Para excluir cidades sem bairros relacionado*/
-delete c from cidade c
-left join bairro b
-on fk_cid_bai = idcid
-where b.idbai is null and  b.nome is null;
-
 CREATE TABLE bairro(
     idbai INTEGER NOT NULL PRIMARY KEY auto_increment,
     nome VARCHAR(200) NOT NULL,
@@ -3309,6 +3303,12 @@ INSERT INTO bairro(nome, fk_cid_bai) VALUES
 ("Mato Dentro (Carolina, Trevo, Samambá)", (SELECT c.idcid FROM cidade c WHERE c.nome = "Ubatuba")),
 ("Ubatumirim", (SELECT c.idcid FROM cidade c WHERE c.nome = "Ubatuba")),
 ("Umuarama", (SELECT c.idcid FROM cidade c WHERE c.nome = "Ubatuba"));
+
+/*Para excluir cidades sem bairros relacionado*/
+delete c from cidade c
+left join bairro b
+on fk_cid_bai = idcid
+where b.idbai is null and  b.nome is null;
 
 CREATE TABLE endereco (
     idend Integer AUTO_INCREMENT PRIMARY KEY,

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projeto.Dto.MedicoDTO;
 import com.projeto.Entidades.Medico;
+import com.projeto.Repositorios.MedicoPesquisaDinamica;
 import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.projecao.ResultadoPesqMedProjecao;
 
@@ -17,6 +18,9 @@ public class MedicoServico {
 	
 	@Autowired
 	private MedicoRepositorio repoMed;
+	
+	@Autowired
+	private MedicoPesquisaDinamica repoMedPesq;
 	
 	
 	@Transactional(readOnly = true)
@@ -55,4 +59,10 @@ public class MedicoServico {
 				sexFem, valorMin, valorMax, minExp, maxExp);
 		return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());	
 	}
+	@Transactional(readOnly = true)
+	public List<MedicoDTO> buscaTeste(Integer cidade, Integer bairro){
+		return repoMedPesq.buscaMedDinamica(cidade, bairro);
+			
+	}
+	
 }

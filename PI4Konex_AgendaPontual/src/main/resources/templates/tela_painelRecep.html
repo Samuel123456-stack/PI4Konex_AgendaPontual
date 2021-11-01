@@ -128,79 +128,23 @@
                             <thead>
                                 <tr>
                                     <td>PACIENTE</td>
+                                    <td>MEDICO</td>
                                     <td>ESPECIALISTA</td>
-                                    <td>DATA-HORARIO</td>
+                                    <td>DATA</td>
+                                    <td>HORARIO</td>
                                     <td>SALA</td>
                                     <td>UPD</td>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>João Mendes</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>26/08/2021 - 13:00h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Cleber Ribeiro</td>
-                                    <td>Diana C. - Neurologis...</td>
-                                    <td>25/08/2021 - 16:00h</td>
-                                    <td>E030</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Jorge Silva</td>
-                                    <td>Roberto M. - Clinico G.</td>
-                                    <td>25/08/2021 - 15:00h</td>
-                                    <td>A040</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mariana G.</td>
-                                    <td>Marta S. - Ortopedista</td>
-                                    <td>25/08/2021 - 14:00h</td>
-                                    <td>B032</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Mirelle C.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 14:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Rogrigo M.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 13:30h</td>
-                                    <td>C145</td>
-                                    <td>
-                                        <img src="/image/check-icon.png" alt="icon" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Sebastian A.</td>
-                                    <td>Dr. Silva - Cardiologia </td>
-                                    <td>25/08/2021 - 12:30h</td>
-                                    <td>C145</td>
+                                <tr th:each="listaPainel:${listagemPainel}">
+                                    <td th:text="*{listaPainel.idPaci.nomePaci}"></td>
+                                    <td th:text="*{listaPainel.idMed.nomeMed}"></td>
+                                    <td th:text="*{listaPainel.idMed.especialidade.nomeEsp}"></td>
+                                    <td th:text="*{listaPainel.dataAgendada}"></td>
+                                    <td th:text="*{listaPainel.idHora.horario}"></td>
+                                    <td th:text="*{listaPainel.idMed.sala}"></td>
                                     <td>
                                         <img src="/image/check-icon.png" alt="icon" />
                                     </td>
@@ -232,8 +176,10 @@
                     </a>
                     </button>
                     <button type="button">
+                        <a style="text-decoration: none;" th:href="@{/recepcionista/telaCancelaAgen}">
                         <img src="/image/cancel-icon.png" alt="icon" />
                         CANCELAR AGENDAMENTOS
+                    </a>
                     </button>
                     <button type="button">
                         <a style="text-decoration: none;" th:href="@{/recepcionista/telaRegPag}">

@@ -3,12 +3,14 @@ package com.projeto.Repositorios;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.TypedQuery;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.projeto.Dto.MedicoDTO;
-import com.projeto.projecao.ResultadoPesqMedProjecao;
+import com.projeto.Entidades.Medico;
 
 @Repository
 public class MedicoPesquisaDinamica {
@@ -19,7 +21,7 @@ public class MedicoPesquisaDinamica {
 		this.em = em;
 	}
 	
-	public List<MedicoDTO> buscaMedDinamica(Integer cidade,Integer bairro
+	public List<Medico> buscaMedDinamica(Integer cidade,Integer bairro
     		){
 		
 		String query = "select m.idmed, m.pontos,m.foto, m.nome, m.sobremim "
@@ -31,26 +33,21 @@ public class MedicoPesquisaDinamica {
 		
 		String condicao = "where";
 		
+		
 		if(cidade != null) {
-			query += condicao + "cid.idcid";
+			query += condicao + " cid.idcid";
 			condicao = "and";
 			
 		}
-		if (cidade != null && bairro != null) {
-			query += condicao + "b.idbai";
-		}
 		if(cidade == null && bairro != null) {
-			query += condicao + "b.idbai";
+			query += condicao + " b.idbai";
 		}
 		
-		TypedQuery<MedicoDTO> q = em.createQuery(query, MedicoDTO.class);
+		TypedQuery<Medico> q = em.createQuery(query, Medico.class);
 		
 		if(cidade != null) {
 			q.setParameter("cidade", cidade);
 			
-		}
-		if (cidade != null && bairro != null) {
-			q.getResultList();
 		}
 		if(cidade == null && bairro != null) {
 			q.setParameter("bairro", bairro);

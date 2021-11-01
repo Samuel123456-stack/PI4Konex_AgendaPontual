@@ -131,11 +131,11 @@
                 <form action="">
                     <img th:src="*{'data:image/png;base64,'+{medico.foto}}">
                     <div class="ptMed">
-                        <h3 th:text="${medico.pontos }+ PT"></h3>
+                        <h3 th:text="${medico.pontos}+ PT"></h3>
                     </div>
                     <div class="dadosMed">
-                        <h2 th:text="${medico.nome}"></h2>
-                        <p th:text="${medico.sobreMim}"></p>
+                        <h2 th:text="${medico.nomeMed}"></h2>
+                        <p th:text="${medico.sobreMed}"></p>
                     </div>
                     <input type="submit" value="AGENDAR"> 
                 </form>

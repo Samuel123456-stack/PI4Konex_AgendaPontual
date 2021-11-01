@@ -8,6 +8,10 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
+import com.projeto.projecao.ResultadoPesqMedProjecao;
+
 @Entity
 @Table(name = "medico")
 public class Medico implements Serializable {
@@ -113,6 +117,13 @@ public class Medico implements Serializable {
 		this.endereco = endereco;
 		this.usuario = usuario;
 		this.especialidade = especialidade;
+	}
+	public Medico(ResultadoPesqMedProjecao entity) {
+		idMed = entity.getIdMed();
+		foto = Base64.encodeBase64String(entity.getFoto());
+		pontos = entity.getPontos();
+		nomeMed = entity.getNome();
+		sobreMed = entity.getSobreMim();
 	}
 
 	public Integer getIdMed() {

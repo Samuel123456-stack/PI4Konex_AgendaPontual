@@ -2,7 +2,6 @@ package com.projeto.Servicos;
 
 import java.util.List;
 
-import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Convenio;
@@ -10,7 +9,6 @@ import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Recepcionista;
-import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.CidadeRepositorio;
 import com.projeto.Repositorios.ClinicaRepositorio;
 import com.projeto.Repositorios.ConvenioRepositorio;
@@ -33,8 +31,6 @@ public class RecepcionistaServico {
     private PacienteRepositorio repoPaci;
     @Autowired
     private EnderecoRepositorio repoEnd;
-    @Autowired
-    private AgendaRepositorio repoAgen;
     @Autowired
     private ClinicaRepositorio repoCli;
     @Autowired
@@ -105,22 +101,6 @@ public class RecepcionistaServico {
 
     public void deletaEndPorId(Integer id){
         repoEnd.deleteById(id);
-    }
-
-    //Metodos CRUD Agenda
-    public List<Agenda> listaConsAgenda(Integer idPaci){
-        return repoAgen.consultaAgendamentos(idPaci);
-    }
-    public void criaAtualizaAgen(Agenda agen){
-        repoAgen.save(agen);
-    }
-
-    public Agenda pegaAgenPorId(Integer id){
-        return repoAgen.getById(id);
-    }
-
-    public void deletaAgenPorId(Integer id){
-        repoAgen.deleteById(id);
     }
 
 

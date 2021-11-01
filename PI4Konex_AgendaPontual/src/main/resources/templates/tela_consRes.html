@@ -201,7 +201,9 @@
                 </thead>
 
                 <tbody>
+                    
                     <tr th:each="consAgen:${listaConsulta}" >
+                        
                         <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
                             </svg>
@@ -213,7 +215,9 @@
                         <td th:text="*{consAgen.idHora.horario}"></td>
                         <td>14:35h</td>
                         <td>
+                            <a th:href="@{/recepcionista/{idAgen}/telaAtualizaAgen (idAgen=${consAgen.idAgen})}">
                             <img src="/image/check-icon.png" alt="icon" />
+                        </a>
                         </td>
                     </tr>
 

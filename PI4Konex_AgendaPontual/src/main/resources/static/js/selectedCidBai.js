@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#cidade").change(function() {
 		var idcid = $(this).val();
-		var s = '<option value=' + -1 + '>Selecione o bairro</option>';
+		var s = '<option value=' + "" + '>Selecione o bairro</option>';
 		if (idcid > 0) {
 			$.ajax({
 				url: 'bairro',

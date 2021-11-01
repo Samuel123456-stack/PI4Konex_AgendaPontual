@@ -92,13 +92,13 @@ public class Medico implements Serializable {
 	}
 	// Metodo Construtor com Atributos
 
-	public Medico(Integer idMed, String foto, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc,
+	public Medico(Integer idMed, byte [] foto, LocalDateTime dataCriaMed, String nomeMed, LocalDate dataNasc,
 			String sexoMed, String cpfMed, String rgMed, String crm, String celular, float valorMed,
 			LocalDate dataFormatura, String sobreMed, String bioMed, String sala, Integer pontos, Clinica clinica,
 			Endereco endereco, Usuario usuario, Especialidade especialidade) {
 		super();
 		this.idMed = idMed;
-		this.foto = foto;
+		this.foto = Base64.encodeBase64String(foto);
 		this.dataCriaMed = dataCriaMed;
 		this.nomeMed = nomeMed;
 		this.dataNasc = dataNasc;
@@ -118,13 +118,13 @@ public class Medico implements Serializable {
 		this.usuario = usuario;
 		this.especialidade = especialidade;
 	}
-	public Medico(ResultadoPesqMedProjecao entity) {
-		idMed = entity.getIdMed();
-		foto = Base64.encodeBase64String(entity.getFoto());
-		pontos = entity.getPontos();
-		nomeMed = entity.getNome();
-		sobreMed = entity.getSobreMim();
-	}
+//	public Medico(ResultadoPesqMedProjecao entity) {
+//		idMed = entity.getIdMed();
+//		foto = Base64.encodeBase64String(entity.getFoto());
+//		pontos = entity.getPontos();
+//		nomeMed = entity.getNome();
+//		sobreMed = entity.getSobreMim();
+//	}
 
 	public Integer getIdMed() {
 		return idMed;

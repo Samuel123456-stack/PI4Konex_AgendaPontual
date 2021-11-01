@@ -3,6 +3,7 @@ package com.projeto.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Servicos.BairroServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
@@ -33,6 +35,7 @@ public class HomeController {
 	
 	@Autowired
 	private MedicoServico medServ;
+	
 	
 	@Autowired
 	private BairroServico baiServ;
@@ -53,74 +56,23 @@ public class HomeController {
 //		return new ModelAndView("/resulBusca").addObject("medicos", list);
 //	}
 	
-	@RequestMapping("/busca")
-	public ModelAndView buscaEsp(
-			@RequestParam(required = false) Integer cidade,
-			@RequestParam(required = false) String esp,
-			@RequestParam(required = false) Integer bairro,
-			@RequestParam(required = false) String espec,
-			@RequestParam(required = false) String sexMas,
-			@RequestParam(required = false) String sexFem,
-			@RequestParam(required = false) Integer valorMin,
-			@RequestParam(required = false) Integer valorMax,
-			@RequestParam(required = false) Integer minExp,
-			@RequestParam(required = false) Integer maxExp 
-			) {
+	@GetMapping("/busca")
+	public ModelAndView buscaEsp(@RequestParam(required = false) Integer cidade,
+			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
+			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
+			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
+			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
+			@RequestParam(required = false) Integer maxExp) {
 		ModelAndView mv = new ModelAndView("resulBusca");
-		
-		if(esp != null && cidade == null) {
-			List<Medico> medicos = medServ.buscaEsp(esp.trim().toUpperCase());
-			List<Cidade> cidades = cidServ.findAll();
-			List<Especialidade> especs = espServ.buscaEsp();
-			mv.addObject("cidades", cidades);
-			mv.addObject("medicos", medicos);
-			mv.addObject("especs", especs);
-			return mv;
-			
-		}
-		else if (cidade != null && esp == null) {
-			List<Medico> medicos = medServ.buscaMedCid(cidade);
-			List<Cidade> cidades = cidServ.findAll();
-			List<Especialidade> especs = espServ.buscaEsp();
-			mv.addObject("medicos", medicos);
-			mv.addObject("cidades", cidades);
-			mv.addObject("especs", especs);
-			return mv;
-		}
-		else if (cidade != null && bairro != null && espec != null && 
-				sexMas != null && sexFem != null && valorMin != null && 
-				valorMax != null && minExp != null && maxExp != null) {
-			List<Medico> medicos = medServ.buscaMedCompleta(cidade, esp, sexMas, sexFem,
-					bairro, espec, valorMin, valorMax, minExp, maxExp);
-			List<Cidade> cidades = cidServ.findAll();
-			List<Especialidade> especs = espServ.buscaEsp();
-			mv.addObject("cidades", cidades);
-			mv.addObject("medicos", medicos);
-			mv.addObject("especs", especs);
-			return mv;
-			
-		}
-		else if (esp != null && cidade != null) {
-			List<Medico> medicos = medServ.buscaMedEsp(cidade, esp);
-			List<Cidade> cidades = cidServ.findAll();
-			List<Especialidade> especs = espServ.buscaEsp();
-			mv.addObject("cidades", cidades);
-			mv.addObject("medicos", medicos);
-			mv.addObject("especs", especs);
-			return mv;
-			
-		}
-		else {
-			List<Medico> medicos = medServ.buscaMed();
-			List<Cidade> cidades = cidServ.findAll();
-			List<Especialidade> especs = espServ.buscaEsp();
-			mv.addObject("cidades", cidades);
-			mv.addObject("medicos", medicos);
-			mv.addObject("especs", especs);
-			return mv;
-		}
-		
-		
+
+		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
+				valorMax, minExp, maxExp);
+		List<Cidade> cidades = cidServ.findAll();
+		List<Especialidade> especs = espServ.buscaEsp();
+		mv.addObject("cidades", cidades);
+		mv.addObject("medicos", medicos);
+		mv.addObject("especs", especs);
+		return mv;
 	}
 	
 	@GetMapping("/bairro")
@@ -137,9 +89,12 @@ public class HomeController {
 		return json;
 	}
 	
+
+	
 	@GetMapping("/teste")
-	public ResponseEntity<List<Medico>> buscaTeste(@RequestParam Integer cidade, @RequestParam Integer bairro){
-		List<Medico> list = medServ.buscaTeste(cidade, bairro);
+	@ResponseBody
+	public ResponseEntity<List<Medico>> buscaTeste(){
+		List<Medico> list = medServ.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 }

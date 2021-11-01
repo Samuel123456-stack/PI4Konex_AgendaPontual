@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,58 +14,17 @@ import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.projecao.ResultadoPesqMedProjecao;
 
 
-@Service
-public class MedicoServico {
+public interface MedicoServico {
+
 	
-	@Autowired
-	private MedicoRepositorio repoMed;
+	List<Medico> listaMedPorCli(Integer id);
+
 	
-	@Autowired
-	private MedicoPesquisaDinamica repoMedPesq;
-	
-	
-	@Transactional(readOnly = true)
-	public List<Medico> listaMedCli(Integer id){
-		return repoMed.listaMedPorCli(id);
-	}
-	
-	@Transactional(readOnly = true)
-	public List<Medico> buscaMed(){
-		List<ResultadoPesqMedProjecao> result = repoMed.buscaMed();
-		return result.stream().map(x -> new Medico(x)).collect(Collectors.toList());	
-	}
-	
-	@Transactional(readOnly = true)
-	public List<Medico> buscaMedCid(Integer cidade){
-		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCid(cidade);
-		return result.stream().map(x -> new Medico(x)).collect(Collectors.toList());	
-	}
-	
-	@Transactional(readOnly = true)
-	public List<Medico> buscaMedEsp(Integer cidade, String esp){
-		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCidEsp(cidade, esp);
-		return result.stream().map(x -> new Medico(x)).collect(Collectors.toList());	
-	}
-	
-	@Transactional(readOnly = true)
-	public List<Medico> buscaEsp(String esp){
-		List<ResultadoPesqMedProjecao> result = repoMed.buscaEsp(esp);
-		return result.stream().map(x -> new Medico(x)).collect(Collectors.toList());	
-	}
-	
-	@Transactional(readOnly = true)
-	public List<Medico> buscaMedCompleta(Integer cidade,String esp, String sexMas, String sexFem, 
-			Integer bairro,String espec, Integer valorMin,Integer valorMax,Integer minExp,Integer maxExp){
-		List<ResultadoPesqMedProjecao> result = repoMed.buscaMedCompleta(cidade, bairro, espec, sexMas, 
-				sexFem, valorMin, valorMax, minExp, maxExp);
-		return result.stream().map(x -> new Medico(x)).collect(Collectors.toList());	
-	}
-	@Transactional(readOnly = true)
-	public List<Medico> buscaTeste(Integer cidade, Integer bairro){
-		return repoMedPesq.buscaMedDinamica(cidade, bairro);
+	List<Medico> findAll();
+
+
+	List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec,
+			String sexMas, String sexFem,Float valorMin , Float valorMax, 
+			Integer minExp, Integer maxExp);
 		
-		//return result.stream().map(x -> new MedicoDTO(x)).collect(Collectors.toList());
-			
-	}
-	
 }

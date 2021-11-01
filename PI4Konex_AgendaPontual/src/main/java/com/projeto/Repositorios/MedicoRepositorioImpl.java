@@ -10,20 +10,58 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
+import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
-import com.projeto.projecao.ResultadoPesqMedProjecao;
 
-
+@Repository
 public class MedicoRepositorioImpl implements MedicoRepositorio{
 	
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private JdbcTemplate jdbc;
+    
+    RowMapper<Medico> rowMapper = (rs, rowNum) ->{
+    	Medico med = new Medico();
+		med.setIdMed(rs.getInt("idmed"));
+		med.setFoto(rs.getString("foto"));
+		med.setPontos(rs.getInt("pontos"));
+		med.setNomeMed(rs.getString("nome"));
+		med.setDataNasc(rs.getDate("datanasci").toLocalDate());
+		med.setSexoMed(rs.getNString("sexo"));
+		med.setCpfMed(rs.getString("cpf"));
+		med.setRgMed(rs.getString("rg"));
+		med.setCrm(rs.getString("rg"));
+		med.setCelular(rs.getString("celular"));
+		med.setValorMed(rs.getFloat("valor"));
+		med.setCelular(rs.getString("celular"));
+		med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
+		med.setSobreMed(rs.getString("sobremim"));
+		med.setBioMed(rs.getString("biografia"));
+		med.setSala(rs.getString("sala"));
+		Endereco end = new Endereco();
+		end.setIdEnd(rs.getInt("fk_end_med"));
+		med.setEndereco(end);
+		Clinica cli = new Clinica();
+		cli.setIdCli(rs.getInt("fk_cli_med"));
+		med.setClinica(cli);
+		Especialidade esp = new Especialidade();
+		esp.setIdEsp(rs.getInt("fk_esp_med"));
+		med.setEspecialidade(esp);
+		return med;
+    };
+
+    
     @Override
-    public List<Medico> buscaTeste(Integer cidade, Integer bairro) {
+    public List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec, String sexMas, String sexFem,
+			Float valorMin, Float valorMax, Integer minExp, Integer maxExp) {
     	String condicao = "where";
     	int i = 0;
     	
@@ -37,22 +75,58 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
         List<Medico> medicos = new ArrayList<>();
 		try {
 			Connection conn = dataSource.getConnection();
-
+			
+			
 			PreparedStatement st = conn.prepareStatement(sql);
+			
 			
 			if (cidade != null) {
 				i++;
 				sql += condicao + " cid.idcid = ? ";
 				condicao = "and";
 				st.setInt(i, cidade);
-
 			}
-			if (bairro != null) {
-				i++;
-				sql += condicao + " b.idbai = ? ";
-			}
-			st.setInt(i, bairro);
-
+//			if (bairro != null) {
+//				i++;
+//				sql += condicao + " b.idbai = ? ";
+//				st.setInt(i, bairro);
+//			}
+//			if (espec != null) {
+//				i++;
+//				sql += condicao + " esp.nome = ? ";
+//				st.setString(i, espec);
+//			}
+//			if (sexMas != null) {
+//				i++;
+//				sql += condicao + " m.sexo = ? ";
+//				st.setString(i, sexMas);
+//			}
+//			if (sexFem != null) {
+//				i++;
+//				sql += condicao + " m.sexo = ? ";
+//				st.setString(i, sexFem);
+//			}
+//			if (valorMin != null) {
+//				i++;
+//				sql += "between" + " ? ";
+//				st.setFloat(i, valorMin);
+//			}
+//			if (valorMax != null) {
+//				i++;
+//				sql += condicao + " ? ";
+//				st.setFloat(i, valorMax);
+//			}
+//			if (minExp != null) {
+//				i++;
+//				sql += "between" + " ? ";
+//				st.setFloat(i, minExp);
+//			}
+//			if (maxExp != null) {
+//				i++;
+//				sql += condicao + " ? ";
+//				st.setFloat(i, maxExp);
+//			}
+			
 			ResultSet rs = st.executeQuery();
 			
 
@@ -62,7 +136,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 					med.setFoto(rs.getString("m.foto"));
 					med.setPontos(rs.getInt("m.pontos"));
 					med.setNomeMed(rs.getString("m.nome"));
-					med.setNomeMed(rs.getString("m.nome"));
+					med.setSobreMed(rs.getString("m.sobremim"));
 					medicos.add(med);
 				}
 				rs.close();
@@ -76,7 +150,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	@Override
 	public List<Medico> listaMedPorCli(Integer id) {
 
-		String sql = "select * from medico as m join clinica as c" + " on m.fk_cli_med=c.idcli where c.idcli= ?";
+		String sql = "select * from medico as m join clinica as c "
+				+ "on m.fk_cli_med=c.idcli where c.idcli= ?";
 
 		List<Medico> medicos = new ArrayList<>();
 
@@ -110,6 +185,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 					Endereco end = new Endereco();
 					end.setIdEnd(rs.getInt("fk_end_med"));
 					med.setEndereco(end);
+					Clinica cli = new Clinica();
+					cli.setIdCli(rs.getInt("fk_cli_med"));
+					med.setClinica(cli);
 					Especialidade esp = new Especialidade();
 					esp.setIdEsp(rs.getInt("fk_esp_med"));
 					med.setEspecialidade(esp);
@@ -123,41 +201,10 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		return medicos;
 	}
 
-	@Override
-	public List<ResultadoPesqMedProjecao> buscaMed() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ResultadoPesqMedProjecao> buscaMedCidEsp(Integer cidade, String esp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ResultadoPesqMedProjecao> buscaMedCid(Integer cidade) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ResultadoPesqMedProjecao> buscaEsp(String esp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ResultadoPesqMedProjecao> buscaMedCompleta(Integer cidade, Integer bairro, String espec, String sexMas,
-			String sexFem, Integer valorMin, Integer valorMax, Integer minExp, Integer maxExp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Medico> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+		String sql = "select * from medico";
+		return jdbc.query(sql, rowMapper);
+	}	
 }

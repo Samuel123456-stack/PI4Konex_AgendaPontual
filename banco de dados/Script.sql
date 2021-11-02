@@ -3847,8 +3847,8 @@ CREATE TABLE duvida_adm (
     fk_duv_adm Integer null,
     fk_adm_duv Integer null,
     statusduvida enum ("resolvido", "pendente","tratado") null,
-    FOREIGN KEY (fk_duv_adm) REFERENCES exame (idduv),
-    FOREIGN KEY (fk_adm_duv) REFERENCES consulta (idadm) 
+    FOREIGN KEY (fk_duv_adm) REFERENCES duvida (idduv),
+    FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
 
 /*Viewers*/

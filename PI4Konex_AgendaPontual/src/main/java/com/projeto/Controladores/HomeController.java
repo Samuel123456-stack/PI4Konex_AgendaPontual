@@ -109,4 +109,9 @@ public class HomeController {
 	public String login() {
 		return ("login");
 	}
+	
+	@GetMapping("/resumo")
+	public String resumo() {
+		return ("tela_resumo");
+	}
 }

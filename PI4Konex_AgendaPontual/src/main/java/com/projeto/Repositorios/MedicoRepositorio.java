@@ -2,10 +2,7 @@ package com.projeto.Repositorios;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.projeto.Entidades.Medico;
-import com.projeto.projecao.ResultadoPesqMedProjecao;
 
 
 public interface MedicoRepositorio{

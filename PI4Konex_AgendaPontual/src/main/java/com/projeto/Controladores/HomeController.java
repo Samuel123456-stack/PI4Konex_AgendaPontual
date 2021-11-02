@@ -3,12 +3,10 @@ package com.projeto.Controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
-import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Servicos.BairroServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
@@ -57,7 +54,7 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/busca")
-	public ModelAndView buscaEsp(@RequestParam(required = false) Integer cidade,
+	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
 			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
 			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
@@ -93,8 +90,14 @@ public class HomeController {
 	
 	@GetMapping("/teste")
 	@ResponseBody
-	public ResponseEntity<List<Medico>> buscaTeste(){
-		List<Medico> list = medServ.findAll();
+	public ResponseEntity<List<Medico>> buscaTeste(@RequestParam(required = false) Integer cidade,
+			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
+			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
+			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
+			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
+			@RequestParam(required = false) Integer maxExp){
+		List<Medico> list = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin, valorMax,
+				minExp, maxExp);
 		return ResponseEntity.ok().body(list);
 	}
 }

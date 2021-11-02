@@ -28,42 +28,11 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
     @Autowired
     private JdbcTemplate jdbc;
     
-    RowMapper<Medico> rowMapper = (rs, rowNum) ->{
-    	Medico med = new Medico();
-		med.setIdMed(rs.getInt("idmed"));
-		med.setFoto(rs.getString("foto"));
-		med.setPontos(rs.getInt("pontos"));
-		med.setNomeMed(rs.getString("nome"));
-		med.setDataNasc(rs.getDate("datanasci").toLocalDate());
-		med.setSexoMed(rs.getNString("sexo"));
-		med.setCpfMed(rs.getString("cpf"));
-		med.setRgMed(rs.getString("rg"));
-		med.setCrm(rs.getString("rg"));
-		med.setCelular(rs.getString("celular"));
-		med.setValorMed(rs.getFloat("valor"));
-		med.setCelular(rs.getString("celular"));
-		med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
-		med.setSobreMed(rs.getString("sobremim"));
-		med.setBioMed(rs.getString("biografia"));
-		med.setSala(rs.getString("sala"));
-		Endereco end = new Endereco();
-		end.setIdEnd(rs.getInt("fk_end_med"));
-		med.setEndereco(end);
-		Clinica cli = new Clinica();
-		cli.setIdCli(rs.getInt("fk_cli_med"));
-		med.setClinica(cli);
-		Especialidade esp = new Especialidade();
-		esp.setIdEsp(rs.getInt("fk_esp_med"));
-		med.setEspecialidade(esp);
-		return med;
-    };
-
     
     @Override
     public List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec, String sexMas, String sexFem,
 			Float valorMin, Float valorMax, Integer minExp, Integer maxExp) {
-    	String condicao = "where";
-    	int i = 0;
+    	String condicao = "where ";
     	
     	String sql = "select m.idmed, m.pontos,m.foto, m.nome, m.sobremim "
 				+ "from clinica c inner join medico m on m.fk_cli_med = c.idcli "
@@ -76,57 +45,37 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		try {
 			Connection conn = dataSource.getConnection();
 			
-			
-			PreparedStatement st = conn.prepareStatement(sql);
-			
-			
 			if (cidade != null) {
-				i++;
-				sql += condicao + " cid.idcid = ? ";
-				condicao = "and";
-				st.setInt(i, cidade);
+				sql += condicao + "cid.idcid = "+ cidade;
+				condicao = " and ";
 			}
-//			if (bairro != null) {
-//				i++;
-//				sql += condicao + " b.idbai = ? ";
-//				st.setInt(i, bairro);
-//			}
-//			if (espec != null) {
-//				i++;
-//				sql += condicao + " esp.nome = ? ";
-//				st.setString(i, espec);
-//			}
-//			if (sexMas != null) {
-//				i++;
-//				sql += condicao + " m.sexo = ? ";
-//				st.setString(i, sexMas);
-//			}
-//			if (sexFem != null) {
-//				i++;
-//				sql += condicao + " m.sexo = ? ";
-//				st.setString(i, sexFem);
-//			}
-//			if (valorMin != null) {
-//				i++;
-//				sql += "between" + " ? ";
-//				st.setFloat(i, valorMin);
-//			}
-//			if (valorMax != null) {
-//				i++;
-//				sql += condicao + " ? ";
-//				st.setFloat(i, valorMax);
-//			}
-//			if (minExp != null) {
-//				i++;
-//				sql += "between" + " ? ";
-//				st.setFloat(i, minExp);
-//			}
-//			if (maxExp != null) {
-//				i++;
-//				sql += condicao + " ? ";
-//				st.setFloat(i, maxExp);
-//			}
-			
+			if (bairro != null) {
+				sql += condicao + "b.idbai = "+ bairro;
+			}
+			if (espec != null && !(espec.isEmpty())) {
+				sql += condicao + "esp.nome = "+ "\""+espec+"\"";
+			}
+			if (sexMas != null) {
+				sql += condicao + "m.sexo = "+ "\""+sexMas+"\"";
+			}
+			if (sexFem != null) {
+				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+			}
+			if (valorMin != null) {
+				sql += condicao+ "m.valor "+"between " + valorMin;
+				condicao = " and ";
+			}
+			if (valorMax != null) {
+				sql += condicao+ valorMax;
+			}
+			if (minExp != null) {
+				sql += condicao+ "TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) between " + minExp;
+				condicao = " and ";
+			}
+			if (maxExp != null) {
+				sql += condicao + maxExp;
+			}
+			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			
 
@@ -206,5 +155,36 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	public List<Medico> findAll() {
 		String sql = "select * from medico";
 		return jdbc.query(sql, rowMapper);
-	}	
+	}
+	
+	RowMapper<Medico> rowMapper = (rs, rowNum) ->{
+		Medico med = new Medico();
+		med.setIdMed(rs.getInt("idmed"));
+		med.setFoto(rs.getString("foto"));
+		med.setPontos(rs.getInt("pontos"));
+		med.setNomeMed(rs.getString("nome"));
+		med.setDataNasc(rs.getDate("datanasci").toLocalDate());
+		med.setSexoMed(rs.getNString("sexo"));
+		med.setCpfMed(rs.getString("cpf"));
+		med.setRgMed(rs.getString("rg"));
+		med.setCrm(rs.getString("rg"));
+		med.setCelular(rs.getString("celular"));
+		med.setValorMed(rs.getFloat("valor"));
+		med.setCelular(rs.getString("celular"));
+		med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
+		med.setSobreMed(rs.getString("sobremim"));
+		med.setBioMed(rs.getString("biografia"));
+		med.setSala(rs.getString("sala"));
+		Endereco end = new Endereco();
+		end.setIdEnd(rs.getInt("fk_end_med"));
+		med.setEndereco(end);
+		Clinica cli = new Clinica();
+		cli.setIdCli(rs.getInt("fk_cli_med"));
+		med.setClinica(cli);
+		Especialidade esp = new Especialidade();
+		esp.setIdEsp(rs.getInt("fk_esp_med"));
+		med.setEspecialidade(esp);
+		return med;
+	};
 }
+

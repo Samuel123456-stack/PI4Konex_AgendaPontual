@@ -61,12 +61,12 @@
                             th:text="${cid.nome}">
                 </select>
                 <div style="height: 20px;"></div>
-                <select name="bairro" id="bairro" disabled>
+                <select name="bairro" id="bairro">
                     <option value="">Primeiro a cidade</option>
                 </select>
                 <h2>Especialidade</h2>
                 <div style="height: 05px;"></div>
-                <select name="espec" disabled>
+                <select name="espec">
                     <option value="">Selecione uma especialidade</option>
                     <option th:each="esp :${especs}"
                     		th:value="${esp.nomeEsp}"
@@ -74,21 +74,21 @@
                 </select>
                 <h2>Genêro</h2>
                 <div class="sexFiltro">
-                    <input type="checkbox" id="feminino" name="sexMas" value="feminino"class="option-check"/>
-                    <label for="masculino" disabled>Feminino</label>
+                    <input type="checkbox" id="feminino" name="sexFem" value="Feminino"class="option-check"/>
+                    <label for="feminino">Feminino</label>
                     <div style="height: 20px;"></div>
-                    <input type="checkbox" id="masculino" name="sexFem" value="masculino"class="option-check"/>
-                    <label for="feminino" disabled>Masculino</label>
+                    <input type="checkbox" id="masculino" name="sexMas" value="Masculino"class="option-check"/>
+                    <label for="masculino">Masculino</label>
                 </div>
                 <h2>Valor da Consulta</h2>
                 <div class="text">
                     <p>DE</p>
-                    <input type="text" name="valorMin" placeholder="R$80,00" disabled>
+                    <input type="text" name="valorMin" placeholder="R$80,00">
                 </div>
                 <div style="width: 20px; height: 1px; float: left;"></div>
                 <div class="text">
                     <p>ATÉ</p>
-                    <input type="text" name="valorMax" placeholder="R$150,00" disabled>
+                    <input type="text" name="valorMax" placeholder="R$150,00">
                 </div>
                 <h2>Experiência(anos)</h2>
                 
@@ -97,14 +97,14 @@
                       
                       
                       <div class="range-group">
-                          <input class="range-input" value="1" min="1" max="50" step="1" type="range" disabled />
-                          <input class="range-input" value="1" min="1" max="50" step="1" type="range" disabled/>
+                          <input class="range-input" value="1" min="1" max="50" step="1" type="range"/>
+                          <input class="range-input" value="1" min="1" max="50" step="1" type="range"/>
                         </div>
                      
                         <div class="number-group">
-                          <input class="number-input" type="number" value="1" min="1" max="50" id="esquerda" name="minExp" disabled/>
+                          <input class="number-input" type="number" value="1" min="1" max="50" id="esquerda" name="minExp"/>
                           <div data-anima="top" class="mais">+</div> 
-                          <input class="number-input" type="number" value="10" min="1" max="50" name="maxExp"disabled/>
+                          <input class="number-input" type="number" value="10" min="1" max="50" name="maxExp"/>
                       </div>
                         
                     </div>

@@ -1,17 +1,9 @@
 package com.projeto.Servicos;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.projeto.Dto.MedicoDTO;
 import com.projeto.Entidades.Medico;
-import com.projeto.Repositorios.MedicoPesquisaDinamica;
-import com.projeto.Repositorios.MedicoRepositorio;
-import com.projeto.projecao.ResultadoPesqMedProjecao;
 
 
 public interface MedicoServico {

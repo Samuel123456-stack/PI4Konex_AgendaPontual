@@ -37,7 +37,7 @@
         <div class="imagenBusca">
             <div class="busca">
                 <div class="itensBusca">
-                    <h1>Busque um especialista .ual do jeito que você merece</h1>
+                    <h1>Busque um espececialista .ual do jeito que você merece</h1>
                     <h2>Milhares profissionais estão prontos para te atender</h2>
                     <form th:action="@{/busca}">
                         <div class="selectBusca">
@@ -51,8 +51,8 @@
                         </div>
                         <div class="textoBusca">
                             <p>Pelo o que você está procurando?</p>
-                            <input type="text" name="espec" id="especNome" required placeholder="Digite o nome da especialidade." th:value="${espec}">
-                            <input type="hidden" id="espId">
+                            <input type="text" name="espec" id="especNome" required placeholder="Digite o nome da espececialidade." th:value="${especec}">
+                            <input type="hidden" id="especId">
                         </div>
                             <Button value="submit" id="btnBusca">Buscar e agendar</Button>
                         
@@ -64,29 +64,29 @@
     <div class="fundo">
         <div class="osMaisPro">
         <!--
-            formulario para ir direto para o resultado da busca de medico de cada especialidade.
+            formulario para ir direto para o resultado da busca de medico de cada espececialidade.
         -->
             <form th:action="@{/busca}">
                 <h1>Os mais procurados</h1>
-                <input type="submit" value="Clinico Geral" name="esp">
-                <input type="submit" value="Cardiologista" name="esp">
-                <input type="submit" value="Dentista" name="esp">
-                <input type="submit" value="Dermatologista" name="esp">
-                <input type="submit" value="Endocrinologista" name="esp">
-                <input type="submit" value="Geriatria" name="esp">
-                <input type="submit" value="Ginecologista" name="esp">
-                <input type="submit" value="Nefrologia" name="esp">
-                <input type="submit" value="Neurologista" name="esp">
-                <input type="submit" value="Nutricionista" name="esp">
-                <input type="submit" value="Oftalmologista" name="esp">
-                <input type="submit" value="Oncologia" name="esp">
-                <input type="submit" value="Ortopedista - Traumatologista" name="esp" id="tam305">
-                <input type="submit" value="Otorrinolaringologista" name="esp" id="tam305">
-                <input type="submit" value="Pediatria" name="esp">
-                <input type="submit" value="Pneumologia" name="esp">
-                <input type="submit" value="Psiquiatra" name="esp">
-                <input type="submit" value="Reumatologia" name="esp">
-                <input type="submit" value="Urologista" name="esp">
+                <input type="submit" value="Clinico Geral" name="espec">
+                <input type="submit" value="Cardiologia" name="espec">
+                <input type="submit" value="Dentista" name="espec">
+                <input type="submit" value="Dermatologia" name="espec">
+                <input type="submit" value="Endocrinologia" name="espec">
+                <input type="submit" value="Geriatria" name="espec">
+                <input type="submit" value="Ginecologia" name="espec">
+                <input type="submit" value="Nefrologia" name="espec">
+                <input type="submit" value="Neurologista" name="espec">
+                <input type="submit" value="Nutricionia" name="espec">
+                <input type="submit" value="Oftalmologia" name="espec">
+                <input type="submit" value="Oncologia" name="espec">
+                <input type="submit" value="Ortopedia - Traumatologista" name="espec" id="tam305">
+                <input type="submit" value="Otorrinolaringologia" name="espec" id="tam305">
+                <input type="submit" value="Pediatria" name="espec">
+                <input type="submit" value="Pneumologia" name="espec">
+                <input type="submit" value="Psiquiatria" name="espec">
+                <input type="submit" value="Reumatologia" name="espec">
+                <input type="submit" value="Urologia" name="espec">
             </form>
         </div>
         
@@ -188,7 +188,7 @@
         <div class="canalAtend">
             <div class="atendTxt">
                 <div class="atendIntro">
-                    <h1>Tem alguma dúvida, ou deseja um atendimento especial?</h1>
+                    <h1>Tem alguma dúvida, ou deseja um atendimento espececial?</h1>
                     <p>Prezamos por uma boa experiência, por isso temos uma equipe para te dar o melhor suporte possível.</p>
                 </div>
                 <div class="atendContato">
@@ -309,12 +309,12 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			$("#espNome").autocomplete({
+			$("#especNome").autocomplete({
 				source: "plantNamesAutocomplete", 
 				minLength: 3,
 				select: function(event, ui) {
 					this.value = ui.item.label;
-					$("#espId").val(ui.item.value);
+					$("#especId").val(ui.item.value);
 					return false;
 				}
 			});

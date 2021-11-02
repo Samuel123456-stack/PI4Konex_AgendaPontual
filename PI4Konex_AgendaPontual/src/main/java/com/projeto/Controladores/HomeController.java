@@ -60,6 +60,7 @@ public class HomeController {
 			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
 			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
 			@RequestParam(required = false) Integer maxExp) {
+		
 		ModelAndView mv = new ModelAndView("resulBusca");
 
 		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,

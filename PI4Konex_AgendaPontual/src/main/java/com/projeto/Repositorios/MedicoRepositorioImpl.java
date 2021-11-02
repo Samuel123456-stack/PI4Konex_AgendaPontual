@@ -54,12 +54,14 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			}
 			if (espec != null && !(espec.isEmpty())) {
 				sql += condicao + "esp.nome = "+ "\""+espec+"\"";
+				condicao = " and ";
 			}
 			if (sexMas != null) {
 				sql += condicao + "m.sexo = "+ "\""+sexMas+"\"";
 			}
 			if (sexFem != null) {
 				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+				condicao = " and ";
 			}
 			if (valorMin != null) {
 				sql += condicao+ "m.valor "+"between " + valorMin;

@@ -82,17 +82,18 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			if (maxExp != null) {
 				sql += condicao + maxExp;
 			}
+			
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			
 
 				while (rs.next()) {
-					Medico med = new Medico();
-					med.setIdMed(rs.getInt("m.idmed"));
-					med.setFoto(rs.getString("m.foto"));
-					med.setPontos(rs.getInt("m.pontos"));
-					med.setNomeMed(rs.getString("m.nome"));
-					med.setSobreMed(rs.getString("m.sobremim"));
+					Medico med = new Medico(
+							rs.getInt("m.idmed"),
+							rs.getBytes("m.foto"),
+							rs.getInt("m.pontos"),
+							rs.getString("m.nome"),
+							rs.getString("m.sobremim"));
 					medicos.add(med);
 				}
 				rs.close();

@@ -2,7 +2,6 @@ package com.projeto.Servicos;
 
 import java.util.List;
 
-import com.projeto.Dto.MedicoDTO;
 import com.projeto.Entidades.Medico;
 
 

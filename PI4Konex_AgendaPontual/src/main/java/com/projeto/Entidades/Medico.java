@@ -1,16 +1,22 @@
 package com.projeto.Entidades;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
-
-import com.projeto.projecao.ResultadoPesqMedProjecao;
 
 @Entity
 @Table(name = "medico")
@@ -118,13 +124,13 @@ public class Medico implements Serializable {
 		this.usuario = usuario;
 		this.especialidade = especialidade;
 	}
-//	public Medico(ResultadoPesqMedProjecao entity) {
-//		idMed = entity.getIdMed();
-//		foto = Base64.encodeBase64String(entity.getFoto());
-//		pontos = entity.getPontos();
-//		nomeMed = entity.getNome();
-//		sobreMed = entity.getSobreMim();
-//	}
+	public Medico(Integer idMed, byte [] foto, Integer pontos, String nome, String sobreMim) {
+		this.idMed = idMed;
+		this.foto = Base64.encodeBase64String(foto);
+		this.pontos = pontos;
+		this.nomeMed = nome;
+		this.sobreMed = sobreMim;
+	}
 
 	public Integer getIdMed() {
 		return idMed;

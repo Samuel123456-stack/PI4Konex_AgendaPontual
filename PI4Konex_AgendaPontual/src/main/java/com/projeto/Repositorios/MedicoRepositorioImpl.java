@@ -56,11 +56,16 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				sql += condicao + "esp.nome = "+ "\""+espec+"\"";
 				condicao = " and ";
 			}
+			if (sexFem != null && sexMas != null) {
+				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+				condicao = " or ";
+			}
+			if (sexFem != null && condicao != " or ") {
+				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+				condicao = " and ";
+			}
 			if (sexMas != null) {
 				sql += condicao + "m.sexo = "+ "\""+sexMas+"\"";
-			}
-			if (sexFem != null) {
-				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
 				condicao = " and ";
 			}
 			if (valorMin != null) {

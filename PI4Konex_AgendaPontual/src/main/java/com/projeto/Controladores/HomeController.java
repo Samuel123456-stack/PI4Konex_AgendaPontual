@@ -47,12 +47,6 @@ public class HomeController {
 		return ("/home");
 	}
 	
-//	@PostMapping("**/pesquisamedico")
-//	public ModelAndView buscaMed(@RequestParam("cidade") Integer cidade, @RequestParam("esp") String esp) {
-//		List<Medico> list = medServ.buscaMedEsp(cidade, esp);
-//		return new ModelAndView("/resulBusca").addObject("medicos", list);
-//	}
-	
 	@GetMapping("/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
@@ -75,7 +69,7 @@ public class HomeController {
 	
 	@GetMapping("/bairro")
 	@ResponseBody
-	public String buscaBairro(@RequestParam Integer idcid){
+	public String listaBairro(@RequestParam Integer idcid){
 		
 		String json = null;
 		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
@@ -87,18 +81,32 @@ public class HomeController {
 		return json;
 	}
 	
-
-	
-	@GetMapping("/teste")
+	@GetMapping("/especialidade")
 	@ResponseBody
-	public ResponseEntity<List<Medico>> buscaTeste(@RequestParam(required = false) Integer cidade,
-			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
-			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
-			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
-			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
-			@RequestParam(required = false) Integer maxExp){
-		List<Medico> list = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin, valorMax,
-				minExp, maxExp);
-		return ResponseEntity.ok().body(list);
+	public String listaEspec(@RequestParam Integer idcid){
+		
+		String json = null;
+		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
+		try {
+			json = new ObjectMapper().writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
+	@GetMapping("/sobrenos")
+	public String sobreNos() {
+		return ("sobre");
+	}
+	
+	@GetMapping("/planos")
+	public String planos() {
+		return ("planos");
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return ("login");
 	}
 }

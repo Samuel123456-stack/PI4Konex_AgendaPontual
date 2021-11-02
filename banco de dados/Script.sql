@@ -3827,6 +3827,30 @@ CREATE TABLE exame_consulta (
     FOREIGN KEY (fk_cons_exame) REFERENCES consulta (idcons) 
 );
 
+CREATE TABLE newslatter (
+    idnew Integer AUTO_INCREMENT PRIMARY KEY,
+    dtcriacao datetime default current_timestamp(),
+    email varchar(50) null
+);
+ 
+CREATE TABLE duvida (
+    idduv Integer AUTO_INCREMENT PRIMARY KEY,
+    dtsolic datetime default current_timestamp(),
+    nome varchar(50) null,
+    email varchar(50) null,
+    telefone varchar(15) null,
+    autorizado boolean null,
+    mensagem text null
+);
+
+CREATE TABLE duvida_adm (
+    fk_duv_adm Integer null,
+    fk_adm_duv Integer null,
+    statusduvida enum ("resolvido", "pendente","tratado") null,
+    FOREIGN KEY (fk_duv_adm) REFERENCES exame (idduv),
+    FOREIGN KEY (fk_adm_duv) REFERENCES consulta (idadm) 
+);
+
 /*Viewers*/
 
 create view vw_cont_atend_concl

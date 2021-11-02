@@ -21,7 +21,7 @@
     width: 1400px;
     height: 100%;
     margin: 0 auto;
-    background-image: url("/image/trioIndex.png");
+    background-image: url("/web/imagens/trioIndex.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 727px 511px;
@@ -92,9 +92,6 @@
     font-weight: 600;
     font-size: 15px;
 }
-.ui-autocomplete {
-    background: url("image/ui-anim_basic_16x16.gif") right center no-repeat;
-  }
 #btnBusca{
     width: 260px;
     height: 60px;
@@ -261,7 +258,7 @@
     margin: auto;
     font-family: 'Mulish', sans-serif;
     color: #546582;
-    background-image: url("/image/Group78.png");
+    background-image: url("/web/imagens/Group78.png");
     background-size: 550px 550px;
     background-repeat: no-repeat;
     background-position: top right;   

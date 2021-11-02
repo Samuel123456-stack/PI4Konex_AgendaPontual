@@ -56,9 +56,6 @@
     justify-content: center;
     align-items: center;
 }
-#container-landing aside p:not(p:last-child){
-   margin-bottom:25px;
-}
 #container-landing .main-menu-content > .text{
     margin-bottom:162px;
 }
@@ -106,4 +103,22 @@
     color:#546582;
     width:300px;
     margin-bottom:55px;
+}
+#container-landing .dashboard, .new-encounter, .view-encounter, .radar, .config{
+    margin-bottom:30px;
+}
+#container-landing .radar span{
+    color:#166CD0;
+    font-weight:bold;
+}
+#container-landing .dashboard span, .new-encounter span, 
+.view-encounter span, .radar span, .config span, .help span, .feedback span, .sair span{
+    margin-left:22px;
+    font-size:16px;
+    cursor:pointer;
+    position:relative;
+    bottom:5px;
+}
+#container-landing .sair{
+    width:150px;
 }

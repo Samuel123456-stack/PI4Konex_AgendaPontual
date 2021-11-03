@@ -33,6 +33,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
     public List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec, String sexMas, String sexFem,
 			Float valorMin, Float valorMax, Integer minExp, Integer maxExp) {
     	String condicao = "where ";
+    	String orderDesc = " order by m.pontos desc";
     	
     	String sql = "select m.idmed, m.pontos,m.foto, m.nome, m.sobremim "
 				+ "from clinica c inner join medico m on m.fk_cli_med = c.idcli "
@@ -82,6 +83,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			if (maxExp != null) {
 				sql += condicao + maxExp;
 			}
+			
+			sql += orderDesc;
 			
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();

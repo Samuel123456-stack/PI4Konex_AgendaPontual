@@ -11,6 +11,7 @@ public class Consulta {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idcons")
     private int idConsulta;
 
     @JoinColumn(name = "fk_agen_cons")
@@ -34,7 +35,7 @@ public class Consulta {
     @Column(name = "concluida", nullable = true)
     private boolean concluida;
 
-    @Column(name = "nao_compareceu", nullable = true)
+    @Column(name = "naocompareceu", nullable = true)
     private boolean naoCompareceu;
 
     @Column(name = "cancelada", nullable = true)

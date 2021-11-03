@@ -185,20 +185,24 @@ public class RecepcionistaController {
     @RequestMapping("/telaAjuda")
     public String telaAjuda(Model model){
         Ajuda aju = new Ajuda();
-        //AjudaRec ajuRec = new AjudaRec();
+        AjudaRec ajuRec = new AjudaRec();
         model.addAttribute("aju", aju);
-        //model.addAttribute("ajuRec", ajuRec);
+        model.addAttribute("ajuRec", ajuRec);
 
         return "/tela_ajuda";
     }
 
     @RequestMapping("/telaFormAjuda")
-    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju){
+    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju, @ModelAttribute("ajuRec") AjudaRec ajudaRec){
         Date dataAtual = new Date();
         DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String dataSolic = dataFormatada.format(dataAtual);
         aju.setDataSolic(dataSolic);
         ajuServ.criaAjuda(aju);
+        /*ajudaRec.setIdAjuda(aju.getIdAjuda());
+        ajudaRec.setDataAjudaRec(dataSolic);
+        ajudaRec.setStatusSoli("pendente");
+        ajuServ.criaAjudaRec(ajudaRec);*/
 
         return "/tela_painelRecep";
     }

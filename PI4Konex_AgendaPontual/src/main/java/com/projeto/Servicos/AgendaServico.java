@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Repositorios.AgendaRepositorio;
+import com.projeto.Repositorios.ConsultaRepositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class AgendaServico {
 
     @Autowired
     private AgendaRepositorio repoAgen;
+    @Autowired
+    private ConsultaRepositorio repoCons;
 
     // Metodos CRUD Agenda
     @Transactional(readOnly = true)
@@ -54,6 +57,7 @@ public class AgendaServico {
 
     @Transactional(readOnly = false)
     public void cancelaAgenda(String cpf, Integer idAgen){
+        repoCons.deleteById(idAgen);
         repoAgen.deleteById(idAgen);
     }
 

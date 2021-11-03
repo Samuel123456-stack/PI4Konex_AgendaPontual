@@ -1,7 +1,5 @@
 package com.projeto.Entidades;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,23 +7,25 @@ import javax.persistence.*;
 public class AjudaRec {
     // Atributos
 
-    @Column(name = "dt_criacao", columnDefinition = "DATE")
-    private LocalDateTime dataAjudaRec;
+    @Column(name = "dtcriacao", columnDefinition = "DATE")
+    private String dataAjudaRec;
 
     @Id
-    @JoinColumn(name = "fk_aju_recep")
+    @Column(name = "fk_aju_recep")
     private int idAjuda;
 
+    @ManyToOne
     @JoinColumn(name = "fk_recep_aju")
-    private int idRec;
+    private Recepcionista idRec;
 
+    @ManyToOne
     @JoinColumn(name = "fk_adm_aju_recep")
-    private int idAdm;
+    private Administrador idAdm;
 
-    @Column(name = "status_soli", nullable = true, length = 12)
+    @Column(name = "statussoli", nullable = true, length = 12)
     private String statusSoli;
 
-    @Column(name = "desc_solucao", nullable = true, length = 100)
+    @Column(name = "descsolucao", nullable = true, length = 100)
     private String descSolucao;
 
     // Metodo Construtor
@@ -33,7 +33,7 @@ public class AjudaRec {
     }
 
     // Metodo Construtor com Atributos
-    public AjudaRec(LocalDateTime dataAjudaRec, int idAjuda, int idRec, int idAdm, String statusSoli,
+    public AjudaRec(String dataAjudaRec, int idAjuda, Recepcionista idRec, Administrador idAdm, String statusSoli,
             String descSolucao) {
         this.dataAjudaRec = dataAjudaRec;
         this.idAjuda = idAjuda;
@@ -44,11 +44,11 @@ public class AjudaRec {
     }
 
     // Getters e Setters
-    public LocalDateTime getDataAjudaRec() {
+    public String getDataAjudaRec() {
         return dataAjudaRec;
     }
 
-    public void setDataAjudaRec(LocalDateTime dataAjudaRec) {
+    public void setDataAjudaRec(String dataAjudaRec) {
         this.dataAjudaRec = dataAjudaRec;
     }
 
@@ -60,19 +60,19 @@ public class AjudaRec {
         this.idAjuda = idAjuda;
     }
 
-    public int getIdRec() {
+    public Recepcionista getIdRec() {
         return idRec;
     }
 
-    public void setIdRec(int idRec) {
+    public void setIdRec(Recepcionista idRec) {
         this.idRec = idRec;
     }
 
-    public int getIdAdm() {
+    public Administrador getIdAdm() {
         return idAdm;
     }
 
-    public void setIdAdm(int idAdm) {
+    public void setIdAdm(Administrador idAdm) {
         this.idAdm = idAdm;
     }
 

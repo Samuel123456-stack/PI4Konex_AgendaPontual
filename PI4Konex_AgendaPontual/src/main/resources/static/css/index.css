@@ -21,7 +21,7 @@
     width: 1400px;
     height: 100%;
     margin: 0 auto;
-    background-image: url("/web/imagens/trioIndex.png");
+    background-image: url("/image/trioIndex.png");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: 727px 511px;
@@ -258,7 +258,7 @@
     margin: auto;
     font-family: 'Mulish', sans-serif;
     color: #546582;
-    background-image: url("/web/imagens/Group78.png");
+    background-image: url("/image/Group78.png");
     background-size: 550px 550px;
     background-repeat: no-repeat;
     background-position: top right;   

@@ -4,7 +4,7 @@ $(document).ready(function() {
 		var s = '<option value=' + "" + '>Selecione o bairro</option>';
 		if (idcid > 0) {
 			$.ajax({
-				url: 'bairro',
+				url: '/bairro',
 				data: { "idcid": idcid },
 				success: function(result) {
 					var result = JSON.parse(result);

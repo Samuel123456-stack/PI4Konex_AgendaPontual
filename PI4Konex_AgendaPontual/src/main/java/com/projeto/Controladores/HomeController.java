@@ -27,18 +27,6 @@ public class HomeController {
 	@Autowired
 	private CidadeServico cidServ;
 	
-	@Autowired
-	private EspecialidadeServico espServ;
-	
-	@Autowired
-	private MedicoServico medServ;
-	
-	
-	@Autowired
-	private BairroServico baiServ;
-	
-	
-	private String ftc;
 	
 	@GetMapping("/")
 	public String Home(Model model) {
@@ -47,53 +35,6 @@ public class HomeController {
 		return ("/home");
 	}
 	
-	@GetMapping("/busca")
-	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
-			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
-			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
-			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
-			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
-			@RequestParam(required = false) Integer maxExp) {
-		
-		ModelAndView mv = new ModelAndView("resulBusca");
-
-		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
-				valorMax, minExp, maxExp);
-		List<Cidade> cidades = cidServ.findAll();
-		List<Especialidade> especs = espServ.buscaEsp();
-		mv.addObject("cidades", cidades);
-		mv.addObject("medicos", medicos);
-		mv.addObject("especs", especs);
-		return mv;
-	}
-	
-	@GetMapping("/bairro")
-	@ResponseBody
-	public String listaBairro(@RequestParam Integer idcid){
-		
-		String json = null;
-		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
-		try {
-			json = new ObjectMapper().writeValueAsString(list);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return json;
-	}
-	
-	@GetMapping("/especialidade")
-	@ResponseBody
-	public String listaEspec(@RequestParam Integer idcid){
-		
-		String json = null;
-		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
-		try {
-			json = new ObjectMapper().writeValueAsString(list);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return json;
-	}
 	
 	@GetMapping("/sobrenos")
 	public String sobreNos() {

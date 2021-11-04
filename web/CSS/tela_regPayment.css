@@ -156,3 +156,7 @@ main.confirm-landing .circle-icon-confirm img{
     color: rgba(84, 101, 130, 0.9);
     text-align:center;
 }
+#container-landing .input-block:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}

@@ -173,3 +173,7 @@
     left:15px;
     bottom:5px;
 }
+#container-landing .input-block:hover, #container-landing .cep-input:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}

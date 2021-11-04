@@ -291,3 +291,7 @@
     opacity: 0;
     transform: translate3d(0,50px,0);
 }
+#container-landing .left-aside-content textarea:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}

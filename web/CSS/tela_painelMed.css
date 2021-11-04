@@ -254,3 +254,7 @@ body{
 #container-landing .total-feedback, .positive{
     margin-bottom:34px;
 }
+#container-landing .input-block:hover, #container-landing .form-block .input-block:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}

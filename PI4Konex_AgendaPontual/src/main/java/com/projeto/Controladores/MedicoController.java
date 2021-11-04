@@ -47,7 +47,7 @@ public class MedicoController {
 		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
 				valorMax, minExp, maxExp);
 		List<Cidade> cidades = cidServ.findAll();
-		List<Especialidade> especs = espServ.buscaEsp();
+		List<Especialidade> especs = espServ.findAll();
 		mv.addObject("cidades", cidades);
 		mv.addObject("medicos", medicos);
 		mv.addObject("especs", especs);

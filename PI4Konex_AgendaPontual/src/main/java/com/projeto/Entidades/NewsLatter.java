@@ -22,7 +22,7 @@ public class NewsLatter implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idnew;
 	
-	@Pattern(regexp = "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+\\.([a-z]+)?$/i", message = "Digite um email válido!")
+	@Email(message = "Digite um email válido!")
 	@Column(name = "email", length = 50)
 	private String email;
 	

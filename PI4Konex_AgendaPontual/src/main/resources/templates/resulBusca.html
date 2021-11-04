@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/resulBusca.css}">
@@ -186,9 +186,10 @@
             <div class="news">
                 <h1>NewsLatter</h1>
                 <div class="email">
-                    <form action="">
-                        <input type="text" id="emailRodape" placeholder="Digite seu melhor e-mail">
+                    <form th:action="@{/newslatter/cadastro/medico/busca}" th:object="${news}" method="POST">
+                        <input type="text" th:field="*{email}" id="emailRodape" placeholder="Digite seu melhor e-mail">
                         <button value="submit" id="btnEmail">Inscrever</button>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Teste</span>
                     </form>
                 </div>
             </div>

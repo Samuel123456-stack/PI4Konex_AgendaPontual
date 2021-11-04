@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/index.css">
@@ -39,7 +39,7 @@
                 <div class="itensBusca">
                     <h1>Busque um espececialista .ual do jeito que você merece</h1>
                     <h2>Milhares profissionais estão prontos para te atender</h2>
-                    <form th:action="@{/busca}">
+                    <form th:action="@{/medico/busca}">
                         <div class="selectBusca">
                             <p>Localidade</p>
                             <select name="cidade">
@@ -363,13 +363,14 @@
             <div id="barra"></div>
             <div class="news">
                 <h1>NewsLatter</h1>
-                <div class="email">
-                    <form action="">
-                        <input type="text" id="emailRodape" placeholder="Digite seu melhor e-mail">
+                	<div class="email">
+                    <form th:action="@{/newslatter/cadastro}" th:object="${news}" method="POST">
+                        <input type="text" th:field="*{email}" id="emailRodape" placeholder="Digite seu melhor e-mail">
                         <button value="submit" id="btnEmail">Inscrever</button>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Teste</span>
                     </form>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
 

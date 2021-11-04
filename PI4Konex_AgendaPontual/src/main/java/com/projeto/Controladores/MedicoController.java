@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.MedicoServico;
@@ -50,6 +51,7 @@ public class MedicoController {
 		mv.addObject("cidades", cidades);
 		mv.addObject("medicos", medicos);
 		mv.addObject("especs", especs);
+		mv.addObject("news", new NewsLatter());
 		return mv;
 	}
 }

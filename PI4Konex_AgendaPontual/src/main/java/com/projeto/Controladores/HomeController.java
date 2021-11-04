@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.BairroServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
@@ -32,6 +33,7 @@ public class HomeController {
 	public String Home(Model model) {
 		List<Cidade> cidades = cidServ.findAll();
 		model.addAttribute("cidades", cidades);
+		model.addAttribute("news", new NewsLatter());
 		return ("/home");
 	}
 	

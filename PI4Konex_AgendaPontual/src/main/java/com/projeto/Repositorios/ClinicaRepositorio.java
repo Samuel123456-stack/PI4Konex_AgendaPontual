@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClinicaRepositorio extends JpaRepository<Clinica,Integer> {
 
+<<<<<<< HEAD
     @Query(nativeQuery = true, value="select c.nome_cli from bairro as b join cidade as cid on b.fk_cid_bai=cid.id_cid join endereco as e on b.id_bai=e.fk_bai_end join clinica as c on e.id_end=c.fk_end_cli where cid.id_cid= ?1")
     List<Clinica> buscaCliOpCid(Integer idCid);
     
@@ -20,4 +21,8 @@ public interface ClinicaRepositorio extends JpaRepository<Clinica,Integer> {
 			+ "inner join cidade cid on b.fk_cid_bai = cid.idcid"
 			+ "where = :id")
 	List<Object []> buscaClinicas(Integer id);	
+=======
+    @Query(nativeQuery = true, value="select c.nomecli from bairro as b join cidade as cid on b.fk_cid_bai=cid.idcid join endereco as e on b.idbai=e.fk_bai_end join clinica as c on e.idend=c.fk_end_cli where cid.idcid=?1")
+    List<Clinica> buscaCliComEspCid(Integer idCid);
+>>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
 }

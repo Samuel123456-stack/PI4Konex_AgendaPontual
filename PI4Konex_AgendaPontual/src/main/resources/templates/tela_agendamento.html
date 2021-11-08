@@ -2,13 +2,13 @@
 
 <head>
     <title>Agendamento</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS">
     <meta name="description" content="Agenda Pontual">
     <meta name="author" content="konex-group">
-
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/tela_agendamento.css">
+    <script th:src="@{/js/selectedClinicas.js}"></script>
 </head>
 
 <body>
@@ -95,17 +95,18 @@
 
                                 <div class="input-block">
                                     <p>Unidade</p>
-                                    <select name="cidade" id="subject">
+                                    <select name="cidade" id="cidade">
                                         <option value="">Selecione a cidade</option>
+                                        <option value="563">São Paulo</option>
                                         <option th:each="cid : ${listaCid}"th:value="*{cid.idCid}" th:text="*{cid.nome}"></option>
                                     </select>
                                 </div>
 
                                 <div class="input-block">
                                     <p>Localidade</p>
-                                    <select name="clinica" id="subject">
+                                    <select name="clinica" id="clinicas">
                                         <option value="">Selecione a unidade</option>
-                                        <option th:each="cli:${listaCli}" th:value="*{cli.idCli}" th:text="*{cli.nomeCli}"></option>
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>

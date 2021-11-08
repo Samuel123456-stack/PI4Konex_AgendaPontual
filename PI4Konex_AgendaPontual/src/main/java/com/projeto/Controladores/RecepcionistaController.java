@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.AjudaRec;
@@ -23,6 +25,7 @@ import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.AgendaServico;
 import com.projeto.Servicos.AjudaServico;
+import com.projeto.Servicos.ClinicasServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
@@ -35,6 +38,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/recepcionista")
@@ -56,6 +61,8 @@ public class RecepcionistaController {
     AgendaServico agenServ;
     @Autowired
     AgendaRepositorio repoAgen;
+    @Autowired
+    ClinicasServico cliServ;
     
 
 
@@ -269,5 +276,25 @@ public class RecepcionistaController {
         //agenServ.cancelaAgenda(cpf, idAgen);
         return "/tela_painelRecep";
     }
+    
+	@GetMapping("/agendamento")
+	public String teste() {
+		return ("tela_agendamento");
+	}
+	
+	
+	@GetMapping("/clinicas")
+	@ResponseBody
+	public String listaClinicas(@RequestParam Integer idcid) {
+		String json = null;
+		List<Object[]> list = cliServ.buscaClinicas(idcid);
+		try {
+			json = new ObjectMapper().writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
 
 }

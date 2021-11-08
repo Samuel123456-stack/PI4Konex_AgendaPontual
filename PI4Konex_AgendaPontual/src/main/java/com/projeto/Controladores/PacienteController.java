@@ -59,4 +59,6 @@ public class PacienteController {
 		mv.addObject("news", new NewsLatter());
 		return mv;
 	}
+	
+
 }

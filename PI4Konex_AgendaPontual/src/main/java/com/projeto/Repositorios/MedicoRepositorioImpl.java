@@ -18,15 +18,18 @@ import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.zaxxer.hikari.HikariDataSource;
 
 @Repository
 public class MedicoRepositorioImpl implements MedicoRepositorio{
 	
     @Autowired
-    private DataSource dataSource;
+    //private DataSource dataSource;
+    
+    private HikariDataSource dataSource;
 
-    @Autowired
-    private JdbcTemplate jdbc;
+//    @Autowired
+//    private JdbcTemplate jdbc;
     
     
     @Override
@@ -44,6 +47,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		      
         List<Medico> medicos = new ArrayList<>();
 		try {
+			//Connection conn = dataSource.getConnection();
+			
 			Connection conn = dataSource.getConnection();
 			
 			if (cidade != null) {
@@ -99,7 +104,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 							rs.getString("m.sobremim"));
 					medicos.add(med);
 				}
-				rs.close();
+				st.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,8 +121,13 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		List<Medico> medicos = new ArrayList<>();
 
 		try {
+			//Connection conn = dataSource.getConnection();
+			
 			Connection conn = dataSource.getConnection();
+			
 
+
+			//PreparedStatement st = conn.prepareStatement(sql);
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setInt(1, id);
 
@@ -165,37 +175,37 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	@Override
 	public List<Medico> findAll() {
 		String sql = "select * from medico";
-		return jdbc.query(sql, rowMapper);
+		return null;
 	}
 	
-	RowMapper<Medico> rowMapper = (rs, rowNum) ->{
-		Medico med = new Medico();
-		med.setIdMed(rs.getInt("idmed"));
-		med.setFoto(rs.getString("foto"));
-		med.setPontos(rs.getInt("pontos"));
-		med.setNomeMed(rs.getString("nome"));
-		med.setDataNasc(rs.getDate("datanasci").toLocalDate());
-		med.setSexoMed(rs.getNString("sexo"));
-		med.setCpfMed(rs.getString("cpf"));
-		med.setRgMed(rs.getString("rg"));
-		med.setCrm(rs.getString("rg"));
-		med.setCelular(rs.getString("celular"));
-		med.setValorMed(rs.getFloat("valor"));
-		med.setCelular(rs.getString("celular"));
-		med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
-		med.setSobreMed(rs.getString("sobremim"));
-		med.setBioMed(rs.getString("biografia"));
-		med.setSala(rs.getString("sala"));
-		Endereco end = new Endereco();
-		end.setIdEnd(rs.getInt("fk_end_med"));
-		med.setEndereco(end);
-		Clinica cli = new Clinica();
-		cli.setIdCli(rs.getInt("fk_cli_med"));
-		med.setClinica(cli);
-		Especialidade esp = new Especialidade();
-		esp.setIdEsp(rs.getInt("fk_esp_med"));
-		med.setEspecialidade(esp);
-		return med;
-	};
+//	RowMapper<Medico> rowMapper = (rs, rowNum) ->{
+//		Medico med = new Medico();
+//		med.setIdMed(rs.getInt("idmed"));
+//		med.setFoto(rs.getString("foto"));
+//		med.setPontos(rs.getInt("pontos"));
+//		med.setNomeMed(rs.getString("nome"));
+//		med.setDataNasc(rs.getDate("datanasci").toLocalDate());
+//		med.setSexoMed(rs.getNString("sexo"));
+//		med.setCpfMed(rs.getString("cpf"));
+//		med.setRgMed(rs.getString("rg"));
+//		med.setCrm(rs.getString("rg"));
+//		med.setCelular(rs.getString("celular"));
+//		med.setValorMed(rs.getFloat("valor"));
+//		med.setCelular(rs.getString("celular"));
+//		med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
+//		med.setSobreMed(rs.getString("sobremim"));
+//		med.setBioMed(rs.getString("biografia"));
+//		med.setSala(rs.getString("sala"));
+//		Endereco end = new Endereco();
+//		end.setIdEnd(rs.getInt("fk_end_med"));
+//		med.setEndereco(end);
+//		Clinica cli = new Clinica();
+//		cli.setIdCli(rs.getInt("fk_cli_med"));
+//		med.setClinica(cli);
+//		Especialidade esp = new Especialidade();
+//		esp.setIdEsp(rs.getInt("fk_esp_med"));
+//		med.setEspecialidade(esp);
+//		return med;
+//	};
 }
 

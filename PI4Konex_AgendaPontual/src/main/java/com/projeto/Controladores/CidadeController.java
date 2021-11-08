@@ -32,4 +32,20 @@ public class CidadeController {
 		}
 		return json;
 	}
+	
+	@GetMapping("/clinicas")
+	@ResponseBody
+	public String listaClinicas(@RequestParam Integer idcid){
+		
+		String json = null;
+		List<Object[]> list = cidServ.buscaBairroPorCidade(idcid);
+		try {
+			json = new ObjectMapper().writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return json;
+	}
+	
+	
 }

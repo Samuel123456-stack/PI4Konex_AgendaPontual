@@ -9,6 +9,7 @@
     <meta name="author" content="konex-group">
 
     <link rel="stylesheet" href="/css/tela_agendamento.css">
+    <script th:src="@{/js/selectedCidCli.js}"></script>
 </head>
 
 <body>
@@ -83,7 +84,7 @@
                         </svg>    
                         <span>Busca</span>
 
-                        <form action="#" th:action="@{/recepcionista/filtraMedico}" method="">
+                        <form action="#" th:action="@{/recepcionista/addAgenda}" method="">
                             <div class="first-block">
                                 <div class="input-block">
                                     <p>Especialidade</p>
@@ -94,7 +95,7 @@
                                 </div>
 
                                 <div class="input-block">
-                                    <p>Unidade</p>
+                                    <p>Localidade</p>
                                     <select name="cidade" id="subject">
                                         <option value="">Selecione a cidade</option>
                                         <option th:each="cid : ${listaCid}"th:value="*{cid.idCid}" th:text="*{cid.nome}"></option>
@@ -102,10 +103,9 @@
                                 </div>
 
                                 <div class="input-block">
-                                    <p>Localidade</p>
+                                    <p>Unidade</p>
                                     <select name="clinica" id="subject">
                                         <option value="">Selecione a unidade</option>
-                                        <option th:each="cli:${listaCli}" th:value="*{cli.idCli}" th:text="*{cli.nomeCli}"></option>
                                     </select>
                                 </div>
                             </div>
@@ -115,14 +115,14 @@
                                     <p>Valor da Consulta</p>
                                 <div class="input">
                                     <p>DE</p>
-                                    <input type="text" name="value-appointment" placeholder="R$80,00" />
+                                    <input type="text" name="valorMin" placeholder="R$80,00" />
                                 </div>
                                 </div>
 
                                 <div class="second-input">
                                     <div class="input">
                                         <p>ATÉ</p>
-                                        <input type="text" name="value-limit" placeholder="R$180,00" />
+                                        <input type="text" name="valorMax" placeholder="R$180,00" />
                                     </div>
                                 </div>
 
@@ -130,12 +130,12 @@
                                     <p>Genêro</p>
                                     <div class="input-block">
                                        <div class="male">
-                                        <input type="checkbox" name="Feminino" value="Feminino" />
+                                        <input type="checkbox" name="sexFem" value="Feminino" />
                                         <span>Feminino</span>
                                        </div>
 
                                        <div class="female">
-                                        <input type="checkbox" name="Masculino" value="Masculino" />
+                                        <input type="checkbox" name="sexMas" value="Masculino" />
                                         <span>Masculino</span>
                                        </div>
                                     </div>
@@ -159,13 +159,13 @@
             </section>
         </main>
 
-        <main class="find-skills" >
+        <main class="find-skills" th:if="${listaFiltraMed!=null}" >
             <h3>ESPECIALISTAS ENCONTRADOS</h3>
 
-            <div class="first-expert" th:each="med:${listaMed}">
+            <div class="first-expert" th:each="med:${listaFiltraMed}">
                 <div class="wilson-profile">
                     <section class="wilson-photo">
-                        <img src="/image/small-doctor-wilson.png" alt="image" />
+                        <img th:src="*{'data:image/png;base64,'+{med.foto}}"/>
                     </section>
                     <section class="wilson-biography">
                         <h4 th:text="*{med.nomeMed}"></h4>
@@ -174,7 +174,7 @@
                 </div>
 
                 <div class="score">
-                    <p>1985 PONTOS DE ATENDIMENTO</p>
+                    <p th:text="${med.pontos}+ PTS"></p>
                 </div>
                 <form action="#" th:action="@{/recepcionista/selecMed}" method="">
                 <div class="button-select">

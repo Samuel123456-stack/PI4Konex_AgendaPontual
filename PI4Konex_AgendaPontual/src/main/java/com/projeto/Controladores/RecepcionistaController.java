@@ -24,6 +24,7 @@ import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.AgendaServico;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
@@ -35,6 +36,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/recepcionista")
@@ -56,6 +59,8 @@ public class RecepcionistaController {
     AgendaServico agenServ;
     @Autowired
     AgendaRepositorio repoAgen;
+    @Autowired
+    MedicoServico medServ;
     
 
 
@@ -80,34 +85,36 @@ public class RecepcionistaController {
 
     }
     @RequestMapping("/addAgenda")
-    public String salvaInfoPaciBD(@ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end, Model model){
+    public ModelAndView salvaInfoPaciBD(@RequestParam(required = false) Integer idCid,
+    @RequestParam(required = false) Integer idEsp, @RequestParam(required = false) Integer idCli,
+    @RequestParam(required = false) String sexMas, @RequestParam(required = false) String sexFem, 
+    @RequestParam(required = false) Float valorMin, @RequestParam(required = false) Float valorMax,
+    @ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, 
+    @ModelAttribute("endereco") Endereco end, Model model){
         //Salva as Informações
-        recepServ.criaPaci(paci);
-        usuServ.criaUsu(usu);
-        recepServ.criaEnd(end);
+        //recepServ.criaPaci(paci);
+        //usuServ.criaUsu(usu);
+        //recepServ.criaEnd(end);
+    
+        ModelAndView modelView = new ModelAndView("tela_agendamento");
         //Cria a listagem do filtro e seus atributos
         Agenda agen = new Agenda();
+        //Consulta cons = new Consulta();
+        idCli=2;
 
-        List<Clinica> listaCli = recepServ.listarTodosCli();
+        List<Clinica> listaCli = recepServ.listaCliCidade(idCid);
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = espServ.findAll();
-
-        model.addAttribute("listaCid", listaCid);
-        model.addAttribute("listaCli", listaCli);
-        model.addAttribute("listaEsp", listaEsp);
-        model.addAttribute("agenda", agen);
+        List<Medico> listaFiltraMed = medServ.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
         
-        return "/tela_agendamento";
+        modelView.addObject("listaCid", listaCid);
+        modelView.addObject("listaCli", listaCli);
+        modelView.addObject("listaEsp", listaEsp);
+        modelView.addObject("listaFiltraMed", listaFiltraMed);
+        modelView.addObject("agenda", agen);
+        
+        return modelView;
     }
-    //Filtra os Medicos
-    @RequestMapping("/filtraMedico")
-    public String filtraMedicos(Model model){
-        List<Medico> listaMed = recepServ.listarTodosMed();
-        model.addAttribute("listaMed", listaMed);
-
-        return "/tela_agendamento";
-    }
-
     //Salva Informaçoes Adicionais
     @RequestMapping("/salvaInfoAdic")
     public String salvaInfoAdici(@ModelAttribute("agenda")Agenda agen){

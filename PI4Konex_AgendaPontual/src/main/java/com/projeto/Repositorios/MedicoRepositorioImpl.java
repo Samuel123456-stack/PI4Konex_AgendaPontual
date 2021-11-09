@@ -44,55 +44,52 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				+ "inner join endereco e on c.fk_end_cli = e.idend "
 				+ "inner join bairro b on e.fk_bai_end = b.idbai "
 				+ "inner join cidade cid on b.fk_cid_bai = cid.idcid ";
-		      
+		
+    	if (cidade != null) {
+			sql += condicao + "cid.idcid = "+ cidade;
+			condicao = " and ";
+		}
+		if (bairro != null) {
+			sql += condicao + "b.idbai = "+ bairro;
+		}
+		if (espec != null && !(espec.isEmpty())) {
+			sql += condicao + "esp.nome = "+ "\""+espec+"\"";
+			condicao = " and ";
+		}
+		if (sexFem != null && sexMas != null) {
+			sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+			condicao = " or ";
+		}
+		if (sexFem != null && condicao != " or ") {
+			sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
+			condicao = " and ";
+		}
+		if (sexMas != null) {
+			sql += condicao + "m.sexo = "+ "\""+sexMas+"\"";
+			condicao = " and ";
+		}
+		if (valorMin != null) {
+			sql += condicao+ "m.valor "+"between " + valorMin;
+			condicao = " and ";
+		}
+		if (valorMax != null) {
+			sql += condicao+ valorMax;
+		}
+		if (minExp != null) {
+			sql += condicao+ "TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) between " + minExp;
+			condicao = " and ";
+		}
+		if (maxExp != null) {
+			sql += condicao + maxExp;
+		}
+		
+		sql += orderDesc;
+		
         List<Medico> medicos = new ArrayList<>();
-		try {
-			//Connection conn = dataSource.getConnection();
 			
-			Connection conn = dataSource.getConnection();
-			
-			if (cidade != null) {
-				sql += condicao + "cid.idcid = "+ cidade;
-				condicao = " and ";
-			}
-			if (bairro != null) {
-				sql += condicao + "b.idbai = "+ bairro;
-			}
-			if (espec != null && !(espec.isEmpty())) {
-				sql += condicao + "esp.nome = "+ "\""+espec+"\"";
-				condicao = " and ";
-			}
-			if (sexFem != null && sexMas != null) {
-				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
-				condicao = " or ";
-			}
-			if (sexFem != null && condicao != " or ") {
-				sql += condicao + "m.sexo = "+ "\""+sexFem+"\"";
-				condicao = " and ";
-			}
-			if (sexMas != null) {
-				sql += condicao + "m.sexo = "+ "\""+sexMas+"\"";
-				condicao = " and ";
-			}
-			if (valorMin != null) {
-				sql += condicao+ "m.valor "+"between " + valorMin;
-				condicao = " and ";
-			}
-			if (valorMax != null) {
-				sql += condicao+ valorMax;
-			}
-			if (minExp != null) {
-				sql += condicao+ "TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) between " + minExp;
-				condicao = " and ";
-			}
-			if (maxExp != null) {
-				sql += condicao + maxExp;
-			}
-			
-			sql += orderDesc;
-			
-			PreparedStatement st = conn.prepareStatement(sql);
-			ResultSet rs = st.executeQuery();
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
 			
 
 				while (rs.next()) {
@@ -104,7 +101,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 							rs.getString("m.sobremim"));
 					medicos.add(med);
 				}
-				st.close();
+				stmt.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

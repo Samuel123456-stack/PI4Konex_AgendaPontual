@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#cidade").change(function() {
 		var idcid = $(this).val();
-		var s = '<option value=' + "" + '>Primeiro a cidade</option>';
+		var s = '<option value=' + "" + '>Selecione a clinica</option>';
 		if (idcid > 0) {
 			$.ajax({
 				url: '/clinicas',

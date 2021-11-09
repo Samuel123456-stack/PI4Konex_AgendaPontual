@@ -207,5 +207,81 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 //		med.setEspecialidade(esp);
 //		return med;
 //	};
+
+
+    @Override
+	public List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
+	String sexMas, String sexFem,Float valorMin, Float valorMax){
+		String cond = "where ";
+    	String ordena = " order by m.pontos desc";
+
+		String linhaSql="select m.idmed, m.pontos,m.foto, m.nome, m.sobremim "
+		+ "from clinica c inner join medico m on m.fk_cli_med = c.idcli "
+		+ "inner join especialidade esp on m.fk_esp_med = esp.idesp "
+		+ "inner join endereco e on c.fk_end_cli = e.idend "
+		+ "inner join bairro b on e.fk_bai_end = b.idbai "
+		+ "inner join cidade cid on b.fk_cid_bai = cid.idcid ";
+
+		List<Medico> medFiltrado = new ArrayList<>();
+
+
+		try {
+			Connection conn = dataSource.getConnection();
+
+			if (idCid != null) {
+				linhaSql += cond + "cid.idcid = "+ idCid;
+				cond = " and ";
+			}
+			if (idCli != null) {
+				linhaSql += cond + "c.idcli = "+ idCli;
+			}
+			if (idEsp != null) {
+				linhaSql += cond + "esp.idesp = "+idEsp;
+				cond = " and ";
+			}
+			if (sexFem != null && sexMas != null) {
+				linhaSql += cond + "m.sexo = "+ "\""+sexFem+"\"";
+				cond = " or ";
+			}
+			if (sexFem != null && cond != " or ") {
+				linhaSql += cond + "m.sexo = "+ "\""+sexFem+"\"";
+				cond = " and ";
+			}
+			if (sexMas != null) {
+				linhaSql += cond + "m.sexo = "+ "\""+sexMas+"\"";
+				cond = " and ";
+			}
+			if (valorMin != null) {
+				linhaSql += cond+ "m.valor "+"between " + valorMin;
+				cond = " and ";
+			}
+			if (valorMax != null) {
+				linhaSql += cond+ valorMax;
+			}
+
+			linhaSql += ordena;
+
+			PreparedStatement st = conn.prepareStatement(linhaSql);
+			ResultSet rs = st.executeQuery();
+
+
+				while (rs.next()) {
+					Medico med = new Medico(
+							rs.getInt("m.idmed"),
+							rs.getBytes("m.foto"),
+							rs.getInt("m.pontos"),
+							rs.getString("m.nome"),
+							rs.getString("m.sobremim"));
+					medFiltrado.add(med);
+				}
+				rs.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return medFiltrado;
+
+
+	}
 }
 

@@ -8,11 +8,7 @@
     <meta name="author" content="konex-group">
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/tela_agendamento.css">
-<<<<<<< HEAD
     <script th:src="@{/js/selectedClinicas.js}"></script>
-=======
-    <script th:src="@{/js/selectedCidCli.js}"></script>
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
 </head>
 
 <body>
@@ -98,32 +94,18 @@
                                 </div>
 
                                 <div class="input-block">
-<<<<<<< HEAD
-                                    <p>Unidade</p>
-                                    <select name="cidade" id="cidade">
-=======
                                     <p>Localidade</p>
-                                    <select name="cidade" id="subject">
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
+                                    <select name="cidade" id="cidade">
                                         <option value="">Selecione a cidade</option>
-                                        <option value="563">S�o Paulo</option>
-                                        <option th:each="cid : ${listaCid}"th:value="*{cid.idCid}" th:text="*{cid.nome}"></option>
+                                        <option value="563">São Paulo</option>
+                                        <option th:each="cid : ${listaCid}" th:value="*{cid.idCid}" th:text="*{cid.nome}"></option>
                                     </select>
                                 </div>
 
                                 <div class="input-block">
-<<<<<<< HEAD
-                                    <p>Localidade</p>
-                                    <select name="clinica" id="clinicas">
-=======
                                     <p>Unidade</p>
-                                    <select name="clinica" id="subject">
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
-                                        <option value="">Selecione a unidade</option>
-<<<<<<< HEAD
-                                        <option></option>
-=======
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
+                                    <select name="clinicas" id="clinicas">
+                                        <option value="">Primeiro a cidade</option>
                                     </select>
                                 </div>
                             </div>
@@ -186,6 +168,7 @@
                         <img th:src="*{'data:image/png;base64,'+{med.foto}}"/>
                     </section>
                     <section class="wilson-biography">
+                        <input type="hidden" th:value="${med.idMed}" name="idMed"/>
                         <h4 th:text="*{med.nomeMed}"></h4>
                         <p th:text="*{med.sobreMed}"></p>
                     </section>
@@ -407,7 +390,7 @@
                     <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
-                            <textarea name="infoAdicAgen" th:field="*{agenda.infoAdicAgen}" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
+                            <textarea name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
                         </div>
 
                         <input type="submit" value="SALVAR">

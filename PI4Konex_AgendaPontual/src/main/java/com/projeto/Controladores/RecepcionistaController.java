@@ -6,13 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.AjudaRec;
 import com.projeto.Entidades.Cidade;
-import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Convenio;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
@@ -40,11 +37,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.ResponseBody;
-=======
 import org.springframework.web.servlet.ModelAndView;
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
 
 @Controller
 @RequestMapping(value = "/recepcionista")
@@ -67,11 +60,9 @@ public class RecepcionistaController {
     @Autowired
     AgendaRepositorio repoAgen;
     @Autowired
-<<<<<<< HEAD
     ClinicasServico cliServ;
-=======
+    @Autowired
     MedicoServico medServ;
->>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
     
 
 
@@ -96,10 +87,10 @@ public class RecepcionistaController {
 
     }
     @RequestMapping("/addAgenda")
-    public ModelAndView salvaInfoPaciBD(@RequestParam(required = false) Integer idCid,
-    @RequestParam(required = false) Integer idEsp, @RequestParam(required = false) Integer idCli,
-    @RequestParam(required = false) String sexMas, @RequestParam(required = false) String sexFem, 
+    public ModelAndView salvaInfoPaciBD(@RequestParam(required = false) Integer idEsp,
+    @RequestParam(required = false) Integer idCid, @RequestParam(required = false) Integer idCli,
     @RequestParam(required = false) Float valorMin, @RequestParam(required = false) Float valorMax,
+    @RequestParam(required = false) String sexFem, @RequestParam(required = false) String sexMas, 
     @ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, 
     @ModelAttribute("endereco") Endereco end, Model model){
         //Salva as Informações
@@ -111,19 +102,14 @@ public class RecepcionistaController {
         //Cria a listagem do filtro e seus atributos
         Agenda agen = new Agenda();
         //Consulta cons = new Consulta();
-        idCli=2;
 
-        List<Clinica> listaCli = recepServ.listaCliCidade(idCid);
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = espServ.findAll();
         List<Medico> listaFiltraMed = medServ.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
-        
         modelView.addObject("listaCid", listaCid);
-        modelView.addObject("listaCli", listaCli);
         modelView.addObject("listaEsp", listaEsp);
         modelView.addObject("listaFiltraMed", listaFiltraMed);
         modelView.addObject("agenda", agen);
-        
         return modelView;
     }
     //Salva Informaçoes Adicionais
@@ -288,24 +274,4 @@ public class RecepcionistaController {
         return "/tela_painelRecep";
     }
     
-	@GetMapping("/agendamento")
-	public String teste() {
-		return ("tela_agendamento");
-	}
-	
-	
-	@GetMapping("/clinicas")
-	@ResponseBody
-	public String listaClinicas(@RequestParam Integer idcid) {
-		String json = null;
-		List<Object[]> list = cliServ.buscaClinicas(idcid);
-		try {
-			json = new ObjectMapper().writeValueAsString(list);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return json;
-	}
-	
-
 }

@@ -18,4 +18,7 @@ public interface MedicoServico {
 			String sexMas, String sexFem,Float valorMin , Float valorMax, 
 			Integer minExp, Integer maxExp);
 		
+	List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
+			String sexMas, String sexFem,Float valorMin, Float valorMax);
+				
 }

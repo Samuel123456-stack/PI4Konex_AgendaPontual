@@ -33,4 +33,12 @@ public class MedicoServicoImpl implements MedicoServico {
 		return medRepo.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin,
 				valorMax, minExp, maxExp);
 	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
+	       String sexMas, String sexFem,Float valorMin, Float valorMax){
+		return medRepo.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
+	}
+	
 }

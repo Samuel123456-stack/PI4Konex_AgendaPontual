@@ -108,10 +108,6 @@ public class RecepcionistaServico {
     public Clinica pegaCliPorId(Integer id){
         return repoCli.getById(id);
      }
-     
-     public List<Clinica> listaCliCidade(Integer idCid){
-         return repoCli.buscaCliComEspCid(idCid);
-     }
 
      public List<Clinica> listarTodosCli(){
         return repoCli.findAll();

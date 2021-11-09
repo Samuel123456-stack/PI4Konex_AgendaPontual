@@ -14,4 +14,8 @@ public interface MedicoRepositorio{
     List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec,
 			String sexMas, String sexFem,Float valorMin , Float valorMax, 
 			Integer minExp, Integer maxExp);
+
+    List<Medico> filtraMedCli(Integer esp, Integer cidade, Integer clinica,
+	        String sexMas, String sexFem,Float valorMin, Float valorMax);
+				
 }

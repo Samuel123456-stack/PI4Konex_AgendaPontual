@@ -39,6 +39,8 @@ public class PacienteController {
 		return ("dashboardPaci");
 	}
 	
+	
+	
 	@GetMapping("/paciente/medico/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,

@@ -2,6 +2,7 @@ package com.projeto.Servicos;
 
 import java.util.List;
 
+import com.projeto.Controladores.Dto.MedicoResumoDTO;
 import com.projeto.Entidades.Medico;
 
 
@@ -20,5 +21,7 @@ public interface MedicoServico {
 		
 	List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
 			String sexMas, String sexFem,Float valorMin, Float valorMax);
+	
+	MedicoResumoDTO medicoResumo(Integer idMed);
 				
 }

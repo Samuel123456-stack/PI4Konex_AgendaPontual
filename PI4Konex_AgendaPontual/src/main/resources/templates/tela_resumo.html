@@ -46,7 +46,7 @@
                                 d="M-3.93402e-07 9L9.27651 -4.05489e-07L11 1.67211L3.44698 9L11 16.3279L9.27651 18L-3.93402e-07 9Z"
                                 fill="#1CC4BF" />
                         </svg>
-                        <span>Voltar</span>
+                        <a th:href="@{/medico/busca}"><span>Voltar</span></a>
                     </section>
                 </header>
     
@@ -58,13 +58,13 @@
             <main class="main-container-page">
                 <div class="first-container">
                     <div class="profile-container">
-                        <section class="profile-photo">
-                            <img src="/image/doctorwilson-profile.png" alt="profile" />
+                        <section class="profile-photo" th:each="medico, stat: ${medico}">
+                        <img th:src="*{'data:image/png;base64,'+{medico.foto}}">
                         </section>
         
                         <article class="data-profile">
-                            <h3>Dr. Wilson Santos</h3>
-                            <p>Clinico Geral</p>
+                            <h3 th:text="${medico.nome}"></h3>
+                            <p th:text="${medico.especialidade}"></p>
         
                             <div class="service-status">
                                 <img src="/image/user-icon.png" alt="icon" />
@@ -86,115 +86,34 @@
                     <article class="biography">
                         <h3>Biografia</h3>
     
-                        <p>Sou um médico com experiência em Clínica Médica e Emergência, 
-                        formado em 1980 pela USP- Faculdade de Medicina da Universidade de São Paulo</p>
+                        <p th:text="${medico.biografia}"></p>
 
-                        <p>Toda minha carreira foi construída dentro de Salas de Emergência, de UTI´s, 
-                            e nas Enfermarias dos grandes hospitais de São Paulo. 
-                            Durante 10 anos, me especializei em Endocrinologia. 
-                        </p>
-
-                        <p>
-                            Hoje, acompanhando as tendências da medicina e 
-                            visando dar mais conforto aos meus pacientes, 
-                            trabalho com clínico geral, estou a 12 anos nesta área.
-                        </p>
                     </article>
                 </div>
 
                 <div class="condition-container">
                     <div class="content">
-                        <h3>Register</h3>
+                        <h3>Registro</h3>
 
-                        <p>CRM: MC0190-SP</p>
-                        <p>Data de Emissão: 23 de janeiro de 1978</p>
+                        <p th:text="${medico.crm}"></p>
+                        <p th:text="${medico.dataEmissao}"></p>
 
                         <h3>Principais condições que trato</h3>
 
                         <section class="treatment">
-                            <div class="first-list">
+                            <div class="first-list" th:each="doenca, stat: ${doencas}">
                                 <div class="alergia">
                                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
                                         <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg> 
-                                    <span>Alergias</span>
+                                    <span th:text="${doenca.nome}"></span>
                                 </div>
-                                <div class="anemia">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Anemia</span>
-                                </div>
-                                <div class="asma">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Asma</span>
-                                </div>
-                                <div class="diabetes">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                     </svg>
-                                        
-                                    <span>Diabetes</span>
-                                </div>
-                                <div class="gastro">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Doenças Gastrointestinais</span>
-                                </div>
+                                
                             </div>
 
                             <div class="second-list">
-                                <div class="exame-rotina">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Exames de Rotina</span>
-                                </div>
-                                <div class="hipertensao">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Hipertensão arterial</span>
-                                </div>
-                                <div class="hipertireoidismo">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                     </svg>
-                                        
-                                    <span>Hipertireoidismo</span>
-                                </div>
-                                <div class="infection">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Infecções em geral</span>
-                                </div>
-                                <div class="prescrition">
-                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                        <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                        
-                                    <span>Prescrição de Vacinas</span>
-                                </div>
+
                             </div>
                         </section>
                     </div>
@@ -206,8 +125,8 @@
                     <h3>Localidade</h3>
                         <img src="/image/map-location.png" alt="map" />  
                         
-                        <p>Rua Antônio Mendes da Rocha Filho, nº 695 - São Paulo, SP</p>
-                        <p>Cep: 02.996-215. Compl.: Bloco A Sala 49.</p>
+                        <p th:text="${medico.logradouro}"></p>
+                        <p th:text="${medico.complemento}"></p>
                 </div>
 
                 <div class="week-calendar">
@@ -274,106 +193,16 @@
             <main class="feedback-container">
                 <h3>FEEDBACKS</h3>
 
-                <div class="feedback-messages">
+                <div class="feedback-messages" th:each="feed, stat: ${feedback}">
                     <div class="first-feedback">
                         <section class="first-comment">
                             <div class="comment">
-                                <img src="/image/kelly-souza.png" alt="kelly" />
-                                <p>
-                                    “Um excelente médico, é muito atencioso, o tempo de consulta foi com me recomedou 
-                                    alguns medicamentos e fiquei bem melhor.”
+                                <img th:src="*{'data:image/png;base64,'+{feed.foto}}">
+                                <p th:text="${feed.comentario}">
                                 </p>
-                                <h5>Kelly Souza de Andrade</h5>
+                                <h5 th:text="${feed.nome}"></h5>
                             </div>
                         </section>
-                        <section class="second-comment">
-                            <div class="comment">
-                                <img src="/image/cintia-rodrigues.png" alt="cintia" />
-                                <p>
-                                    “Algum tempo atrás perdi o contato do Dr. Wilson, 
-                                    agenda pontual me ajudou encontrá-lo Dr. Wilson é muito sorridente e atencioso.”
-                                </p>
-                                <h5>Cintia Rodrigues</h5>
-                            </div>
-                        </section>
-                        <section class="third-comment">
-                            <div class="comment">
-                                <img src="/image/eduarda-lemes.png" alt="eduarda" />
-                                <p>“Conheco o Dr. Wilians desde pequena, ele é médico da família, sempre foi calmo, 
-                                    gentil e principalmente empático.”
-                                </p>
-                                <h5>Eduarda Lemes</h5>
-                            </div>
-                        </section>
-                    </div>
-
-                    <div class="second-feedback">
-                        <section class="first-comment">
-                            <div class="comment">
-                                <img src="/image/paulo-cesar.png" alt="paulo" />
-                                <p>
-                                    “Me supreendi com a Agenda.ual, 
-                                    as opiniões que li foram verdadeiros, 
-                                    o Dr. Wilson é digno de estar em primeiro! Exelente médico.”
-                                </p>
-                                <h5>Paulo César Ferreira</h5>
-                            </div>
-                        </section>
-                        <section class="second-comment">
-                            <div class="comment">
-                                <img src="/image/amalia-souza.png" alt="amalia" />
-                                <p>
-                                    “Minha tireoide estavam muito inchada, 
-                                    contei o meu problema para o Sr.Wilson, 
-                                    fiz alguns exames e iniciei o tratamento, me sinto bem!”
-                                </p>
-                                <h5>Amália Souza</h5>
-                            </div>
-                        </section>
-                        <section class="third-comment">
-                            <div class="comment">
-                                <img src="/image/claudiney-santos.png" alt="claudiney" />
-                                <p>
-                                    “Alguns meses atrás descobri que estava com hipotireoidismo, 
-                                    o Dr.Wilson me ajudou com alguns tratamentos, me sinto bema gora!”
-                                </p>
-                                <h5>Claudiney Santos</h5>
-                            </div>
-                        </section>
-                    </div>
-
-                    <div class="third-feedback">
-                        <section class="first-comment">
-                            <div class="comment">
-                                <img src="/image/kennedy-philis.png" alt="kennedy" />
-                                <p>
-                                    “Alguns meses atrás sofri um acidente e fui atendido pelo Dr. Wilson, 
-                                    ele foi calmo e tomou decisões boas e já estou bem recuperado.”
-                                </p>
-                                <h5>Kennedy Philis</h5>
-                            </div>
-                        </section>
-                        <section class="second-comment">
-                            <div class="comment">
-                                <img src="/image/guilherme-correia.png" alt="guilherme" />
-                                <p>
-                                    “Eu descobri que tinha asma aos 12 anos de idade, 
-                                    minha família me levou até o Dr. Wilson, no qual faço acompanhamentos até hoje.”
-                                </p>
-                                <h5>Guilherme Correia</h5>
-                            </div>
-                        </section>
-                        <section class="third-comment">
-                            <div class="comment">
-                                <img src="/image/rosilene-mendes.png" alt="rosilene" />
-                                <p>
-                                    “O Dr. Wilson sabe o que faz, é um médico cheio de experiência, 
-                                    conseguiu reduzir a minha tireoide sem fazer cirurgia.”
-                                </p>
-                                <h5>Rosilene Mendes</h5>
-                            </div>
-                        </section>
-                    </div>
                 </div>
             </main>
         </div>

@@ -1,6 +1,9 @@
 package com.projeto.Controladores.Dto;
 
-public class AutoCompleteDTO {
+import java.io.Serializable;
+
+public class AutoCompleteDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private String label;
 	private String value;

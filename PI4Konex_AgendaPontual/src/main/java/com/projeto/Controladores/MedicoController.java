@@ -1,19 +1,16 @@
 package com.projeto.Controladores;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projeto.Entidades.Cidade;
-import com.projeto.Entidades.Especialidade;
-import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.CidadeServico;
+import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 
 @Controller
@@ -28,12 +25,13 @@ public class MedicoController {
 	@Autowired
 	private CidadeServico cidServ;
 	
+	@Autowired
+	private DoencaServico doeServ;
 	
-//	@GetMapping("/medico")
-//	public String Home() {
-//
-//		return null;
-//	}
+	@Autowired
+	private FeedbackServico feeServ;
+
+	
 	@GetMapping("/medico/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
@@ -44,14 +42,21 @@ public class MedicoController {
 		
 		ModelAndView mv = new ModelAndView("resulBusca");
 
-		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
-				valorMax, minExp, maxExp);
-		List<Cidade> cidades = cidServ.findAll();
-		List<Especialidade> especs = espServ.findAll();
-		mv.addObject("cidades", cidades);
-		mv.addObject("medicos", medicos);
-		mv.addObject("especs", especs);
+		mv.addObject("cidades", cidServ.findAll());
+		mv.addObject("medicos", medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
+				valorMax, minExp, maxExp));
+		mv.addObject("especs", espServ.findAll());
 		mv.addObject("news", new NewsLatter());
 		return mv;
 	}
+	
+	@GetMapping("/medico/resumo")
+	public ModelAndView resumo(@RequestParam Integer idMed) {
+		ModelAndView mv = new ModelAndView("tela_resumo");
+		 mv.addObject("medico", medServ.medicoResumo(idMed));
+		 mv.addObject("doencas", doeServ.buscaDoencaPorMedico(idMed));
+		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
+		return mv;
+	}
+
 }

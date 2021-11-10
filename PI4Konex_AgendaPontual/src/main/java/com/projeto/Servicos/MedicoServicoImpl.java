@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projeto.Controladores.Dto.MedicoResumoDTO;
 import com.projeto.Entidades.Medico;
 import com.projeto.Repositorios.MedicoRepositorio;
 
@@ -41,4 +42,9 @@ public class MedicoServicoImpl implements MedicoServico {
 		return medRepo.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
 	}
 	
+	@Transactional(readOnly = true)
+	@Override
+	public MedicoResumoDTO medicoResumo(Integer IdMed){
+		return medRepo.medicoResumo(IdMed);
+	}
 }

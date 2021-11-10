@@ -53,8 +53,4 @@ public class HomeController {
 		return ("login");
 	}
 	
-	@GetMapping("/resumo")
-	public String resumo() {
-		return ("tela_resumo");
-	}
 }

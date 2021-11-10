@@ -2,6 +2,7 @@ package com.projeto.Repositorios;
 
 import java.util.List;
 
+import com.projeto.Controladores.Dto.MedicoResumoDTO;
 import com.projeto.Entidades.Medico;
 
 
@@ -17,5 +18,7 @@ public interface MedicoRepositorio{
 
     List<Medico> filtraMedCli(Integer esp, Integer cidade, Integer clinica,
 	        String sexMas, String sexFem,Float valorMin, Float valorMax);
-				
+    
+    MedicoResumoDTO medicoResumo(Integer idMed);
+		
 }

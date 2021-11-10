@@ -1,6 +1,5 @@
 package com.projeto.Entidades;
 
-import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -17,7 +16,7 @@ public class Agenda {
     @JoinColumn(name = "fk_dia_agen", unique = true)
     private DiasSemana idDia;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_hor_agen", unique = true)
     private Horario idHora;
 
@@ -30,7 +29,7 @@ public class Agenda {
     private Paciente idPaci;
 
     @Column(name = "dataagendada", nullable = true, unique = true, columnDefinition = "DATE")
-    private LocalDate dataAgendada;
+    private String dataAgendada;
 
     @Column(name = "informacoesadic", nullable = true)
     private String infoAdicAgen;
@@ -41,7 +40,7 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico idMed, Paciente idPaci, LocalDate dataAgendada,
+    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico idMed, Paciente idPaci, String dataAgendada,
             String infoAdicAgen) {
         this.idAgen = idAgen;
         this.idDia = idDia;
@@ -93,11 +92,11 @@ public class Agenda {
         this.idPaci = idPaci;
     }
 
-    public LocalDate getDataAgendada() {
+    public String getDataAgendada() {
         return dataAgendada;
     }
 
-    public void setDataAgendada(LocalDate dataAgendada) {
+    public void setDataAgendada(String dataAgendada) {
         this.dataAgendada = dataAgendada;
     }
 

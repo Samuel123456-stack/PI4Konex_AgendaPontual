@@ -184,7 +184,7 @@
                 </form>
             </div>
         </main>
-
+        
         <h3 class="information-expert">INFORMAÇÕES DO ESPECIALISTA</h3>
 
         <main class="main-container-page">
@@ -323,6 +323,7 @@
         </main>
 
         <main class="local-calendar">
+            <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
             <div class="week-calendar">
                 <h3>Calendário Semanal</h3>
 
@@ -369,17 +370,13 @@
                         </tbody>
                     </table>
                 </div>
-
+                           
                 <footer class="schedule">
-                    <h3>Agendamento</h3>
-
-                    <form action="" method="">
+                    <h3>Agendamento</h3>              
                         <div class="input">
-                            <input type="date" name="date-schedule" />
-                            <input type="time" name="time-schedule" />
-                            <input type="submit" value="SALVAR" />
+                            <input type="date" th:field="*{agenda.dataAgendada}" name="dataAgendada" for />
+                            <input type="time" th:field="*{agenda.idHora.horario}" name="horario" />
                         </div>
-                    </form>
                 </footer>
             </div>
 
@@ -387,16 +384,17 @@
                 <h3>Informações adicionais para o doutor</h3>
 
                 <div class="form">
-                    <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
+                    
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
-                            <textarea name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
+                            <textarea th:text="*{agenda.infoAdicAgen}" name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
                         </div>
 
                         <input type="submit" value="SALVAR">
-                    </form>
+                    
                 </div>
             </div>
+        </form>
         </main>
 
         <footer class="button-next">

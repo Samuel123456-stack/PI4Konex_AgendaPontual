@@ -35,6 +35,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -112,19 +113,26 @@ public class RecepcionistaController {
         modelView.addObject("agenda", agen);
         return modelView;
     }
-    //Salva Informaçoes Adicionais
+
+
+
+    //Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/salvaInfoAdic")
     public String salvaInfoAdici(@ModelAttribute("agenda")Agenda agen){
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
+        String dataAgen = dataFormatada.format(dataAtual);
+        agen.setDataAgendada(dataAgen);
         agenServ.criaAtualizaAgen(agen);
+        
 
         return "/tela_agendamento";
     }
 
     //Seleciona o Medico para saber suas informações
     @RequestMapping("/selecMed")
-    public String infoEspecialista(@ModelAttribute("listaMed")Medico med, Model model){
-        model.getAttribute("listaMed");
-
+    public String infoEspecialista(@RequestParam Integer idMedd, Model model){
+        model.addAttribute("teste", idMedd);
         return "/tela_agendamento";
     }
 
@@ -176,14 +184,14 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/atualizaRecep")
-    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu){
-        /*usu.setIdUsu(19);
-        recep.setIdRec(1);*/
+    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu, Model model){
+        usu.setIdUsu(19);
+        recep.setIdRec(1);
         
         usuServ.atualizaUsuario(usu);
         recepServ.atualizaRecep(recep);
 
-        return "/tela_painelRecep";
+        return painelRecep(model);
     }
 
     @RequestMapping("/telaAjuda")
@@ -197,7 +205,7 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/telaFormAjuda")
-    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju, @ModelAttribute("ajuRec") AjudaRec ajudaRec){
+    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju, @ModelAttribute("ajuRec") AjudaRec ajudaRec, Model model){
         Date dataAtual = new Date();
         DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String dataSolic = dataFormatada.format(dataAtual);
@@ -208,7 +216,7 @@ public class RecepcionistaController {
         ajudaRec.setStatusSoli("pendente");
         ajuServ.criaAjudaRec(ajudaRec);*/
 
-        return "/tela_painelRecep";
+        return painelRecep(model);
     }
 
     @RequestMapping("/telaRegPag")
@@ -220,13 +228,13 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/telaFormPag")
-    public String telaFormaPag(@ModelAttribute("pag")Pagamento pag){
+    public String telaFormaPag(@ModelAttribute("pag")Pagamento pag, Model model){
         Date dataAtual = new Date();
         DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String dataPag = dataFormatada.format(dataAtual);
         pag.setDataPag(dataPag);
         pagServ.criaPag(pag);
-        return "/tela_painelRecep";
+        return painelRecep(model);
     }
 
     @RequestMapping("/{idAgen}/telaAtualizaAgen")
@@ -242,9 +250,9 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/telaFormAgen")
-    public String telaFormAgen(@ModelAttribute("agen") Agenda agen){
+    public String telaFormAgen(@ModelAttribute("agen") Agenda agen, Model model){
         agenServ.atualizaAgenda(agen);
-        return "/tela_painelRecep";
+        return painelRecep(model);
     }
 
     @RequestMapping("/telaCancelaAgen")
@@ -266,12 +274,10 @@ public class RecepcionistaController {
         return "/tela_cancelSchedule";
     }
 
-    @RequestMapping("/telaCancelaLista")
-    public String telaCancelaLista(@ModelAttribute("agen") Agenda agen, Model model){
-        //String cpf = "570.840.078-14";
-        //Integer idAgen = 1;
-        //agenServ.cancelaAgenda(cpf, idAgen);
-        return "/tela_painelRecep";
+    @PostMapping("/telaCancelaLista")
+    public String telaCancelaLista(@RequestParam String cpf, @RequestParam Integer idAgen,Model model){
+        agenServ.cancelaAgenda(cpf, idAgen);
+        return painelRecep(model);
     }
     
 }

@@ -56,6 +56,9 @@ public class MedicoController {
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("doencas", doeServ.buscaDoencaPorMedico(idMed));
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
+		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
+		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
+		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
 		return mv;
 	}
 

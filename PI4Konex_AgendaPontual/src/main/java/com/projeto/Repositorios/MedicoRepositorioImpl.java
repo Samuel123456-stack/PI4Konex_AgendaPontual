@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.projeto.Controladores.Dto.MedicoResumoDTO;
+import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
@@ -280,5 +281,33 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			e.printStackTrace();
 		}
 		return medico;
+	}
+
+	@Override
+	public QuantidadeAtendimentosDTO qteAtendimentos(Integer idMed) {
+
+		String sql = "select concat(count(concluida), ' atendimentos') as total from consulta c "
+				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
+				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "where m.idmed = ";
+		
+		if(idMed != null) {
+			sql += idMed;
+		}
+		QuantidadeAtendimentosDTO qte = new QuantidadeAtendimentosDTO();
+		
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+			
+			if (rs.next()) {
+				qte.setQuantidade(rs.getString("total"));
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return qte;
 	}
 }

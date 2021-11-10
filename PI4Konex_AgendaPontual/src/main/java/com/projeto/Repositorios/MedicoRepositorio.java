@@ -3,6 +3,7 @@ package com.projeto.Repositorios;
 import java.util.List;
 
 import com.projeto.Controladores.Dto.MedicoResumoDTO;
+import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Medico;
 
 
@@ -20,5 +21,7 @@ public interface MedicoRepositorio{
 	        String sexMas, String sexFem,Float valorMin, Float valorMax);
     
     MedicoResumoDTO medicoResumo(Integer idMed);
+    
+    QuantidadeAtendimentosDTO qteAtendimentos(Integer idMed);
 		
 }

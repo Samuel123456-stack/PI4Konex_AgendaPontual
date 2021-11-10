@@ -10,6 +10,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.projeto.Controladores.Dto.AvaliacoesNegativasDTO;
+import com.projeto.Controladores.Dto.AvaliacoesPositivasDTO;
 import com.projeto.Controladores.Dto.MelhoresFeedbacksDTO;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -21,7 +23,8 @@ public class FeedbackImpl implements FeedbackRepositorio{
 	
 	@Override
 	public List<MelhoresFeedbacksDTO> buscaFeedbackPorMedico(Integer idMed) {
-    	String sql = "select p.foto, f.comentario,p.nome from consulta c "
+    	
+		String sql = "select p.foto, f.comentario,p.nome from consulta c "
     			+ "inner join agenda_medica a on fk_agen_cons = a.idagen  "
     			+ "inner join medico m on fk_med_agen = m.idmed "
     			+ "inner join paciente p on fk_paci_agen = idpaci "
@@ -55,5 +58,65 @@ public class FeedbackImpl implements FeedbackRepositorio{
 		}
 		return feeds;
     	
+	}
+
+	@Override
+	public AvaliacoesPositivasDTO buscaAvaPositiva(Integer idMed) {
+    	
+		String sql = "select count(f.avaliacao) as positiva from consulta c "
+				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
+				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "inner join feedback f on c.fk_feed_cons = f.idfeed "
+				+ "where f.avaliacao >= 8 and paramedico = 1 and m.idmed = ";
+    	
+    	if(idMed != null) {
+    		sql += idMed;
+    	}
+    	
+    	AvaliacoesPositivasDTO positiva = new AvaliacoesPositivasDTO();
+		
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+				
+				if (rs.next()) {
+					positiva.setPositiva(rs.getInt("positiva"));
+				}
+				stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return positiva;
+	}
+
+	@Override
+	public AvaliacoesNegativasDTO buscaAvaNegativa(Integer idMed) {
+		
+		String sql = "select count(f.avaliacao) as negativa from consulta c "
+				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
+				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "inner join feedback f on c.fk_feed_cons = f.idfeed "
+				+ "where f.avaliacao <= 5 and paramedico = 1 and m.idmed = ";
+    	
+    	if(idMed != null) {
+    		sql += idMed;
+    	}
+    	
+    	AvaliacoesNegativasDTO negativa = new AvaliacoesNegativasDTO();
+		
+        try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+				
+				if (rs.next()) {
+					negativa.setNegativa(rs.getInt("negativa"));
+				}
+				stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return negativa;
 	}
 }

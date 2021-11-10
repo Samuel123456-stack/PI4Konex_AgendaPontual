@@ -2,26 +2,50 @@ package com.projeto.Servicos;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.projeto.Controladores.Dto.MedicoResumoDTO;
+import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Medico;
+import com.projeto.Repositorios.MedicoRepositorio;
 
+@Service
+public class MedicoServico {
 
-public interface MedicoServico {
+	@Autowired
+	private MedicoRepositorio medRepo;
 
-	
-	List<Medico> listaMedPorCli(Integer id);
-
-	
-	List<Medico> findAll();
-
-
-	List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec,
+	@Transactional(readOnly = true)
+	public List<Medico> listaMedPorCli(Integer id) {
+		return medRepo.listaMedPorCli(id);
+	}
+	@Transactional(readOnly = true)
+	public List<Medico> findAll() {
+		return medRepo.findAll(); 
+	}
+	@Transactional(readOnly = true)
+	public List<Medico> buscaMedCompleta(Integer cidade, Integer bairro, String espec,
 			String sexMas, String sexFem,Float valorMin , Float valorMax, 
-			Integer minExp, Integer maxExp);
-		
-	List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
-			String sexMas, String sexFem,Float valorMin, Float valorMax);
+			Integer minExp, Integer maxExp) {
+		return medRepo.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin,
+				valorMax, minExp, maxExp);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Medico> filtraMedCli(Integer idEsp, Integer idCid, Integer idCli,
+	       String sexMas, String sexFem,Float valorMin, Float valorMax){
+		return medRepo.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
+	}
 	
-	MedicoResumoDTO medicoResumo(Integer idMed);
-				
+	@Transactional(readOnly = true)
+	public MedicoResumoDTO medicoResumo(Integer IdMed){
+		return medRepo.medicoResumo(IdMed);
+	}
+	
+	@Transactional
+	public QuantidadeAtendimentosDTO buscaQteAtendimento(Integer idMed) {
+		return medRepo.qteAtendimentos(idMed);
+	}
 }

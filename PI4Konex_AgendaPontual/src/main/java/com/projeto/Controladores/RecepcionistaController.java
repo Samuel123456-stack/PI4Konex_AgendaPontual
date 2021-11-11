@@ -161,8 +161,11 @@ public class RecepcionistaController {
 
     //Passa para a tela de Confirmação
     @RequestMapping("/posConfirma")
-    public String posConfirma(Model model){
+    public String posConfirma(@ModelAttribute("")Agenda agen ,Model model){
         List<Convenio> listaConv = recepServ.listarTodasConv();
+        int idAgen = 3;
+        List<Agenda> listaResumo = agenServ.listaPosConfirma(idAgen);
+        model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);
 
         return "/tela_proconfirmation";

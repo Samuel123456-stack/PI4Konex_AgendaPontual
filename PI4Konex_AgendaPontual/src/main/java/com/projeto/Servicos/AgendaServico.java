@@ -61,4 +61,9 @@ public class AgendaServico {
         repoAgen.deleteById(idAgen);
     }
 
+    @Transactional(readOnly = true)
+    public List<Agenda> listaPosConfirma(Integer idAgen){
+        return repoAgen.listaResumo(idAgen);
+    }
+
 }

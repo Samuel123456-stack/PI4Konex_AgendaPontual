@@ -9,6 +9,7 @@ public class Convenio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idconv")
     private int idConv;
 
     @Column(name = "nome", nullable = true)

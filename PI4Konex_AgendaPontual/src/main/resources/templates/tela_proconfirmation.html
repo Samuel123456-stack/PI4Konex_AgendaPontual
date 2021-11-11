@@ -10,7 +10,7 @@
     <meta name="author" content="konex-group">
 
     <link rel="stylesheet" href="/css/tela_proConfirmation.css">
-    <script src="../JS/showContent.js"></script>
+    <script src="/js/showContent.js"></script>
 </head>
 <body>
     <div id="container-landing">
@@ -69,33 +69,36 @@
                 </svg> 
             </section>
 
-            <div class="summarize-container">
+            <div class="summarize-container" th:each="resumoConf: ${listaResumo}">
                 <article class="summarize-content">
                     <h3>Resumo</h3>
 
                     <div class="timezone-data">
                         <img src="/image/timezone-icon.png" alt="icon" />
-                        <span>23 Out 2021, 16:40 Fuso Horário: Brasília</span>
+                        <span th:text="'Data Agendada: ' + ${resumoConf.dataAgendada}"></span><br>
+                        <span th:text="'Horário: '+ ${resumoConf.idHora.horario}"></span>
                     </div>
                     <div class="address-data">
                         <img src="/image/address-icon.png" alt="icon" />
-                        <span>Rua Antônio Mendes da Rocha Filho, nº 695 Bloco A Sala 49. São Paulo, SP
-                            Cep: 02.996-215
-                        </span>
+                        <span th:text="'Endereço: ' + ${resumoConf.idMed.clinica.endereco.logradouro}"> </span>
+                        <span th:text="'nº '+ ${resumoConf.idMed.clinica.endereco.numero}"></span>
+                        <span th:text="'Sala: ' + ${resumoConf.idMed.sala}"></span>
+                        <span th:text="${resumoConf.idMed.clinica.endereco.bairro.cidade.nome} +', SP'"></span>
+                        <span th:text="'Cep: '+ ${resumoConf.idMed.clinica.endereco.cep}"></span>  
                     </div>
                     <div class="phone-number">
                         <img src="/image/phone-icon.png" alt="icon" />
-                        <span>(11) 5600-2030</span>
+                        <span th:text="'Telefone: ' + ${resumoConf.idMed.clinica.telefone}"></span>
                     </div>
                     <div class="appointment-value">
                         <img src="/image/cash-icon.png" alt="icon" />
-                        <span>Valor da consulta: R$ 100,00</span>
+                        <span th:text="'Valor: ' + ${resumoConf.idMed.valorMed}"></span>
                     </div>
 
                     <footer class="health-insurance">
                         <h3>Convênios aceitos</h3>
                         <p>
-                            <select name="subject">
+                            <select name="convenio">
                                 <option value="1">A consulta pode ter gratuidade</option>
                                 <option th:each="conv: ${listaConv}" th:value="*{conv.idConv}" th:text="*{conv.nomeConv}"></option>
                             </select>

@@ -145,6 +145,11 @@ Fim do css do menu.
     color: rgba(84, 101, 130, 0.9);
     font-size: 18px;
 }
+.textoMenuClinica img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 .textoMenuClinica svg{
     margin-right: 20px;
 

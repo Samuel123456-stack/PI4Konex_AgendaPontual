@@ -185,9 +185,9 @@
             </div>
         </main>
         
-        <h3 class="information-expert">INFORMAÇÕES DO ESPECIALISTA</h3>
+        <h3 class="information-expert" th:if="${medResumo != null}">INFORMAÇÕES DO ESPECIALISTA</h3>
 
-        <main class="main-container-page">
+        <main class="main-container-page" th:if="${medResumo != null}">
             <div class="first-container">
                 <div class="profile-container">
                     <section class="profile-photo" th:each="medResumo: ${medResumo}">
@@ -195,7 +195,7 @@
                     </section>
     
                     <article class="data-profile">
-                        <p>1985 PT</p>
+                        <p th:text="*{medResumo.pontos}+ PTS"></p>
                         <h3 th:text="*{medResumo.nome}"></h3>
                         <p th:text="*{medResumo.especialidade}"></p>
     
@@ -244,8 +244,8 @@
                 </div>
             </div>
         </main>
-        <form action="#" th:action="@{/recepcionista/posConfirma}" method="">
-        <main class="local-calendar">
+        <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
+        <main class="local-calendar" th:if="${medResumo != null}">
             <div class="week-calendar">
                 <h3>Calendário Semanal</h3>
 
@@ -299,7 +299,9 @@
                             <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
                             <input type="date" th:field="*{agenda.dataAgendada}" name="dataAgendada" />
                             <input type="time" th:field="*{agenda.idHora.horario}" name="horario" />
+                            <input type="hidden" th:value="*{medResumo}" name="idMed"/>
                         </div>
+                        
                 </footer>
             </div>
 
@@ -312,15 +314,19 @@
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
                             <textarea th:text="*{agenda.infoAdicAgen}" name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
-                        </div>                 
+                        </div>
+                        <input type="submit" value="SALVAR"/>                 
                 </div>
             </div>
+        </form>
         </main>
-
-        <footer class="button-next">
+        <form action="#" th:action="@{/recepcionista/posConfirma}" method="">
+        <footer class="button-next" th:if="${medResumo != null || agenda!=null}">
+            <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
             <input type="submit" value="CONFIRMAR O AGENDAMENTO"/>
         </footer>
     </form>
+  
     </div>
 </body>
 </html>

@@ -5,14 +5,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.projeto.Controladores.Dto.MedicoResumoDTO;
 import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
+import com.projeto.Controladores.Dto.HorariosQuaDTO;
+import com.projeto.Controladores.Dto.HorariosQuiDTO;
+import com.projeto.Controladores.Dto.HorariosSabDTO;
+import com.projeto.Controladores.Dto.HorariosSegDTO;
+import com.projeto.Controladores.Dto.HorariosSexDTO;
+import com.projeto.Controladores.Dto.HorariosTerDTO;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
@@ -243,8 +251,10 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	
 	@Override
 	public MedicoResumoDTO medicoResumo(Integer idMed) {
-
-		String sql = "select m.idmed, m.foto, m.nome, es.nome, m.biografia, concat('CRM: ',m.crm) crm, "
+		Locale local = new Locale("pt","BR");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy",local);
+		
+		String sql = "select m.idmed, m.foto, m.nome, es.nome, m.biografia, m.crm, "
 				+ "m.dataformatura emissao, concat(en.logradouro, ', ',en.numero, ' - ', ci.nome) logradouro, "
 				+ "concat( 'CEP: ', en.cep, ' - Compl.: ', en.complemento, ' - Sala: ', m.sala) complemento "
 				+ "from medico m "
@@ -270,8 +280,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				medico.setNome(rs.getString("m.nome"));
 				medico.setEspecialidade(rs.getString("es.nome"));
 				medico.setBiografia(rs.getString("m.biografia"));
-				medico.setCrm(rs.getString("crm"));
-				medico.setDataEmissao(rs.getDate("emissao").toLocalDate());
+				medico.setCrm("CRM: "+rs.getString("m.crm"));
+				medico.setDataEmissao("Data de Emissão: " +rs.getDate("emissao").toLocalDate().format(formatter));
 				medico.setLogradouro(rs.getString("logradouro"));
 				medico.setComplemento(rs.getString("complemento"));
 			}
@@ -309,5 +319,161 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			e.printStackTrace();
 		}
 		return qte;
+	}
+							
+	@Override
+	public List<HorariosSegDTO> buscaSeg(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Seg\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosSegDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosSegDTO seg = new HorariosSegDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(seg);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
+	}
+
+	@Override
+	public List<HorariosTerDTO> buscaTer(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Ter\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosTerDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosTerDTO ter = new HorariosTerDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(ter);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
+	}
+
+	@Override
+	public List<HorariosQuaDTO> buscaQua(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Qua\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosQuaDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosQuaDTO qua = new HorariosQuaDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(qua);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
+	}
+
+	@Override
+	public List<HorariosQuiDTO> buscaQui(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Qui\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosQuiDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosQuiDTO qui = new HorariosQuiDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(qui);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
+	}
+
+	@Override
+	public List<HorariosSexDTO> buscaSex(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Sex\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosSexDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosSexDTO sex = new HorariosSexDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(sex);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
+	}
+
+	@Override
+	public List<HorariosSabDTO> buscaSab(Integer idMed) {
+		String sql = "select hora from agenda where dia = \"Sab\" and medicoID = ";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+
+		List<HorariosSabDTO> horarios = new ArrayList<>();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+
+			while (rs.next()) {
+				HorariosSabDTO sab = new HorariosSabDTO(rs.getTime("hora").toLocalTime());
+				horarios.add(sab);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return horarios;
 	}
 }

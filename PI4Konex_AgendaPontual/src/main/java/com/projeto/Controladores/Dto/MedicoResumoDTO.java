@@ -14,14 +14,14 @@ public class MedicoResumoDTO implements Serializable{
 	private String especialidade;
 	private String biografia;
 	private String crm;
-	private LocalDate dataEmissao;
+	private String dataEmissao;
 	private String logradouro;
 	private String complemento;
 	
 	public MedicoResumoDTO() {}
 
 	public MedicoResumoDTO(Integer id, byte [] foto, String nome, String especialidade, String biografia, String crm,
-			LocalDate dataEmissao, String logradouro, String complemento) {
+			String dataEmissao, String logradouro, String complemento) {
 		this.id = id;
 		this.foto = Base64.encodeBase64String(foto);
 		this.nome = nome;
@@ -81,12 +81,12 @@ public class MedicoResumoDTO implements Serializable{
 		this.crm = crm;
 	}
 
-	public LocalDate getDataEmissao() {
+	public String getDataEmissao() {
 		return dataEmissao;
 	}
 
-	public void setDataEmissao(LocalDate dataEmissao) {
-		this.dataEmissao = dataEmissao;
+	public void setDataEmissao(String emissao) {
+		this.dataEmissao = emissao;
 	}
 
 	public String getLogradouro() {

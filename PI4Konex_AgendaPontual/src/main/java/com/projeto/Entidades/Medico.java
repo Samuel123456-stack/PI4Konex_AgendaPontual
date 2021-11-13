@@ -18,11 +18,12 @@ import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
+
 @Entity
 @Table(name = "medico")
 public class Medico implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	// Atributos
 
 	@Id

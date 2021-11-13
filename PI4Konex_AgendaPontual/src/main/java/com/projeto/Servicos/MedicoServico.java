@@ -6,6 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projeto.Controladores.Dto.HorariosQuaDTO;
+import com.projeto.Controladores.Dto.HorariosQuiDTO;
+import com.projeto.Controladores.Dto.HorariosSabDTO;
+import com.projeto.Controladores.Dto.HorariosSegDTO;
+import com.projeto.Controladores.Dto.HorariosSexDTO;
+import com.projeto.Controladores.Dto.HorariosTerDTO;
 import com.projeto.Controladores.Dto.MedicoResumoDTO;
 import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Medico;
@@ -13,6 +19,7 @@ import com.projeto.Repositorios.MedicoRepositorio;
 
 @Service
 public class MedicoServico {
+	
 
 	@Autowired
 	private MedicoRepositorio medRepo;
@@ -41,11 +48,40 @@ public class MedicoServico {
 	
 	@Transactional(readOnly = true)
 	public MedicoResumoDTO medicoResumo(Integer IdMed){
+
 		return medRepo.medicoResumo(IdMed);
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public QuantidadeAtendimentosDTO buscaQteAtendimento(Integer idMed) {
 		return medRepo.qteAtendimentos(idMed);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<HorariosSegDTO> buscaSeg(Integer idMed) {
+		return medRepo.buscaSeg(idMed);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<HorariosTerDTO> buscaTer(Integer idMed) {
+		return medRepo.buscaTer(idMed);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<HorariosQuaDTO> buscaQua(Integer idMed) {
+		return medRepo.buscaQua(idMed);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<HorariosQuiDTO> buscaQui(Integer idMed) {
+		return medRepo.buscaQui(idMed);
+	}
+	@Transactional(readOnly = true)
+	public List<HorariosSexDTO> buscaSex(Integer idMed) {
+		return medRepo.buscaSex(idMed);
+	}
+	@Transactional(readOnly = true)
+	public List<HorariosSabDTO> buscaSab(Integer idMed) {
+		return medRepo.buscaSab(idMed);
 	}
 }

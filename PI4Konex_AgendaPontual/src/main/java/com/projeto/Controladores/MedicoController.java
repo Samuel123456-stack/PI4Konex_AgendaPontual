@@ -3,6 +3,7 @@ package com.projeto.Controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,7 +60,23 @@ public class MedicoController {
 		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
 		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
 		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
+		 mv.addObject("seg", medServ.buscaSeg(idMed));
+		 mv.addObject("ter", medServ.buscaTer(idMed));
+		 mv.addObject("qua", medServ.buscaQua(idMed));
+		 mv.addObject("qui", medServ.buscaQui(idMed));
+		 mv.addObject("sex", medServ.buscaSex(idMed));
+		 mv.addObject("sab", medServ.buscaSab(idMed));
+		 
 		return mv;
 	}
-
+	
+	@PostMapping("/medico/validacao")
+	public ModelAndView valida(
+			@RequestParam(required = false) Integer idMed,
+			@RequestParam String data,
+			@RequestParam String hora) {
+		ModelAndView mv = new ModelAndView("tela_validation");
+		 
+		return mv;
+	}
 }

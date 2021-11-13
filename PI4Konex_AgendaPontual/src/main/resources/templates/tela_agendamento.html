@@ -168,7 +168,6 @@
                         <img th:src="*{'data:image/png;base64,'+{med.foto}}"/>
                     </section>
                     <section class="wilson-biography">
-                        <input type="hidden" th:value="${med.idMed}" name="idMed"/>
                         <h4 th:text="*{med.nomeMed}"></h4>
                         <p th:text="*{med.sobreMed}"></p>
                     </section>
@@ -177,9 +176,10 @@
                 <div class="score">
                     <p th:text="${med.pontos}+ PTS"></p>
                 </div>
-                <form action="#" th:action="@{/recepcionista/selecMed}" method="">
+                <form action="#" th:action="@{/recepcionista/selecMed?{idMed}}" method="get">
+                    <input type="hidden" th:value="${med.idMed}" name="idMed"/>
                 <div class="button-select">
-                    <button type="button">SELECIONAR</button>
+                    <input type="submit" value="SELECIONAR"/>
                 </div>
                 </form>
             </div>
@@ -190,140 +190,62 @@
         <main class="main-container-page">
             <div class="first-container">
                 <div class="profile-container">
-                    <section class="profile-photo">
-                        <img src="/image/doctorwilson-profile.png" alt="profile" />
+                    <section class="profile-photo" th:each="medResumo: ${medResumo}">
+                        <img th:src="*{'data:image/png;base64,'+{medResumo.foto}}" alt="profile" />
                     </section>
     
                     <article class="data-profile">
                         <p>1985 PT</p>
-                        <h3>Nome</h3>
-                        <p>Clinico Geral</p>
+                        <h3 th:text="*{medResumo.nome}"></h3>
+                        <p th:text="*{medResumo.especialidade}"></p>
     
-                        <div class="service-status">
+                        <div class="service-status" th:each="total, stat: ${total}">
                             <img src="/image/user-icon.png" alt="icon" />
-                            <span class="first">
-                                2670 atendimentos
-                            </span>
-                            <span>
+                            <span class="first" th:text="*{total.quantidade}" ></span>
+                            <span th:each="feedPos, stat: ${feedPos}">
                                 <img src="/image/hapy-face.png" alt="icon-face" class="happy-face"/>
-                                <span class="number1">2532</span>
+                                <span class="number1" th:text="*{feedPos.positiva}"></span>
                             </span>
-                            <span>
+                            <span th:each="feedNot, stat: ${feedNot}">
                                 <img src="/image/sad-face.png" alt="icon-face" class="sad-face"/>
-                                <span class="number2">138</span>
+                                <span class="number2" th:text="*{feedNot.negativa}"></span>
                             </span>
                         </div>
                     </article>
                 </div>
 
                 <article class="biography">
-                    <h3></h3>
+                    <h3>Biografia</h3>
 
-                    <p></p>
+                    <p th:text="*{medResumo.biografia}"></p>
                 </article>
             </div>
 
             <div class="condition-container">
                 <div class="content">
-                    <h3>Register</h3>
+                    <h3>Registro</h3>
 
-                    <p></p>
-                    <p></p>
+                    <p th:text="*{medResumo.crm}"></p>
+                    <p th:text="*{medResumo.dataEmissao}"></p>
 
                     <h3>Principais condições que trato</h3>
 
                     <section class="treatment">
-                        <div class="first-list">
+                        <div class="first-list" th:each="doeResumo: ${doeResumo}">
                             <div class="alergia">
                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
                                     <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg> 
-                                <span>Alergias</span>
-                            </div>
-                            <div class="anemia">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Anemia</span>
-                            </div>
-                            <div class="asma">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Asma</span>
-                            </div>
-                            <div class="diabetes">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                 </svg>
-                                    
-                                <span>Diabetes</span>
-                            </div>
-                            <div class="gastro">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Doenças Gastrointestinais</span>
-                            </div>
-                        </div>
-
-                        <div class="second-list">
-                            <div class="exame-rotina">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Exames de Rotina</span>
-                            </div>
-                            <div class="hipertensao">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Hipertensão arterial</span>
-                            </div>
-                            <div class="hipertireoidismo">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                 </svg>
-                                    
-                                <span>Hipertireoidismo</span>
-                            </div>
-                            <div class="infection">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Infecções em geral</span>
-                            </div>
-                            <div class="prescrition">
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.5 16C12.6421 16 16 12.6421 16 8.5C16 4.35786 12.6421 1 8.5 1C4.35786 1 1 4.35786 1 8.5C1 12.6421 4.35786 16 8.5 16Z" fill="#1CC4BF" stroke="#1CC4BF" stroke-width="1.4"/>
-                                    <path d="M5.5 8.875L7.75 11.125L11.5 6.625" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                    
-                                <span>Prescrição de Vacinas</span>
+                                <span th:text="${doeResumo.nome}"></span>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
         </main>
-
+        <form action="#" th:action="@{/recepcionista/posConfirma}" method="">
         <main class="local-calendar">
-            <form action="#" th:action="@{/recepcionista/salvaInfoAdic}" method="">
             <div class="week-calendar">
                 <h3>Calendário Semanal</h3>
 
@@ -374,11 +296,13 @@
                 <footer class="schedule">
                     <h3>Agendamento</h3>              
                         <div class="input">
-                            <input type="date" th:field="*{agenda.dataAgendada}" name="dataAgendada" for />
+                            <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
+                            <input type="date" th:field="*{agenda.dataAgendada}" name="dataAgendada" />
                             <input type="time" th:field="*{agenda.idHora.horario}" name="horario" />
                         </div>
                 </footer>
             </div>
+
 
             <div class="additional-information">
                 <h3>Informações adicionais para o doutor</h3>
@@ -388,20 +312,15 @@
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
                             <textarea th:text="*{agenda.infoAdicAgen}" name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
-                        </div>
-
-                        <input type="submit" value="SALVAR">
-                    
+                        </div>                 
                 </div>
             </div>
-        </form>
         </main>
 
         <footer class="button-next">
-            <a style="text-decoration: none;" th:href="@{/recepcionista/posConfirma}">
-            <button type="button">CONFIRMAR O AGENDAMENTO</button>
-            </a>
+            <input type="submit" value="CONFIRMAR O AGENDAMENTO"/>
         </footer>
+    </form>
     </div>
 </body>
 </html>

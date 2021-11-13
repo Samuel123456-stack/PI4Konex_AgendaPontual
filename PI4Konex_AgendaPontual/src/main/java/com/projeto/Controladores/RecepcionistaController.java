@@ -23,7 +23,9 @@ import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.AgendaServico;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.ClinicasServico;
+import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
@@ -64,6 +66,10 @@ public class RecepcionistaController {
     ClinicasServico cliServ;
     @Autowired
     MedicoServico medServ;
+    @Autowired
+    DoencaServico doeServ;
+    @Autowired
+    FeedbackServico feedServ;
     
 
 
@@ -98,41 +104,35 @@ public class RecepcionistaController {
         //recepServ.criaPaci(paci);
         //usuServ.criaUsu(usu);
         //recepServ.criaEnd(end);
-    
         ModelAndView modelView = new ModelAndView("tela_agendamento");
         //Cria a listagem do filtro e seus atributos
-        Agenda agen = new Agenda();
         //Consulta cons = new Consulta();
-
+        
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = espServ.findAll();
         List<Medico> listaFiltraMed = medServ.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
         modelView.addObject("listaCid", listaCid);
         modelView.addObject("listaEsp", listaEsp);
         modelView.addObject("listaFiltraMed", listaFiltraMed);
-        modelView.addObject("agenda", agen);
         return modelView;
     }
 
 
 
-    //Salva Informaçoes Adicionais, Horario e Data
-    @RequestMapping("/salvaInfoAdic")
-    public String salvaInfoAdici(@ModelAttribute("agenda")Agenda agen){
-        Date dataAtual = new Date();
-        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
-        String dataAgen = dataFormatada.format(dataAtual);
-        agen.setDataAgendada(dataAgen);
-        agenServ.criaAtualizaAgen(agen);
-        
 
-        return "/tela_agendamento";
-    }
 
     //Seleciona o Medico para saber suas informações
-    @RequestMapping("/selecMed")
-    public String infoEspecialista(@RequestParam Integer idMedd, Model model){
-        model.addAttribute("teste", idMedd);
+    @GetMapping("/selecMed")
+    public String infoEspecialista(@RequestParam Integer idMed, Model model){
+        Agenda agen = new Agenda();
+        //Revisar melhor os atributos e o disparo do Resumo do Médico
+        model.addAttribute("medResumo", medServ.medicoResumo(idMed));
+        model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(idMed));
+        model.addAttribute("feedPos", feedServ.buscaPositiva(idMed));
+        model.addAttribute("feedNot", feedServ.buscaNegativa(idMed));
+        model.addAttribute("total", medServ.buscaQteAtendimento(idMed));
+        model.addAttribute("agenda", agen);
+        
         return "/tela_agendamento";
     }
 
@@ -159,11 +159,17 @@ public class RecepcionistaController {
         return "/tela_consRes";
     }
 
-    //Passa para a tela de Confirmação
+    //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/posConfirma")
-    public String posConfirma(@ModelAttribute("")Agenda agen ,Model model){
-        List<Convenio> listaConv = recepServ.listarTodasConv();
-        int idAgen = 3;
+    public String posConfirma(@RequestParam Integer idAgen, @ModelAttribute("agenda")Agenda agen,Model model){
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
+        //Arrumar o id de agenda
+        //idAgen=3;
+        String dataAgen = dataFormatada.format(dataAtual);
+        agen.setDataAgendada(dataAgen);
+        agenServ.criaAtualizaAgen(agen);
+        List<Convenio> listaConv = recepServ.listarTodasConv(); 
         List<Agenda> listaResumo = agenServ.listaPosConfirma(idAgen);
         model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);

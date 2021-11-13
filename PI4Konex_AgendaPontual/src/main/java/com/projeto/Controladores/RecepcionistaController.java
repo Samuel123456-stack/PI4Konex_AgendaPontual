@@ -122,10 +122,10 @@ public class RecepcionistaController {
 
 
     //Seleciona o Medico para saber suas informações
-    @GetMapping("/selecMed")
+    @RequestMapping("/selecMed")
     public String infoEspecialista(@RequestParam Integer idMed, Model model){
         Agenda agen = new Agenda();
-        //Revisar melhor os atributos e o disparo do Resumo do Médico
+        agenServ.criaAtualizaAgen(agen);
         model.addAttribute("medResumo", medServ.medicoResumo(idMed));
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(idMed));
         model.addAttribute("feedPos", feedServ.buscaPositiva(idMed));
@@ -133,6 +133,20 @@ public class RecepcionistaController {
         model.addAttribute("total", medServ.buscaQteAtendimento(idMed));
         model.addAttribute("agenda", agen);
         
+        return "/tela_agendamento";
+    }
+
+    //Salva Informaçoes Adicionais, Horario e Data
+    @RequestMapping("/salvaInfoAdic")
+    public String salvaInfoAdici(@RequestParam Integer idMed, @ModelAttribute("agenda")Agenda agen, Model model){
+        //Verificar melhor esse metodo
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
+        String dataAgen = dataFormatada.format(dataAtual);
+        agen.setDataAgendada(dataAgen);
+        agenServ.criaAtualizaAgen(agen);
+
+
         return "/tela_agendamento";
     }
 
@@ -161,14 +175,7 @@ public class RecepcionistaController {
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/posConfirma")
-    public String posConfirma(@RequestParam Integer idAgen, @ModelAttribute("agenda")Agenda agen,Model model){
-        Date dataAtual = new Date();
-        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
-        //Arrumar o id de agenda
-        //idAgen=3;
-        String dataAgen = dataFormatada.format(dataAtual);
-        agen.setDataAgendada(dataAgen);
-        agenServ.criaAtualizaAgen(agen);
+    public String posConfirma(@RequestParam Integer idAgen,@ModelAttribute("med")Medico med, @ModelAttribute("agenda")Agenda agen,Model model){
         List<Convenio> listaConv = recepServ.listarTodasConv(); 
         List<Agenda> listaResumo = agenServ.listaPosConfirma(idAgen);
         model.addAttribute("listaResumo", listaResumo);

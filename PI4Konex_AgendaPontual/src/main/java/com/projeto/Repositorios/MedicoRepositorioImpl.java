@@ -251,10 +251,11 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	
 	@Override
 	public MedicoResumoDTO medicoResumo(Integer idMed) {
+
 		Locale local = new Locale("pt","BR");
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy",local);
 		
-		String sql = "select m.idmed, m.foto, m.nome, es.nome, m.biografia, m.crm, "
+		String sql = "select m.idmed, m.foto, m.nome, m.pontos, es.nome, m.biografia, m.crm crm, "
 				+ "m.dataformatura emissao, concat(en.logradouro, ', ',en.numero, ' - ', ci.nome) logradouro, "
 				+ "concat( 'CEP: ', en.cep, ' - Compl.: ', en.complemento, ' - Sala: ', m.sala) complemento "
 				+ "from medico m "
@@ -278,6 +279,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				medico.setId(rs.getInt("m.idmed"));
 				medico.setFoto(rs.getBytes("m.foto"));
 				medico.setNome(rs.getString("m.nome"));
+				medico.setPontos(rs.getInt("m.pontos"));
 				medico.setEspecialidade(rs.getString("es.nome"));
 				medico.setBiografia(rs.getString("m.biografia"));
 				medico.setCrm("CRM: "+rs.getString("m.crm"));

@@ -31,6 +31,11 @@
     height: 124px;
     margin-bottom: 35px;
 }
+.foto img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
 #attFt{
     font-size: 14px;
     color: #1CC4BF;

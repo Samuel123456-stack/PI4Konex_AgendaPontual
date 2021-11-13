@@ -11,6 +11,7 @@ public class MedicoResumoDTO implements Serializable{
 	private Integer id;
 	private String foto;
 	private String nome;
+	private Integer pontos;
 	private String especialidade;
 	private String biografia;
 	private String crm;
@@ -20,11 +21,17 @@ public class MedicoResumoDTO implements Serializable{
 	
 	public MedicoResumoDTO() {}
 
+<<<<<<< HEAD
 	public MedicoResumoDTO(Integer id, byte [] foto, String nome, String especialidade, String biografia, String crm,
 			String dataEmissao, String logradouro, String complemento) {
+=======
+	public MedicoResumoDTO(Integer id, byte [] foto, String nome, Integer pontos, String especialidade, String biografia, String crm,
+			LocalDate dataEmissao, String logradouro, String complemento) {
+>>>>>>> branch 'main' of https://github.com/Samuel123456-stack/PI4Konex_AgendaPontual.git
 		this.id = id;
 		this.foto = Base64.encodeBase64String(foto);
 		this.nome = nome;
+		this.pontos = pontos;
 		this.especialidade = especialidade;
 		this.biografia = biografia;
 		this.crm = crm;
@@ -55,6 +62,14 @@ public class MedicoResumoDTO implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Integer getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
 	}
 
 	public String getEspecialidade() {

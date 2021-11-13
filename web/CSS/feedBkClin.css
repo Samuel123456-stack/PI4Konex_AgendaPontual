@@ -98,6 +98,7 @@ background: #546582;
 #nomeTb img{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 #nomeTb img, #nomeTb p{
     float: left;
@@ -166,6 +167,7 @@ background: #546582;
 .dadosCli img{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
     margin: 0 16px 15px 0;
 }
 .dadosCli h3, .dadosCli p{

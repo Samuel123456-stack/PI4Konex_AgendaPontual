@@ -156,6 +156,7 @@ background: #546582;
 #nomeTb img{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 #nomeTb img, #nomeTb p{
     float: left;

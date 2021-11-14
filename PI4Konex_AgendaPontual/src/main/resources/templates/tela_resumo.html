@@ -210,10 +210,10 @@
                     <footer class="schedule">
                         <h3>Agendamento</h3>
 
-                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST">
+                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST" th:object="${dados}">
                             <div class="input">
-                                <input type="date" name="data" />
-                                <input type="time" name="hora" />
+                                <input type="date"  name="data" />
+                                <input type="time" th:field="*{horaChegada}" name="hora" />
                                 <input type="submit" value="PRÓXIMO" />
                             </div>
                         </form>

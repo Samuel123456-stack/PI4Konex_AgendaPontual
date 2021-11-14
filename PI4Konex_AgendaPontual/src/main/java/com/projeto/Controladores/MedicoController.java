@@ -13,6 +13,7 @@ import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
+import com.projeto.Servicos.ConvenioServico;
 import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
@@ -42,6 +43,9 @@ public class MedicoController {
 	
 	@Autowired
 	private ConsultaServico consServ; 
+	
+	@Autowired
+	private ConvenioServico convServ; 
 
 	
 	@GetMapping("/medico/busca")
@@ -63,8 +67,9 @@ public class MedicoController {
 	}
 	
 	@GetMapping("/medico/resumo")
-	public ModelAndView resumo(@RequestParam Integer idMed, @ModelAttribute("dados") Consulta dados ) {
+	public ModelAndView resumo(@RequestParam Integer idMed, @ModelAttribute("dados") Consulta dados) {
 		ModelAndView mv = new ModelAndView("tela_resumo");
+		
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("doencas", doeServ.buscaDoencaPorMedico(idMed));
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
@@ -85,14 +90,15 @@ public class MedicoController {
 	public ModelAndView valida(
 			@PathVariable("idMed") Integer idMed,
 			@RequestParam String data,
-			@RequestParam String hora) {
+			@ModelAttribute("dados") Consulta dados) {
 		ModelAndView mv = new ModelAndView("tela_validation");
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
 		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
 		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
 		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
-		 
+		 mv.addObject("convenios", convServ.listaConvenio());
+		 consServ.cadastro(dados);
 		 mv.addObject("numero", ultServ.buscaUtimoId());
 		return mv;
 	}

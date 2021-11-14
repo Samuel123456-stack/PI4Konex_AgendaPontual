@@ -13,6 +13,8 @@ public class ConsultaServico {
 	private ConsultaRepositorio conRepo;
 	
 	public Consulta cadastro(Consulta obj) {
+		obj.setIdConsulta(13);
+		
 		return conRepo.save(obj);
 	}
 }

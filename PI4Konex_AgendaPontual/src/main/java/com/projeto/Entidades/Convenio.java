@@ -10,7 +10,7 @@ public class Convenio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idconv")
-    private int idConv;
+    private Integer idConv;
 
     @Column(name = "nome", nullable = true)
     private String nomeConv;
@@ -24,7 +24,7 @@ public class Convenio {
     }
 
     // Metodo Construtor com Atributos
-    public Convenio(int idConv, String nomeConv, float valorConv) {
+    public Convenio(Integer idConv, String nomeConv, float valorConv) {
         this.idConv = idConv;
         this.nomeConv = nomeConv;
         this.valorConv = valorConv;
@@ -35,7 +35,7 @@ public class Convenio {
         return idConv;
     }
 
-    public void setIdConv(int idConv) {
+    public void setIdConv(Integer idConv) {
         this.idConv = idConv;
     }
 

@@ -72,14 +72,15 @@ public class Consulta implements Serializable{
     private Pagamento pagamento;
 
     // Metodo Construtor
+    
     public Consulta(){}
-
+    
     // Metodo Construtor com Atributos
     public Consulta(Integer idConsulta, Agenda agenda, boolean confirmada, boolean retorno, LocalTime horaChegada,
             LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
             Receita receita, Feedback feedback, Pagamento pagamento) {
         this.idConsulta = idConsulta;
-        this.agenda = agenda;
+    	this.agenda = agenda;
         this.confirmada = confirmada;
         this.retorno = retorno;
         this.horaChegada = horaChegada;

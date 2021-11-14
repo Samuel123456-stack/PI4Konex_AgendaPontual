@@ -2,9 +2,9 @@ package com.projeto.Repositorios;
 
 import java.util.List;
 
-import com.projeto.Controladores.Dto.AvaliacoesNegativasDTO;
-import com.projeto.Controladores.Dto.AvaliacoesPositivasDTO;
-import com.projeto.Controladores.Dto.MelhoresFeedbacksDTO;
+import com.projeto.Dto.AvaliacoesNegativasDTO;
+import com.projeto.Dto.AvaliacoesPositivasDTO;
+import com.projeto.Dto.MelhoresFeedbacksDTO;
 
 
 public interface FeedbackRepositorio {

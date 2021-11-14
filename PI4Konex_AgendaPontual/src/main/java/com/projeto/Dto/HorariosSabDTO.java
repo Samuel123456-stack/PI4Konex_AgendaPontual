@@ -1,4 +1,4 @@
-package com.projeto.Controladores.Dto;
+package com.projeto.Dto;
 
 import java.io.Serializable;
 import java.time.LocalTime;

@@ -1,21 +1,35 @@
 package com.projeto.Entidades;
 
+import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table
-public class Consulta {
+public class Consulta implements Serializable{
+	private static final long serialVersionUID = 1L;
 
-    // Atributos
+	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idcons")
-    private int idConsulta;
-
+    private Integer idConsulta;
+    
+    @OneToOne
     @JoinColumn(name = "fk_agen_cons")
-    private int idAgen;
+    private Agenda agenda;
 
     @Column(nullable = true)
     private boolean confirmada;
@@ -23,10 +37,10 @@ public class Consulta {
     @Column(nullable = true)
     private boolean retorno;
 
-    @Column(name = "hora_chegada", nullable = true)
+    @Column(name = "horachegada", nullable = true)
     private LocalTime horaChegada;
 
-    @Column(name = "hora_saida", nullable = true)
+    @Column(name = "horasaida", nullable = true)
     private LocalTime horaSaida;
 
     @Column(name = "duracao", nullable = true)
@@ -40,30 +54,32 @@ public class Consulta {
 
     @Column(name = "cancelada", nullable = true)
     private boolean cancelada;
-
+    
+    @OneToOne
     @JoinColumn(name = "fk_rec_cons", nullable = true)
-    private int idReceita;
-
+    private Receita receita;
+    
+    @OneToOne
     @JoinColumn(name = "fk_feed_cons", nullable = true)
-    private int idFeed;
-
+    private Feedback feedback;
+    
+    @OneToMany
     @JoinColumn(name = "fk_not_cons", nullable = true)
-    private int idNot;
-
+    private List<Notificacao> notificacao = new ArrayList<>();
+    
+    @OneToOne
     @JoinColumn(name = "fk_pag_cons", nullable = true)
-    private int idPag;
+    private Pagamento pagamento;
 
     // Metodo Construtor
-    public Consulta() {
-
-    }
+    public Consulta(){}
 
     // Metodo Construtor com Atributos
-    public Consulta(int idConsulta, int idAgen, boolean confirmada, boolean retorno, LocalTime horaChegada,
+    public Consulta(Integer idConsulta, Agenda agenda, boolean confirmada, boolean retorno, LocalTime horaChegada,
             LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
-            int idReceita, int idFeed, int idNot, int idPag) {
+            Receita receita, Feedback feedback, Pagamento pagamento) {
         this.idConsulta = idConsulta;
-        this.idAgen = idAgen;
+        this.agenda = agenda;
         this.confirmada = confirmada;
         this.retorno = retorno;
         this.horaChegada = horaChegada;
@@ -72,10 +88,9 @@ public class Consulta {
         this.concluida = concluida;
         this.naoCompareceu = naoCompareceu;
         this.cancelada = cancelada;
-        this.idReceita = idReceita;
-        this.idFeed = idFeed;
-        this.idNot = idNot;
-        this.idPag = idPag;
+        this.receita = receita;
+        this.feedback = feedback;
+        this.pagamento = pagamento;
     }
 
     // Getters e Setters
@@ -85,14 +100,6 @@ public class Consulta {
 
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
-    }
-
-    public int getIdAgen() {
-        return idAgen;
-    }
-
-    public void setIdAgen(int idAgen) {
-        this.idAgen = idAgen;
     }
 
     public boolean isConfirmada() {
@@ -159,36 +166,60 @@ public class Consulta {
         this.cancelada = cancelada;
     }
 
-    public int getIdReceita() {
-        return idReceita;
-    }
+	public Agenda getAgenda() {
+		return agenda;
+	}
 
-    public void setIdReceita(int idReceita) {
-        this.idReceita = idReceita;
-    }
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
 
-    public int getIdFeed() {
-        return idFeed;
-    }
+	public Receita getReceita() {
+		return receita;
+	}
 
-    public void setIdFeed(int idFeed) {
-        this.idFeed = idFeed;
-    }
+	public void setReceita(Receita receita) {
+		this.receita = receita;
+	}
 
-    public int getIdNot() {
-        return idNot;
-    }
+	public Feedback getFeedback() {
+		return feedback;
+	}
 
-    public void setIdNot(int idNot) {
-        this.idNot = idNot;
-    }
+	public void setFeedback(Feedback feedback) {
+		this.feedback = feedback;
+	}
 
-    public int getIdPag() {
-        return idPag;
-    }
+	public List<Notificacao> getNotificacao() {
+		return notificacao;
+	}
 
-    public void setIdPag(int idPag) {
-        this.idPag = idPag;
-    }
+	public void setNotificacao(List<Notificacao> notificacao) {
+		this.notificacao = notificacao;
+	}
 
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idConsulta);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Consulta other = (Consulta) obj;
+		return Objects.equals(idConsulta, other.idConsulta);
+	}
 }

@@ -58,8 +58,8 @@
                     </svg>
                     <a th:href="@{/medico/busca}"><span>Voltar</span></a>
                 </section>
-                <div class="second-block">
-                    <h2>Agendamento: </h2><h2>#80603020</h2>
+                <div class="second-block" th:each="numero, stat: ${numero}">
+                    <h2>Agendamento: </h2><h2 th:text="${numero.num}"></h2>
                 </div>
             </header>
 

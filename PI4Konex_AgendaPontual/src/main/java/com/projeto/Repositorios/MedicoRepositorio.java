@@ -2,14 +2,14 @@ package com.projeto.Repositorios;
 
 import java.util.List;
 
-import com.projeto.Controladores.Dto.HorariosQuaDTO;
-import com.projeto.Controladores.Dto.HorariosQuiDTO;
-import com.projeto.Controladores.Dto.HorariosSabDTO;
-import com.projeto.Controladores.Dto.HorariosSegDTO;
-import com.projeto.Controladores.Dto.HorariosSexDTO;
-import com.projeto.Controladores.Dto.HorariosTerDTO;
-import com.projeto.Controladores.Dto.MedicoResumoDTO;
-import com.projeto.Controladores.Dto.QuantidadeAtendimentosDTO;
+import com.projeto.Dto.HorariosQuaDTO;
+import com.projeto.Dto.HorariosQuiDTO;
+import com.projeto.Dto.HorariosSabDTO;
+import com.projeto.Dto.HorariosSegDTO;
+import com.projeto.Dto.HorariosSexDTO;
+import com.projeto.Dto.HorariosTerDTO;
+import com.projeto.Dto.MedicoResumoDTO;
+import com.projeto.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Medico;
 
 

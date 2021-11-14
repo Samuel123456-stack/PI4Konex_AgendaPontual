@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.projeto.Controladores.Dto.AvaliacoesNegativasDTO;
-import com.projeto.Controladores.Dto.AvaliacoesPositivasDTO;
-import com.projeto.Controladores.Dto.MelhoresFeedbacksDTO;
+import com.projeto.Dto.AvaliacoesNegativasDTO;
+import com.projeto.Dto.AvaliacoesPositivasDTO;
+import com.projeto.Dto.MelhoresFeedbacksDTO;
 import com.projeto.Repositorios.FeedbackRepositorio;
 
 @Service

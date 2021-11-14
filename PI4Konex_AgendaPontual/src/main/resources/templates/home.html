@@ -363,7 +363,7 @@
             <div class="news">
                 <h1>NewsLatter</h1>
                 	<div class="email">
-                    <form th:action="@{/newslatter/cadastro/home}" th:object="${news}" method="POST">
+                    <form th:action="@{/newslatter/cadastro/home}"  method="POST">
                         <input type="text" th:field="*{email}" id="emailRodape" placeholder="Digite seu melhor e-mail">
                         <button value="submit" id="btnEmail">Inscrever</button>
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Teste</span>

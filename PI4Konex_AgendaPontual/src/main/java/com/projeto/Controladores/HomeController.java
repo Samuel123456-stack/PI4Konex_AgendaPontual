@@ -34,7 +34,7 @@ public class HomeController {
 		List<Cidade> cidades = cidServ.findAll();
 		model.addAttribute("cidades", cidades);
 		model.addAttribute("news", new NewsLatter());
-		return ("/home");
+		return ("home");
 	}
 	
 	
@@ -50,7 +50,7 @@ public class HomeController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return ("login");
+		return ("tela_login");
 	}
 	
 }

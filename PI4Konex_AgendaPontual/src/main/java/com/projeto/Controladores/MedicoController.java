@@ -3,17 +3,21 @@ package com.projeto.Controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.CidadeServico;
+import com.projeto.Servicos.ConsultaServico;
 import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
+import com.projeto.Servicos.UltimoIdDTOServico;
 
 @Controller
 public class MedicoController {
@@ -32,6 +36,12 @@ public class MedicoController {
 	
 	@Autowired
 	private FeedbackServico feeServ;
+	
+	@Autowired
+	private UltimoIdDTOServico ultServ;
+	
+	@Autowired
+	private ConsultaServico consServ; 
 
 	
 	@GetMapping("/medico/busca")
@@ -53,7 +63,7 @@ public class MedicoController {
 	}
 	
 	@GetMapping("/medico/resumo")
-	public ModelAndView resumo(@RequestParam Integer idMed) {
+	public ModelAndView resumo(@RequestParam Integer idMed, @ModelAttribute("dados") Consulta dados ) {
 		ModelAndView mv = new ModelAndView("tela_resumo");
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("doencas", doeServ.buscaDoencaPorMedico(idMed));
@@ -77,11 +87,13 @@ public class MedicoController {
 			@RequestParam String data,
 			@RequestParam String hora) {
 		ModelAndView mv = new ModelAndView("tela_validation");
-		mv.addObject("medico", medServ.medicoResumo(idMed));
+		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
 		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
 		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
 		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
+		 
+		 mv.addObject("numero", ultServ.buscaUtimoId());
 		return mv;
 	}
 }

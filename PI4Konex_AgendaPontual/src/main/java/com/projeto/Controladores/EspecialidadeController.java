@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.projeto.Controladores.Dto.AutoCompleteDTO;
+import com.projeto.Dto.AutoCompleteDTO;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Servicos.EspecialidadeServico;
 

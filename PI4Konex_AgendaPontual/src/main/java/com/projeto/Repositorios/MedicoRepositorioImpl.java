@@ -257,7 +257,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		
 		String sql = "select m.idmed, m.foto, m.nome, m.pontos, es.nome, m.biografia, m.crm crm, "
 				+ "m.dataformatura emissao, concat(en.logradouro, ', ',en.numero, ' - ', ci.nome) logradouro, "
-				+ "concat( 'CEP: ', en.cep, ' - Compl.: ', en.complemento, ' - Sala: ', m.sala) complemento "
+				+ "concat( 'CEP: ', en.cep, ' - Compl.: ', en.complemento, ' - Sala: ', m.sala) complemento, cl.fone, m.valor "
 				+ "from medico m "
 				+ "inner join especialidade es on m.fk_esp_med = es.idesp "
 				+ "inner join clinica cl on m.fk_cli_med = cl.idcli "
@@ -286,6 +286,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				medico.setDataEmissao("Data de Emissão: " +rs.getDate("emissao").toLocalDate().format(formatter));
 				medico.setLogradouro(rs.getString("logradouro"));
 				medico.setComplemento(rs.getString("complemento"));
+				medico.setTelefone(rs.getString("cl.fone"));
+				medico.setValor("Valor da consulta: R$ " +rs.getString("m.valor"));
 			}
 			stmt.close();
 

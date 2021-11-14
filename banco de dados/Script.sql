@@ -1,8 +1,8 @@
-CREATE USER 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
+CREATE USER if not exists 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
 GRANT ALL PRIVILEGES ON agendapontual. * TO 'agendaPontual'@'localhost';
 FLUSH PRIVILEGES;
 
-create database agendapontual;
+create database if not exists agendapontual;
 
 USE agendapontual;
 

@@ -31,9 +31,11 @@
     cursor:pointer;
 }
 #container-landing .header-summarize .second-block h2{
+    display: flex;
     letter-spacing:0.2;
     color:#546582;
     font:700 30px 'Mulish', sans-serif;
+    
 }
 #container-landing .schedule-summarize{
     margin:77px 0 101px 0;

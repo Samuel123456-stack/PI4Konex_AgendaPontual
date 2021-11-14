@@ -210,7 +210,7 @@
                     <footer class="schedule">
                         <h3>Agendamento</h3>
 
-                        <form th:action="@{/medico/validacao}" method="POST">
+                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST">
                             <div class="input">
                                 <input type="date" name="data" />
                                 <input type="time" name="hora" />

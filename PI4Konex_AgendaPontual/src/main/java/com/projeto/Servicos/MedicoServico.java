@@ -84,4 +84,9 @@ public class MedicoServico {
 	public List<HorariosSabDTO> buscaSab(Integer idMed) {
 		return medRepo.buscaSab(idMed);
 	}
+
+	@Transactional(readOnly = true)
+	public Medico infoMed(Integer idMed){
+		return medRepo.infoMed(idMed);
+	}
 }

@@ -117,10 +117,6 @@ public class RecepcionistaController {
         return modelView;
     }
 
-
-
-
-
     //Seleciona o Medico para saber suas informações
     @RequestMapping("/selecMed")
     public String infoEspecialista(@RequestParam Integer idMed, Model model){
@@ -138,15 +134,15 @@ public class RecepcionistaController {
 
     //Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/salvaInfoAdic")
-    public String salvaInfoAdici(@RequestParam Integer idMed, @ModelAttribute("agenda")Agenda agen, Model model){
+    public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Agenda agen, Model model){
         //Verificar melhor esse metodo
         Date dataAtual = new Date();
         DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
         String dataAgen = dataFormatada.format(dataAtual);
         agen.setDataAgendada(dataAgen);
+        Medico med = medServ.infoMed(id);
+        agen.setIdMed(med);
         agenServ.criaAtualizaAgen(agen);
-
-
         return "/tela_agendamento";
     }
 
@@ -182,6 +178,20 @@ public class RecepcionistaController {
         model.addAttribute("listaConv", listaConv);
 
         return "/tela_proconfirmation";
+    }
+
+    //Consulta se a Disponibilidade no agendamento
+    @RequestMapping("/consDispo")
+    public String consDispo(){
+
+        return "/tela_proconfirmation";
+    }
+    
+    //Valida o Agendamento e direciona para a tela da recepionista
+    @RequestMapping("/validaAgen")
+    public String validaAgen(Model model){
+
+        return painelRecep(model);
     }
    
 

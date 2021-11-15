@@ -480,4 +480,52 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		}
 		return horarios;
 	}
+
+	@Override
+	public Medico infoMed(Integer idMed) {
+		String sql = "select * from medico where idmed=";
+
+		if (idMed != null) {
+			sql += idMed;
+		}
+		Medico med = new Medico();
+
+		try (Connection conn = dataSource.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+
+				med.setIdMed(rs.getInt("idmed"));
+				med.setFoto(rs.getString("foto"));
+				med.setPontos(rs.getInt("pontos"));
+				med.setNomeMed(rs.getString("nome"));
+				med.setDataNasc(rs.getDate("datanasci").toLocalDate());
+				med.setSexoMed(rs.getNString("sexo"));
+				med.setCpfMed(rs.getString("cpf"));
+				med.setRgMed(rs.getString("rg"));
+				med.setCrm(rs.getString("rg"));
+				med.setCelular(rs.getString("celular"));
+				med.setValorMed(rs.getFloat("valor"));
+				med.setCelular(rs.getString("celular"));
+				med.setDataFormatura(rs.getDate("dataformatura").toLocalDate());
+				med.setSobreMed(rs.getString("sobremim"));
+				med.setBioMed(rs.getString("biografia"));
+				med.setSala(rs.getString("sala"));
+				Endereco end = new Endereco();
+				end.setIdEnd(rs.getInt("fk_end_med"));
+				med.setEndereco(end);
+				Clinica cli = new Clinica();
+				cli.setIdCli(rs.getInt("fk_cli_med"));
+				med.setClinica(cli);
+				Especialidade esp = new Especialidade();
+				esp.setIdEsp(rs.getInt("fk_esp_med"));
+				med.setEspecialidade(esp);
+			}
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return med;
+	}
 }

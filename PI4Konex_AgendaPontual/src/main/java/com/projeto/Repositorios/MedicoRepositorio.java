@@ -41,5 +41,7 @@ public interface MedicoRepositorio{
     List<HorariosSexDTO> buscaSex(Integer idMed);
     
     List<HorariosSabDTO> buscaSab(Integer idMed);
+
+    Medico infoMed(Integer idMed);
 		
 }

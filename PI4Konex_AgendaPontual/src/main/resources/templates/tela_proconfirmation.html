@@ -103,14 +103,19 @@
                                 <option th:each="conv: ${listaConv}" th:value="*{conv.idConv}" th:text="*{conv.nomeConv}"></option>
                             </select>
                         </p>
-                        <button type="button">CONSULTAR DISPONIBILIDADE</button>
+                        <form th:action="@{/recepcionista/consDispo}">
+                        <input type="submit" value="CONSULTAR DISPONIBILIDADE"/>
+                        </form>
                         <p>**Pague somente no dia da consulta**</p>
                     </footer>
                 </article>
-
+                <form th:action="@{/recepcionista/validaAgen}">
                 <div class="last-button">
-                    <button type="button" onclick="showContent()">VALIDAR AGENDAMENTO</button>
+                   
+                    <input type="submit" value="VALIDAR AGENDAMENTO" onclick="showContent()"/>
+                
                 </div>
+            </form>
             </div>
         </main>
 

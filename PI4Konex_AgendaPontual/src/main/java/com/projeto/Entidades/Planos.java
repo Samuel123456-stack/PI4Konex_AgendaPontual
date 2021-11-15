@@ -1,24 +1,17 @@
 package com.projeto.Entidades;
-
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "plano")
-public class Planos implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	// Atributos
+public class Planos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,46 +21,37 @@ public class Planos implements Serializable {
     @Column(name = "nome", nullable = true)
     private String nomePlano;
 
-    @Column(name = "comentario", nullable = true)
-    private String comenPlano;
-
     @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
 
     @Column(name = "qterecep", nullable = true)
+    @Min(1)
     private int qntRec;
 
     @Column(name = "qtemedico", nullable = true)
+    @Min(1)
     private int qntMed;
 
-    @Column(nullable = true)
-    private String detalhes;
-
     @Column(name = "tolerancia", nullable = true)
+    @Min(1)
     private int qntTolerancia;
- 
+
     // Metodo Construtor
     public Planos() {
 
     }
-
-    // Metodo Construtor com Atributos
-	public Planos(int idPlano, String nomePlano, String comenPlano, float valorPlano, int qntRec, int qntMed,
-			String detalhes, int qntTolerancia) {
-		this.idPlano = idPlano;
+   
+    public Planos(String nomePlano, float valorPlano, @Min(1) int qntRec, @Min(1) int qntMed, @Min(1) int qntTolerancia) {
 		this.nomePlano = nomePlano;
-		this.comenPlano = comenPlano;
 		this.valorPlano = valorPlano;
 		this.qntRec = qntRec;
 		this.qntMed = qntMed;
-		this.detalhes = detalhes;
 		this.qntTolerancia = qntTolerancia;
 	}
-    
-    
-    
-    
-    // Getters e Setters
+
+
+
+	// Getters e Setters
 	public int getIdPlano() {
 		return idPlano;
 	}
@@ -82,14 +66,6 @@ public class Planos implements Serializable {
 
 	public void setNomePlano(String nomePlano) {
 		this.nomePlano = nomePlano;
-	}
-
-	public String getComenPlano() {
-		return comenPlano;
-	}
-
-	public void setComenPlano(String comenPlano) {
-		this.comenPlano = comenPlano;
 	}
 
 	public float getValorPlano() {
@@ -114,14 +90,6 @@ public class Planos implements Serializable {
 
 	public void setQntMed(int qntMed) {
 		this.qntMed = qntMed;
-	}
-
-	public String getDetalhes() {
-		return detalhes;
-	}
-
-	public void setDetalhes(String detalhes) {
-		this.detalhes = detalhes;
 	}
 
 	public int getQntTolerancia() {

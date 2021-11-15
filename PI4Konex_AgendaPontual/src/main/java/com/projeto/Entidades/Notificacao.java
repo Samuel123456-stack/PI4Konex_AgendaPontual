@@ -1,84 +1,131 @@
 package com.projeto.Entidades;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+//import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "notificacao")
+//@Entity
+//@Table(name = "duvida")
 public class Notificacao {
-    // Atributos
+    
+	/*
+	
+	// Atributos
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idnot")
-    private int idNoti;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idContato;
 
+    @Column(nullable = false)
+    @NotNull
+    private String nome;
+    
+    
+    @Column(nullable = false)
+    @NotNull
+    private String email;
+    
+    
+    @Column(nullable = false)
+    @NotNull
+    private String telefone;
+    
     @Column(name = "data_notificacao", nullable = true, columnDefinition = "DATE")
-    private LocalDateTime dataNoti;
+    private LocalDateTime dtsolic;
 
+    
+    
     @Column(nullable = true)
     private String assunto;
+    
 
     @Column(nullable = true)
-    private String mensagem;
-
+    @NotNull
+    private String msg;
+    
     @Column(nullable = true)
     private String resposta;
-
+    
+    @Column(nullable = true)
+    private boolean contatoWpp = false;
+  
     // Metodo Construtor
     public Notificacao() {
 
     }
 
-    // Metodo Construtor com Atributos
-    public Notificacao(int idNoti, LocalDateTime dataNoti, String assunto, String mensagem, String resposta) {
-        this.idNoti = idNoti;
-        this.dataNoti = dataNoti;
-        this.assunto = assunto;
-        this.mensagem = mensagem;
-        this.resposta = resposta;
-    }
-
     // Getters e Setters
-    public int getIdNoti() {
-        return idNoti;
-    }
+	public long getIdContato() {
+		return idContato;
+	}
 
-    public void setIdNoti(int idNoti) {
-        this.idNoti = idNoti;
-    }
+	public void setIdContato(long idNoti) {
+		this.idContato = idNoti;
+	}
 
-    public LocalDateTime getDataNoti() {
-        return dataNoti;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setDataNoti(LocalDateTime dataNoti) {
-        this.dataNoti = dataNoti;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getAssunto() {
-        return assunto;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setAssunto(String assunto) {
-        this.assunto = assunto;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getMensagem() {
-        return mensagem;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public String getResposta() {
-        return resposta;
-    }
+	public LocalDateTime getDtsolic() {
+		return dtsolic;
+	}
 
-    public void setResposta(String resposta) {
-        this.resposta = resposta;
-    }
+	public void setDtsolic(LocalDateTime dtsolic) {
+		this.dtsolic = dtsolic;
+	}
 
+	public String getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String mensagem) {
+		this.msg = mensagem;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
+	}
+
+	public boolean isContatoWpp() {
+		return contatoWpp;
+	}
+
+	public void setContatoWpp(boolean contatoWpp) {
+		this.contatoWpp = contatoWpp;
+	}
+*/
 }

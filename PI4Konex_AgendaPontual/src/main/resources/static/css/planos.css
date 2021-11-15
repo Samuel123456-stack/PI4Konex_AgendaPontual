@@ -95,7 +95,7 @@
     font-size: 15px;
     float: left;  
 }
-.personal input[type='submit'], .economy input[type='submit'], .premium input[type='submit']{
+.personal button, .economy button, .premium button{
     width: 291px;
     height: 55px;
     border: transparent;
@@ -104,33 +104,33 @@
     font-size: 17px;
     color: #fff;
 }
-.personal input[type='submit']{
+.personal button{
     background-color: #1CC4BF;
 }
-.economy input[type='submit']{
+.economy button{
     background: #CC009F;
 }
-.premium input[type='submit']{
+.premium button{
     background: #4AB8DB;
 }
-.personal input[type='submit']:hover{
+.personal button:hover{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
 }
-.economy input[type='submit']:hover{
+.economy button:hover{
     background: linear-gradient(263.73deg, rgba(255, 255, 255, 0.3) 35.71%, rgba(255, 255, 255, 0) 103.63%), #CC009F;
 }
-.premium input[type='submit']:hover{
+.premium button:hover{
     background: linear-gradient(263.73deg, rgba(0, 255, 255, 0.2) 35.71%, rgba(255, 255, 255, 0) 103.63%), #4AB8DB;
 }
-.personal input[type='submit']:focus{
+.personal button:focus{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
 }
-.economy input[type='submit']:focus{
+.economy button:focus{
     background: linear-gradient(263.73deg, rgba(255, 255, 255, 0.3) 35.71%, rgba(255, 255, 255, 0) 103.63%), #CC009F;
     box-shadow: 0px 10px 25px rgba(204, 0, 159, 0.3);
 }
-.premium input[type='submit']:focus{
+.premium button:focus{
     background: linear-gradient(263.73deg, rgba(0, 255, 255, 0.2) 35.71%, rgba(255, 255, 255, 0) 103.63%), #4AB8DB;
     box-shadow: 0px 10px 25px rgba(0, 82, 204, 0.2);
 }
@@ -198,7 +198,7 @@
     font-size: 16px;
     color: #505F79;
 }
-.persForm input[type='submit']{
+.persForm button{
     width: 218px;
     height: 60px;
     color: #fff;
@@ -206,10 +206,10 @@
     border: none;
     border-radius: 8px;
 }
-.persForm input[type='submit']:hover{
+.persForm button:hover{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
 }
-.persForm input[type='submit']:focus{
+.persForm button:focus{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
 }
@@ -305,7 +305,7 @@
 #toleResul{
     margin: 0 5px;
 }
-.itensResul input[type='submit']{
+.itensResul button{
     width: 462px;
     height: 55px;
     color: #fff;
@@ -313,10 +313,10 @@
     border: none;
     border-radius: 8px;
 }
-.itensResul input[type='submit']:hover{
+.itensResul button:hover{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
 }
-.itensResul input[type='submit']:focus{
+.itensResul button:focus{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
 }

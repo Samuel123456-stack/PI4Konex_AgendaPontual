@@ -242,6 +242,7 @@
     float: left;
 }
 .atendNome, .atendEmail, .atendTel{
+	margin-top:10px;
     width: 399.2px;
     height: 37.2px;
     padding: 10px;
@@ -277,6 +278,7 @@
     border-radius: 8px;
 }
 .atendMsg{
+	margin-top:10px;
     width: 622.2px;
     height: 109.2px;
     margin-bottom: 22px;

@@ -108,10 +108,6 @@ public class RecepcionistaServico {
     public Clinica pegaCliPorId(Integer id){
         return repoCli.getById(id);
      }
-     
-     public List<Clinica> listaCliCidade(Integer idCid){
-         return repoCli.buscaCliOpCid(idCid);
-     }
 
      public List<Clinica> listarTodosCli(){
         return repoCli.findAll();
@@ -124,8 +120,8 @@ public class RecepcionistaServico {
 
      //Metodos CRUD Medico
      //Rever melhor Metodos com o ID
-     public List<Medico> listarMedCli(Integer idMed){
-         return repoMed.listaMedPorCli(idMed);
+     public List<Medico> listarMedCli(Integer idCli){
+         return repoMed.listaMedPorCli(idCli);
      }
      public List<Medico> listarTodosMed(){
         return repoMed.findAll();

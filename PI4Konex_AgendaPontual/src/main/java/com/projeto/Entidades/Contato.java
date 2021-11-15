@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "duvida")
 public class Contato {
-
+	//coment
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idContato;

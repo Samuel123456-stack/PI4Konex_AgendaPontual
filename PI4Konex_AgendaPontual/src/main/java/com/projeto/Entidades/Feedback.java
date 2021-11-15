@@ -1,19 +1,20 @@
 package com.projeto.Entidades;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "feedback")
-public class Feedback {
-    // Atributos
+public class Feedback implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idfeed")
     private int idFeed;
-
-    @Column(name = "dt_criacao", columnDefinition = "DATE")
-    private LocalDateTime dataCriaFeed;
 
     @Column(nullable = true)
     private int avaliacao;
@@ -35,10 +36,9 @@ public class Feedback {
     }
 
     // Metodo Construtor com Atributos
-    public Feedback(int idFeed, LocalDateTime dataCriaFeed, int avaliacao, String comentario, boolean paraMed,
+    public Feedback(int idFeed, int avaliacao, String comentario, boolean paraMed,
             boolean paraCli, boolean feedAno) {
         this.idFeed = idFeed;
-        this.dataCriaFeed = dataCriaFeed;
         this.avaliacao = avaliacao;
         this.comentario = comentario;
         this.paraMed = paraMed;
@@ -53,14 +53,6 @@ public class Feedback {
 
     public void setIdFeed(int idFeed) {
         this.idFeed = idFeed;
-    }
-
-    public LocalDateTime getDataCriaFeed() {
-        return dataCriaFeed;
-    }
-
-    public void setDataCriaFeed(LocalDateTime dataCriaFeed) {
-        this.dataCriaFeed = dataCriaFeed;
     }
 
     public int getAvaliacao() {
@@ -102,5 +94,4 @@ public class Feedback {
     public void setFeedAno(boolean feedAno) {
         this.feedAno = feedAno;
     }
-
 }

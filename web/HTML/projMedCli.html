@@ -131,11 +131,11 @@
                 <div class="dirProj">
                     <div class="lucro">
                         <p>LUCRO POR PACIENTE</p>
-                        <input type="text" name="" id="">
+                        <input type="text" name="lucroPaci" placeholder="Qual o valor recebido por paciente">
                     </div>
                     <div class="meta">
                         <p>META SALARIAL</p>
-                        <input type="text" name="" id="">
+                        <input type="text" name="metaSal" placeholder="Qual é o valor da sua meta?">
                     </div>
                     <div class="inicio">
                         <p>INICIO DO EXPEDIENTE</p>
@@ -155,33 +155,33 @@
                     </div>
                 </div>
                 <div class="esqProj">
-                    <div class="">
-                        <p></p>
-                        <select name="especi">
-                            <option value="" disabled selected>Qual é a especialidade?</option>
+                    <div class="diasSemana">
+                        <p>DIAS POR SEMANA</p>
+                        <select name="diasSemana">
+                            <option value="" disabled selected>Quantos dias na semana você trabalha?</option>
                         </select>
                     </div>
-                    <div class="">
-                        <p></p>
+                    <div class="quaisDias">
+                        <p>Quais dias da semana você trabalha</p>
                         <input type="radio" class="option-radio" name="diaSemana" value="segunda" />
                         <label for="segunda">Segunda</label>
-                        <input type="radio" class="option-radio" name="diaSemana" value="terca" />
-                        <label for="terca">Terça</label>
-                        <input type="radio" class="option-radio" name="diaSemana" value="quarta" />
+                        <input type="radio" class="option-radio" name="diaSemana" value="terca" style="margin-left: 10px;"/>
+                        <label for="terca" style="margin-right: 12px;">Terça</label>
+                        <input type="radio" class="option-radio" name="diaSemana" value="quarta"/>
                         <label for="quarta">Quarta</label>
                         <input type="radio" class="option-radio" name="diaSemana" value="quinta" />
                         <label for="quinta">Quinta</label>
-                        <input type="radio" class="option-radio" name="diaSemana" value="sexta" />
-                        <label for="sexta">Sexta</label>
+                        <input type="radio" class="option-radio" name="diaSemana" value="sexta" style="margin-left: 29px;"/>
+                        <label for="sexta" style="margin-right: 10px;">Sexta</label>
                         <input type="radio" class="option-radio" name="diaSemana" value="sabado" />
                         <label for="sabado">Sabado</label>
                         <input type="radio" class="option-radio" name="diaSemana" value="domingo" />
                         <label for="domingo">Domingo</label>
                     </div>
-                    <div class="">
-                        <p></p>
-                        <select name="especi">
-                            <option value="" disabled selected>Qual é a especialidade?</option>
+                    <div class="interloTempo">
+                        <p>INTERVALO</p>
+                        <select name="interloTempo">
+                            <option value="" disabled selected>Quanto tempo é o seu intervalo?</option>
                         </select>
                     </div>
                     <input type="submit" value="SALVAR ALTERAÇÕES DA PROJEÇÃO">
@@ -195,7 +195,7 @@
             </div>
         </form>
 
-
+        
 
     </div>
 

@@ -1,18 +1,28 @@
 package com.projeto.Entidades;
 
-import javax.persistence.*;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "doenca")
-public class Doenca {
-    // Atributos
-    @Id
+public class Doenca implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddoe")
     private int idDoenca;
 
     @Column(name = "nome", nullable = true)
-    private String nomeDoenca;
+    private String nome;
     
     @ManyToOne
     @JoinColumn(name = "fk_esp_doe")
@@ -23,9 +33,9 @@ public class Doenca {
     }
 
     // Metodo Construtor com Atributos
-    public Doenca(int idDoenca, String nomeDoenca, Especialidade especialiade) {
+    public Doenca(int idDoenca, String nome, Especialidade especialiade) {
 		this.idDoenca = idDoenca;
-		this.nomeDoenca = nomeDoenca;
+		this.nome = nome;
 		this.especialiade = especialiade;
 	}
 
@@ -38,12 +48,12 @@ public class Doenca {
 		this.idDoenca = idDoenca;
 	}
 
-	public String getNomeDoenca() {
-		return nomeDoenca;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeDoenca(String nomeDoenca) {
-		this.nomeDoenca = nomeDoenca;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Especialidade getEspecialiade() {

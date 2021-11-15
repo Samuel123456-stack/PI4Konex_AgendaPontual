@@ -89,4 +89,8 @@
     cursor:pointer;
     outline:0;
 }
+#container-landing .input-field:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}
 

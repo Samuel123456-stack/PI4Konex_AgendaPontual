@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "plano")
 public class Planos {
-
+	//coment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idplan")

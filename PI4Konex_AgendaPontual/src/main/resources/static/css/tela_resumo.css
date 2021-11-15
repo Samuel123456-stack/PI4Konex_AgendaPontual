@@ -213,10 +213,12 @@
     border-radius: 8px;
     padding:10px;
     margin-bottom:32px;
+    display: flex;
 }
 .local-calendar .week-calendar table{
     width:100%;
     color:#505F79;
+    
 }
 .local-calendar .week-calendar table tr td{
    padding:3.52px 0 3.52px 18px;
@@ -226,6 +228,7 @@
     border-radius: 4px;
     padding:3px 0;
     color:#fff;
+    
 }
 .local-calendar .schedule form input[type="date"], input[type="time"]{
     border: 1.4px solid rgba(80, 95, 121, 0.1);

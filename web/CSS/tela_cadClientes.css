@@ -197,3 +197,7 @@ body{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     transition:letter-spacing ease 250ms;
 }
+#container-landing .input-block:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}

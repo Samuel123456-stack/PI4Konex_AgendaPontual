@@ -1,8 +1,8 @@
-CREATE USER 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
+CREATE USER if not exists 'agendaPontual'@'localhost' IDENTIFIED BY 'Konex2021';
 GRANT ALL PRIVILEGES ON agendapontual. * TO 'agendaPontual'@'localhost';
 FLUSH PRIVILEGES;
 
-create database agendapontual;
+create database if not exists agendapontual;
 
 USE agendapontual;
 
@@ -3633,13 +3633,13 @@ CREATE TABLE dias_semana (
 );
 
 insert into dias_semana (dia) values
-	('Domingo'),
-    ('Segunda-feira'),
-    ('Terça-feira'),
-    ('Quarta-feira'),
-    ('Quinta-feira'),
-    ('Sexta-feira'),
-    ('Sábado');
+	('Dom'),
+    ('Seg'),
+    ('Ter'),
+    ('Qua'),
+    ('Qui'),
+    ('Sex'),
+    ('Sáb');
 
 CREATE TABLE horario (
     idhor Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3825,6 +3825,30 @@ CREATE TABLE exame_consulta (
     fk_cons_exame Integer null,
     FOREIGN KEY (fk_exame_cons) REFERENCES exame (idexa),
     FOREIGN KEY (fk_cons_exame) REFERENCES consulta (idcons) 
+);
+
+CREATE TABLE newslatter (
+    idnew Integer AUTO_INCREMENT PRIMARY KEY,
+    dtcriacao datetime default current_timestamp(),
+    email varchar(50) null
+);
+ 
+CREATE TABLE duvida (
+    idduv Integer AUTO_INCREMENT PRIMARY KEY,
+    dtsolic datetime default current_timestamp(),
+    nome varchar(50) null,
+    email varchar(50) null,
+    telefone varchar(15) null,
+    autorizado boolean null,
+    mensagem text null
+);
+
+CREATE TABLE duvida_adm (
+    fk_duv_adm Integer null,
+    fk_adm_duv Integer null,
+    statusduvida enum ("resolvido", "pendente","tratado") null,
+    FOREIGN KEY (fk_duv_adm) REFERENCES duvida (idduv),
+    FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
 
 /*Viewers*/

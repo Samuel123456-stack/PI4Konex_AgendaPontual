@@ -20,7 +20,7 @@ public class Especialidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idesp")
-    private int idEsp;
+    private Integer idEsp;
 
     @Column(name = "nome", nullable = true)
     private String nomeEsp;
@@ -31,17 +31,20 @@ public class Especialidade implements Serializable {
     }
 
     // Metodo Construtor com atributos
-    public Especialidade(int idEsp, String nomeEsp) {
+    public Especialidade(Integer idEsp, String nomeEsp) {
         this.idEsp = idEsp;
         this.nomeEsp = nomeEsp;
     }
-
- // Getters e Setters
-	public int getIdEsp() {
+    
+    public Especialidade(String nomeEsp) {
+        this.nomeEsp = nomeEsp;
+    }
+    // Getters e Setters
+	public Integer getIdEsp() {
 		return idEsp;
 	}
 
-	public void setIdEsp(int idEsp) {
+	public void setIdEsp(Integer idEsp) {
 		this.idEsp = idEsp;
 	}
 

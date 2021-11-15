@@ -32,6 +32,11 @@
     margin: 0 15px 35px 0;
     float: left;
 }
+.foto img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
 #attFt{
     font-size: 14px;
     color: #1CC4BF;
@@ -195,6 +200,7 @@ background: #546582;
 #nomeTb img{
     width: 40px;
     height: 40px;
+    border-radius: 50%;
 }
 #nomeTb img, #nomeTb p{
     float: left;

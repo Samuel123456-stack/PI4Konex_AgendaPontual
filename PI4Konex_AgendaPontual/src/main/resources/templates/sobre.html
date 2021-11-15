@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/sobre.css}">
+    <link rel="stylesheet" href="/css/sobre.css">
     <title>Sobre nós</title>
+    <!-- CSS ERROR -->
+    <style type="text/css">
+		#errorInput{
+			border: 1,4px;
+			border-radius: 8px;
+			border-color: red;
+		}
+	</style>
 </head>
 <body>
     <header>
         <div class="menu">
             <div class="itensMenu">
-                <a th:href="@{/}" id="logoMenu">
+                <a href="index.html" id="logoMenu">
                     <svg width="128" height="60" viewBox="0 0 128 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5493 27.9769C18.5015 27.0395 18.4417 26.1262 18.3699 25.2369C18.3221 24.3236 18.2623 23.4223 18.1905 22.533H8.86206C8.38368 23.4223 7.88138 24.3236 7.35515 25.2369C6.82893 26.1262 6.32663 27.0395 5.84824 27.9769H0C1.55475 25.285 3.00186 22.7973 4.34133 20.514C5.70473 18.2307 7.00832 16.0795 8.25212 14.0606C9.51984 12.0416 10.7517 10.1308 11.9476 8.32818C13.1436 6.50151 14.3635 4.72291 15.6073 2.99238H20.5944C20.9771 4.72291 21.3359 6.64572 21.6708 8.76081C22.0296 10.8519 22.3525 13.003 22.6395 15.2143C22.9505 17.4015 23.2255 19.6007 23.4647 21.8119C23.7278 23.9991 23.967 26.0541 24.1823 27.9769H18.5493ZM16.8989 8.47239C15.8943 10.0827 14.9017 11.6811 13.921 13.2674C12.9642 14.8537 12.0314 16.4761 11.1224 18.1345H17.8318C17.7122 16.6684 17.5806 15.1061 17.4371 13.4477C17.3175 11.7892 17.1381 10.1308 16.8989 8.47239Z" fill="#166CD0"/>
                         <path d="M43.1742 25.5974C42.8155 27.1597 42.3371 28.5057 41.7391 29.6353C41.165 30.789 40.4355 31.7384 39.5505 32.4835C38.6894 33.2526 37.6489 33.8175 36.429 34.178C35.2092 34.5625 33.786 34.7548 32.1595 34.7548C30.6525 34.7548 29.3848 34.6106 28.3563 34.3222C27.3278 34.0578 26.3949 33.7213 25.5578 33.3127L27.3517 29.0585C28.0932 29.395 28.8586 29.6834 29.6479 29.9238C30.4612 30.1641 31.4538 30.2843 32.6259 30.2843C34.1567 30.2843 35.3048 29.9358 36.0702 29.2388C36.8596 28.5658 37.3738 27.6885 37.613 26.6069L37.7565 25.9219C37.2782 26.1623 36.7639 26.3545 36.2138 26.4988C35.6875 26.643 35.1254 26.7151 34.5275 26.7151C33.4033 26.7151 32.4345 26.5468 31.6213 26.2103C30.808 25.8498 30.1383 25.3571 29.6121 24.7322C29.1098 24.1073 28.7271 23.3742 28.4639 22.533C28.2247 21.6677 28.1052 20.7303 28.1052 19.7208C28.1052 17.8942 28.44 16.2838 29.1098 14.8898C29.7795 13.4717 30.6645 12.294 31.7648 11.3566C32.889 10.4192 34.1687 9.7102 35.6038 9.2295C37.0629 8.7488 38.5818 8.50844 40.1604 8.50844C41.3085 8.50844 42.4447 8.62862 43.5689 8.86897C44.6931 9.10932 45.7934 9.48187 46.8698 9.98661L43.1742 25.5974ZM40.8062 13.1592C40.3996 13.0631 39.8973 13.015 39.2993 13.015C38.3904 13.015 37.5772 13.1833 36.8596 13.5198C36.142 13.8322 35.5201 14.2649 34.9939 14.8177C34.4916 15.3705 34.0969 16.0435 33.8099 16.8366C33.5468 17.6057 33.4152 18.435 33.4152 19.3243C33.4152 19.7569 33.4511 20.1655 33.5228 20.5501C33.5946 20.9106 33.7262 21.2351 33.9175 21.5235C34.1089 21.7879 34.372 22.0042 34.7068 22.1724C35.0417 22.3407 35.4603 22.4248 35.9626 22.4248C36.2975 22.4248 36.74 22.3647 37.2901 22.2445C37.8642 22.1244 38.3784 21.848 38.8329 21.4153L40.8062 13.1592Z" fill="#166CD0"/>
@@ -24,10 +32,10 @@
                     </svg>
                 </a>
                 <div class="textoMenu">
-                    <a th:href="@{/}">Home</a>
-                    <a th:href="@{/sobrenos}">Sobre nós</a>
-                    <a th:href="@{/planos}">Planos</a>
-                    <a th:href="@{/login}">Login</a>
+                    <a href="index.html">Home</a>
+                    <a href="/sobre-nos">Sobre nós</a>
+                    <a href="planos.html">Planos</a>
+                    <a href="login.html">Login</a>
                 </div>
             </div>
         </div>
@@ -42,7 +50,7 @@
     </div>
     <div class="fundoOQE">
         <div class="OQEAgenda">
-            <img src="/image/sobre2.png" alt="">
+            <img src="/web/imagens/sobre2.png" alt="">
             <div class="txtOQE">
                 <h1>O que é a Agenda .ual?</h1>
                 <p>Entendemos o quão grande é a decepção de ser atendido em um horário fora do agendado e ainda por cima não receber uma atenção devida e de forma ética. Muitos brasileiros reclamam que muitos médicos, não dão uma boa atenção durante a consulta e que elas são bem rápidas, até &nbsp;&nbsp;&nbsp;&nbsp; mesmo em consultas de retorno.</p>
@@ -62,7 +70,7 @@
                 <p>Uma equipe empática centrada no usuário, que soluciona problemas da sociedade através da tecnologia.</p>
             </div>
             <div class="Perfil" id="margPer">
-                <img src="/image/Alexsandro2.png" alt="">
+                <img src="/web/imagens/Alexsandro2.png" alt="">
                 <h3>Alexsandro S.</h3>
                 <p>SM e Dev. Back-end</p>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +82,7 @@
                 </svg> 
             </div>
             <div class="Perfil" id="margPer">
-                <img src="/image/Gabriel2.png" alt="">
+                <img src="/web/imagens/Gabriel2.png" alt="">
                 <h3>Gabriel Felipe S.</h3>
                 <p>SM e Dev. Back-end</p>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +94,7 @@
                 </svg> 
             </div>
             <div class="Perfil" id="margPer">
-                <img src="/image/Gustavo2.png" alt="">
+                <img src="/web/imagens/Gustavo2.png" alt="">
                 <h3>Alexsandro S.</h3>
                 <p>SM e Dev. Back-end</p>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +106,7 @@
                 </svg> 
             </div>
             <div class="Perfil" id="margPer">
-                <img src="/image/Rubens2.png" alt="">
+                <img src="/web/imagens/Rubens2.png" alt="">
                 <h3>Alexsandro S.</h3>
                 <p>SM e Dev. Back-end</p>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +118,7 @@
                 </svg> 
             </div>
             <div class="Perfil">
-                <img src="/image/Samuel2.png" alt="">
+                <img src="/web/imagens/Samuel2.png" alt="">
                 <h3>Alexsandro S.</h3>
                 <p>SM e Dev. Back-end</p>
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,34 +201,34 @@
                 <h1>Ficou com alguma dúvida, ou quer saber mais?</h1>
                 <p>Preencha os campos abaixo e envie a sua dúvida, sugestão ou reclamação!</p>
             </div>
-            <form action="" id="formCanalAtend">
+            
+            <!-- FORMULARIO -->
+            <form action="/registrar" id="formCanalAtend" method="POST" th:object="${contato}">
                 <div class="atendForm">
                     <div class="esquerdaForm">
-                        <div class="atendNome">
+                        <div class="atendNome" th:id="${#fields.hasErrors('nome')} ? errorInput">
                             <p>Nome</p>
-                            <input type="text" name="nomeAtend" placeholder="Nome">
+                            <input type="text"placeholder="Nome" th:field="*{nome}" maxlength="50">
                         </div>
-                        <div class="atendEmail" id="meioImput">
+                        <div class="atendEmail" id="meioImput" th:id="${#fields.hasErrors('*{email}')} ? errorInput">
                             <p>E-mail</p>
-                            <input type="email" name="emailAtend" placeholder="E-mail">
+                            <input type="email" th:field="*{email}" placeholder="E-mail">
                         </div>
-                        <div class="atendTel">
+                        <div class="atendTel" th:id="${#fields.hasErrors('*{telefone}')} ? errorInput">
                             <p>Telefone</p>
-                            <input type="tel" name="telAtend" placeholder="Seu telefone">
+                            <input type="tel" th:field="*{telefone}" placeholder="Seu telefone">
                         </div>
                     </div>
-                    <div class="atendMsg">
+                    <div class="atendMsg" th:id="${#fields.hasErrors('*{msg}')} ? errorInput">
                         <p>Mensagem</p>
-                        <textarea rows="4" cols="50" name="mensagem" form="formCanalAtend" placeholder="Digite sua mensagem"></textarea>
+                        <textarea rows="4" cols="50" th:field="*{msg}" form="formCanalAtend" placeholder="Digite sua mensagem"></textarea>
                     </div>
                     <div class="atendCheck">
-                        <input type="checkbox" id="whatsApp">
+                        <input type="checkbox" id="whatsApp" th:field="*{contatoWpp}">
                         <label>Desejo contato por WhatsApp.</label>
                     </div>
                     <button value="submit">ENVIAR</button>
                 </div>
-
-                
             </form>
         </div>
     
@@ -229,7 +237,7 @@
     <div class="rodapeComposto">
         <div class="colunas">
             <div class="logoRodape">
-                <a th:href="@{/}">
+                <a href="index.html">
                     <svg width="128" height="60" viewBox="0 0 128 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5493 27.9769C18.5015 27.0395 18.4417 26.1262 18.3699 25.2369C18.3221 24.3236 18.2623 23.4223 18.1905 22.533H8.86206C8.38368 23.4223 7.88138 24.3236 7.35515 25.2369C6.82893 26.1262 6.32663 27.0395 5.84824 27.9769H0C1.55475 25.285 3.00186 22.7973 4.34133 20.514C5.70473 18.2307 7.00832 16.0795 8.25212 14.0606C9.51984 12.0416 10.7517 10.1308 11.9476 8.32818C13.1436 6.50151 14.3635 4.72291 15.6073 2.99238H20.5944C20.9771 4.72291 21.3359 6.64572 21.6708 8.76081C22.0296 10.8519 22.3525 13.003 22.6395 15.2143C22.9505 17.4015 23.2255 19.6007 23.4647 21.8119C23.7278 23.9991 23.967 26.0541 24.1823 27.9769H18.5493ZM16.8989 8.47239C15.8943 10.0827 14.9017 11.6811 13.921 13.2674C12.9642 14.8537 12.0314 16.4761 11.1224 18.1345H17.8318C17.7122 16.6684 17.5806 15.1061 17.4371 13.4477C17.3175 11.7892 17.1381 10.1308 16.8989 8.47239Z" fill="#166CD0"/>
                         <path d="M43.1742 25.5974C42.8155 27.1597 42.3371 28.5057 41.7391 29.6353C41.165 30.789 40.4355 31.7384 39.5505 32.4835C38.6894 33.2526 37.6489 33.8175 36.429 34.178C35.2092 34.5625 33.786 34.7548 32.1595 34.7548C30.6525 34.7548 29.3848 34.6106 28.3563 34.3222C27.3278 34.0578 26.3949 33.7213 25.5578 33.3127L27.3517 29.0585C28.0932 29.395 28.8586 29.6834 29.6479 29.9238C30.4612 30.1641 31.4538 30.2843 32.6259 30.2843C34.1567 30.2843 35.3048 29.9358 36.0702 29.2388C36.8596 28.5658 37.3738 27.6885 37.613 26.6069L37.7565 25.9219C37.2782 26.1623 36.7639 26.3545 36.2138 26.4988C35.6875 26.643 35.1254 26.7151 34.5275 26.7151C33.4033 26.7151 32.4345 26.5468 31.6213 26.2103C30.808 25.8498 30.1383 25.3571 29.6121 24.7322C29.1098 24.1073 28.7271 23.3742 28.4639 22.533C28.2247 21.6677 28.1052 20.7303 28.1052 19.7208C28.1052 17.8942 28.44 16.2838 29.1098 14.8898C29.7795 13.4717 30.6645 12.294 31.7648 11.3566C32.889 10.4192 34.1687 9.7102 35.6038 9.2295C37.0629 8.7488 38.5818 8.50844 40.1604 8.50844C41.3085 8.50844 42.4447 8.62862 43.5689 8.86897C44.6931 9.10932 45.7934 9.48187 46.8698 9.98661L43.1742 25.5974ZM40.8062 13.1592C40.3996 13.0631 39.8973 13.015 39.2993 13.015C38.3904 13.015 37.5772 13.1833 36.8596 13.5198C36.142 13.8322 35.5201 14.2649 34.9939 14.8177C34.4916 15.3705 34.0969 16.0435 33.8099 16.8366C33.5468 17.6057 33.4152 18.435 33.4152 19.3243C33.4152 19.7569 33.4511 20.1655 33.5228 20.5501C33.5946 20.9106 33.7262 21.2351 33.9175 21.5235C34.1089 21.7879 34.372 22.0042 34.7068 22.1724C35.0417 22.3407 35.4603 22.4248 35.9626 22.4248C36.2975 22.4248 36.74 22.3647 37.2901 22.2445C37.8642 22.1244 38.3784 21.848 38.8329 21.4153L40.8062 13.1592Z" fill="#166CD0"/>
@@ -245,10 +253,10 @@
                 </a>
             </div>
             <div class="coluna">
-                <a th:href="@{/}"><h3>Home</h3></a>
-                <p><a th:href="@{/sobrenos}">Sobre nós</a></p>
-                <p><a th:href="@{/planos}">Planos</a></p>
-                <p><a th:href="@{/login}">Login</a></p>
+                <a href="index.html"><h3>Home</h3></a>
+                <p><a href="sobre.html">Sobre nós</a></p>
+                <p><a href="planos.html">Planos</a></p>
+                <p><a href="login.html">Login</a></p>
             </div>
             <div class="coluna">
                 <H3>Contato</H3>
@@ -257,11 +265,11 @@
             </div>
             <div class="colunaDev">
                 <h3>Desenvolvedores</h3>
-                <img src="/image/Alexsandro.png" alt="">
-                <img src="/image/Gabriel.png" alt="">
-                <img src="/image/Gustavo.png" alt="">
-                <img src="/image/Rubens.png" alt="">
-                <img src="/image/Samuel.png" alt="">
+                <img src="/web/imagens/Alexsandro.png" alt="">
+                <img src="/web/imagens/Gabriel.png" alt="">
+                <img src="/web/imagens/Gustavo.png" alt="">
+                <img src="/web/imagens/Rubens.png" alt="">
+                <img src="/web/imagens/Samuel.png" alt="">
             </div>
             <br style="clear: both;">
             <div id="barra"></div>

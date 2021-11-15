@@ -1,5 +1,7 @@
 @import url(global.css);
 
+
+
 .introFundo{
     width: 1080px;
     height: 619px;
@@ -336,7 +338,5 @@
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     box-shadow: 0px 10px 25px rgba(28, 196, 191, 0.3);
 }
-
-
 
 

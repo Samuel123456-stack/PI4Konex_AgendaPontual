@@ -7,5 +7,4 @@ import com.projeto.Entidades.Planos;
 
 @Repository
 public interface PlanosRepository extends JpaRepository<Planos, Long>{
-	//coment
 }

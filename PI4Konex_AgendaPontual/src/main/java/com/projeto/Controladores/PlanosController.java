@@ -18,7 +18,6 @@ import com.projeto.Entidades.Planos;
 
 @Controller
 public class PlanosController {
-	//coment
 	// importar o repository
 	//private PlanosRepository pr;
 	

@@ -16,7 +16,6 @@ import com.projeto.Repositorios.ContatoRepository;
 
 @Controller
 public class ContatoController {
-	//coment
 	//importar o repositorio
 	@Autowired
 	private ContatoRepository cr;

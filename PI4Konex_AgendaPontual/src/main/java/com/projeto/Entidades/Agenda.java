@@ -22,7 +22,7 @@ public class Agenda {
 
     @ManyToOne
     @JoinColumn(name = "fk_med_agen", unique = true)
-    private Medico idMed;
+    private Medico medico;
 
     @ManyToOne
     @JoinColumn(name = "fk_paci_agen", unique = true)
@@ -40,12 +40,12 @@ public class Agenda {
     }
 
     // Metodo Construtor com Atributos
-    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico idMed, Paciente idPaci, String dataAgendada,
+    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico medico, Paciente idPaci, String dataAgendada,
             String infoAdicAgen) {
         this.idAgen = idAgen;
         this.idDia = idDia;
         this.idHora = idHora;
-        this.idMed = idMed;
+        this.medico = medico;
         this.idPaci = idPaci;
         this.dataAgendada = dataAgendada;
         this.infoAdicAgen = infoAdicAgen;
@@ -76,12 +76,12 @@ public class Agenda {
         this.idHora = idHora;
     }
 
-    public Medico getIdMed() {
-        return idMed;
+    public Medico getMedico() {
+        return medico;
     }
 
-    public void setIdMed(Medico idMed) {
-        this.idMed = idMed;
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
     public Paciente getIdPaci() {

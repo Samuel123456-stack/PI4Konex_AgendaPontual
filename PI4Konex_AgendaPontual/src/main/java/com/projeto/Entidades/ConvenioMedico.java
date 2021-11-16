@@ -8,38 +8,37 @@ public class ConvenioMedico {
     // Atributos
 
     @Id
-    private int idConvMed;
+    @Column(name = "fk_med_conv", nullable = true)
+    private Medico idMed;
 
-    @JoinColumn(name = "fk_med_conv", nullable = true)
-    private int idMed;
-
+    @ManyToOne
     @JoinColumn(name = "fk_conv_med", nullable = true)
-    private int idConv;
+    private Convenio idConv;
 
     // Metodo Construtor
     public ConvenioMedico() {
     }
 
     // Metodo Construtor com Atributos
-    public ConvenioMedico(int idMed, int idConv) {
+    public ConvenioMedico(Medico idMed, Convenio idConv) {
         this.idMed = idMed;
         this.idConv = idConv;
     }
 
     // Getters e Setters
-    public int getIdMed() {
+    public Medico getIdMed() {
         return idMed;
     }
 
-    public void setIdMed(int idMed) {
+    public void setIdMed(Medico idMed) {
         this.idMed = idMed;
     }
 
-    public int getIdConv() {
+    public Convenio getIdConv() {
         return idConv;
     }
 
-    public void setIdConv(int idConv) {
+    public void setIdConv(Convenio idConv) {
         this.idConv = idConv;
     }
 

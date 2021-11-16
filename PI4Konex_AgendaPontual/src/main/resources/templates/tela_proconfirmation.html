@@ -80,19 +80,19 @@
                     </div>
                     <div class="address-data">
                         <img src="/image/address-icon.png" alt="icon" />
-                        <span th:text="'Endereço: ' + ${resumoConf.idMed.clinica.endereco.logradouro}"> </span>
-                        <span th:text="'nº '+ ${resumoConf.idMed.clinica.endereco.numero}"></span>
-                        <span th:text="'Sala: ' + ${resumoConf.idMed.sala}"></span>
-                        <span th:text="${resumoConf.idMed.clinica.endereco.bairro.cidade.nome} +', SP'"></span>
-                        <span th:text="'Cep: '+ ${resumoConf.idMed.clinica.endereco.cep}"></span>  
+                        <span th:text="'Endereço: ' + ${resumoConf.medico.clinica.endereco.logradouro}"> </span>
+                        <span th:text="'nº '+ ${resumoConf.medico.clinica.endereco.numero}"></span>
+                        <span th:text="'Sala: ' + ${resumoConf.medico.sala}"></span>
+                        <span th:text="${resumoConf.medico.clinica.endereco.bairro.cidade.nome} +', SP'"></span>
+                        <span th:text="'Cep: '+ ${resumoConf.medico.clinica.endereco.cep}"></span>  
                     </div>
                     <div class="phone-number">
                         <img src="/image/phone-icon.png" alt="icon" />
-                        <span th:text="'Telefone: ' + ${resumoConf.idMed.clinica.telefone}"></span>
+                        <span th:text="'Telefone: ' + ${resumoConf.medico.clinica.telefone}"></span>
                     </div>
                     <div class="appointment-value">
                         <img src="/image/cash-icon.png" alt="icon" />
-                        <span th:text="'Valor: ' + ${resumoConf.idMed.valorMed}"></span>
+                        <span th:text="'Valor: ' + ${resumoConf.medico.valorMed}"></span>
                     </div>
 
                     <footer class="health-insurance">

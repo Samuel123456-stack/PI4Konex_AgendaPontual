@@ -323,7 +323,9 @@
         <form action="#" th:action="@{/recepcionista/posConfirma}" method="">
         <footer class="button-next" th:if="${medResumo != null || agenda!=null}">
             <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
+            <input type="hidden" th:value="*{agenda.medico.idMed}" name="id"/>
             <input type="submit" value="CONFIRMAR O AGENDAMENTO"/>
+            
         </footer>
     </form>
   

@@ -141,8 +141,9 @@ public class RecepcionistaController {
         String dataAgen = dataFormatada.format(dataAtual);
         agen.setDataAgendada(dataAgen);
         Medico med = medServ.infoMed(id);
-        agen.setIdMed(med);
+        agen.setMedico(med);
         agenServ.criaAtualizaAgen(agen);
+        model.getAttribute("medResumo");
         return "/tela_agendamento";
     }
 
@@ -171,8 +172,8 @@ public class RecepcionistaController {
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/posConfirma")
-    public String posConfirma(@RequestParam Integer idAgen,@ModelAttribute("med")Medico med, @ModelAttribute("agenda")Agenda agen,Model model){
-        List<Convenio> listaConv = recepServ.listarTodasConv(); 
+    public String posConfirma(@RequestParam Integer idAgen,@RequestParam Integer id, @ModelAttribute("agenda")Agenda agen,Model model){
+        List<Convenio> listaConv = recepServ.listaConvPorMed(id); 
         List<Agenda> listaResumo = agenServ.listaPosConfirma(idAgen);
         model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);

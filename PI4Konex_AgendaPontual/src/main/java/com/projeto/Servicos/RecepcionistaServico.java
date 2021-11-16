@@ -132,5 +132,9 @@ public class RecepcionistaServico {
         return repoConv.findAll();
     }
 
+    public List<Convenio> listaConvPorMed(Integer idMed){
+        return repoConv.convPorMed(idMed);
+    }
+
     
 }

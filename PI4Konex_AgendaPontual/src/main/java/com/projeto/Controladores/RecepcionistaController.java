@@ -1,15 +1,27 @@
 package com.projeto.Controladores;
 
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.AjudaRec;
 import com.projeto.Entidades.Cidade;
+import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Convenio;
 import com.projeto.Entidades.Endereco;
 import com.projeto.Entidades.Especialidade;
@@ -30,17 +42,6 @@ import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/recepcionista")
@@ -134,15 +135,16 @@ public class RecepcionistaController {
 
     //Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/salvaInfoAdic")
-    public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Agenda agen, Model model){
+    public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Consulta consulta, Model model){
         //Verificar melhor esse metodo
         Date dataAtual = new Date();
-        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
+        DateFormat dataFormatada = new SimpleDateFormat("dd-MM-YYYY");
+        //DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
         String dataAgen = dataFormatada.format(dataAtual);
-        agen.setDataAgendada(dataAgen);
+        //consulta.setDtAgendada(dataAgen);
         Medico med = medServ.infoMed(id);
-        agen.setMedico(med);
-        agenServ.criaAtualizaAgen(agen);
+        consulta.setMedico(med);
+        //agenServ.criaAtualizaAgen(agen);
         model.getAttribute("medResumo");
         return "/tela_agendamento";
     }
@@ -292,11 +294,11 @@ public class RecepcionistaController {
 
     @RequestMapping("/telaCancelaFormAgen")
     public String telaCancelaFormAgen(@ModelAttribute("agen") Agenda agen, Model model){
-        String cpf = agen.getIdPaci().getCpf();
+        //String cpf = agen.getIdAgen().getCpf();
         Integer idAgen = agen.getIdAgen();
-        List<Agenda> listaCancela = agenServ.listaCancelaAgen(cpf, idAgen);
+        //List<Agenda> listaCancela = agenServ.listaCancelaAgen(cpf, idAgen);
 
-        model.addAttribute("listaCancela", listaCancela);
+        //model.addAttribute("listaCancela", listaCancela);
 
         return "/tela_cancelSchedule";
     }

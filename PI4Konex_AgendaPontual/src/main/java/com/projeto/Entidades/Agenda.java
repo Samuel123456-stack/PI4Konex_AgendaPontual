@@ -1,12 +1,20 @@
 package com.projeto.Entidades;
 
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "agenda_medica")
 public class Agenda {
-    // Atributos
+    
+	// Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idagen")
@@ -14,98 +22,60 @@ public class Agenda {
 
     @ManyToOne
     @JoinColumn(name = "fk_dia_agen", unique = true)
-    private DiasSemana idDia;
+    private DiasSemana dia;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_hor_agen", unique = true)
-    private Horario idHora;
+    private Horario hora;
 
     @ManyToOne
     @JoinColumn(name = "fk_med_agen", unique = true)
     private Medico medico;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_paci_agen", unique = true)
-    private Paciente idPaci;
-
-    @Column(name = "dataagendada", nullable = true, unique = true, columnDefinition = "DATE")
-    private String dataAgendada;
-
-    @Column(name = "informacoesadic", nullable = true)
-    private String infoAdicAgen;
-
     // Metodo Construtor
     public Agenda() {
 
     }
-
+    
     // Metodo Construtor com Atributos
-    public Agenda(int idAgen, DiasSemana idDia, Horario idHora, Medico medico, Paciente idPaci, String dataAgendada,
-            String infoAdicAgen) {
-        this.idAgen = idAgen;
-        this.idDia = idDia;
-        this.idHora = idHora;
-        this.medico = medico;
-        this.idPaci = idPaci;
-        this.dataAgendada = dataAgendada;
-        this.infoAdicAgen = infoAdicAgen;
-    }
+    
+	public Agenda(int idAgen, DiasSemana dia, Horario hora, Medico medico) {
+		this.idAgen = idAgen;
+		this.dia = dia;
+		this.hora = hora;
+		this.medico = medico;
+	}
+	// Getters e Setters
+	
+	public int getIdAgen() {
+		return idAgen;
+	}
 
-    // Getters e Setters
-    public int getIdAgen() {
-        return idAgen;
-    }
+	public void setIdAgen(int idAgen) {
+		this.idAgen = idAgen;
+	}
 
-    public void setIdAgen(int idAgen) {
-        this.idAgen = idAgen;
-    }
+	public DiasSemana getDia() {
+		return dia;
+	}
 
-    public DiasSemana getIdDia() {
-        return idDia;
-    }
+	public void setDia(DiasSemana dia) {
+		this.dia = dia;
+	}
 
-    public void setIdDia(DiasSemana idDia) {
-        this.idDia = idDia;
-    }
+	public Horario getHora() {
+		return hora;
+	}
 
-    public Horario getIdHora() {
-        return idHora;
-    }
+	public void setHora(Horario hora) {
+		this.hora = hora;
+	}
 
-    public void setIdHora(Horario idHora) {
-        this.idHora = idHora;
-    }
+	public Medico getMedico() {
+		return medico;
+	}
 
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-    public Paciente getIdPaci() {
-        return idPaci;
-    }
-
-    public void setIdPaci(Paciente idPaci) {
-        this.idPaci = idPaci;
-    }
-
-    public String getDataAgendada() {
-        return dataAgendada;
-    }
-
-    public void setDataAgendada(String dataAgendada) {
-        this.dataAgendada = dataAgendada;
-    }
-
-    public String getInfoAdicAgen() {
-        return infoAdicAgen;
-    }
-
-    public void setInfoAdicAgen(String infoAdicAgen) {
-        this.infoAdicAgen = infoAdicAgen;
-    }
-
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
 }

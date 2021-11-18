@@ -48,10 +48,10 @@ public class AgendaServico {
     public Agenda atualizaAgenda(Agenda agen){
         Integer idAgen = agen.getIdAgen();
         Agenda agenda = repoAgen.findById(idAgen).get();
-        agenda.setDataAgendada(agen.getDataAgendada());
+        //agenda.setDataAgendada(agen.getDataAgendada());
         //Integer idhorario = repoAgen.verificaIdHora(agenda.getIdHora().getHorario());
-        agenda.setIdHora(agenda.getIdHora());
-        agenda.setInfoAdicAgen(agen.getInfoAdicAgen());
+        //agenda.setIdHora(agenda.getHora().getIdHora());
+        //agenda.setInfoAdicAgen(agen.getInfoAdicAgen());
         return repoAgen.save(agenda);
     }
 

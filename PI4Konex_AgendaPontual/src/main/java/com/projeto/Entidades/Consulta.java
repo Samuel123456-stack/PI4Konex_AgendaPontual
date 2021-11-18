@@ -1,6 +1,7 @@
 package com.projeto.Entidades;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,20 @@ public class Consulta implements Serializable{
     @Column(name="idcons")
     private Integer idConsulta;
     
+    @Column(nullable = true, name = "dtagendada")
+    private LocalDate dtAgendada;
+    
+    @Column(nullable = true)
+    private LocalTime hora;
+    
     @OneToOne
-    @JoinColumn(name = "fk_agen_cons")
-    private Agenda agenda;
+    private Medico medico;
+    
+    @OneToOne
+    private Paciente paciente;
+    
+    @Column(nullable = true, name = "informacoesadic", columnDefinition = "Text")
+    private String informaAdicio;
 
     @Column(nullable = true)
     private boolean confirmada;
@@ -75,12 +87,17 @@ public class Consulta implements Serializable{
     
     public Consulta(){}
 
-    // Metodo Construtor com Atributos
-	public Consulta(Integer idConsulta, Agenda agenda, boolean confirmada, boolean retorno, LocalTime horaChegada,
-			LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
-			Receita receita, Feedback feedback, List<Notificacao> notificacao, Pagamento pagamento) {
+ // Metodo Construtor com Atributos
+	public Consulta(Integer idConsulta, LocalDate dtAgendada, LocalTime hora, Medico medico, Paciente paciente,
+			String informaAdicio, boolean confirmada, boolean retorno, LocalTime horaChegada, LocalTime horaSaida,
+			LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada, Receita receita,
+			Feedback feedback, List<Notificacao> notificacao, Pagamento pagamento) {
 		this.idConsulta = idConsulta;
-		this.agenda = agenda;
+		this.dtAgendada = dtAgendada;
+		this.hora = hora;
+		this.medico = medico;
+		this.paciente = paciente;
+		this.informaAdicio = informaAdicio;
 		this.confirmada = confirmada;
 		this.retorno = retorno;
 		this.horaChegada = horaChegada;
@@ -103,12 +120,44 @@ public class Consulta implements Serializable{
 		this.idConsulta = idConsulta;
 	}
 
-	public Agenda getAgenda() {
-		return agenda;
+	public LocalDate getDtAgendada() {
+		return dtAgendada;
 	}
 
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
+	public void setDtAgendada(LocalDate dtAgendada) {
+		this.dtAgendada = dtAgendada;
+	}
+
+	public LocalTime getHora() {
+		return hora;
+	}
+
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public String getInformaAdicio() {
+		return informaAdicio;
+	}
+
+	public void setInformaAdicio(String informaAdicio) {
+		this.informaAdicio = informaAdicio;
 	}
 
 	public boolean isConfirmada() {
@@ -222,5 +271,5 @@ public class Consulta implements Serializable{
 			return false;
 		Consulta other = (Consulta) obj;
 		return Objects.equals(idConsulta, other.idConsulta);
-	} 
+	}
 }

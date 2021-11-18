@@ -301,7 +301,6 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	public QuantidadeAtendimentosDTO qteAtendimentos(Integer idMed) {
 
 		String sql = "select concat(count(concluida), ' atendimentos') as total from consulta c "
-				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
 				+ "inner join medico m on a.fk_med_agen = m.idmed "
 				+ "where m.idmed = ";
 		
@@ -327,7 +326,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 							
 	@Override
 	public List<HorariosSegDTO> buscaSeg(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Seg\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 2 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -353,7 +352,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosTerDTO> buscaTer(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Ter\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 3 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -379,7 +378,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosQuaDTO> buscaQua(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Qua\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 4 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -405,7 +404,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosQuiDTO> buscaQui(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Qui\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 5 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -431,7 +430,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosSexDTO> buscaSex(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Sex\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 6 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -457,7 +456,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosSabDTO> buscaSab(Integer idMed) {
-		String sql = "select hora from agenda where dia = \"Sab\" and medicoID = ";
+		String sql = "select hora from agenda_medica where dia = 7 and medicoID = ";
 
 		if (idMed != null) {
 			sql += idMed;

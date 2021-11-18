@@ -9,23 +9,25 @@ import javax.persistence.*;
 public class AjudaMed {
     // Atributos
 
-    @Column(name = "dt_criacao", columnDefinition = "DATE")
+    @Column(name = "dtcriacao", columnDefinition = "DATE")
     private LocalDateTime dataAjudaMed;
     
     @Id
     @JoinColumn(name = "fk_aju_med")
     private int idAjuda;
 
+    @ManyToOne
     @JoinColumn(name = "fk_med_aju")
-    private int idMed;
+    private Medico idMed;
 
+    @ManyToOne
     @JoinColumn(name = "fk_adm_ajud_med")
-    private int idAdm;
+    private Administrador idAdm;
 
-    @Column(name = "status_soli", nullable = true, length = 12)
+    @Column(name = "statussoli", nullable = true, length = 12)
     private String statusSoli;
 
-    @Column(name = "desc_solucao", nullable = true, length = 100)
+    @Column(name = "descsolucao", nullable = true, length = 100)
     private String descSolucao;
 
     // Metodo Construtor
@@ -34,7 +36,7 @@ public class AjudaMed {
     }
 
     // Metodo Construtor com Atributos
-    public AjudaMed(LocalDateTime dataAjudaMed, int idAjuda, int idMed, int idAdm, String statusSoli,
+    public AjudaMed(LocalDateTime dataAjudaMed, int idAjuda, Medico idMed, Administrador idAdm, String statusSoli,
             String descSolucao) {
         this.dataAjudaMed = dataAjudaMed;
         this.idAjuda = idAjuda;
@@ -61,19 +63,19 @@ public class AjudaMed {
         this.idAjuda = idAjuda;
     }
 
-    public int getIdMed() {
+    public Medico getIdMed() {
         return idMed;
     }
 
-    public void setIdMed(int idMed) {
+    public void setIdMed(Medico idMed) {
         this.idMed = idMed;
     }
 
-    public int getIdAdm() {
+    public Administrador getIdAdm() {
         return idAdm;
     }
 
-    public void setIdAdm(int idAdm) {
+    public void setIdAdm(Administrador idAdm) {
         this.idAdm = idAdm;
     }
 

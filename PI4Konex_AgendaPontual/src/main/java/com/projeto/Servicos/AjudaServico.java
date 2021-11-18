@@ -1,7 +1,9 @@
 package com.projeto.Servicos;
 
 import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.AjudaMed;
 import com.projeto.Entidades.AjudaRec;
+import com.projeto.Repositorios.AjudaMedRepositorio;
 import com.projeto.Repositorios.AjudaRecRepositorio;
 import com.projeto.Repositorios.AjudaRepositorio;
 
@@ -16,6 +18,8 @@ public class AjudaServico {
     private AjudaRepositorio repoAjuda;
     @Autowired
     private AjudaRecRepositorio repoAjudaRec;
+    @Autowired
+    private AjudaMedRepositorio repoAjudaMed;
 
     // Metodos Ajuda
     @Transactional(readOnly = false)
@@ -26,6 +30,11 @@ public class AjudaServico {
     @Transactional(readOnly = false)
     public void criaAjudaRec(AjudaRec ajuRec){
         repoAjudaRec.save(ajuRec);
+    }
+
+    @Transactional(readOnly = false)
+    public void criaAjudaMed(AjudaMed ajuMed) {
+        repoAjudaMed.save(ajuMed);
     }
 
 

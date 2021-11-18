@@ -1,10 +1,20 @@
 package com.projeto.Controladores;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
+import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.AjudaMed;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Entidades.Usuario;
+import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.MedicoServico;
+import com.projeto.Servicos.UsuarioServico;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +28,12 @@ public class MedicoIndController {
 
     @Autowired
     EspecialidadeServico espServ;
+    @Autowired
+    AjudaServico ajuServ;
+    @Autowired
+    UsuarioServico usuServ;
+    @Autowired
+    MedicoServico medServ;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -68,7 +84,7 @@ public class MedicoIndController {
     @RequestMapping("/painelMedInd")
     public String painelMedInd(){
 
-        return "";
+        return "/painelPinMedInd";
     }
 
     @RequestMapping("/consoleMed")
@@ -97,15 +113,48 @@ public class MedicoIndController {
     }
 
     @RequestMapping("/medIndConfig")
-    public String medIndConfig(){
+    public String medIndConfig(Model model){
+        Usuario usu = new Usuario();
+        Medico med = new Medico();
+      
+        model.addAttribute("usu", usu);
+        model.addAttribute("med", med);
+        return "/tela_configMed";
+    }
 
-        return "";
+    @RequestMapping("/atualiza")
+    public String atualizaMedInd(@ModelAttribute("usu") Usuario usu, @ModelAttribute("med") Medico med, Model model){
+        usu.setIdUsu(7);
+        med.setIdMed(2);
+
+        usuServ.atualizaUsuario(usu);
+        medServ.atualizaMedico(med);
+
+        return painelMedInd();
     }
 
     @RequestMapping("/ajuda")
-    public String medIndAjuda(){
+    public String medIndAjuda(Model model){
+        Ajuda aju = new Ajuda();
+        AjudaMed ajuMed = new AjudaMed();
+        model.addAttribute("aju", aju);
+        model.addAttribute("ajuMed", ajuMed);
+        return "tela_ajudaMed";
+    }
 
-        return "";
+    @RequestMapping("/criaAjudaMedInd")
+    public String criaAjudaMedInd(@ModelAttribute("aju") Ajuda aju, @ModelAttribute("ajuMed") AjudaMed ajuMed, Model model){
+        Date dataAtual = new Date();
+        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String dataSolic = dataFormatada.format(dataAtual);
+        aju.setDataSolic(dataSolic);
+        ajuServ.criaAjuda(aju);
+        ajuMed.setIdAjuda(aju.getIdAjuda());
+        ajuMed.setDataAjudaMed(dataAtual.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        ajuMed.setStatusSoli("pendente");
+        ajuServ.criaAjudaMed(ajuMed);
+
+        return painelMedInd();
     }
 
 

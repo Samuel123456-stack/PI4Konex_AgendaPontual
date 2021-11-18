@@ -1,5 +1,7 @@
 package com.projeto.Servicos;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +90,19 @@ public class MedicoServico {
 	@Transactional(readOnly = true)
 	public Medico infoMed(Integer idMed){
 		return medRepo.infoMed(idMed);
+	}
+
+	@Transactional(readOnly = false)
+	public Medico atualizaMedico(Medico med){
+		Integer idMed = med.getIdMed();
+		Medico medico = medRepo.infoMed(idMed);
+		medico.setNomeMed(med.getNomeMed());
+		/*DateTimeFormatter formata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String testeData = "17/01/1989";
+		LocalDate dataNasc = LocalDate.parse(testeData,formata);
+		medico.setDataNasc(dataNasc);*/
+
+		return medico;
+		
 	}
 }

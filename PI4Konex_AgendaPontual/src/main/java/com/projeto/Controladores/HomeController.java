@@ -37,12 +37,6 @@ public class HomeController {
 		return ("home");
 	}
 	
-	
-	@GetMapping("/sobrenos")
-	public String sobreNos() {
-		return ("sobre");
-	}
-	
 	@GetMapping("/login")
 	public String login() {
 		return ("tela_login");

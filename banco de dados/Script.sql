@@ -3643,10 +3643,7 @@ insert into dias_semana (dia) values
 
 CREATE TABLE horario (
     idhor Integer AUTO_INCREMENT PRIMARY KEY,
-    horario Time null,
-    fk_med_hor Integer null,
-    FOREIGN KEY (fk_med_hor) REFERENCES medico (idmed)
-    ON DELETE CASCADE
+    horario Time null
 );
 
 insert into horario(horario)values
@@ -3666,25 +3663,19 @@ CREATE TABLE agenda_medica(
     fk_dia_agen integer null,
     fk_hor_agen Integer null,
     fk_med_agen Integer null,
-	fk_paci_agen Integer null,
-	informacoesadic text null,
     FOREIGN KEY (fk_dia_agen) REFERENCES dias_semana (iddia),
     FOREIGN KEY (fk_hor_agen) REFERENCES horario (idhor),
     FOREIGN KEY (fk_med_agen) REFERENCES medico (idmed),
-    FOREIGN KEY (fk_paci_agen) REFERENCES paciente (idpaci),
-    unique (dataagendada, fk_dia_agen,fk_hor_agen,fk_med_agen)
+    unique (fk_dia_agen,fk_hor_agen,fk_med_agen)
 );
 
-insert into agenda_medica(fk_dia_agen,fk_hor_agen,fk_med_agen,dataagendada,fk_paci_agen)values
-	(2,1,2,'2021-03-05',1),
-	(3,2,2,'2021-05-05',2),
-    (4,1,2,'2021-07-08',3),
-    (6,1,2,'2021-03-07',4),
-    (5,1,2,'2021-03-10',5),
-    (4,1,2,'2021-03-20',5),
-    (2,1,2,'2021-02-26',4),
-    (3,1,2,'2021-04-28',3),
-    (2,1,2,'2021-06-10',1);
+insert into agenda_medica(fk_dia_agen,fk_hor_agen,fk_med_agen)values
+	(2,1,1),(2,2,1),
+    (3,1,1),(3,2,1),
+    (4,1,1),(4,2,1),
+    (5,1,1),(5,2,1),
+    (6,1,1),(6,2,1);
+
 
 CREATE TABLE recepcionista (
     idrecep Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3754,7 +3745,7 @@ CREATE TABLE ajuda_cli (
 
 CREATE TABLE notificacao (
     idnot Integer AUTO_INCREMENT PRIMARY KEY,
-    datanotificacao datetime default current_timestamp(),
+    dtnotificacao datetime default current_timestamp(),
     assunto varchar(20) null,
     mensagem varchar(100) null,
     resposta varchar(100) null
@@ -3762,7 +3753,11 @@ CREATE TABLE notificacao (
 
 CREATE TABLE consulta (
 	idcons Integer AUTO_INCREMENT PRIMARY KEY,
-	fk_agen_cons Integer null,
+	dtagendada Date null,
+    hora Time null,
+    fk_med_cons integer,
+    fk_paci_cons integer,
+    informacoesadic text null,
     confirmada Boolean null,
 	retorno Boolean null,
 	horachegada Time null,
@@ -3775,23 +3770,26 @@ CREATE TABLE consulta (
     fk_not_cons Integer null,
     fk_pag_cons Integer null,
     fk_feed_cons Integer null,
-    FOREIGN KEY (fk_agen_cons) REFERENCES agenda_medica (idagen),
+    FOREIGN KEY (fk_med_cons) REFERENCES medico (idmed),
+    FOREIGN KEY (fk_paci_cons) REFERENCES paciente (idpaci),
     FOREIGN KEY (fk_rec_cons) REFERENCES receita (idrece),
     FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnot),
     FOREIGN KEY (fk_pag_cons) REFERENCES pagamento (idpag),
-    FOREIGN KEY (fk_feed_cons) REFERENCES feedback (idfeed)
+    FOREIGN KEY (fk_feed_cons) REFERENCES feedback (idfeed),
+    unique (dtagendada,hora,fk_med_cons)
 );
 
-insert into consulta(fk_agen_cons,retorno,horachegada,horasaida,concluida,duracao,naocompareceu,cancelada,fk_feed_cons)values
-	(1,0,'08:00','08:15',1,'00:15',0,0,1),
-    (2,0,'08:00','08:20',1,'00:20',0,0,2),
-    (3,0,'08:00','08:15',1,'00:15',0,0,3),
-    (4,0,'08:00','08:15',1,'00:15',0,0,4),
-    (5,0,'08:00','08:15',1,'00:15',0,0,5),
-    (6,1,'08:00','08:15',1,'00:15',0,0,6),
-    (7,0,'08:00','08:15',1,'00:15',0,0,7),
-    (8,0,'08:00','08:15',1,'00:15',0,0,8),
-    (9,0,'08:00','08:15',1,'00:15',0,0,9);
+insert into consulta(dtagendada,hora,fk_med_cons,fk_paci_cons,retorno,horachegada,horasaida,concluida,duracao,naocompareceu,cancelada,fk_feed_cons)values
+	('2021-10-25','08:00',2,1,0,'07:50','08:15',1,'00:25',0,0,1),
+    ('2021-10-28','08:00',2,2,0,'08:00','08:15',1,'00:15',0,0,2),
+    ('2021-10-29','08:00',2,3,0,'08:00','08:15',1,'00:15',0,0,3),
+    ('2021-10-30','08:00',2,4,0,'08:00','08:15',1,'00:15',0,0,4),
+    ('2021-10-31','08:00',2,5,0,'08:00','08:15',1,'00:15',0,0,5),
+    ('2021-11-03','08:00',2,6,0,'08:00','08:15',1,'00:15',0,0,6),
+    ('2021-11-04','08:00',2,7,0,'08:00','08:15',1,'00:15',0,0,7),
+    ('2021-11-05','08:00',2,8,0,'08:00','08:15',1,'00:15',0,0,8),
+    ('2021-11-06','08:00',2,9,0,'08:00','08:15',1,'00:15',0,0,9);
+	
 
 CREATE TABLE historico (
     idhis Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3839,7 +3837,7 @@ CREATE TABLE duvida (
     nome varchar(50) null,
     email varchar(50) null,
     telefone varchar(15) null,
-    autorizado boolean null,
+    contatowpp boolean null,
     mensagem text null
 );
 

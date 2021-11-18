@@ -67,7 +67,7 @@ public class MedicoController {
 	}
 	
 	@GetMapping("/medico/resumo")
-	public ModelAndView resumo(@RequestParam Integer idMed, @ModelAttribute("dados") Consulta dados) {
+	public ModelAndView resumo(@RequestParam Integer idMed) {
 		ModelAndView mv = new ModelAndView("tela_resumo");
 		
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
@@ -82,13 +82,14 @@ public class MedicoController {
 		 mv.addObject("qui", medServ.buscaQui(idMed));
 		 mv.addObject("sex", medServ.buscaSex(idMed));
 		 mv.addObject("sab", medServ.buscaSab(idMed));
+		 mv.addObject("dados", new Consulta());
 		 
 		return mv;
 	}
 	
-	@PostMapping("/medico/validacao/{idMed}")
+	@PostMapping("/medico/validacao")
 	public ModelAndView valida(
-			@PathVariable("idMed") Integer idMed,
+			@RequestParam Integer idMed,
 			@RequestParam String data,
 			@ModelAttribute("dados") Consulta dados) {
 		ModelAndView mv = new ModelAndView("tela_validation");
@@ -100,6 +101,21 @@ public class MedicoController {
 		 mv.addObject("convenios", convServ.listaConvenio());
 		 consServ.cadastro(dados);
 		 mv.addObject("numero", ultServ.buscaUtimoId());
+		return mv;
+	}
+	
+	@GetMapping("/teste")
+	public ModelAndView teste() {
+		ModelAndView mv =  new ModelAndView("teste");
+		mv.addObject("medico", medServ.medicoResumo(1));
+		mv.addObject("dados", new Consulta());
+		return mv;
+	}
+	
+	@PostMapping("/teste2")
+	public ModelAndView teste(@ModelAttribute("dados") Consulta dados) {
+		ModelAndView mv =  new ModelAndView("teste");
+		consServ.cadastro(dados);
 		return mv;
 	}
 }

@@ -24,10 +24,9 @@ public class FeedbackImpl implements FeedbackRepositorio{
 	@Override
 	public List<MelhoresFeedbacksDTO> buscaFeedbackPorMedico(Integer idMed) {
     	
-		String sql = "select p.foto, f.comentario,p.nome from consulta c "
-    			+ "inner join agenda_medica a on fk_agen_cons = a.idagen  "
-    			+ "inner join medico m on fk_med_agen = m.idmed "
-    			+ "inner join paciente p on fk_paci_agen = idpaci "
+		String sql = "select p.foto, f.comentario, p.nome from consulta c "
+    			+ "inner join medico m on c.fk_med_cons = m.idmed "
+    			+ "inner join paciente p on fk_paci_cons = idpaci "
     			+ "inner join especialidade es on fk_esp_med = es.idesp "
     			+ "inner join endereco en on fk_end_med = en.idend "
     			+ "inner join feedback f on fk_feed_cons = f.idfeed "
@@ -64,8 +63,7 @@ public class FeedbackImpl implements FeedbackRepositorio{
 	public AvaliacoesPositivasDTO buscaAvaPositiva(Integer idMed) {
     	
 		String sql = "select count(f.avaliacao) as positiva from consulta c "
-				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
-				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "inner join medico m on c.fk_med_cons = m.idmed "
 				+ "inner join feedback f on c.fk_feed_cons = f.idfeed "
 				+ "where f.avaliacao >= 8 and paramedico = 1 and m.idmed = ";
     	
@@ -94,8 +92,7 @@ public class FeedbackImpl implements FeedbackRepositorio{
 	public AvaliacoesNegativasDTO buscaAvaNegativa(Integer idMed) {
 		
 		String sql = "select count(f.avaliacao) as negativa from consulta c "
-				+ "inner join agenda_medica a on c.fk_agen_cons = a.idagen "
-				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "inner join medico m on c.fk_med_cons = m.idmed "
 				+ "inner join feedback f on c.fk_feed_cons = f.idfeed "
 				+ "where f.avaliacao <= 5 and paramedico = 1 and m.idmed = ";
     	

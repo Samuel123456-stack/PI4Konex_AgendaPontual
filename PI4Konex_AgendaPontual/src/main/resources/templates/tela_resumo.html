@@ -31,7 +31,7 @@
                     </a>
                     <div class="textoMenu">
                     <a th:href="@{/}">Home</a>
-                    <a th:href="@{/sobrenos}">Sobre nós</a>
+                    <a th:href="@{/sobre-nos}">Sobre nós</a>
                     <a th:href="@{/planos}">Planos</a>
                     <a th:href="@{/login}">Login</a>
                     </div>
@@ -207,15 +207,16 @@
 
 				</div>
 	
-                    <footer class="schedule">
+                    <footer class="schedule" th:each="medico, stat: ${medico}" >
                         <h3>Agendamento</h3>
-
-                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST" th:object="${dados}">
-                            <div class="input">
-                                <input type="date"  name="data" />
-                                <input type="time" th:field="*{horaChegada}" name="hora" />
+					<!-- th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" -->
+                        <form th:action="@{/medico/validacao}" method="POST" th:object="${dados}">
+                            <div class="input" >
+                                <!-- <input type="date" th:field="*{dtAgendada}"> -->
+                                <input type="hidden" th:value="${medico.id}">
+                                <input type="time" th:field="*{hora}"/>
                                 <input type="submit" value="PRÓXIMO" />
-                            </div>
+						</div>
                         </form>
                     </footer>
                 </div>

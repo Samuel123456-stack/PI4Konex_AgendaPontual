@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table
 public class Consulta implements Serializable{
@@ -28,7 +30,8 @@ public class Consulta implements Serializable{
     @Column(name="idcons")
     private Integer idConsulta;
     
-    @Column(nullable = true, name = "dtagendada")
+    @Column(name = "dtagendada")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtAgendada;
     
     @Column(nullable = true)
@@ -91,7 +94,7 @@ public class Consulta implements Serializable{
 	public Consulta(Integer idConsulta, LocalDate dtAgendada, LocalTime hora, Medico medico, Paciente paciente,
 			String informaAdicio, boolean confirmada, boolean retorno, LocalTime horaChegada, LocalTime horaSaida,
 			LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada, Receita receita,
-			Feedback feedback, List<Notificacao> notificacao, Pagamento pagamento) {
+			Feedback feedback, Pagamento pagamento) {
 		this.idConsulta = idConsulta;
 		this.dtAgendada = dtAgendada;
 		this.hora = hora;
@@ -108,7 +111,6 @@ public class Consulta implements Serializable{
 		this.cancelada = cancelada;
 		this.receita = receita;
 		this.feedback = feedback;
-		this.notificacao = notificacao;
 		this.pagamento = pagamento;
 	}
 

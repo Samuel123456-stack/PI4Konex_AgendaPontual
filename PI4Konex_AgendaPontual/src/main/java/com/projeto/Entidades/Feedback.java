@@ -22,10 +22,10 @@ public class Feedback implements Serializable {
     @Column(nullable = true)
     private String comentario;
 
-    @Column(name = "para_medico", nullable = true)
+    @Column(name = "paramedico", nullable = true)
     private boolean paraMed;
 
-    @Column(name = "para_consultorio",nullable = true)
+    @Column(name = "paraconsultorio",nullable = true)
     private boolean paraCli;
 
     @Column(name = "anonimo",nullable = true)

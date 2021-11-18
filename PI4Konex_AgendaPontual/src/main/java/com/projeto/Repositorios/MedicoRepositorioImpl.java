@@ -301,7 +301,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 	public QuantidadeAtendimentosDTO qteAtendimentos(Integer idMed) {
 
 		String sql = "select concat(count(concluida), ' atendimentos') as total from consulta c "
-				+ "inner join medico m on a.fk_med_agen = m.idmed "
+				+ "inner join medico m on c.fk_med_cons = m.idmed "
 				+ "where m.idmed = ";
 		
 		if(idMed != null) {
@@ -326,7 +326,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 							
 	@Override
 	public List<HorariosSegDTO> buscaSeg(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 2 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 2 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -339,7 +341,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosSegDTO seg = new HorariosSegDTO(rs.getTime("hora").toLocalTime());
+				HorariosSegDTO seg = new HorariosSegDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(seg);
 			}
 			stmt.close();
@@ -352,7 +354,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosTerDTO> buscaTer(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 3 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 3 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -365,7 +369,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosTerDTO ter = new HorariosTerDTO(rs.getTime("hora").toLocalTime());
+				HorariosTerDTO ter = new HorariosTerDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(ter);
 			}
 			stmt.close();
@@ -378,7 +382,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosQuaDTO> buscaQua(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 4 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 4 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -391,7 +397,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosQuaDTO qua = new HorariosQuaDTO(rs.getTime("hora").toLocalTime());
+				HorariosQuaDTO qua = new HorariosQuaDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(qua);
 			}
 			stmt.close();
@@ -404,7 +410,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosQuiDTO> buscaQui(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 5 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 5 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -417,7 +425,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosQuiDTO qui = new HorariosQuiDTO(rs.getTime("hora").toLocalTime());
+				HorariosQuiDTO qui = new HorariosQuiDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(qui);
 			}
 			stmt.close();
@@ -430,7 +438,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosSexDTO> buscaSex(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 6 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 6 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -443,7 +453,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosSexDTO sex = new HorariosSexDTO(rs.getTime("hora").toLocalTime());
+				HorariosSexDTO sex = new HorariosSexDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(sex);
 			}
 			stmt.close();
@@ -456,7 +466,9 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 	@Override
 	public List<HorariosSabDTO> buscaSab(Integer idMed) {
-		String sql = "select hora from agenda_medica where dia = 7 and medicoID = ";
+		String sql = "select horario from agenda_medica a "
+				+ "inner join horario h on fk_hor_agen = idhor "
+				+ "where fk_dia_agen = 7 and fk_med_agen = ";
 
 		if (idMed != null) {
 			sql += idMed;
@@ -469,7 +481,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				ResultSet rs = stmt.executeQuery()) {
 
 			while (rs.next()) {
-				HorariosSabDTO sab = new HorariosSabDTO(rs.getTime("hora").toLocalTime());
+				HorariosSabDTO sab = new HorariosSabDTO(rs.getTime("horario").toLocalTime());
 				horarios.add(sab);
 			}
 			stmt.close();

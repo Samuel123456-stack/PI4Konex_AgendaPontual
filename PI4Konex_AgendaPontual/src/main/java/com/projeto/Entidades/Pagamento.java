@@ -40,7 +40,7 @@ public class Pagamento implements Serializable {
     @JoinTable(name = "pag_plan",
     joinColumns = @JoinColumn(name = "fk_pag_plan"),
     inverseJoinColumns = @JoinColumn(name = "fk_plan_pag"))
-    private List<Planos> planos = new ArrayList<>();;
+    private List<Planos> planos = new ArrayList<>();
 
     // Metodo Construtor
     public Pagamento() {

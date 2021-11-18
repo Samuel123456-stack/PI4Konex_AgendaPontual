@@ -1,99 +1,47 @@
 package com.projeto.Entidades;
 
-//import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Objects;
 
-//import javax.persistence.*;
-//import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-//@Entity
-//@Table(name = "duvida")
-public class Notificacao {
-    
-	/*
-	
-	// Atributos
+@Entity
+public class Notificacao implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idContato;
+	@Column(name = "idnot")
+	private Integer idNot;
+	
+	@Column(length = 100)
+	private String assunto;
+	
+	@Column(length = 150)
+	private String mensagem;
+	
+	@Column(length = 150)
+	private String resposta;
+	
+	public Notificacao() {}
 
-    @Column(nullable = false)
-    @NotNull
-    private String nome;
-    
-    
-    @Column(nullable = false)
-    @NotNull
-    private String email;
-    
-    
-    @Column(nullable = false)
-    @NotNull
-    private String telefone;
-    
-    @Column(name = "data_notificacao", nullable = true, columnDefinition = "DATE")
-    private LocalDateTime dtsolic;
-
-    
-    
-    @Column(nullable = true)
-    private String assunto;
-    
-
-    @Column(nullable = true)
-    @NotNull
-    private String msg;
-    
-    @Column(nullable = true)
-    private String resposta;
-    
-    @Column(nullable = true)
-    private boolean contatoWpp = false;
-  
-    // Metodo Construtor
-    public Notificacao() {
-
-    }
-
-    // Getters e Setters
-	public long getIdContato() {
-		return idContato;
+	public Notificacao(Integer idNot, String assunto, String mensagem, String resposta) {
+		this.idNot = idNot;
+		this.assunto = assunto;
+		this.mensagem = mensagem;
+		this.resposta = resposta;
 	}
 
-	public void setIdContato(long idNoti) {
-		this.idContato = idNoti;
+	public Integer getIdNot() {
+		return idNot;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public LocalDateTime getDtsolic() {
-		return dtsolic;
-	}
-
-	public void setDtsolic(LocalDateTime dtsolic) {
-		this.dtsolic = dtsolic;
+	public void setIdNot(Integer idNot) {
+		this.idNot = idNot;
 	}
 
 	public String getAssunto() {
@@ -104,12 +52,12 @@ public class Notificacao {
 		this.assunto = assunto;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMensagem() {
+		return mensagem;
 	}
 
-	public void setMsg(String mensagem) {
-		this.msg = mensagem;
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
 	}
 
 	public String getResposta() {
@@ -120,12 +68,20 @@ public class Notificacao {
 		this.resposta = resposta;
 	}
 
-	public boolean isContatoWpp() {
-		return contatoWpp;
+	@Override
+	public int hashCode() {
+		return Objects.hash(idNot);
 	}
 
-	public void setContatoWpp(boolean contatoWpp) {
-		this.contatoWpp = contatoWpp;
-	}
-*/
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Notificacao other = (Notificacao) obj;
+		return Objects.equals(idNot, other.idNot);
+	}	
 }

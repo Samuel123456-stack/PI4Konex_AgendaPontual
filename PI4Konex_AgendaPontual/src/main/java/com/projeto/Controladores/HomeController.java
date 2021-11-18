@@ -43,11 +43,6 @@ public class HomeController {
 		return ("sobre");
 	}
 	
-	@GetMapping("/planos")
-	public String planos() {
-		return ("planos");
-	}
-	
 	@GetMapping("/login")
 	public String login() {
 		return ("tela_login");

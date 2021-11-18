@@ -74,98 +74,34 @@ public class Consulta implements Serializable{
     // Metodo Construtor
     
     public Consulta(){}
-    
+
     // Metodo Construtor com Atributos
-    public Consulta(Integer idConsulta, Agenda agenda, boolean confirmada, boolean retorno, LocalTime horaChegada,
-            LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
-            Receita receita, Feedback feedback, Pagamento pagamento) {
-        this.idConsulta = idConsulta;
-    	this.agenda = agenda;
-        this.confirmada = confirmada;
-        this.retorno = retorno;
-        this.horaChegada = horaChegada;
-        this.horaSaida = horaSaida;
-        this.duracao = duracao;
-        this.concluida = concluida;
-        this.naoCompareceu = naoCompareceu;
-        this.cancelada = cancelada;
-        this.receita = receita;
-        this.feedback = feedback;
-        this.pagamento = pagamento;
-    }
+	public Consulta(Integer idConsulta, Agenda agenda, boolean confirmada, boolean retorno, LocalTime horaChegada,
+			LocalTime horaSaida, LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada,
+			Receita receita, Feedback feedback, List<Notificacao> notificacao, Pagamento pagamento) {
+		this.idConsulta = idConsulta;
+		this.agenda = agenda;
+		this.confirmada = confirmada;
+		this.retorno = retorno;
+		this.horaChegada = horaChegada;
+		this.horaSaida = horaSaida;
+		this.duracao = duracao;
+		this.concluida = concluida;
+		this.naoCompareceu = naoCompareceu;
+		this.cancelada = cancelada;
+		this.receita = receita;
+		this.feedback = feedback;
+		this.notificacao = notificacao;
+		this.pagamento = pagamento;
+	}
 
-    // Getters e Setters
-    public int getIdConsulta() {
-        return idConsulta;
-    }
+	public Integer getIdConsulta() {
+		return idConsulta;
+	}
 
-    public void setIdConsulta(int idConsulta) {
-        this.idConsulta = idConsulta;
-    }
-
-    public boolean isConfirmada() {
-        return confirmada;
-    }
-
-    public void setConfirmada(boolean confirmada) {
-        this.confirmada = confirmada;
-    }
-
-    public boolean isRetorno() {
-        return retorno;
-    }
-
-    public void setRetorno(boolean retorno) {
-        this.retorno = retorno;
-    }
-
-    public LocalTime getHoraChegada() {
-        return horaChegada;
-    }
-
-    public void setHoraChegada(LocalTime horaChegada) {
-        this.horaChegada = horaChegada;
-    }
-
-    public LocalTime getHoraSaida() {
-        return horaSaida;
-    }
-
-    public void setHoraSaida(LocalTime horaSaida) {
-        this.horaSaida = horaSaida;
-    }
-
-    public LocalTime getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(LocalTime duracao) {
-        this.duracao = duracao;
-    }
-
-    public boolean isConcluida() {
-        return concluida;
-    }
-
-    public void setConcluida(boolean concluida) {
-        this.concluida = concluida;
-    }
-
-    public boolean isNaoCompareceu() {
-        return naoCompareceu;
-    }
-
-    public void setNaoCompareceu(boolean naoCompareceu) {
-        this.naoCompareceu = naoCompareceu;
-    }
-
-    public boolean isCancelada() {
-        return cancelada;
-    }
-
-    public void setCancelada(boolean cancelada) {
-        this.cancelada = cancelada;
-    }
+	public void setIdConsulta(Integer idConsulta) {
+		this.idConsulta = idConsulta;
+	}
 
 	public Agenda getAgenda() {
 		return agenda;
@@ -173,6 +109,70 @@ public class Consulta implements Serializable{
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
+	}
+
+	public boolean isConfirmada() {
+		return confirmada;
+	}
+
+	public void setConfirmada(boolean confirmada) {
+		this.confirmada = confirmada;
+	}
+
+	public boolean isRetorno() {
+		return retorno;
+	}
+
+	public void setRetorno(boolean retorno) {
+		this.retorno = retorno;
+	}
+
+	public LocalTime getHoraChegada() {
+		return horaChegada;
+	}
+
+	public void setHoraChegada(LocalTime horaChegada) {
+		this.horaChegada = horaChegada;
+	}
+
+	public LocalTime getHoraSaida() {
+		return horaSaida;
+	}
+
+	public void setHoraSaida(LocalTime horaSaida) {
+		this.horaSaida = horaSaida;
+	}
+
+	public LocalTime getDuracao() {
+		return duracao;
+	}
+
+	public void setDuracao(LocalTime duracao) {
+		this.duracao = duracao;
+	}
+
+	public boolean isConcluida() {
+		return concluida;
+	}
+
+	public void setConcluida(boolean concluida) {
+		this.concluida = concluida;
+	}
+
+	public boolean isNaoCompareceu() {
+		return naoCompareceu;
+	}
+
+	public void setNaoCompareceu(boolean naoCompareceu) {
+		this.naoCompareceu = naoCompareceu;
+	}
+
+	public boolean isCancelada() {
+		return cancelada;
+	}
+
+	public void setCancelada(boolean cancelada) {
+		this.cancelada = cancelada;
 	}
 
 	public Receita getReceita() {
@@ -222,5 +222,5 @@ public class Consulta implements Serializable{
 			return false;
 		Consulta other = (Consulta) obj;
 		return Objects.equals(idConsulta, other.idConsulta);
-	}
+	} 
 }

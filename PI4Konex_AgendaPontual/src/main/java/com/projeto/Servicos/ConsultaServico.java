@@ -2,6 +2,7 @@ package com.projeto.Servicos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.projeto.Entidades.Consulta;
 import com.projeto.Repositorios.ConsultaRepositorio;
@@ -12,9 +13,7 @@ public class ConsultaServico {
 	@Autowired
 	private ConsultaRepositorio conRepo;
 	
-	public Consulta cadastro(Consulta obj) {
-		obj.setIdConsulta(13);
-		
+	public Consulta cadastro(Consulta obj) {		
 		return conRepo.save(obj);
 	}
 }

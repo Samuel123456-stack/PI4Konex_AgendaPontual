@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Consulta;
+import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLatter;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
@@ -87,20 +88,23 @@ public class MedicoController {
 		return mv;
 	}
 	
-	@PostMapping("/medico/validacao")
+	@PostMapping("/medico/validacao/{idMed}")
 	public ModelAndView valida(
-			@RequestParam Integer idMed,
-			@RequestParam String data,
+			@PathVariable("idMed") Integer idMed,
 			@ModelAttribute("dados") Consulta dados) {
 		ModelAndView mv = new ModelAndView("tela_validation");
+		Medico med = new Medico();
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
 		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
 		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
 		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
 		 mv.addObject("convenios", convServ.listaConvenio());
+		 med.setIdMed(idMed);
+		 dados.setMedico(med);
 		 consServ.cadastro(dados);
 		 mv.addObject("numero", ultServ.buscaUtimoId());
+		 mv.addObject("detalhes", consServ.buscaConsultaPorId(ultServ.buscaUtimoId().getNum()));
 		return mv;
 	}
 	

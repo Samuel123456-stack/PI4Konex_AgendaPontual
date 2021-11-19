@@ -121,12 +121,12 @@
             </div>
 
             <aside class="summarize-container">
-                <article class="summarize-content">
+                <article class="summarize-content" th:each="detalhe, stat: ${detalhes}">
                     <h3>Resumo</h3>
 
                     <div class="timezone-data">
                         <img src="/image/icon1.png" />
-                        <span>23 Out 2021, 16:40 Fuso Horário: Brasília</span>
+                        <span th:text="${detalhes.dtAgendada +', ' +detalhes.hora +' '+'Fuso Horário: Brasília'}">23 Out 2021, 16:40 Fuso Horário: Brasília</span>
                     </div>
                     <div class="address-data">
                         <img src="/image/icon2.png" />  

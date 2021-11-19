@@ -7,5 +7,5 @@ import com.projeto.Entidades.Consulta;
 
 @Repository
 public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
-    
+   Consulta findByIdConsulta(Integer idConsulta);
 }

@@ -9,10 +9,12 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,10 +39,12 @@ public class Consulta implements Serializable{
     @Column(nullable = true)
     private LocalTime hora;
     
-    @OneToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_med_cons", nullable = true)
     private Medico medico;
     
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "fk_paci_cons", nullable = true)
     private Paciente paciente;
     
     @Column(nullable = true, name = "informacoesadic", columnDefinition = "Text")

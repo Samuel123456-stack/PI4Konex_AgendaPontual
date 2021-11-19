@@ -16,4 +16,9 @@ public class ConsultaServico {
 	public Consulta cadastro(Consulta obj) {		
 		return conRepo.save(obj);
 	}
+	
+	@Transactional(readOnly = true)
+	public Consulta buscaConsultaPorId(Integer id) {
+		return conRepo.findByIdConsulta(id);
+	}
 }

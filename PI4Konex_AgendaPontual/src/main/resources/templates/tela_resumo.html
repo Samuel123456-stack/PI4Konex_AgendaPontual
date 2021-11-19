@@ -207,13 +207,13 @@
 
 				</div>
 	
-                    <footer class="schedule" th:each="medico, stat: ${medico}" >
+                    <footer class="schedule">
                         <h3>Agendamento</h3>
-					<!-- th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" -->
-                        <form th:action="@{/medico/validacao}" method="POST" th:object="${dados}">
+					 
+                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST" th:object="${dados}">
                             <div class="input" >
-                                <!-- <input type="date" th:field="*{dtAgendada}"> -->
-                                <input type="hidden" th:value="${medico.id}">
+                                <input type="date" th:field="*{dtAgendada}">
+                                <!--<input type="hidden" th:field="*{medico}" th:value="${medico.id}">-->
                                 <input type="time" th:field="*{hora}"/>
                                 <input type="submit" value="PRÓXIMO" />
 						</div>

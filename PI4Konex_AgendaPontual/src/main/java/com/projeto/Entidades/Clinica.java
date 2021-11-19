@@ -52,6 +52,7 @@ public class Clinica implements Serializable{
 	@JoinColumn(name = "fk_usu_cli", nullable = true)
 	private Usuario usuario;
 
+	
 	// Metodo Construtor
 	public Clinica() {
 

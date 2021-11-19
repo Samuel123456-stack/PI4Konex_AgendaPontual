@@ -189,23 +189,24 @@
         <div class="persForm">
             
             <form action="personalize" method="POST" th:object="${planos}">
-                <!-- Recep -->
-                <div class="qtdRecep" th:id="${#fields.hasErrors('qntRec')} ? errorInput">
-                    <p >Quantidade de recepcionista</p>
-                    <input type="text" name="qntRec" placeholder="Digite a qtd. de recepcionistas">
-                </div>
-                <!-- Med -->
-                <div class="qtdMed" th:id="${#fields.hasErrors('qntMed')} ? errorInput">
-                    <p>Quantidade de médicos</p>
-                    <input type="text" name="qntMed" placeholder="Informe a qtd. de médicos">
-                </div>
-                <!-- Tol -->
-                <div class="qtdTol" th:id="${#fields.hasErrors('qntTolerancia')} ? errorInput">
-                    <p>Quantidade de tolerância</p>
-                    <input type="text" name="qntTolerancia" placeholder="Digite a tolerância para cada médico">
-                </div>
-                <button type="submit" value="ENVIAR">ENVIAR</button>
-            </form>
+                 <!-- Recep -->
+                 <div class="qtdRecep" th:id="${#fields.hasErrors('*{qntRec}')} ? errorInput">
+                     <p >Quantidade de recepcionista</p>
+                     <input type="text" name="qntRec" placeholder="Digite a qtd. de recepcionistas">
+                 </div>
+                 
+                 <!-- Med -->
+                 <div class="qtdMed" th:id="${#fields.hasErrors('*{qntMed}')} ? errorInput">
+                     <p>Quantidade de médicos</p>
+                     <input type="text" name="qntMed" placeholder="Informe a qtd. de médicos">
+                 </div>
+                 <!-- Tol -->
+                 <div class="qtdTol" th:id="${#fields.hasErrors('*{qntTolerancia}')} ? errorInput">
+                     <p>Quantidade de tolerância</p>
+                     <input type="text" name="qntTolerancia" placeholder="Digite a tolerância para cada médico">
+                 </div>
+                 <button type="submit" value="ENVIAR">ENVIAR</button>
+             </form>
 
         </div>
         <div class="persResul">
@@ -263,6 +264,7 @@
                 	<input type="hidden" name="qntRec" th:value="${recep}">
                 	<input type="hidden" name="qntMed" th:value="${med}">
                 	<input type="hidden" name="qntTolerancia" th:value="${tole}">
+                	<input type="hidden" name="valorAnual" th:value="${valorAnual}">
                     <button type="submit" value="CONTRATAR">CONTRATAR</button>
                 </form>
 

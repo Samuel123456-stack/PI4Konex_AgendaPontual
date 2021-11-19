@@ -1,5 +1,7 @@
 package com.projeto.Controladores;
 
+import java.text.DecimalFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -29,7 +31,9 @@ public class PlanosController {
 	@PostMapping("/personalSelected")
 	public ModelAndView createPersonal(@ModelAttribute Planos planos) {
 		ModelAndView mv = new ModelAndView("/PosPlanos");
-		mv.addObject("planos",planos);
+		float valorAnual = (99.99f * 12f) - 100f;
+		planos.setValorAnual(valorAnual);
+		mv.addObject("planos", planos);
 		return mv;
 	}
 	
@@ -37,6 +41,13 @@ public class PlanosController {
 	@PostMapping("/economySelected")
 	public ModelAndView createEconomy(@ModelAttribute Planos planos) {
 		ModelAndView mv = new ModelAndView("/PosPlanos");
+		
+		//calculando valor anual
+		float valorAnual = (279.80f * 12f) - 100f;
+		DecimalFormat df = new DecimalFormat("#.###");
+		valorAnual = Float.parseFloat(df.format(valorAnual));
+		planos.setValorAnual(valorAnual);
+		
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -45,6 +56,12 @@ public class PlanosController {
 	@PostMapping("/premiumSelected")
 	public ModelAndView createPremium(@ModelAttribute Planos planos) {
 		ModelAndView mv = new ModelAndView("/PosPlanos");
+		
+		//calculando valor anual
+		float valorAnual = (679.80f * 12f) - 100f;
+		DecimalFormat df = new DecimalFormat("#.###");
+		valorAnual = Float.parseFloat(df.format(valorAnual));
+		planos.setValorAnual(valorAnual);
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -62,13 +79,15 @@ public class PlanosController {
 		int qtdMed;
 		int qtdTol;
 		float valor;
+		DecimalFormat df = new DecimalFormat("#.###");
 		
 		nome = "Personalizado";
 		qtdRecep = planos.getQntRec();
 		qtdMed = planos.getQntMed();
 		qtdTol = planos.getQntTolerancia();
 		valor = planos.getValorPlano();
-		
+		float valorAnual = 0f;
+				
 		if(verifica.hasErrors()) {
 			mv = new ModelAndView("planos");
 			System.out.println("tem errooooo*****");
@@ -88,16 +107,21 @@ public class PlanosController {
 			}else{
 				//calculando valor o total
 				valor = ((qtdRecep * 7 ) + (qtdMed * 10) + ( qtdTol * 20));
+				
+				//calculando o valor anual
+				valorAnual = (valor * 12f) - 100f;
 			}
+			
 			//resolve o bug
 			mv.addObject("nomePl", nome);
 			mv.addObject("valor", valor);
 			mv.addObject("recep", qtdRecep);
 			mv.addObject("med", qtdMed);
 			mv.addObject("tole", qtdTol);
+			mv.addObject("valorAnual", df.format(valorAnual));
 		}
 		
-		planos = new Planos(nome, valor, qtdRecep, qtdMed, qtdTol);
+		planos = new Planos(nome, valor, qtdRecep, qtdMed, qtdTol, valorAnual);
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -120,6 +144,7 @@ public class PlanosController {
 		float valorFinal;
 		boolean temErro = false;
 		
+		//condição
 		if("10PONTUAL".equalsIgnoreCase(codigo)) {
 			valorAux = (planos.getValorPlano() * 10)/100;
 			valorFinal = planos.getValorPlano() - valorAux;
@@ -127,7 +152,11 @@ public class PlanosController {
 		}else{
 			temErro = true;
 		}
+		
+		mv.addObject("planos", planos);
+		mv.addObject("temErro", temErro);
 		System.out.println(planos.getValorPlano());
+		
 		return mv;
 	}
 }

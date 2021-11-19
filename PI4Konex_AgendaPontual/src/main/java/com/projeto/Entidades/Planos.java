@@ -22,6 +22,8 @@ public class Planos {
 
     @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
+    
+    private float valorAnual;
 
     @Column(name = "qterecep", nullable = true)
     @Min(1)
@@ -40,12 +42,13 @@ public class Planos {
 
     }
    
-    public Planos(String nomePlano, float valorPlano, @Min(1) int qntRec, @Min(1) int qntMed, @Min(1) int qntTolerancia) {
+    public Planos(String nomePlano, float valorPlano, @Min(1) int qntRec, @Min(1) int qntMed, @Min(1) int qntTolerancia, float valorAnual) {
 		this.nomePlano = nomePlano;
 		this.valorPlano = valorPlano;
 		this.qntRec = qntRec;
 		this.qntMed = qntMed;
 		this.qntTolerancia = qntTolerancia;
+		this.valorAnual = valorAnual;
 	}
 
 
@@ -97,6 +100,14 @@ public class Planos {
 
 	public void setQntTolerancia(int qntTolerancia) {
 		this.qntTolerancia = qntTolerancia;
+	}
+
+	public float getValorAnual() {
+		return valorAnual;
+	}
+
+	public void setValorAnual(float valorAnual) {
+		this.valorAnual = valorAnual;
 	}
 
 }

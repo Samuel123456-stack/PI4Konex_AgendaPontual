@@ -64,6 +64,9 @@
                 <span th:if="${planos.nomePlano} == 'Premium'">
                 	Recomendado para grandes consultórios, ou seja, de infraestrutura maior.
                 </span>
+                <span th:if="${planos.nomePlano} == 'Personalizado'">
+                	Personalizado de acordo o seu consultório.
+                </span>
                 
                 </p>
             </div>
@@ -73,7 +76,12 @@
                     <p>CUPOM DE DESCONTO</p>
                     <input type="text" name="cupomDesc" placeholder="Digite o código para o desconto">
                 </div>
-                <input type="submit" value="APLICAR CUPOM">
+                  <input type="hidden" name="nomePlano" th:value="${planos.nomePlano}">
+                  <input type="hidden" name="valorPlano" th:value="${planos.valorPlano}">
+                  <input type="hidden" name="qntRec" th:value="${planos.qntRec}">
+                  <input type="hidden" name="qntMed" th:value="${planos.qntMed}">
+                  <input type="hidden" name="qntTolerancia" th:value="${planos.qntTolerancia}">
+                  <input type="submit" value="APLICAR CUPOM">
             </form>
 
 
@@ -127,13 +135,13 @@
                     <input type="radio" id="mensal" name="metodoPag" value="mensal"class="option-radio"/>
                     <label for="mensal"><span th:text="${planos.valorPlano}"></span></label>
                     <input type="radio" id="anual" name="metodoPag" value="anual"class="option-radio"/>
-                    <label for="anual">Anual por R$ 1.018,98</label>
+                    <label for="anual">Anual por R$ <span th:text="${planos.valorAnual}"></span></label>
                     <p>Você pode cancelar ou alterar o seu plano a qualquer momento, sem pagar quaisquer taxas.</p> 
                 </div>
                 <div class="valorTotal">
                     <h1>Valor total:</h1>
-                    <h1 id="valor">R$1.018,98</h1>
-                    <p>(em até 6x de R$ 169,83 s/ juros)</p>
+                    <h1 id="valor">R$ <span th:text="${planos.valorAnual}"></span></h1>
+                    <p>(Pagamento à vista)</p>
                 </div>
             </div>
             <div class="divpessoa">

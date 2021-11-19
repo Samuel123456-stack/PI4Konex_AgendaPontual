@@ -302,7 +302,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 
 		String sql = "select concat(count(concluida), ' atendimentos') as total from consulta c "
 				+ "inner join medico m on c.fk_med_cons = m.idmed "
-				+ "where m.idmed = ";
+				+ "where concluida = 1 and m.idmed = ";
 		
 		if(idMed != null) {
 			sql += idMed;

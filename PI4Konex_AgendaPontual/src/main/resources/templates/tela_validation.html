@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>Validação</title>
@@ -126,7 +126,7 @@
 
                     <div class="timezone-data">
                         <img src="/image/icon1.png" />
-                        <span th:text="${detalhes.dtAgendada +', ' +detalhes.hora +' '+'Fuso Horário: Brasília'}">23 Out 2021, 16:40 Fuso Horário: Brasília</span>
+                       <span th:text="${#temporals.format(detalhes.dtAgendada, 'dd MMM yyyy') +', ' +detalhes.hora +' '+'Fuso Horário: Brasília'}"></span>
                     </div>
                     <div class="address-data">
                         <img src="/image/icon2.png" />  
@@ -134,8 +134,7 @@
                         </span>
                         <span th:text="${medico.complemento}">
                         </span>
-                    </div>
-                    <div class="phone-number">
+                           <div class="phone-number">
                         <img src="/image/icon3.png" />
                         <span th:text="${medico.telefone}"></span>
                     </div>

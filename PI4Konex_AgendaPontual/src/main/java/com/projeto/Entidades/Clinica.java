@@ -18,13 +18,13 @@ public class Clinica implements Serializable{
 	@Column(name = "idcli")
 	private int idCli;
 
-	@Column(name = "dt_criacao", columnDefinition = "TIMESTAMP")
+	@Column(name = "dtcriacao", columnDefinition = "TIMESTAMP")
 	private LocalDateTime dataCriaCli;
 
-	@Column(name = "nome_cli", nullable = true)
+	@Column(name = "nomecli", nullable = true)
 	private String nomeCli;
 
-	@Column(name = "nome_med_resp", nullable = true)
+	@Column(name = "nomemedresp", nullable = true)
 	private String nomeMedResp;
 
 	@Column(nullable = true, unique = true)

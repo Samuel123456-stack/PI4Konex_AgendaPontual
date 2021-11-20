@@ -15,7 +15,7 @@ public class Receita {
     @Column(name = "idrece")
     private int idRec;
 
-    @Column(name = "data_criacao", columnDefinition = "DATE")
+    @Column(name = "datacriacao", columnDefinition = "DATE")
     private LocalDateTime dataRec;
 
     @Column(name = "informacoes", nullable = true)

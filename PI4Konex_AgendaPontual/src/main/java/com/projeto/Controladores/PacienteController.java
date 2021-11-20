@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,9 +14,11 @@ import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLatter;
+import com.projeto.Entidades.Paciente;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.MedicoServico;
+import com.projeto.Servicos.PacienteServico;
 
 @Controller
 public class PacienteController {
@@ -27,6 +31,9 @@ public class PacienteController {
 	
 	@Autowired
 	private CidadeServico cidServ;
+	
+	@Autowired
+	private PacienteServico paciServ;
 	
 	
 	@GetMapping("/paciente")
@@ -60,5 +67,11 @@ public class PacienteController {
 		mv.addObject("especs", especs);
 		mv.addObject("news", new NewsLatter());
 		return mv;
+	}
+	
+	@PostMapping
+	public String pacienteCadastro(@ModelAttribute("pessoa") Paciente paciente) {
+			paciServ.cadastro(paciente);
+		return ("redirect:/paciente");
 	}
 }

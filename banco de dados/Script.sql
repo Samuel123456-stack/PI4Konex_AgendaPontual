@@ -3794,12 +3794,18 @@ insert into consulta(dtagendada,hora,fk_med_cons,fk_paci_cons,retorno,horachegad
 CREATE TABLE historico (
     idhis Integer AUTO_INCREMENT PRIMARY KEY,
     dtcriacao datetime default current_timestamp(),
-    historico text null,
-    fk_cons_his Integer null,
-    foreign key (fk_cons_his) references consulta (idcons)
+    historico text null
 ); 
 insert into historico(historico) values
 	('O paciente alegou muitas dores de cabeça.');
+    
+    CREATE TABLE histor_consult (
+	dtsolic datetime default current_timestamp(),
+    fk_his_cons Integer null,
+    fk_cons_his Integer null,
+    FOREIGN KEY (fk_his_cons) REFERENCES historico (idhis),
+    FOREIGN KEY (fk_cons_his) REFERENCES consulta (idcons) 
+);
 
 CREATE TABLE exame (
 	idexa Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3848,93 +3854,3 @@ CREATE TABLE duvida_adm (
     FOREIGN KEY (fk_duv_adm) REFERENCES duvida (idduv),
     FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
-
-/*Viewers*/
-
-create view vw_cont_atend_concl
-	as
-	select nome as 'medico', crm as 'crm', count(concluida) as 'qte.atendido(s)' from consulta
-	join agenda_medica
-	on fk_agen_cons = idagen
-	join medico m
-	on fk_med_agen = idmed;
-
-create view vw_agenda_medica  as
-	select dataagendada as 'data agendamento', dia as Dia, horario as 'horario', m.nome as 'dr_a', p.nome as 'paciente' from agenda_medica
-	inner join dias_semana
-	on fk_dia_agen = iddia
-	inner join horario
-	on fk_hor_agen = idhor
-	inner join paciente p
-	on fk_paci_agen = idpaci
-	inner join medico m 
-    on fk_med_agen = idmed; 
-    
-create view vw_feed_med_maior7 as
-	select foto, comentario, nome  from consulta
-	join feedback
-	on fk_feed_cons = idfeed
-	join agenda_medica
-	on fk_agen_cons = idagen
-	join paciente
-	on fk_paci_agen = idpaci
-	where avaliacao >= 7;
-
-create view vw_pesq_med	as
-	select avg(avaliacao) as pontuacao, m.nome as medico, sobremim, TIMESTAMPDIFF(YEAR, dataformatura, CURDATE()) as experiencia, sexo, e.nome as especialidade, valor 
-	from consulta
-	inner join agenda_medica a
-	on fk_agen_cons = idagen
-	inner join medico m
-	on fk_med_agen = idmed
-	inner join especialidade e
-	on fk_esp_med = idesp
-	inner join endereco
-	on fk_end_med = idend
-	inner join feedback f
-	on fk_feed_cons = idfeed;
-    
-create view vw_feed_detalhes as
-	select p.nome as paciente, m.nome as medico, avaliacao, comentario 
-    from consulta
-	inner join agenda_medica a
-	on fk_agen_cons = idagen
-	inner join medico m
-	on fk_med_agen = idmed
-    join paciente p
-    on fk_paci_agen = idpaci
-	inner join especialidade e
-	on fk_esp_med = idesp
-	inner join endereco
-	on fk_end_med = idend
-	inner join feedback f
-	on fk_feed_cons = idfeed;
- 
-create view vw_best_medicos as
-	select m.nome, e.nome as especialidade, avg(avaliacao) as pontos from consulta
-	join feedback
-	on fk_feed_cons = idfeed
-	join agenda_medica
-	on fk_agen_cons = idagen
-	join medico m
-	on fk_med_agen = idmed
-    join especialidade e
-    on fk_esp_med = idesp;
-
-create view vw_historico_agendamento as
-	select p.nome, concat(dataagendada, '- ',horario) as datahorario, m.nome as medico, idcons as consulta, e.nome as especialidade from consulta
-	join agenda_medica
-	on fk_agen_cons = idagen
-	join paciente p
-	on fk_paci_agen = idpaci
-	join medico m
-	on fk_med_agen = idmed
-	join especialidade e
-	on fk_esp_med = idesp
-    join horario
-    on fk_hor_agen = idhor;
-    
-create view vw_lista_esp_doenca as
-select d.nome as Doença, e.nome as Especialidade from doenca d
-join especialidade e
-on fk_esp_doe = idesp;

@@ -107,19 +107,14 @@
             <div class="additional-information-container">
                 <article class="additional-information">
                     <h3>Informações adicionais para o doutor</h3>
-
                     <div class="textarea-container">
                         <p>MENSAGEM</p>
-                        <form action="" method="" th:object="${dados}">
                             <textarea placeholder="Escreva informações que você queira compartilhar antes da consulta"
-                                name="informaAd" th:field="*{informaAdicio}" id="informaAd" rows="5" cols="70"></textarea>
-                        
+                                name="informaAd" id="informaAd" rows="5" cols="70"></textarea>                    
                     </div>
-
                     <footer class="recording-button">
                         <button type="button" id="addInfor" th:value="${numero.num}">GRAVAR</button>
                     </footer>
-                    </form>
                 </article>
             </div>
 
@@ -175,22 +170,23 @@
                 </article>
             </aside>
         </main>
-
-        <main class="form-data">
+	<form th:action="@{/paciente/cadastro/validacao}" method="POST" th:object="${paciente}">
+        <div class="form-data" >
+        
             <section class="personal-data-header">
                 <h3>DADOS PESSOAIS E LOGRADOURO</h3>
             </section>
 
             <div class="form-fillout">
-                <form action="" method="">
+                
                     <div class="first-row">
                         <div class="input-block">
                             <p>NOME</p>
-                            <input type="text" name="text-name" placeholder="Digite seu nome completo" />
+                            <input type="text" th:field="*{nomePaci}" name="text-name" placeholder="Digite seu nome completo" />
                         </div>
                         <div class="input-block">
-                            <p>CPF/CNPJ</p>
-                            <input type="text" name="text-cpf-cnpj" placeholder="Digite seu CPF ou CNPJ" />
+                            <p>CPF</p>
+                            <input type="text" th:field="*{cpf}" name="text-cpf-cnpj" placeholder="Digite seu CPF ou CNPJ" />
                         </div>
                         <div class="input-block">
                             <p>E-MAIL</p>
@@ -201,62 +197,62 @@
                     <div class="second-row">
                         <div class="input-block">
                             <p>CONFIRMAÇÃO</p>
-                            <input type="email" name="text-email" placeholder="Confirme o email" />
+                            <input type="email"  name="text-email" placeholder="Confirme o email" />
                         </div>
                         <div class="input-block">
                             <p>SENHA</p>
-                            <input type="password" name="text-password" placeholder="Senha alfanumérica" />
+                            <input type="password"  name="text-password" placeholder="Senha alfanumérica" />
                         </div>
                         <div class="input-block">
                             <p>CONFIRMAÇÃO</p>
-                            <input type="password" name="text-password" placeholder="Confirme a senha" />
+                            <input type="password"  name="text-password" placeholder="Confirme a senha" />
                         </div>
                     </div>
 
                     <div class="third-row">
                         <div class="input-block">
-                            <input type="radio" name="radio-male" />
+                            <input type="radio" name="radio-male" value="Masculino" th:field="*{sexo}" />
                             <span>Masculino</span>
-                            <input type="radio" name="radio-female" />
+                            <input type="radio" name="radio-female" value="Feminino" th:field="*{sexo}" />
                             <span>Feminino</span>
                         </div>
                         <div class="input-block">
                             <p>DATA DE NASCIMENTO</p>
-                            <input type="text" name="birthdate" placeholder="__/__/__" />
+                            <input type="text" th:field="*{dataNasc}" name="birthdate" placeholder="__/__/__" />
                         </div>
                         <div class="input-block">
                             <p>RG</p>
-                            <input type="text" name="rg" placeholder="__.___.___-__" />
+                            <input type="text" th:field="*{rg}" name="rg" placeholder="__.___.___-__" />
                         </div>
                         <div class="input-block">
                             <p>CELULAR C/ DDD</p>
-                            <input type="text" name="phone-ddd" placeholder="(__) _ ____-____" />
+                            <input type="text" th:field="*{celular}" name="phone-ddd" placeholder="(__) _ ____-____" />
                         </div>
                     </div>
 
                     <div class="foth-row">
                         <div class="input-block">
                             <p>SUA RESIDÊNCIA</p>
-                            <input type="text" name="text-logradouro" placeholder="Logradouro" />
+                            <input type="text"  name="text-logradouro" placeholder="Logradouro" />
                         </div>
                         <div class="input-block">
                             <p>NUMERAÇÃO</p>
-                            <input type="text" name="text-number" placeholder="Número" />
+                            <input type="text"  name="text-number" placeholder="Número" />
                         </div>
                         <div class="input-block">
                             <p>CEP</p>
-                            <input type="text" name="text-cep" placeholder="__.___-___" />
+                            <input type="text"  name="text-cep" placeholder="__.___-___" />
                         </div>
                         <div class="input-block">
                             <p>COMPLEMENTO</p>
                             <input type="text" name="text-complemento" placeholder="Digite o complemento" />
                         </div>
                     </div>
-                </form>
+                
             </div>
-        </main>
+        </div>
 
-        <main class="triagem-container">
+        <div class="triagem-container">
             <section class="title-triagem">
                 <h3>TRIAGEM RELEVANTE</h3>
             </section>
@@ -293,35 +289,28 @@
             <article class="question-option">
                 <p>Você tem sintomas de febre, tosse ou dificuldade de respirar
                     ou teve contato com alguém com esses sintomas?
-                </p>
-                <form action="" method="">
-                    <input type="radio" name="radio-input-yes" />
+                </p>             
+                    <input type="radio" value="1" name="radio-input-yes" />
                     <span>Sim</span>
-                    <input type="radio" name="radio-input-no" />
+                    <input type="radio" value="0" name="radio-input-no"  />
                     <span>Não</span>
-                </form>
                 <p>É sua primeira consulta com o especialista Dr. Wilson Santos?</p>
-                <form action="" method="">
-                    <input type="radio" name="radio-yes" />
+                    <input type="radio" value="1"  name="radio-yes" />
                     <span>Sim</span>
-                    <input type="radio" name="radio-no" />
-                    <span>Não</span>
-                </form>
+                    <input type="radio" value="0"  name="radio-no" />
+                    <span>Não</span>    
             </article>
-
             <article class="finishing-schedule">
                 <h3>FINALIZAÇÃO DO AGENDAMENTO</h3>
-
                 <section>
-                    <form action="" method="">
-                        <input type="checkbox" name="contract-checkbox" />
+                        <input type="checkbox" name="contract-checkbox"  />
                         <span>Eu aceito e concordo com os Termos e Condições de uso da agenda.ual.</span>
                         <input type="submit" value="CONFIRMAR AGENDAMENTO"></button>
-                    </form>
                 </section>
             </article>
-        </main>
-    </div>
+            </form>
+        </div>
+   
 
     <div class="agenda-footer">
         <div class="footer-switcher">
@@ -390,7 +379,6 @@
         <div class="newslatter-block">
             <div class="subscribe">
                 <h2>Newslatter</h2>
-
                 <div class="subscribe-input">
                     <input type="text" name="subscribe-newslatter" placeholder="Digite seu melhor e-mail" />
                     <input type="submit" value="Inscrever" />

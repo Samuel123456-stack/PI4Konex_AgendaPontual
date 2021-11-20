@@ -3423,18 +3423,16 @@ CREATE TABLE plano (
     qtemedico Integer null,
     detalhes varchar(50) null,
     tolerancia Integer null,
-    fk_pag_plan Integer null,
-    FOREIGN KEY (fk_pag_plan) REFERENCES pagamento (idpag)
+    valoranual varchar(10)
 );
 
-
-insert into plano(nome,comentario,valor,qterecep,qtemedico,detalhes,tolerancia) values
+insert into plano(nome,comentario,valor,qterecep,qtemedico,detalhes,tolerancia, valoranual) values
 	('Peronal','Recomendado para médicos individuais e iniciantes na carreira.','99.99',
-    1,1,'Todas funcionalidades inclusas',3),
+    1,1,'Todas funcionalidades inclusas',3,"1090,00"),
 	('Economy','Recomendado para pequenos consultórios, ou seja, de infraestrutura menor.','279.80',
-    3,5,'Todas funcionalidades inclusas',5),
+    3,5,'Todas funcionalidades inclusas',5,"2600,00"),
 	('Premium','Para consultórios de médio porte, que tenham até 15 médicos','679.80',
-    5,15,'Todas funcionalidades inclusas',7);
+    5,15,'Todas funcionalidades inclusas',7,"3900,00");
     
 CREATE TABLE pag_plan (
     dtcriacao datetime default current_timestamp(),
@@ -3596,9 +3594,9 @@ CREATE TABLE paciente (
     rg varchar (13) null,
     celular varchar(15) null,
     sexo varchar(9) null,
-    primeiraconsulta boolean,
-    sintomasgripe boolean,
-    termouso boolean,
+    primeiraconsulta boolean null,
+    sintomasgripe boolean null,
+    termouso boolean null,
     fk_conv_paci Integer null,
     fk_end_paci Integer null,
     fk_usu_paci Integer null,

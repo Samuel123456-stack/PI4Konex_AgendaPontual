@@ -42,11 +42,11 @@ public class ConsultaController {
 	@PostMapping("/validacao/{idMed}")
 	public ModelAndView valida(
 			@PathVariable("idMed") Integer idMed,
-			@ModelAttribute("dados") Consulta dados) {
+			@ModelAttribute("dados") Consulta dados,@ModelAttribute("paciente") Paciente paciente) {
 		ModelAndView mv = new ModelAndView("tela_validation");
 		Medico med = new Medico();
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
-		 mv.addObject("paciente", new Paciente());
+		 //mv.addObject("paciente", new Paciente());
 		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
 		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
 		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));

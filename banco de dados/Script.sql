@@ -3598,6 +3598,7 @@ CREATE TABLE paciente (
     sexo varchar(9) null,
     primeiraconsulta boolean,
     sintomasgripe boolean,
+    termouso boolean,
     fk_conv_paci Integer null,
     fk_end_paci Integer null,
     fk_usu_paci Integer null,

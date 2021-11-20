@@ -13,8 +13,8 @@ public class ConsultaServico {
 	@Autowired
 	private ConsultaRepositorio conRepo;
 	
-	public Consulta cadastro(Consulta obj) {		
-		return conRepo.save(obj);
+	public void cadastro(Consulta obj) {		
+		conRepo.save(obj);
 	}
 	
 	@Transactional(readOnly = true)

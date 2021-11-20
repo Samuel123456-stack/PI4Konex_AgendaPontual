@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<form th:action="@{/teste2}" method="POST" th:object="${dados}">
-	<input type="time" th:field="*{hora}">
-	<input type="date" th:field="*{dtAgendada}">
-	<input type="submit">
-</form>
+	<form th:action="@{/paciente/cadastro/validacao}" method="POST">
+
+
+		<div class="first-row" th:object="${paciente}">
+			<div class="input-block">
+				<p>NOME</p>
+				<input type="text" th:field="*{nomePaci}" name="text-name"
+					placeholder="Digite seu nome completo" />
+			</div>
+			<div class="input-block">
+				<p>CPF</p>
+				<input type="text" th:field="*{cpf}" name="text-cpf-cnpj"
+					placeholder="Digite seu CPF ou CNPJ" />
+			</div>
+			<div class="input-block">
+				<p>E-MAIL</p>
+				<input type="email" th:field="*{usuario.email}" name="text-email"
+					placeholder="Informe um email" />
+			</div>
+			<div class="input-block">
+				<p>SENHA</p>
+				<input type="password" th:field="*{usuario.senha}"
+					name="text-password" placeholder="Senha alfanumérica" />
+			</div>
+			<div class="input-block">
+				<p>SUA RESIDÊNCIA</p>
+				<input type="text" th:field="*{endereco.logradouro}" name="text-logradouro" placeholder="Logradouro" />
+			</div>
+
+			<div class="input-block">
+				<p>Submeter</p>
+				<button type="submit">Enviar</button>
+			</div>
+		</div>
+	</form>
 </body>
 </html>

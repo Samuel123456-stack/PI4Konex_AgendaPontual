@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +23,7 @@ import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
 
 @Controller
+@RequestMapping("/paciente")
 public class PacienteController {
 	
 	@Autowired
@@ -35,19 +39,19 @@ public class PacienteController {
 	private PacienteServico paciServ;
 	
 	
-	@GetMapping("/paciente")
+	@GetMapping
 	public String login() {
 		return ("tela_login");
 	}	
 	
-	@GetMapping("/paciente/dashboard")
+	@GetMapping("/dashboard")
 	public String dashboardPaci() {
 		return ("dashboardPaci");
 	}
 	
 	
 	
-	@GetMapping("/paciente/medico/busca")
+	@GetMapping("/medico/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
 			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
@@ -68,8 +72,15 @@ public class PacienteController {
 		return mv;
 	}
 	
-	@GetMapping("/cadastro/validacao")
-	public String pacienteCadastro(@ModelAttribute("pessoa") Paciente paciente) {
+	@GetMapping("/teste")
+	public String teste(Model model) {
+		model.addAttribute("paciente", new Paciente());	
+		return ("teste");
+	}
+	
+	
+	@PostMapping("/cadastro/validacao")
+	public String pacienteCadastro(@ModelAttribute("paciente") Paciente paciente) {
 			paciServ.cadastro(paciente);
 		return ("redirect:/paciente");
 	}

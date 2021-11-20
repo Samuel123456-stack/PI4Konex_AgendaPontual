@@ -13,8 +13,8 @@ public class NewsLatterServico {
 	@Autowired
 	private NewsLatterRepositorio newsRepo;
 	
-	@Transactional
-	public NewsLatter cadastro(NewsLatter obj) {
-		return newsRepo.save(obj);
+	@Transactional(readOnly = false)
+	public void cadastro(NewsLatter obj) {
+		newsRepo.save(obj);
 	}
 }

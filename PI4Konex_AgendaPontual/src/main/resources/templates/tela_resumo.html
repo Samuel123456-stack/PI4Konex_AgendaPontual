@@ -210,7 +210,7 @@
                     <footer class="schedule">
                         <h3>Agendamento</h3>
 					 
-                        <form th:action="@{/medico/validacao/{idMed}(idMed=${medico.id})}" method="POST" th:object="${dados}">
+                        <form th:action="@{/consulta/validacao/{idMed}(idMed=${medico.id})}" method="POST" th:object="${dados}">
                             <div class="input" >
                                 <input type="date" th:field="*{dtAgendada}">
                                 <!--<input type="hidden" th:field="*{medico}" th:value="${medico.id}">-->

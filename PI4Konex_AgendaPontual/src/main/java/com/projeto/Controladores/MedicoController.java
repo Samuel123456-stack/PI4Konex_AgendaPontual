@@ -39,16 +39,6 @@ public class MedicoController {
 	@Autowired
 	private FeedbackServico feeServ;
 	
-	@Autowired
-	private UltimoIdDTOServico ultServ;
-	
-	@Autowired
-	private ConsultaServico consServ; 
-	
-	@Autowired
-	private ConvenioServico convServ; 
-
-	
 	@GetMapping("/medico/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
@@ -84,42 +74,6 @@ public class MedicoController {
 		 mv.addObject("sex", medServ.buscaSex(idMed));
 		 mv.addObject("sab", medServ.buscaSab(idMed));
 		 mv.addObject("dados", new Consulta());
-		 
-		return mv;
-	}
-	
-	@PostMapping("/medico/validacao/{idMed}")
-	public ModelAndView valida(
-			@PathVariable("idMed") Integer idMed,
-			@ModelAttribute("dados") Consulta dados) {
-		ModelAndView mv = new ModelAndView("tela_validation");
-		Medico med = new Medico();
-		 mv.addObject("medico", medServ.medicoResumo(idMed));
-		 mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
-		 mv.addObject("positiva", feeServ.buscaPositiva(idMed));
-		 mv.addObject("negativa", feeServ.buscaNegativa(idMed));
-		 mv.addObject("total", medServ.buscaQteAtendimento(idMed));
-		 mv.addObject("convenios", convServ.listaConvenio());
-		 med.setIdMed(idMed);
-		 dados.setMedico(med);
-		 consServ.cadastro(dados);
-		 mv.addObject("numero", ultServ.buscaUtimoId());
-		 mv.addObject("detalhes", consServ.buscaConsultaPorId(ultServ.buscaUtimoId().getNum()));
-		return mv;
-	}
-	
-	@GetMapping("/teste")
-	public ModelAndView teste() {
-		ModelAndView mv =  new ModelAndView("teste");
-		mv.addObject("medico", medServ.medicoResumo(1));
-		mv.addObject("dados", new Consulta());
-		return mv;
-	}
-	
-	@PostMapping("/teste2")
-	public ModelAndView teste(@ModelAttribute("dados") Consulta dados) {
-		ModelAndView mv =  new ModelAndView("teste");
-		consServ.cadastro(dados);
 		return mv;
 	}
 }

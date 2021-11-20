@@ -30,7 +30,7 @@ public class Paciente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpaci")
-    private int idPaci;
+    private Integer idPaci;
 
     @Column(name = "dtcriacao", nullable = true, columnDefinition = "DATE")
     private LocalDateTime dataCriaPaci;
@@ -60,6 +60,9 @@ public class Paciente implements Serializable {
     @Column(name = "sintomasgripe",nullable = true, unique = true)
     private boolean sintomasGripe;
     
+    @Column(name = "termouso")
+    private Boolean termoUso;
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "triagem",
     joinColumns = @JoinColumn(name = "fk_paci_doe"),
@@ -76,11 +79,11 @@ public class Paciente implements Serializable {
 
     // Metodo Construtor
     public Paciente() {}
-    
-    // Metodo Construtor com Atributos
-	public Paciente(int idPaci, LocalDateTime dataCriaPaci, String nomePaci, String cpf, LocalDate dataNasc, String rg,
-			String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, Endereco endereco,
-			Usuario usuario) {
+  
+	// Metodo Construtor com Atributos
+	public Paciente(Integer idPaci, LocalDateTime dataCriaPaci, String nomePaci, String cpf, LocalDate dataNasc,
+			String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, Boolean termoUso,
+			Set<Doenca> doenca, Endereco endereco, Usuario usuario) {
 		this.idPaci = idPaci;
 		this.dataCriaPaci = dataCriaPaci;
 		this.nomePaci = nomePaci;
@@ -91,17 +94,18 @@ public class Paciente implements Serializable {
 		this.sexo = sexo;
 		this.primeiraConsulta = primeiraConsulta;
 		this.sintomasGripe = sintomasGripe;
+		this.termoUso = termoUso;
+		this.doenca = doenca;
 		this.endereco = endereco;
 		this.usuario = usuario;
 	}
-	
-	// Getters e Setters
 
-	public int getIdPaci() {
+	// Getters e Setters
+	public Integer getIdPaci() {
 		return idPaci;
 	}
-
-	public void setIdPaci(int idPaci) {
+	
+	public void setIdPaci(Integer idPaci) {
 		this.idPaci = idPaci;
 	}
 
@@ -177,6 +181,14 @@ public class Paciente implements Serializable {
 		this.sintomasGripe = sintomasGripe;
 	}
 
+	public Boolean getTermoUso() {
+		return termoUso;
+	}
+
+	public void setTermoUso(Boolean termoUso) {
+		this.termoUso = termoUso;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -193,17 +205,17 @@ public class Paciente implements Serializable {
 		this.usuario = usuario;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(idPaci);
-	}
-	
 	public Set<Doenca> getDoenca() {
 		return doenca;
 	}
 
 	public void setDoenca(Set<Doenca> doenca) {
 		this.doenca = doenca;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(idPaci);
 	}
 
 	@Override

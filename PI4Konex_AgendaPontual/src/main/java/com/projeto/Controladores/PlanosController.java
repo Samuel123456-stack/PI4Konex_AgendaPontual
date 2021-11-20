@@ -32,7 +32,8 @@ public class PlanosController {
 	public ModelAndView createPersonal(@ModelAttribute Planos planos) {
 		ModelAndView mv = new ModelAndView("/PosPlanos");
 		float valorAnual = (99.99f * 12f) - 100f;
-		planos.setValorAnual(valorAnual);
+		DecimalFormat df = new DecimalFormat("#.##");
+		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -44,10 +45,8 @@ public class PlanosController {
 		
 		//calculando valor anual
 		float valorAnual = (279.80f * 12f) - 100f;
-		DecimalFormat df = new DecimalFormat("#.###");
-		valorAnual = Float.parseFloat(df.format(valorAnual));
-		planos.setValorAnual(valorAnual);
-		
+		DecimalFormat df = new DecimalFormat("#.##");
+		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -59,9 +58,8 @@ public class PlanosController {
 		
 		//calculando valor anual
 		float valorAnual = (679.80f * 12f) - 100f;
-		DecimalFormat df = new DecimalFormat("#.###");
-		valorAnual = Float.parseFloat(df.format(valorAnual));
-		planos.setValorAnual(valorAnual);
+		DecimalFormat df = new DecimalFormat("#.##");
+		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -79,7 +77,7 @@ public class PlanosController {
 		int qtdMed;
 		int qtdTol;
 		float valor;
-		DecimalFormat df = new DecimalFormat("#.###");
+		DecimalFormat df = new DecimalFormat("#.##");
 		
 		nome = "Personalizado";
 		qtdRecep = planos.getQntRec();
@@ -87,7 +85,8 @@ public class PlanosController {
 		qtdTol = planos.getQntTolerancia();
 		valor = planos.getValorPlano();
 		float valorAnual = 0f;
-				
+		String aux = null;
+		
 		if(verifica.hasErrors()) {
 			mv = new ModelAndView("planos");
 			System.out.println("tem errooooo*****");
@@ -112,16 +111,17 @@ public class PlanosController {
 				valorAnual = (valor * 12f) - 100f;
 			}
 			
+			aux = df.format(valorAnual);
 			//resolve o bug
 			mv.addObject("nomePl", nome);
 			mv.addObject("valor", valor);
 			mv.addObject("recep", qtdRecep);
 			mv.addObject("med", qtdMed);
 			mv.addObject("tole", qtdTol);
-			mv.addObject("valorAnual", df.format(valorAnual));
+			mv.addObject("valorAnual", aux);
 		}
 		
-		planos = new Planos(nome, valor, qtdRecep, qtdMed, qtdTol, valorAnual);
+		planos = new Planos(nome, valor, qtdRecep, qtdMed, qtdTol, aux);
 		mv.addObject("planos", planos);
 		return mv;
 	}

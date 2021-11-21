@@ -3806,4 +3806,3 @@ CREATE TABLE contato_site (
     fk_adm_duv Integer null,
     FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
-

@@ -52,10 +52,10 @@ public class Paciente implements Serializable {
     private String sexo;
 
     @Column(name = "primeiraconsulta", nullable = true, unique = true)
-    private boolean primeiraConsulta;
+    private Boolean primeiraConsulta;
 
     @Column(name = "sintomasgripe",nullable = true, unique = true)
-    private boolean sintomasGripe;
+    private Boolean sintomasGripe;
     
     @Column(name = "termouso")
     private Boolean termoUso;
@@ -95,12 +95,11 @@ public class Paciente implements Serializable {
 		this.endereco = endereco;
 		this.usuario = usuario;
 	}
-
 	// Getters e Setters
 	public Integer getIdPaci() {
 		return idPaci;
 	}
-	
+
 	public void setIdPaci(Integer idPaci) {
 		this.idPaci = idPaci;
 	}
@@ -153,19 +152,19 @@ public class Paciente implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public boolean isPrimeiraConsulta() {
+	public Boolean getPrimeiraConsulta() {
 		return primeiraConsulta;
 	}
 
-	public void setPrimeiraConsulta(boolean primeiraConsulta) {
+	public void setPrimeiraConsulta(Boolean primeiraConsulta) {
 		this.primeiraConsulta = primeiraConsulta;
 	}
 
-	public boolean isSintomasGripe() {
+	public Boolean getSintomasGripe() {
 		return sintomasGripe;
 	}
 
-	public void setSintomasGripe(boolean sintomasGripe) {
+	public void setSintomasGripe(Boolean sintomasGripe) {
 		this.sintomasGripe = sintomasGripe;
 	}
 
@@ -175,6 +174,14 @@ public class Paciente implements Serializable {
 
 	public void setTermoUso(Boolean termoUso) {
 		this.termoUso = termoUso;
+	}
+
+	public Set<Doenca> getDoenca() {
+		return doenca;
+	}
+
+	public void setDoenca(Set<Doenca> doenca) {
+		this.doenca = doenca;
 	}
 
 	public Endereco getEndereco() {
@@ -193,14 +200,6 @@ public class Paciente implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Set<Doenca> getDoenca() {
-		return doenca;
-	}
-
-	public void setDoenca(Set<Doenca> doenca) {
-		this.doenca = doenca;
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(idPaci);
@@ -215,6 +214,6 @@ public class Paciente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
-		return idPaci == other.idPaci;
+		return Objects.equals(idPaci, other.idPaci);
 	}
 }

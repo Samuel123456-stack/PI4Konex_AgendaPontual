@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$("#perfil").val("paciente");
 	$("#addInfor").on('click',function() {
 		var id = $(this).val();
 		var inforAd = $("#informaAd").val();  

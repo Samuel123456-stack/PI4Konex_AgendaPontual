@@ -43,7 +43,7 @@ public class ConsultaController {
 	public ModelAndView valida(
 			@PathVariable("idMed") Integer idMed,
 			@ModelAttribute("dados") Consulta dados) {
-		ModelAndView mv = new ModelAndView("tela_validation");
+		ModelAndView mv = new ModelAndView("/consulta/tela_validation");
 		Medico med = new Medico();
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("paciente", new Paciente());

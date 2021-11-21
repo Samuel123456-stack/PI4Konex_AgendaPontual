@@ -78,17 +78,10 @@ public class PacienteController {
 		return mv;
 	}
 	
-	@GetMapping("/teste")
-	public String teste(Model model) {
-		model.addAttribute("paciente", new Paciente());	
-		return ("teste");
-	}
-	
-	
 	@PostMapping("/cadastro/validacao")
 	public String pacienteCadastro(@ModelAttribute("paciente") Paciente paciente) {
-			paciServ.cadastro(paciente);
-		return ("redirect:/paciente");
+		paciServ.cadastro(paciente);
+		return ("redirect:/teste");
 	}
 	
     @RequestMapping("/ajuda")

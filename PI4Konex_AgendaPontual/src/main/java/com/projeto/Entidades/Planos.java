@@ -6,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "plano")
@@ -15,7 +13,7 @@ public class Planos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idplan")
-    private int idPlano;
+    private Integer idPlano;
 
     @Column(name = "nome", nullable = true)
     private String nomePlano;
@@ -23,6 +21,7 @@ public class Planos {
     @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
     
+    @Column(name = "valorAnual", nullable = true)
     private String valorAnual;
 
     @Column(name = "qterecep", nullable = true)
@@ -41,24 +40,24 @@ public class Planos {
     public Planos() {
 
     }
-   
-    public Planos(String nomePlano, float valorPlano, @Min(1) int qntRec, @Min(1) int qntMed, @Min(1) int qntTolerancia, String valorAnual) {
+    // Metodo Construtor Personalizado
+	public Planos(String nomePlano, float valorPlano, @Min(1) int qntRec,
+			@Min(1) int qntMed, @Min(1) int qntTolerancia, String valorAnual) {
+		super();
 		this.nomePlano = nomePlano;
 		this.valorPlano = valorPlano;
+		this.valorAnual = valorAnual;
 		this.qntRec = qntRec;
 		this.qntMed = qntMed;
 		this.qntTolerancia = qntTolerancia;
-		this.valorAnual = valorAnual;
 	}
 
-
-
-	// Getters e Setters
-	public int getIdPlano() {
+	//Getters e Setters
+	public Integer getIdPlano() {
 		return idPlano;
 	}
 
-	public void setIdPlano(int idPlano) {
+	public void setIdPlano(Integer idPlano) {
 		this.idPlano = idPlano;
 	}
 
@@ -73,41 +72,31 @@ public class Planos {
 	public float getValorPlano() {
 		return valorPlano;
 	}
-
 	public void setValorPlano(float valorPlano) {
 		this.valorPlano = valorPlano;
 	}
-
-	public int getQntRec() {
-		return qntRec;
-	}
-
-	public void setQntRec(int qntRec) {
-		this.qntRec = qntRec;
-	}
-
-	public int getQntMed() {
-		return qntMed;
-	}
-
-	public void setQntMed(int qntMed) {
-		this.qntMed = qntMed;
-	}
-
-	public int getQntTolerancia() {
-		return qntTolerancia;
-	}
-
-	public void setQntTolerancia(int qntTolerancia) {
-		this.qntTolerancia = qntTolerancia;
-	}
-
 	public String getValorAnual() {
 		return valorAnual;
 	}
-
 	public void setValorAnual(String valorAnual) {
 		this.valorAnual = valorAnual;
 	}
-
+	public int getQntRec() {
+		return qntRec;
+	}
+	public void setQntRec(int qntRec) {
+		this.qntRec = qntRec;
+	}
+	public int getQntMed() {
+		return qntMed;
+	}
+	public void setQntMed(int qntMed) {
+		this.qntMed = qntMed;
+	}
+	public int getQntTolerancia() {
+		return qntTolerancia;
+	}
+	public void setQntTolerancia(int qntTolerancia) {
+		this.qntTolerancia = qntTolerancia;
+	}
 }

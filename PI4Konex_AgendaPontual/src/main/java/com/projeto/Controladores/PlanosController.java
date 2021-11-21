@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +12,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Planos;
-//import com.projeto.Repositorios.PlanosRepository;
+import com.projeto.Repositorios.MedicojpaRepository;
+import com.projeto.Servicos.PlanosService;
 
 
 @Controller
 public class PlanosController {
-	// importar o repository
-	//private PlanosRepository pr;
+	//Chamada dos Repository/Servicos
+	
+	@Autowired
+	private PlanosService plR;
+	
+	@Autowired
+	private MedicojpaRepository mdR;
 	
 	// abrir a tela
 	@GetMapping("/planos")
@@ -143,20 +150,34 @@ public class PlanosController {
 		float valorAux;
 		float valorFinal;
 		boolean temErro = false;
+		float valorAnual = 0f;
 		
 		//condição
 		if("10PONTUAL".equalsIgnoreCase(codigo)) {
 			valorAux = (planos.getValorPlano() * 10)/100;
 			valorFinal = planos.getValorPlano() - valorAux;
 			planos.setValorPlano(valorFinal);
+			
+			//calculando valor anual
+			valorAnual = (valorFinal * 12f) - 100f;
+			DecimalFormat df = new DecimalFormat("#.##");
+			planos.setValorAnual(df.format(valorAnual));
 		}else{
 			temErro = true;
 		}
 		
 		mv.addObject("planos", planos);
 		mv.addObject("temErro", temErro);
-		System.out.println(planos.getValorPlano());
 		
+		return mv;
+	}
+	
+	@PostMapping("/aquisitionPlanos")
+	public ModelAndView saveAquisition(@ModelAttribute Planos planos, @ModelAttribute Medico med) {
+		ModelAndView mv = new ModelAndView("/planos");
+		
+		plR.createPlanos(planos);
+		mdR.save(med);
 		return mv;
 	}
 }

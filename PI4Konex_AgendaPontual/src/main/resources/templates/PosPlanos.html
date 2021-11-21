@@ -92,8 +92,8 @@
             <div class="barraMen"></div>
         </div>
 
-        <form action="">
-
+        
+		<form action="/aquisitionPlanos" method="POST">
             <div class="opcMen">
                 <div class="infoplano">
                     <div class="qntRece">
@@ -148,6 +148,7 @@
                 <p>DADOS PESSOAIS E LOGRADOURO</p>
                 <div class="barrapessoa"></div>
             </div>
+            
             <!-- DADOS PESSOAIS -->
             <div class="dadosPessoa">
                 <div class="nomeDados">
@@ -156,7 +157,7 @@
                 </div>
                 <div class="cpfDados">
                     <p>CPF/CNPJ</p>
-                    <input type="text" name="identificador" placeholder="Digite seu CPF ou CNPJ">
+                    <input type="text" name="cpfMed" placeholder="Digite seu CPF ou CNPJ">
                 </div>
                 <div class="emailDados">
                     <p>E-MAIL</p>
@@ -221,6 +222,8 @@
                     <h1>1. Forma de pagamento</h1>
                     <select>
                         <option value="" disabled selected>Selecione a forma de pagamento</option>
+                        <option value="" disabled selected>Cartão de Crédito</option>
+                        <option value="" disabled selected>Cartão de Débito</option>
                     </select>
                 </div>
                 <div class="dadosTit">
@@ -257,9 +260,15 @@
                     <input type="checkbox" class="option-check" name="terms" value="aceito"/>
                     <label for="terms">Eu aceito e concordo e aceita os Termos e Condicões de uso da agenda.ual.</label>
                 </div>
+                <input type="hidden" name="nomePlano" th:value="${planos.nomePlano}">
+                  <input type="hidden" name="valorPlano" th:value="${planos.valorPlano}">
+                  <input type="hidden" name="qntRec" th:value="${planos.qntRec}">
+                  <input type="hidden" name="qntMed" th:value="${planos.qntMed}">
+                  <input type="hidden" name="qntTolerancia" th:value="${planos.qntTolerancia}">
+                  <input type="hidden" name="valorAnual" th:value="${planos.valorAnual}">
                 <input type="submit" value="CONFIRMAR COMPRA">
             </div>
-        </form>
+        </form >
     </div>
 
     <div class="rodapeComposto">

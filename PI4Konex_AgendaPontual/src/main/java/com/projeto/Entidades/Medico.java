@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -42,6 +44,7 @@ public class Medico implements Serializable {
 	private String nomeMed;
 
 	@Column(name = "datanasci", nullable = true)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataNasc;
 
 	@Column(name = "sexo", nullable = true)
@@ -63,6 +66,7 @@ public class Medico implements Serializable {
 	private float valorMed;
 
 	@Column(name = "dataformatura", nullable = true, columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataFormatura;
 
 	@Column(name = "sobremim", nullable = true)
@@ -77,19 +81,19 @@ public class Medico implements Serializable {
 	@Column(nullable = true)
 	private Integer pontos;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_cli_med")
 	private Clinica clinica;
 
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_end_med")
 	private Endereco endereco;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_usu_med")
 	private Usuario usuario;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_esp_med")
 	private Especialidade especialidade;
 

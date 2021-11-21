@@ -3766,16 +3766,14 @@ CREATE TABLE consulta (
     naocompareceu Boolean null,
     cancelada Boolean null,
     fk_rec_cons Integer null,
-    fk_not_cons Integer null,
     fk_pag_cons Integer null,
     fk_feed_cons Integer null,
     FOREIGN KEY (fk_med_cons) REFERENCES medico (idmed),
     FOREIGN KEY (fk_paci_cons) REFERENCES paciente (idpaci),
     FOREIGN KEY (fk_rec_cons) REFERENCES receita (idrece),
-    FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnot),
     FOREIGN KEY (fk_pag_cons) REFERENCES pagamento (idpag),
-    FOREIGN KEY (fk_feed_cons) REFERENCES feedback (idfeed),
-    unique (dtagendada,hora,fk_med_cons)
+    FOREIGN KEY (fk_feed_cons) REFERENCES feedback (idfeed)
+    /*unique (dtagendada,hora,fk_med_cons)*/
 );
 
 insert into consulta(dtagendada,hora,fk_med_cons,fk_paci_cons,retorno,horachegada,horasaida,concluida,duracao,naocompareceu,cancelada,fk_feed_cons)values
@@ -3804,6 +3802,13 @@ insert into historico(historico) values
     fk_cons_his Integer null,
     FOREIGN KEY (fk_his_cons) REFERENCES historico (idhis),
     FOREIGN KEY (fk_cons_his) REFERENCES consulta (idcons) 
+);
+
+CREATE TABLE notifica_consulta (
+    fk_not_cons Integer null,
+    fk_cons_not Integer null,
+    FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnot),
+    FOREIGN KEY (fk_cons_not) REFERENCES consulta (idcons) 
 );
 
 CREATE TABLE exame (

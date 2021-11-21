@@ -30,7 +30,7 @@ public class Pagamento implements Serializable {
     @Column(name = "dtpgto", nullable = true, columnDefinition = "DATE")
     private String dataPag;
 
-    @Column(name = "formapagamento", nullable = true)
+    @Column(name = "formapagamento", nullable = true, length = 30)
     private String formaPag;
 
     @Column(columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")

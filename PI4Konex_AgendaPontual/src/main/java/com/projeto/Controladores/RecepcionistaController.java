@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
-import com.projeto.Entidades.AjudaRec;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Convenio;
@@ -91,7 +90,7 @@ public class RecepcionistaController {
         model.addAttribute("paciente", paci);
         model.addAttribute("usuario", usu);
         model.addAttribute("endereco", end);
-        return "/tela_cadClientes";
+        return "/recepcionista/tela_cadClientes";
 
     }
     @RequestMapping("/addAgenda")
@@ -105,7 +104,7 @@ public class RecepcionistaController {
         //recepServ.criaPaci(paci);
         //usuServ.criaUsu(usu);
         //recepServ.criaEnd(end);
-        ModelAndView modelView = new ModelAndView("tela_agendamento");
+        ModelAndView modelView = new ModelAndView("/recepcionista/tela_agendamento");
         //Cria a listagem do filtro e seus atributos
         //Consulta cons = new Consulta();
         
@@ -130,7 +129,7 @@ public class RecepcionistaController {
         model.addAttribute("total", medServ.buscaQteAtendimento(idMed));
         model.addAttribute("agenda", agen);
         
-        return "/tela_agendamento";
+        return "/recepcionista/tela_agendamento";
     }
 
     //Salva Informaçoes Adicionais, Horario e Data
@@ -146,7 +145,7 @@ public class RecepcionistaController {
         consulta.setMedico(med);
         //agenServ.criaAtualizaAgen(agen);
         model.getAttribute("medResumo");
-        return "/tela_agendamento";
+        return "/recepcionista/tela_agendamento";
     }
 
     //Passa para a tela de Consulta da Recepcionista
@@ -160,7 +159,7 @@ public class RecepcionistaController {
         model.addAttribute("end", end);
         model.addAttribute("usu", usu);
 
-        return "/tela_consRes";
+        return "/recepcionista/tela_consRes";
     }
 
     @RequestMapping("/formConsRecep")
@@ -169,7 +168,7 @@ public class RecepcionistaController {
         List<Agenda> listaConsulta = agenServ.listaConsAgenda(idPaci);
         model.addAttribute("listaConsulta", listaConsulta);
 
-        return "/tela_consRes";
+        return "/recepcionista/tela_consRes";
     }
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
@@ -180,14 +179,14 @@ public class RecepcionistaController {
         model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);
 
-        return "/tela_proconfirmation";
+        return "/recepcionista/tela_proconfirmation";
     }
 
     //Consulta se a Disponibilidade no agendamento
     @RequestMapping("/consDispo")
     public String consDispo(){
 
-        return "/tela_proconfirmation";
+        return "/recepcionista/tela_proconfirmation";
     }
     
     //Valida o Agendamento e direciona para a tela da recepionista
@@ -209,7 +208,7 @@ public class RecepcionistaController {
         model.addAttribute("recep", recep);
         model.addAttribute("usu", usu);
 
-        return "/tela_configuracoes";
+        return "/recepcionista/tela_configuracoes";
     }
 
     @RequestMapping("/atualizaRecep")
@@ -225,26 +224,20 @@ public class RecepcionistaController {
 
     @RequestMapping("/telaAjuda")
     public String telaAjuda(Model model){
-        Ajuda aju = new Ajuda();
-        AjudaRec ajuRec = new AjudaRec();
-        model.addAttribute("aju", aju);
-        model.addAttribute("ajuRec", ajuRec);
-
-        return "/tela_ajuda";
+        model.addAttribute("aju", new Ajuda());
+        return "/recepcionista/tela_ajuda";
     }
 
     @RequestMapping("/telaFormAjuda")
-    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju, @ModelAttribute("ajuRec") AjudaRec ajudaRec, Model model){
-        Date dataAtual = new Date();
-        DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-        String dataSolic = dataFormatada.format(dataAtual);
-        aju.setDataSolic(dataSolic);
-        ajuServ.criaAjuda(aju);
+    public String telaFormAjuda(@ModelAttribute("aju")Ajuda aju, Model model){
+       Usuario usu = new Usuario();
+    	usu.setIdUsu(3);
+    	aju.setUsuario(usu);
+       ajuServ.criaAjuda(aju);
         /*ajudaRec.setIdAjuda(aju.getIdAjuda());
         ajudaRec.setDataAjudaRec(dataSolic);
         ajudaRec.setStatusSoli("pendente");
         ajuServ.criaAjudaRec(ajudaRec);*/
-
         return painelRecep(model);
     }
 
@@ -253,7 +246,7 @@ public class RecepcionistaController {
         Pagamento pag = new Pagamento();
         model.addAttribute("pag", pag);
 
-        return "/tela_regPayment";
+        return "/recepcionista/tela_regPayment";
     }
 
     @RequestMapping("/telaFormPag")
@@ -275,7 +268,7 @@ public class RecepcionistaController {
             model.addAttribute("agen", agen);
         }
 
-        return "/tela_updateSchedule";
+        return "/recepcionista/tela_updateSchedule";
     }
 
     @RequestMapping("/telaFormAgen")
@@ -289,7 +282,7 @@ public class RecepcionistaController {
         Agenda agen = new Agenda();
         model.addAttribute("agen", agen);
 
-        return "/tela_cancelSchedule";
+        return "/recepcionista/tela_cancelSchedule";
     }
 
     @RequestMapping("/telaCancelaFormAgen")
@@ -300,7 +293,7 @@ public class RecepcionistaController {
 
         //model.addAttribute("listaCancela", listaCancela);
 
-        return "/tela_cancelSchedule";
+        return "/recepcionista/tela_cancelSchedule";
     }
 
     @PostMapping("/telaCancelaLista")
@@ -308,5 +301,4 @@ public class RecepcionistaController {
         agenServ.cancelaAgenda(cpf, idAgen);
         return painelRecep(model);
     }
-    
 }

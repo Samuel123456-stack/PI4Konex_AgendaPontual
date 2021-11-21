@@ -8,17 +8,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.projeto.Entidades.NewsLatter;
+import com.projeto.Entidades.NewsLetter;
 import com.projeto.Servicos.NewsLatterServico;
 
 @Controller
-public class NewsLatterController {
+public class NewsLetterController {
 
 	@Autowired
 	private NewsLatterServico newsServ;
 	
-	@PostMapping("/newslatter/cadastro/home")
-	public String cadastroEmail(@Valid @ModelAttribute("news") NewsLatter news, BindingResult result) {
+	@PostMapping("/newsletter/cadastro/home")
+	public String cadastroEmail(@Valid @ModelAttribute("news") NewsLetter news, BindingResult result) {
 	
 		if (result.hasErrors()) {
 			return "home";
@@ -27,8 +27,8 @@ public class NewsLatterController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/newslatter/cadastro/medico/busca")
-	public String cadastroEmail2(@Valid @ModelAttribute("news") NewsLatter news, BindingResult result) {
+	@PostMapping("/newsletter/cadastro/medico/busca")
+	public String cadastroEmail2(@Valid @ModelAttribute("news") NewsLetter news, BindingResult result) {
 	
 		if (result.hasErrors()) {
 			return "resulBusca";

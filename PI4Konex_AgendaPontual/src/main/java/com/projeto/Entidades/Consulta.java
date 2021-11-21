@@ -83,13 +83,7 @@ public class Consulta implements Serializable{
     @OneToOne
     @JoinColumn(name = "fk_feed_cons", nullable = true)
     private Feedback feedback;
-    
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "notifica_consulta",
-    joinColumns = @JoinColumn(name = "fk_cons_not"),
-    inverseJoinColumns = @JoinColumn(name = "fk_not_cons"))
-    private List<Notificacao> notificacao = new ArrayList<>();
-    
+      
     @OneToOne
     @JoinColumn(name = "fk_pag_cons", nullable = true)
     private Pagamento pagamento;
@@ -248,14 +242,6 @@ public class Consulta implements Serializable{
 
 	public void setFeedback(Feedback feedback) {
 		this.feedback = feedback;
-	}
-
-	public List<Notificacao> getNotificacao() {
-		return notificacao;
-	}
-
-	public void setNotificacao(List<Notificacao> notificacao) {
-		this.notificacao = notificacao;
 	}
 
 	public Pagamento getPagamento() {

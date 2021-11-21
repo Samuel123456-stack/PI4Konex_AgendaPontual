@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Medico;
-import com.projeto.Entidades.NewsLatter;
+import com.projeto.Entidades.NewsLetter;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
 import com.projeto.Servicos.ConvenioServico;
@@ -47,19 +47,19 @@ public class MedicoController {
 			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
 			@RequestParam(required = false) Integer maxExp) {
 		
-		ModelAndView mv = new ModelAndView("resulBusca");
+		ModelAndView mv = new ModelAndView("/home/resulBusca");
 
 		mv.addObject("cidades", cidServ.findAll());
 		mv.addObject("medicos", medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
 				valorMax, minExp, maxExp));
 		mv.addObject("especs", espServ.findAll());
-		mv.addObject("news", new NewsLatter());
+		mv.addObject("news", new NewsLetter());
 		return mv;
 	}
 	
 	@GetMapping("/medico/resumo")
 	public ModelAndView resumo(@RequestParam Integer idMed) {
-		ModelAndView mv = new ModelAndView("tela_resumo");
+		ModelAndView mv = new ModelAndView("/home/tela_resumo");
 		
 		 mv.addObject("medico", medServ.medicoResumo(idMed));
 		 mv.addObject("doencas", doeServ.buscaDoencaPorMedico(idMed));

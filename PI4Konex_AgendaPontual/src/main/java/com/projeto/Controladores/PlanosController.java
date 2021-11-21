@@ -31,13 +31,13 @@ public class PlanosController {
 	// abrir a tela
 	@GetMapping("/planos")
 	public String abertura(Planos planos) {
-		return "Planos";
+		return "/planos/planos";
 	}
 	
 	//Aquisição do plano 1
 	@PostMapping("/personalSelected")
 	public ModelAndView createPersonal(@ModelAttribute Planos planos) {
-		ModelAndView mv = new ModelAndView("/PosPlanos");
+		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		float valorAnual = (99.99f * 12f) - 100f;
 		DecimalFormat df = new DecimalFormat("#.##");
 		planos.setValorAnual(df.format(valorAnual));
@@ -48,7 +48,7 @@ public class PlanosController {
 	//Aquisição do plano 2
 	@PostMapping("/economySelected")
 	public ModelAndView createEconomy(@ModelAttribute Planos planos) {
-		ModelAndView mv = new ModelAndView("/PosPlanos");
+		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		//calculando valor anual
 		float valorAnual = (279.80f * 12f) - 100f;
@@ -61,7 +61,7 @@ public class PlanosController {
 	//Aquisição do plano 3
 	@PostMapping("/premiumSelected")
 	public ModelAndView createPremium(@ModelAttribute Planos planos) {
-		ModelAndView mv = new ModelAndView("/PosPlanos");
+		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		//calculando valor anual
 		float valorAnual = (679.80f * 12f) - 100f;
@@ -76,7 +76,7 @@ public class PlanosController {
 		@ModelAttribute Planos planos, BindingResult verifica) {
 		
 		//Model
-		ModelAndView mv = new ModelAndView("/Planos");
+		ModelAndView mv = new ModelAndView("/planos/Planos");
 		
 		//Var
 		String nome;
@@ -95,7 +95,7 @@ public class PlanosController {
 		String aux = null;
 		
 		if(verifica.hasErrors()) {
-			mv = new ModelAndView("planos");
+			mv = new ModelAndView("/planos/planos");
 			System.out.println("tem errooooo*****");
 			
 		}else {
@@ -136,7 +136,7 @@ public class PlanosController {
 	//Aquisição do plano 
 	@PostMapping("/personalizedSelected")
 	public ModelAndView createPersonalized(@ModelAttribute Planos planos) {
-		ModelAndView mv = new ModelAndView("/PosPlanos");
+		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		mv.addObject("planos", planos);
 		return mv;
 	}
@@ -144,7 +144,7 @@ public class PlanosController {
 	//Aplicação do desconto
 	@PostMapping("/desconto")
 	public ModelAndView createDesconto(@ModelAttribute Planos planos, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("/PosPlanos");
+		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		String codigo = request.getParameter("cupomDesc");
 		float valorAux;
@@ -174,7 +174,7 @@ public class PlanosController {
 	
 	@PostMapping("/aquisitionPlanos")
 	public ModelAndView saveAquisition(@ModelAttribute Planos planos, @ModelAttribute Medico med) {
-		ModelAndView mv = new ModelAndView("/planos");
+		ModelAndView mv = new ModelAndView("/planos/planos");
 		
 		plR.createPlanos(planos);
 		mdR.save(med);

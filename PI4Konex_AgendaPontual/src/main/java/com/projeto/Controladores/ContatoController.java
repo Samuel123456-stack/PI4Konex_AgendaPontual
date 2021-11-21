@@ -23,7 +23,7 @@ public class ContatoController {
 	//abrir a tela 
 	@GetMapping("/sobre-nos")
 	public ModelAndView abertura(Contato contato) {
-		ModelAndView mv = new ModelAndView("/Sobre");
+		ModelAndView mv = new ModelAndView("/home/Sobre");
 		return mv;
 	}
 	
@@ -44,7 +44,7 @@ public class ContatoController {
 			
 			temErro = true;
 			//referencia
-			mv = new ModelAndView("/Sobre");
+			mv = new ModelAndView("/home/Sobre");
 			mv.addObject("temErro",temErro);
 			
 		}else {

@@ -21,7 +21,7 @@ public class Planos {
     @Column(name = "valor", columnDefinition = "DECIMAL(6,2) DEFAULT 0.00")
     private float valorPlano;
     
-    @Column(name = "valorAnual", nullable = true)
+    @Column(name = "valoranual", nullable = true, length = 30)
     private String valorAnual;
 
     @Column(name = "qterecep", nullable = true)

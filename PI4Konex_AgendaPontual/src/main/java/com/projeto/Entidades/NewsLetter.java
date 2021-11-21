@@ -10,11 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "newslatter")
-public class NewsLatter implements Serializable {
+public class NewsLetter implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,9 +25,9 @@ public class NewsLatter implements Serializable {
 	@Column(name = "email", length = 50)
 	private String email;
 	
-	public NewsLatter() {}
+	public NewsLetter() {}
 
-	public NewsLatter(Integer idnew, String email) {
+	public NewsLetter(Integer idnew, String email) {
 		this.idnew = idnew;
 		this.email = email;
 	}
@@ -62,7 +61,7 @@ public class NewsLatter implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NewsLatter other = (NewsLatter) obj;
+		NewsLetter other = (NewsLetter) obj;
 		return Objects.equals(idnew, other.idnew);
 	}
 }

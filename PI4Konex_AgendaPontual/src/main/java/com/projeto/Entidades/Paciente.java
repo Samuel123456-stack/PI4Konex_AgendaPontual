@@ -2,11 +2,11 @@ package com.projeto.Entidades;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,9 +31,6 @@ public class Paciente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpaci")
     private Integer idPaci;
-
-    @Column(name = "dtcriacao", nullable = true, columnDefinition = "DATE")
-    private LocalDateTime dataCriaPaci;
 
     @Column(name = "nome", nullable = true)
     private String nomePaci;
@@ -69,11 +66,11 @@ public class Paciente implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "fk_doe_paci"))
     private Set<Doenca> doenca = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_end_paci")
     private Endereco endereco;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usu_paci")
     private Usuario usuario;
 
@@ -81,11 +78,10 @@ public class Paciente implements Serializable {
     public Paciente() {}
   
 	// Metodo Construtor com Atributos
-	public Paciente(Integer idPaci, LocalDateTime dataCriaPaci, String nomePaci, String cpf, LocalDate dataNasc,
+	public Paciente(Integer idPaci, String nomePaci, String cpf, LocalDate dataNasc,
 			String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, Boolean termoUso,
 			Set<Doenca> doenca, Endereco endereco, Usuario usuario) {
 		this.idPaci = idPaci;
-		this.dataCriaPaci = dataCriaPaci;
 		this.nomePaci = nomePaci;
 		this.cpf = cpf;
 		this.dataNasc = dataNasc;
@@ -107,14 +103,6 @@ public class Paciente implements Serializable {
 	
 	public void setIdPaci(Integer idPaci) {
 		this.idPaci = idPaci;
-	}
-
-	public LocalDateTime getDataCriaPaci() {
-		return dataCriaPaci;
-	}
-
-	public void setDataCriaPaci(LocalDateTime dataCriaPaci) {
-		this.dataCriaPaci = dataCriaPaci;
 	}
 
 	public String getNomePaci() {

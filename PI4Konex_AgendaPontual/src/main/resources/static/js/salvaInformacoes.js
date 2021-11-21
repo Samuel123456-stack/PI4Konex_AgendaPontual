@@ -8,7 +8,7 @@ $(document).ready(function() {
 				url: '/consulta/validacao/addInfo',
 				data: { "id": id, "inforAd":inforAd },
 				success:function() {
-					alert('Informações adiconadas!');
+					alert('Informações adicionadas!');
 					/*$("#informaAd").val("");*/ //Para limpar o campo informaAd descomente essa linha.
 				}	
 			});

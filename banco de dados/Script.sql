@@ -3410,7 +3410,7 @@ CREATE TABLE receita (
 CREATE TABLE pagamento (
     idpag Integer AUTO_INCREMENT PRIMARY KEY,
     dtpgto timestamp default current_timestamp(),
-    forma_pagamento varchar(30) null,
+    formapagamento varchar(30) null,
     valor decimal(6,2)
 );
 
@@ -3445,10 +3445,16 @@ CREATE TABLE pag_plan (
 CREATE TABLE ajuda (
     idaju Integer AUTO_INCREMENT PRIMARY KEY,
     dtsolic datetime default current_timestamp(),
-    assunto varchar(20) null,
-    mensagem text null
+    assunto varchar(50) null,
+	mensagem text null,
+	statussolicit enum('Designado', 'Pendente' ,'Em andamento', 'Resolvido') default 'Designado',
+    descsolucao varchar(100) null,
+    fk_usu_aju integer null,
+    fk_adm_aju integer null,
+    FOREIGN KEY (fk_usu_aju) REFERENCES usuario (idusu),
+    FOREIGN KEY (fk_adm_aju) REFERENCES adm (idadm)
 );
-
+    
 CREATE TABLE clinica (
     idcli Integer AUTO_INCREMENT PRIMARY KEY,
     dtcriacao datetime default current_timestamp(),
@@ -3694,62 +3700,6 @@ insert into recepcionista(nome,cpf,sexo,datanasci,celular,fk_cli_recep,fk_usu_re
 	('Raimunda Sophia Clara Almada','405.724.908-79','Feminino','1996-10-10','(11) 98822-8252',1,19),
     ('Fátima Catarina Freitas','860.620.058-18','Feminino','1998-11-13','(11) 98125-8675',2,20);
 
-CREATE TABLE ajuda_paci (
-	dtcriacao datetime default current_timestamp(),
-    fk_paci_aju Integer,
-    fk_aju_paci Integer,
-    fk_adm_aju_paci integer,
-    statussoli varchar(12) null,   
-    descsolucao varchar(100) null,
-	FOREIGN KEY (fk_aju_paci) REFERENCES ajuda (idaju),
-    FOREIGN KEY (fk_paci_aju) REFERENCES paciente (idpaci),
-    FOREIGN KEY (fk_adm_aju_paci) REFERENCES adm (idadm)
-);
-
-CREATE TABLE ajuda_recep (
-    dtcriacao datetime default current_timestamp(),
-    fk_recep_aju Integer,
-    fk_aju_recep Integer,
-	fk_adm_aju_recep integer,
-    statussoli varchar(12) null,             
-    descsolucao varchar(100) null,
-	FOREIGN KEY (fk_recep_aju) REFERENCES recepcionista (idrecep),
-    FOREIGN KEY (fk_aju_recep) REFERENCES ajuda (idaju),
-    FOREIGN KEY (fk_adm_aju_recep) REFERENCES adm (idadm)
-);
-
-CREATE TABLE ajuda_med (
-	dtcriacao datetime default current_timestamp(),
-    fk_med_aju Integer,
-    fk_aju_med Integer,
-	fk_adm_ajud_med integer,
-    statussoli varchar(12) null,
-    descsolucao varchar(100) null,
-	FOREIGN KEY (fk_med_aju) REFERENCES medico (idmed),
-    FOREIGN KEY (fk_aju_med) REFERENCES ajuda (idaju),
-    FOREIGN KEY (fk_adm_ajud_med) REFERENCES adm (idadm)
-);
-
-CREATE TABLE ajuda_cli (
-    dtcriacao datetime default current_timestamp(),
-    fk_cli_aju Integer,
-    fk_aju_cli Integer,
-	fk_adm_ajud_cli integer,
-    statussoli varchar(12) null,
-    descsolucao varchar(100) null,
-	FOREIGN KEY (fk_cli_aju) REFERENCES clinica (idcli),
-    FOREIGN KEY (fk_aju_cli) REFERENCES ajuda (idaju),
-    FOREIGN KEY (fk_adm_ajud_cli) REFERENCES adm (idadm)
-);
-
-CREATE TABLE notificacao (
-    idnot Integer AUTO_INCREMENT PRIMARY KEY,
-    dtnotificacao datetime default current_timestamp(),
-    assunto varchar(20) null,
-    mensagem varchar(100) null,
-    resposta varchar(100) null
-); 
-
 CREATE TABLE consulta (
 	idcons Integer AUTO_INCREMENT PRIMARY KEY,
 	dtagendada Date null,
@@ -3787,6 +3737,16 @@ insert into consulta(dtagendada,hora,fk_med_cons,fk_paci_cons,retorno,horachegad
     ('2021-11-05','08:00',2,8,0,'08:00','08:15',1,'00:15',0,0,8),
     ('2021-11-06','08:00',2,9,0,'08:00','08:15',1,'00:15',0,0,9);
 	
+    
+CREATE TABLE notificacao (
+    idnot Integer AUTO_INCREMENT PRIMARY KEY,
+    dtnotificacao datetime default current_timestamp(),
+    assunto varchar(20) null,
+    mensagem varchar(100) null,
+    resposta varchar(100) null,
+    fk_cons_not integer null,
+    FOREIGN KEY (fk_cons_not) REFERENCES consulta (idcons)
+); 
 
 CREATE TABLE historico (
     idhis Integer AUTO_INCREMENT PRIMARY KEY,
@@ -3802,13 +3762,6 @@ insert into historico(historico) values
     fk_cons_his Integer null,
     FOREIGN KEY (fk_his_cons) REFERENCES historico (idhis),
     FOREIGN KEY (fk_cons_his) REFERENCES consulta (idcons) 
-);
-
-CREATE TABLE notifica_consulta (
-    fk_not_cons Integer null,
-    fk_cons_not Integer null,
-    FOREIGN KEY (fk_not_cons) REFERENCES notificacao (idnot),
-    FOREIGN KEY (fk_cons_not) REFERENCES consulta (idcons) 
 );
 
 CREATE TABLE exame (
@@ -3841,20 +3794,16 @@ CREATE TABLE newslatter (
     email varchar(50) null
 );
  
-CREATE TABLE duvida (
-    idduv Integer AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE contato_site (
+    idcon Integer AUTO_INCREMENT PRIMARY KEY,
     dtsolic datetime default current_timestamp(),
+    statussolicit enum('Designado', 'Pendente' ,'Andamento', 'Resolvido') default 'Designado',
     nome varchar(50) null,
     email varchar(50) null,
     telefone varchar(15) null,
     contatowpp boolean null,
-    mensagem text null
-);
-
-CREATE TABLE duvida_adm (
-    fk_duv_adm Integer null,
+    mensagem text null,
     fk_adm_duv Integer null,
-    statusduvida enum ("resolvido", "pendente","tratado") null,
-    FOREIGN KEY (fk_duv_adm) REFERENCES duvida (idduv),
     FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
+

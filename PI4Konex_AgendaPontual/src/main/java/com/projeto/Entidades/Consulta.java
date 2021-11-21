@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -82,8 +84,10 @@ public class Consulta implements Serializable{
     @JoinColumn(name = "fk_feed_cons", nullable = true)
     private Feedback feedback;
     
-    @OneToMany
-    @JoinColumn(name = "fk_not_cons", nullable = true)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "notifica_consulta",
+    joinColumns = @JoinColumn(name = "fk_cons_not"),
+    inverseJoinColumns = @JoinColumn(name = "fk_not_cons"))
     private List<Notificacao> notificacao = new ArrayList<>();
     
     @OneToOne

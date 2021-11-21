@@ -190,22 +190,22 @@
                         </div>
                         <div class="input-block">
                             <p>E-MAIL</p>
-                            <input type="email" name="text-email" placeholder="Informe um email" />
+                            <input type="email" th:field="*{usuario.email}" name="text-email" placeholder="Informe um email" />
                         </div>
                     </div>
 
                     <div class="second-row">
                         <div class="input-block">
                             <p>CONFIRMAÇÃO</p>
-                            <input type="email"  name="text-email" placeholder="Confirme o email" />
+                            <input type="email"  th:field="*{usuario.confirmaEmail}" name="text-email" placeholder="Confirme o email" />
                         </div>
                         <div class="input-block">
                             <p>SENHA</p>
-                            <input type="password"  name="text-password" placeholder="Senha alfanumérica" />
+                            <input type="password" th:field="*{usuario.senha}"  name="text-password" placeholder="Senha alfanumérica" />
                         </div>
                         <div class="input-block">
                             <p>CONFIRMAÇÃO</p>
-                            <input type="password"  name="text-password" placeholder="Confirme a senha" />
+                            <input type="password" th:field="*{usuario.confirmaSenha}" name="text-password" placeholder="Confirme a senha" />
                         </div>
                     </div>
 
@@ -233,19 +233,19 @@
                     <div class="foth-row">
                         <div class="input-block">
                             <p>SUA RESIDÊNCIA</p>
-                            <input type="text"  name="text-logradouro" placeholder="Logradouro" />
+                            <input type="text" th:field="*{endereco.logradouro}" name="text-logradouro" placeholder="Logradouro" />
                         </div>
                         <div class="input-block">
                             <p>NUMERAÇÃO</p>
-                            <input type="text"  name="text-number" placeholder="Número" />
+                            <input type="text"  th:field="*{endereco.numero}" name="text-number" placeholder="Número" />
                         </div>
                         <div class="input-block">
                             <p>CEP</p>
-                            <input type="text"  name="text-cep" placeholder="__.___-___" />
+                            <input type="text" th:field="*{endereco.cep}" name="text-cep" placeholder="__.___-___" />
                         </div>
                         <div class="input-block">
                             <p>COMPLEMENTO</p>
-                            <input type="text" name="text-complemento" placeholder="Digite o complemento" />
+                            <input type="text" th:field="*{endereco.complemento}" name="text-complemento" placeholder="Digite o complemento" />
                         </div>
                     </div>
                 
@@ -303,12 +303,12 @@
             <article class="finishing-schedule">
                 <h3>FINALIZAÇÃO DO AGENDAMENTO</h3>
                 <section>
-                        <input type="checkbox" name="contract-checkbox"  />
+                        <input type="checkbox" value="1" name="contract-checkbox"  />
                         <span>Eu aceito e concordo com os Termos e Condições de uso da agenda.ual.</span>
                         <input type="submit" value="CONFIRMAR AGENDAMENTO"></button>
                 </section>
             </article>
-            </form>
+    </form>
         </div>
    
 

@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -17,9 +21,12 @@ public class Endereco implements Serializable {
     private int idEnd;
 
     @Column(nullable = true)
+    @NotBlank
+	@NotNull
     private String logradouro;
 
     @Column(nullable = true)
+    @Min(1)
     private int numero;
 
     @Column(nullable = true)
@@ -30,6 +37,8 @@ public class Endereco implements Serializable {
     private Bairro bairro;
 
     @Column(nullable = true)
+    @NotBlank
+	@NotNull
     private String cep;
 
     // Metodo Construtor

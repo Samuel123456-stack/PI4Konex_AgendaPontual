@@ -70,7 +70,6 @@
                 
                 </p>
             </div>
-
             <form action="/desconto" method="POST">
                 <div class="cupomFina">
                     <p>CUPOM DE DESCONTO</p>
@@ -93,7 +92,7 @@
         </div>
 
         
-		<form action="/aquisitionPlanos" method="POST">
+		<form action="/aquisitionPlanos" method="POST" th:object="${medico}">
             <div class="opcMen">
                 <div class="infoplano">
                     <div class="qntRece">
@@ -151,62 +150,62 @@
             
             <!-- DADOS PESSOAIS -->
             <div class="dadosPessoa">
-                <div class="nomeDados">
+                <div class="nomeDados" th:id="${#fields.hasErrors('nomeMed')} ? errorInput">
                     <p>NOME</p>
                     <input type="text" name="nomeMed" placeholder="Digite seu nome completo">
                 </div>
-                <div class="cpfDados">
+                <div class="cpfDados" th:id="${#fields.hasErrors('cpfMed')} ? errorInput">
                     <p>CPF/CNPJ</p>
                     <input type="text" name="cpfMed" placeholder="Digite seu CPF ou CNPJ">
                 </div>
-                <div class="emailDados">
+                <div class="emailDados" th:id="${#fields.hasErrors('usuario.email')} ? errorInput">
                     <p>E-MAIL</p>
                     <input type="email" name="usuario.email" placeholder="Informe um email">
                 </div>
-                <div class="confiEmailDados">
+                <div class="confiEmailDados" th:id="${#fields.hasErrors('usuario.confirmaEmail')} ? errorInput">
                     <p>CONFIRMAÇÃO</p>
                     <input type="email" name="usuario.confirmaEmail" placeholder="Confirme o email">
                 </div>
-                <div class="senhaDados">
+                <div class="senhaDados" th:id="${#fields.hasErrors('usuario.senha')} ? errorInput">
                     <p>SENHA</p>
                     <input type="password" name="usuario.senha" placeholder="Senha alfanumérica">
                 </div>
-                <div class="confisenhaDados">
+                <div class="confisenhaDados" th:id="${#fields.hasErrors('usuario.confirmaSenha')} ? errorInput">
                     <p>CONFIRMAÇÃO</p>
                     <input type="password" name="usuario.confirmaSenha" placeholder="Confirme a senha">
                 </div>
-                <div class="sexoDados">
+                <div class="sexoDados" th:id="${#fields.hasErrors('sexoMed')} ? errorInput">
                     <input type="radio" id="masculino" name="sexoMed" value="masculino"class="option-radio"/>
                     <label for="masculino">Masculino</label>
                     <input type="radio" id="feminino" name="sexoMed" value="feminino"class="option-radio"/>
                     <label for="feminino">Feminino</label>
                 </div>
                 
-                <div class="dataDados">
+                <div class="dataDados" th:id="${#fields.hasErrors('dataNasc')} ? errorInput">
                     <p>DATA DE NASCIMENTO</p>
                     <input type="date" name="dataNasc">
                 </div>
-                <div class="rgDados">
+                <div class="rgDados"th:id="${#fields.hasErrors('rgMed')} ? errorInput">
                     <p>RG</p>
                     <input type="text" name="rgMed" placeholder="__.___.___-__">
                 </div>
-                <div class="celDados">
+                <div class="celDados" th:id="${#fields.hasErrors('celular')} ? errorInput">
                     <p>CELULAR</p>
                     <input type="tel" name="celular" placeholder="(__) _ ____-____">
                 </div>
-                <div class="logDados">
+                <div class="logDados" th:id="${#fields.hasErrors('endereco.logradouro')} ? errorInput">
                     <p>LOGRADOURO DO CONSULTÓRIO</p>
                     <input type="text" name="endereco.logradouro" placeholder="Onde está localizado seu consultório?">
                 </div>
-                <div class="numDados">
+                <div class="numDados" th:id="${#fields.hasErrors('endereco.numero')} ? errorInput">
                     <p>NUMERAÇÃO</p>
                     <input type="text" name="endereco.numero" placeholder="Número">
                 </div>
-                <div class="cepDados">
+                <div class="cepDados" th:id="${#fields.hasErrors('endereco.cep')} ? errorInput">
                     <p>CEP</p>
                     <input type="text" name="endereco.cep" placeholder="__.___-___">
                 </div>
-                <div class="compDados">
+                <div class="compDados" th:id="${#fields.hasErrors('endereco.complemento')} ? errorInput">
                     <p>COMPLEMENTO</p>
                     <input type="text" name="endereco.complemento" placeholder="Digite o complemento">
                 </div>
@@ -261,11 +260,12 @@
                     <label for="terms">Eu aceito e concordo e aceita os Termos e Condicões de uso da agenda.ual.</label>
                 </div>
                 <input type="hidden" name="nomePlano" th:value="${planos.nomePlano}">
-                  <input type="hidden" name="valorPlano" th:value="${planos.valorPlano}">
-                  <input type="hidden" name="qntRec" th:value="${planos.qntRec}">
-                  <input type="hidden" name="qntMed" th:value="${planos.qntMed}">
-                  <input type="hidden" name="qntTolerancia" th:value="${planos.qntTolerancia}">
-                  <input type="hidden" name="valorAnual" th:value="${planos.valorAnual}">
+                <input type="hidden" name="valorPlano" th:value="${planos.valorPlano}">
+                <input type="hidden" name="qntRec" th:value="${planos.qntRec}">
+                <input type="hidden" name="qntMed" th:value="${planos.qntMed}">
+                <input type="hidden" name="qntTolerancia" th:value="${planos.qntTolerancia}">
+                <input type="hidden" name="valorAnual" th:value="${planos.valorAnual}">
+                <input type="hidden" name="usuario.perfil" value="Medico">
                 <input type="submit" value="CONFIRMAR COMPRA">
             </div>
         </form >

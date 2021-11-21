@@ -442,3 +442,9 @@
 .nomeDados:hover, .cpfDados:hover, .emailDados:hover, .confiEmailDados:hover, .senhaDados:hover, .confisenhaDados:hover, .sexoDados:hover, .dataDados:hover, .rgDados:hover, .celDados:hover, .logDados:hover, .numDados:hover, .cepDados:hover, .compDados:hover, .nomeTit:hover, .cpfTit:hover, .nomeCard:hover, .numCard:hover, .valCard:hover, .cvv:hover, .formaPag select:hover{
     border: 1.4px solid #858FA1;
 }
+
+#errorInput{
+			border: 1,4px;
+			border-radius: 8px;
+			border-color: red;
+		}

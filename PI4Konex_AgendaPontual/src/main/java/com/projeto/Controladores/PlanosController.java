@@ -30,24 +30,25 @@ public class PlanosController {
 	
 	// abrir a tela
 	@GetMapping("/planos")
-	public String abertura(Planos planos) {
+	public String abertura(Planos planos, @ModelAttribute Medico medico) {
 		return "/planos/planos";
 	}
 	
 	//Aquisição do plano 1
 	@PostMapping("/personalSelected")
-	public ModelAndView createPersonal(@ModelAttribute Planos planos) {
+	public ModelAndView createPersonal(@ModelAttribute Planos planos, @ModelAttribute Medico medico) {
 		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		float valorAnual = (99.99f * 12f) - 100f;
 		DecimalFormat df = new DecimalFormat("#.##");
 		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		return mv;
 	}
 	
 	//Aquisição do plano 2
 	@PostMapping("/economySelected")
-	public ModelAndView createEconomy(@ModelAttribute Planos planos) {
+	public ModelAndView createEconomy(@ModelAttribute Planos planos, @ModelAttribute Medico medico) {
 		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		//calculando valor anual
@@ -55,12 +56,13 @@ public class PlanosController {
 		DecimalFormat df = new DecimalFormat("#.##");
 		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		return mv;
 	}
 	
 	//Aquisição do plano 3
 	@PostMapping("/premiumSelected")
-	public ModelAndView createPremium(@ModelAttribute Planos planos) {
+	public ModelAndView createPremium(@ModelAttribute Planos planos, @ModelAttribute Medico medico) {
 		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		//calculando valor anual
@@ -68,12 +70,15 @@ public class PlanosController {
 		DecimalFormat df = new DecimalFormat("#.##");
 		planos.setValorAnual(df.format(valorAnual));
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		return mv;
 	}
+	
 	@PostMapping("/personalize")
 	public ModelAndView createPersonalize(
 		@Valid 
-		@ModelAttribute Planos planos, BindingResult verifica) {
+		@ModelAttribute Planos planos, 
+		@ModelAttribute Medico medico, BindingResult verifica) {
 		
 		//Model
 		ModelAndView mv = new ModelAndView("/planos/Planos");
@@ -130,20 +135,22 @@ public class PlanosController {
 		
 		planos = new Planos(nome, valor, qtdRecep, qtdMed, qtdTol, aux);
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		return mv;
 	}
 	
 	//Aquisição do plano 
 	@PostMapping("/personalizedSelected")
-	public ModelAndView createPersonalized(@ModelAttribute Planos planos) {
+	public ModelAndView createPersonalized(@ModelAttribute Planos planos, @ModelAttribute Medico medico) {
 		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		return mv;
 	}
 	
 	//Aplicação do desconto
 	@PostMapping("/desconto")
-	public ModelAndView createDesconto(@ModelAttribute Planos planos, HttpServletRequest request) {
+	public ModelAndView createDesconto(@ModelAttribute Planos planos, @ModelAttribute Medico medico, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("/planos/PosPlanos");
 		
 		String codigo = request.getParameter("cupomDesc");
@@ -167,17 +174,27 @@ public class PlanosController {
 		}
 		
 		mv.addObject("planos", planos);
+		mv.addObject("medico", medico);
 		mv.addObject("temErro", temErro);
 		
 		return mv;
 	}
 	
 	@PostMapping("/aquisitionPlanos")
-	public ModelAndView saveAquisition(@ModelAttribute Planos planos, @ModelAttribute Medico med) {
-		ModelAndView mv = new ModelAndView("/planos/planos");
+	public ModelAndView saveAquisition(
+		@ModelAttribute Planos planos, 
+		@Valid
+		@ModelAttribute Medico med, BindingResult verifica) {
+		ModelAndView mv = new ModelAndView("");
 		
-		plR.createPlanos(planos);
-		mdR.save(med);
+		if(verifica.hasErrors()) {
+			mv = new ModelAndView("/planos/PosPlanos");
+			System.out.println("tem errooooo*****");
+		}else {
+			plR.createPlanos(planos);
+			mdR.save(med);
+			mv = new ModelAndView("/planos/planos");
+		}
 		return mv;
 	}
 }

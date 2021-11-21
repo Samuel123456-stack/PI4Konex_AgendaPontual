@@ -1,6 +1,9 @@
 package com.projeto.Entidades;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "usuario")
@@ -13,18 +16,28 @@ public class Usuario {
     private int idUsu;
 
     @Column(nullable = true)
+    @NotBlank
+	@NotNull
     private String email;
 
     @Column(name="emailconfirma",nullable = true)
+    @NotBlank
+	@NotNull
     private String confirmaEmail;
 
     @Column(nullable = true)
+    @NotBlank
+	@NotNull
     private String senha;
 
     @Column(name="senhaconfirma",nullable = true)
+    @NotBlank
+	@NotNull
     private String confirmaSenha;
 
     @Column(nullable = true)
+    @NotBlank
+	@NotNull
     private String perfil;
 
     // Metodo Construtor

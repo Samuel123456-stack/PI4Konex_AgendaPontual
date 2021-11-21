@@ -15,9 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sun.istack.NotNull;
 
 
 @Entity
@@ -40,6 +43,8 @@ public class Medico implements Serializable {
 	private LocalDateTime dataCriaMed;
 
 	@Column(name = "nome", nullable = true)
+	@NotBlank
+	@NotNull
 	private String nomeMed;
 
 	@Column(name = "datanasci", nullable = true)
@@ -47,18 +52,26 @@ public class Medico implements Serializable {
 	private LocalDate dataNasc;
 
 	@Column(name = "sexo", nullable = true)
+	@NotBlank
+	@NotNull
 	private String sexoMed;
 
 	@Column(name = "cpf", nullable = true, unique = true)
+	@NotBlank
+	@NotNull
 	private String cpfMed;
 
 	@Column(name = "rg", nullable = true, unique = true)
+	@NotBlank
+	@NotNull
 	private String rgMed;
 
 	@Column(nullable = true)
 	private String crm;
 
 	@Column(nullable = true, unique = true)
+	@NotBlank
+	@NotNull
 	private String celular;
 
 	@Column(name = "valor", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")

@@ -91,12 +91,18 @@ public class PacienteController {
 		return ("redirect:/paciente");
 	}
 	
-    @PostMapping("/ajuda/newe")
+    @RequestMapping("/ajuda")
+    public String medIndAjuda(Model model){
+        model.addAttribute("aju", new Ajuda());
+        return "/paciente/tela_ajuda";
+    }
+	
+    @PostMapping("/ajuda/nova")
     public String criaAjudaMedInd(@ModelAttribute("ajuda") Ajuda ajuda) {
     	Usuario usu = new Usuario();
     	usu.setIdUsu(2);
     	ajuda.setUsuario(usu);
     	ajuServ.criaAjuda(ajuda);
-    	return dashboardPaci();
+    	return ("redirect:/paciente/dashboardPaci");
     } 
 }

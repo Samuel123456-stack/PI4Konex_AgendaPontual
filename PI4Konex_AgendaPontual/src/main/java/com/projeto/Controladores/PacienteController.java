@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +56,7 @@ public class PacienteController {
 	}
 	
 	@GetMapping("/medico/busca")
-	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
+	public ModelAndView novaConsulta(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
 			@RequestParam(required = false) String espec, @RequestParam(required = false) String sexMas,
 			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
@@ -86,6 +85,26 @@ public class PacienteController {
 		return ("redirect:/login");
 	}
 	
+    @GetMapping("/consultas")
+    public String consultas(){
+        return "/paciente/consultas";
+    }
+    
+    @GetMapping("/radarPontual")
+    public String radarPontual(){
+        return "/paciente/tela_radarPontual";
+    }
+    
+    @GetMapping("/consultas")
+    public String feedback(){
+        return "/paciente/tela_feedback";
+    }
+    
+    @GetMapping("/configuracoes")
+    public String configurações(){
+        return "/paciente/consultas";
+    }
+    
     @RequestMapping("/ajuda")
     public String medIndAjuda(Model model){
         model.addAttribute("aju", new Ajuda());
@@ -100,4 +119,9 @@ public class PacienteController {
     	ajuServ.criaAjuda(ajuda);
     	return ("redirect:/paciente/dashboardPaci");
     } 
+    
+    @GetMapping("/consultas")
+    public String saida(){
+        return "/paciente/tela_saida";
+    }
 }

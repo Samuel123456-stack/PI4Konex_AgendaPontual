@@ -16,8 +16,8 @@
             </div>
             <div class="especialidade">
                 <p>ESPECIALIDADE</p>
-                <select name="especialidade" th:field="*{medInd.especialidade.idEsp}">
-                    <option value="" disabled selected>Em qual especialidade você atua?</option>
+                <select name="idEsp" th:field="*{medInd.especialidade.idEsp}">
+                    <option value="">Em qual especialidade você atua?</option>
                     <option th:each="esp : ${listaEsp}"th:value="*{esp.idEsp}" th:text="*{esp.nomeEsp}"></option>
                 </select>
             </div>

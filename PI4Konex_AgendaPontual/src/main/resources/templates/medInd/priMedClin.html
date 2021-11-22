@@ -198,10 +198,6 @@
             <div class="doencas">
                 <div class="especialidade">
                     <p>ESPECIALIDADE</p>
-                    <select name="especialidade">
-                        <option value="" disabled selected>Busque através da especialidade</option>
-                        <option th:each="esp : ${listaEsp}"th:value="*{esp.idEsp}" th:text="*{esp.nomeEsp}"></option>
-                    </select>
                 </div>
                 <div class="doenca">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

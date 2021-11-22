@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projeto.Dto.AvaliacoesNegativasDTO;
 import com.projeto.Dto.AvaliacoesPositivasDTO;
+import com.projeto.Dto.FeedbackCliMedDTO;
 import com.projeto.Dto.MelhoresFeedbacksDTO;
 import com.projeto.Repositorios.FeedbackRepositorio;
 
@@ -30,5 +31,10 @@ public class FeedbackServico {
 	@Transactional(readOnly = true)
 	public AvaliacoesNegativasDTO buscaNegativa(Integer idMed) {
 		return feeRepo.buscaAvaNegativa(idMed);
+	}
+
+	@Transactional(readOnly = true)
+	public List<FeedbackCliMedDTO> listaFeedback(Integer idMed) {
+		return feeRepo.listaFeedback(idMed);
 	}
 }

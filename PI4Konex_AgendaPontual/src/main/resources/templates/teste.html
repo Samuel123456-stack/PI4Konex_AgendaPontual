@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form th:action="@{/paciente/cadastro/validacao}" method="get">
+	<form th:action="@{/paciente/cadastro/validacao}" method="post">
 
 
 		<div class="first-row" th:object="${paciente}">
@@ -37,11 +37,12 @@
 			<article class="question-option">
 				<p>Você tem sintomas de febre, tosse ou dificuldade de respirar
 					ou teve contato com alguém com esses sintomas?</p>
-				<input type="radio" value="true" name="radio-input" /> <span>Sim</span>
-				<input type="radio" value="false" name="radio-input" /> <span>Não</span>
+				<input type="radio" value="1" th:field="*{sintomas}" /> <span>Sim</span>
+				<input type="radio" value="0" th:field="*{sintomas}"/> <span>Não</span>
+				
 				<p>É sua primeira consulta com o especialista Dr. Wilson Santos?</p>
-				<input type="radio" value="1" name="radio-yes" /> <span>Sim</span>
-				<input type="radio" value="0" name="radio-no" /> <span>Não</span>
+				<input type="radio" value="1" th:field="*{primeiraConsulta}" /> <span>Sim</span>
+				<input type="radio" value="0" th:field="*{primeiraConsulta}" /> <span>Não</span>
 			</article>
 
 			<div class="input-block">

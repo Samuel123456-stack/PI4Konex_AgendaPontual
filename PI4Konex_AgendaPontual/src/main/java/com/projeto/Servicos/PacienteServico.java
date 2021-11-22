@@ -14,7 +14,7 @@ public class PacienteServico {
 	private PacienteRepositorio paciRepo;
 	
 	@Transactional(readOnly = false)
-	public void cadastro(Paciente paciente) {
-		paciRepo.save(paciente);
+	public Paciente cadastro(Paciente paciente) {
+		return paciRepo.save(paciente);
 	}
 }

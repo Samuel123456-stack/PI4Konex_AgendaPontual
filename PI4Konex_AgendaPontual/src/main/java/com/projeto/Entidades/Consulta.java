@@ -24,7 +24,6 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table
 public class Consulta implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +44,7 @@ public class Consulta implements Serializable{
     @JoinColumn(name = "fk_med_cons", nullable = true)
     private Medico medico;
     
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_paci_cons", nullable = true)
     private Paciente paciente;
     
@@ -91,8 +90,7 @@ public class Consulta implements Serializable{
     // Metodo Construtor
     
     public Consulta(){}
-
- // Metodo Construtor com Atributos
+    // Metodo Construtor com Atributos
 	public Consulta(Integer idConsulta, LocalDate dtAgendada, LocalTime hora, Medico medico, Paciente paciente,
 			String informaAdicio, boolean confirmada, boolean retorno, LocalTime horaChegada, LocalTime horaSaida,
 			LocalTime duracao, boolean concluida, boolean naoCompareceu, boolean cancelada, Receita receita,
@@ -115,148 +113,113 @@ public class Consulta implements Serializable{
 		this.feedback = feedback;
 		this.pagamento = pagamento;
 	}
-
+	
 	public Integer getIdConsulta() {
 		return idConsulta;
 	}
-
 	public void setIdConsulta(Integer idConsulta) {
 		this.idConsulta = idConsulta;
 	}
-
 	public LocalDate getDtAgendada() {
 		return dtAgendada;
 	}
-
 	public void setDtAgendada(LocalDate dtAgendada) {
 		this.dtAgendada = dtAgendada;
 	}
-
 	public LocalTime getHora() {
 		return hora;
 	}
-
 	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
-
 	public Medico getMedico() {
 		return medico;
 	}
-
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
-
 	public Paciente getPaciente() {
 		return paciente;
 	}
-
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
-
 	public String getInformaAdicio() {
 		return informaAdicio;
 	}
-
 	public void setInformaAdicio(String informaAdicio) {
 		this.informaAdicio = informaAdicio;
 	}
-
 	public boolean isConfirmada() {
 		return confirmada;
 	}
-
 	public void setConfirmada(boolean confirmada) {
 		this.confirmada = confirmada;
 	}
-
 	public boolean isRetorno() {
 		return retorno;
 	}
-
 	public void setRetorno(boolean retorno) {
 		this.retorno = retorno;
 	}
-
 	public LocalTime getHoraChegada() {
 		return horaChegada;
 	}
-
 	public void setHoraChegada(LocalTime horaChegada) {
 		this.horaChegada = horaChegada;
 	}
-
 	public LocalTime getHoraSaida() {
 		return horaSaida;
 	}
-
 	public void setHoraSaida(LocalTime horaSaida) {
 		this.horaSaida = horaSaida;
 	}
-
 	public LocalTime getDuracao() {
 		return duracao;
 	}
-
 	public void setDuracao(LocalTime duracao) {
 		this.duracao = duracao;
 	}
-
 	public boolean isConcluida() {
 		return concluida;
 	}
-
 	public void setConcluida(boolean concluida) {
 		this.concluida = concluida;
 	}
-
 	public boolean isNaoCompareceu() {
 		return naoCompareceu;
 	}
-
 	public void setNaoCompareceu(boolean naoCompareceu) {
 		this.naoCompareceu = naoCompareceu;
 	}
-
 	public boolean isCancelada() {
 		return cancelada;
 	}
-
 	public void setCancelada(boolean cancelada) {
 		this.cancelada = cancelada;
 	}
-
 	public Receita getReceita() {
 		return receita;
 	}
-
 	public void setReceita(Receita receita) {
 		this.receita = receita;
 	}
-
 	public Feedback getFeedback() {
 		return feedback;
 	}
-
 	public void setFeedback(Feedback feedback) {
 		this.feedback = feedback;
 	}
-
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
-
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(idConsulta);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

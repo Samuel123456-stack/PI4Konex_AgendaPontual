@@ -55,7 +55,7 @@ public class Paciente implements Serializable {
     private Boolean primeiraConsulta;
 
     @Column(name = "sintomasgripe",nullable = true, unique = true)
-    private Boolean sintomasGripe;
+    private Boolean sintomas;
     
     @Column(name = "termouso")
     private Boolean termoUso;
@@ -76,11 +76,11 @@ public class Paciente implements Serializable {
 
     // Metodo Construtor
     public Paciente() {}
-  
-	// Metodo Construtor com Atributos
-	public Paciente(Integer idPaci, String nomePaci, String cpf, LocalDate dataNasc,
-			String rg, String celular, String sexo, boolean primeiraConsulta, boolean sintomasGripe, Boolean termoUso,
-			Set<Doenca> doenca, Endereco endereco, Usuario usuario) {
+    
+    // Metodo Construtor com Atributos
+	public Paciente(Integer idPaci, String nomePaci, String cpf, LocalDate dataNasc, String rg, String celular,
+			String sexo, Boolean primeiraConsulta, Boolean sintomas, Boolean termoUso, Set<Doenca> doenca,
+			Endereco endereco, Usuario usuario) {
 		this.idPaci = idPaci;
 		this.nomePaci = nomePaci;
 		this.cpf = cpf;
@@ -89,13 +89,13 @@ public class Paciente implements Serializable {
 		this.celular = celular;
 		this.sexo = sexo;
 		this.primeiraConsulta = primeiraConsulta;
-		this.sintomasGripe = sintomasGripe;
+		this.sintomas = sintomas;
 		this.termoUso = termoUso;
 		this.doenca = doenca;
 		this.endereco = endereco;
 		this.usuario = usuario;
 	}
-	// Getters e Setters
+
 	public Integer getIdPaci() {
 		return idPaci;
 	}
@@ -160,12 +160,12 @@ public class Paciente implements Serializable {
 		this.primeiraConsulta = primeiraConsulta;
 	}
 
-	public Boolean getSintomasGripe() {
-		return sintomasGripe;
+	public Boolean getSintomas() {
+		return sintomas;
 	}
 
-	public void setSintomasGripe(Boolean sintomasGripe) {
-		this.sintomasGripe = sintomasGripe;
+	public void setSintomas(Boolean sintomas) {
+		this.sintomas = sintomas;
 	}
 
 	public Boolean getTermoUso() {
@@ -199,12 +199,10 @@ public class Paciente implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(idPaci);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

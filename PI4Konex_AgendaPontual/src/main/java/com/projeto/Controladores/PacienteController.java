@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Cidade;
+import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLetter;
@@ -21,6 +24,7 @@ import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.CidadeServico;
+import com.projeto.Servicos.ConsultaServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
@@ -44,18 +48,13 @@ public class PacienteController {
 	@Autowired
 	private AjudaServico ajuServ;
 	
-	
-	@GetMapping
-	public String login() {
-		return ("/paciente/tela_login");
-	}	
+	@Autowired
+	private ConsultaServico consServ;
 	
 	@GetMapping("/dashboard")
 	public String dashboardPaci() {
 		return ("/paciente/dashboardPaci");
 	}
-	
-	
 	
 	@GetMapping("/medico/busca")
 	public ModelAndView busca(@RequestParam(required = false) Integer cidade,
@@ -78,10 +77,13 @@ public class PacienteController {
 		return mv;
 	}
 	
-	@PostMapping("/cadastro/validacao")
-	public String pacienteCadastro(@ModelAttribute("paciente") Paciente paciente) {
-		paciServ.cadastro(paciente);
-		return ("redirect:/teste");
+	@PostMapping("/cadastro/validacao/{id}")
+	public String pacienteCadastro(@PathVariable("id") Integer id,@ModelAttribute("paciente") Paciente paciente) {
+		Consulta consulta = consServ.buscaConsultaPorId(id);
+		Paciente novoPaciente = paciServ.cadastro(paciente);
+		consulta.setPaciente(novoPaciente);
+		consServ.cadastro(consulta);
+		return ("redirect:/login");
 	}
 	
     @RequestMapping("/ajuda")

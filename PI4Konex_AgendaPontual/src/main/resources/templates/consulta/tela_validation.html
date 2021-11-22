@@ -172,7 +172,7 @@
                 </article>
             </aside>
         </main>
-	<form th:action="@{/paciente/cadastro/validacao}" method="POST">
+	<form th:action="@{/paciente/cadastro/validacao/{id}(id=${numero.num})}" method="POST">
         <div class="form-data" >
         
             <section class="personal-data-header">
@@ -289,24 +289,24 @@
                 </div>
             </div>
 
-            <article class="question-option">
+            <article class="question-option" th:object="${paciente}">
                 <p>Você tem sintomas de febre, tosse ou dificuldade de respirar
                     ou teve contato com alguém com esses sintomas?
                 </p>             
-                    <input type="radio" value="1" name="radio-input-yes" />
+                    <input type="radio" value="1" th:field="*{sintomas}" />
                     <span>Sim</span>
-                    <input type="radio" value="0" name="radio-input-no"  />
+                    <input type="radio" value="0" th:field="*{sintomas}"  />
                     <span>Não</span>
                 <p>É sua primeira consulta com o especialista Dr. Wilson Santos?</p>
-                    <input type="radio" value="1"  name="radio-yes" />
+                    <input type="radio" value="1" th:field="*{primeiraConsulta}" />
                     <span>Sim</span>
-                    <input type="radio" value="0"  name="radio-no" />
+                    <input type="radio" value="0" th:field="*{primeiraConsulta}" />
                     <span>Não</span>    
             </article>
-            <article class="finishing-schedule">
+            <article class="finishing-schedule" th:object="${paciente}">
                 <h3>FINALIZAÇÃO DO AGENDAMENTO</h3>
                 <section>
-                        <input type="checkbox" value="1" name="contract-checkbox"  />
+                        <input type="checkbox" th:field="*{termoUso}" value="1" name="contract-checkbox"  />
                         <span>Eu aceito e concordo com os Termos e Condições de uso da agenda.ual.</span>
                         <input type="submit" value="CONFIRMAR AGENDAMENTO"></button>
                 </section>

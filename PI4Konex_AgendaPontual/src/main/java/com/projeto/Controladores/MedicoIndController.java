@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.Doenca;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.MedicojpaRepository;
 import com.projeto.Servicos.AjudaServico;
+import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
+import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
 
 @Controller
@@ -30,6 +36,14 @@ public class MedicoIndController {
     UsuarioServico usuServ;
     @Autowired
     MedicoServico medServ;
+    @Autowired
+    MedicojpaRepository medJpaRepo;
+    @Autowired
+    DoencaServico doeServ;
+    @Autowired
+    FeedbackServico feedServ;
+    @Autowired
+    RecepcionistaServico recepServ;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -53,19 +67,28 @@ public class MedicoIndController {
     @RequestMapping("/cadPt1")
     public String cadPt1(@ModelAttribute("medInd") Medico medInd, Model model){
 
+        /*String crm  = medInd.getCrm();
+        Integer idEsp  = medInd.getEspecialidade().getIdEsp();*/
         return "/medInd/primPt2Med";
     }
 
     @RequestMapping("/terceiroPassoMedInd")
-    public String terceiroPasso(){
-
+    public String terceiroPasso(Model model){
         return "/medInd/primPt2Med";
     }
 
+    @RequestMapping("/cadPt2")
+    public String cadPt2(@ModelAttribute("medInd")Medico medInd, Model model){
+        
+        return "/medInd/priMedClin";
+    }
+
     @RequestMapping("/quartoPassoMedInd")
-    public String quartoPasso(Model model){
-        List<Especialidade> listaEsp = espServ.findAll();
-        model.addAttribute("listaEsp", listaEsp);
+    public String quartoPasso(@ModelAttribute("medInd") Medico medInd,Model model){
+
+        /*Integer idMed = 1;
+        System.out.println("IDMED"+medInd.getEspecialidade().getIdEsp());
+        model.addAttribute("listaDoe", doeServ.buscaDoencaPorMedico(idMed));*/
 
         return "/medInd/priMedClin";
     }
@@ -80,7 +103,7 @@ public class MedicoIndController {
     @RequestMapping("/painelMedInd")
     public String painelMedInd(){
 
-        return "/painelPinMedInd";
+        return "/medInd/painelPinMedInd";
     }
 
     @RequestMapping("/consoleMed")
@@ -103,11 +126,35 @@ public class MedicoIndController {
 
 
     @RequestMapping("/feedback")
-    public String medIndFeedback(){
-
-        return "";
+    public String medIndFeedback(Model model){
+        Integer idMed = 2;
+        model.addAttribute("listaFeed", feedServ.listaFeedback(idMed));
+        return "/medInd/feedBkMedInd";
     }
 
+    @RequestMapping("/proximoFeed")
+    public String respondFeedback(Model model){
+
+        return medIndFeedback(model);
+    }
+
+    @RequestMapping("/novoRecep")
+    public String novoRecep(Model model){
+        Usuario usu = new Usuario();
+        Recepcionista recep = new Recepcionista();
+        
+        model.addAttribute("usu", usu);
+        model.addAttribute("recep", recep);
+
+        return "/medInd/novoRecepMedInd";
+    }
+
+    @RequestMapping("/criaRecep")
+    public String criaRecep(@ModelAttribute("usu")Usuario usu, @ModelAttribute("recep")Recepcionista recep,Model model){
+        usuServ.criaUsu(usu);
+        recepServ.criaRecep(recep);
+        return painelMedInd();
+    }
     @RequestMapping("/medIndConfig")
     public String medIndConfig(Model model){
         Usuario usu = new Usuario();

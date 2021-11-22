@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.projeto.Dto.AvaliacoesNegativasDTO;
 import com.projeto.Dto.AvaliacoesPositivasDTO;
+import com.projeto.Dto.FeedbackCliMedDTO;
 import com.projeto.Dto.MelhoresFeedbacksDTO;
 
 
@@ -14,4 +15,6 @@ public interface FeedbackRepositorio {
 	AvaliacoesPositivasDTO buscaAvaPositiva(Integer idMed);
 	
 	AvaliacoesNegativasDTO buscaAvaNegativa(Integer idMed);
+
+	List<FeedbackCliMedDTO> listaFeedback(Integer idMed);
 }

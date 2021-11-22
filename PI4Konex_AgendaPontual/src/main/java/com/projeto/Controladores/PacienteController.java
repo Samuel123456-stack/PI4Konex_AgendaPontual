@@ -82,9 +82,14 @@ public class PacienteController {
 		Paciente novoPaciente = paciServ.cadastro(paciente);
 		consulta.setPaciente(novoPaciente);
 		consServ.cadastro(consulta);
-		return ("redirect:/login");
+		return ("redirect:/paciente/confirmacao");
 	}
 	
+    @GetMapping("/confirmacao")
+    public String confirmacao(){
+        return "/paciente/tela_confirmShop";
+    }
+    
     @GetMapping("/consultas")
     public String consultas(){
         return "/paciente/consultas";
@@ -95,14 +100,14 @@ public class PacienteController {
         return "/paciente/tela_radarPontual";
     }
     
-    @GetMapping("/consultas")
+    @GetMapping("/feedback")
     public String feedback(){
         return "/paciente/tela_feedback";
     }
     
     @GetMapping("/configuracoes")
     public String configurações(){
-        return "/paciente/consultas";
+        return "/paciente/tela_configuracoes";
     }
     
     @RequestMapping("/ajuda")
@@ -120,7 +125,7 @@ public class PacienteController {
     	return ("redirect:/paciente/dashboardPaci");
     } 
     
-    @GetMapping("/consultas")
+    @GetMapping("/saida")
     public String saida(){
         return "/paciente/tela_saida";
     }

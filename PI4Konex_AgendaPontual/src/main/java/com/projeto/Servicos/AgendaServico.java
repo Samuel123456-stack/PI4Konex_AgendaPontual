@@ -19,20 +19,7 @@ public class AgendaServico {
     private ConsultaRepositorio repoCons;
 
     // Metodos CRUD Agenda
-    @Transactional(readOnly = true)
-    public List<Agenda> listaConsAgenda(Integer idPaci) {
-        return repoAgen.consultaAgendamentos(idPaci);
-    }
 
-    @Transactional(readOnly = true)
-    public List<Agenda> listagemPainel(Integer idMed, Integer idCli) {
-        return repoAgen.listagemPainel(idMed, idCli);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Agenda> listaCancelaAgen(String cpf, Integer idAgen){
-        return repoAgen.listaCancela(cpf, idAgen);
-    }
 
     @Transactional(readOnly = false)
     public void criaAtualizaAgen(Agenda agen) {
@@ -44,26 +31,5 @@ public class AgendaServico {
         return repoAgen.getById(id);
     }
 
-    @Transactional(readOnly = false)
-    public Agenda atualizaAgenda(Agenda agen){
-        Integer idAgen = agen.getIdAgen();
-        Agenda agenda = repoAgen.findById(idAgen).get();
-        //agenda.setDataAgendada(agen.getDataAgendada());
-        //Integer idhorario = repoAgen.verificaIdHora(agenda.getIdHora().getHorario());
-        //agenda.setIdHora(agenda.getHora().getIdHora());
-        //agenda.setInfoAdicAgen(agen.getInfoAdicAgen());
-        return repoAgen.save(agenda);
-    }
-
-    @Transactional(readOnly = false)
-    public void cancelaAgenda(String cpf, Integer idAgen){
-        repoCons.deleteById(idAgen);
-        repoAgen.deleteById(idAgen);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Agenda> listaPosConfirma(Integer idAgen){
-        return repoAgen.listaResumo(idAgen);
-    }
 
 }

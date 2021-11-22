@@ -172,7 +172,7 @@
 
                             <div class="input-block">
                                 <p>DATA DE CADASTRO</p>
-                                <input name="dataCriaPaci" th:field="*{paci.dataCriaPaci}" class="register-date">
+                                <input name="dataCriaPaci" class="register-date">
                             </div>
 
                             <div class="submit-button">
@@ -196,6 +196,7 @@
                         <td>DATA</td>
                         <td>HORÁRIO</td>
                         <td>ATENDIMENTO</td>
+                        <td></td>
                         <td>UPD</td>
                     </tr>
                 </thead>
@@ -203,19 +204,19 @@
                 <tbody>
                     
                     <tr th:each="consAgen:${listaConsulta}" >
-                        
                         <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
                             </svg>
                             </td>
-                        <td th:text="*{consAgen.idAgen}"></td>
-                        <td th:text="*{consAgen.idPaci.nomePaci}"></td>
-                        <td th:text="*{consAgen.idMed.especialidade.nomeEsp}"></td>
-                        <td th:text="*{consAgen.dataAgendada}"></td>
-                        <td th:text="*{consAgen.idHora.horario}"></td>
-                        <td>14:35h</td>
+                        <td th:text="*{consAgen.idConsulta}"></td>
+                        <td th:text="*{consAgen.paciente.nomePaci}"></td>
+                        <td th:text="*{consAgen.medico.especialidade.nomeEsp}"></td>
+                        <td th:text="*{consAgen.dtAgendada}"></td>
+                        <td th:text="*{consAgen.horaChegada}"></td>
+                        <td th:text="*{consAgen.hora}"></td>
+                        <td><a th:href="@{/recepcionista/{idCons}/telaAtualizaAgen (idCons=${consAgen.idConsulta})}">Atualiza</a></td>
                         <td>
-                            <a th:href="@{/recepcionista/{idAgen}/telaAtualizaAgen (idAgen=${consAgen.idAgen})}">
+                            
                             <img src="/image/check-icon.png" alt="icon" />
                         </a>
                         </td>

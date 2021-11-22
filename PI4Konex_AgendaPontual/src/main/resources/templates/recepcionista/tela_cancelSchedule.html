@@ -87,12 +87,12 @@
                                     <div class="first-block">
                                         <div class="input-block">
                                             <p>CÓDIGO</p>
-                                            <input type="text" th:field="*{agen.idAgen}" name="idAgen" placeholder="#803506" />
+                                            <input type="text" th:field="*{agen.idConsulta}" name="idConsulta" placeholder="#803506" />
                                         </div>
         
                                         <div class="input-block">
                                             <p>CPF</p>
-                                            <input type="text" th:field="*{agen.idPaci.cpf}" name="cpf" placeholder="___.___.___-__" />
+                                            <input type="text" th:field="*{agen.paciente.cpf}" name="cpf" placeholder="___.___.___-__" />
                                         </div>
         
                                        
@@ -109,21 +109,21 @@
                             <footer class="confirm-button">
                                 <form action="#" th:action="@{/recepcionista/telaCancelaLista}" method="post">
                                 <section class="text" th:each="listaCan:${listaCancela}">
-                                    <input type="hidden" th:value="${listaCan.idAgen}" name="idAgen"/>
-                                    <input type="hidden" th:value="${listaCan.idPaci.cpf}" name="cpf"/>
-                                    <p th:text="*{listaCan.idPaci.nomePaci}">
+                                    <input type="hidden" th:value="${listaCan.idConsulta}" name="idConsulta"/>
+                                    <input type="hidden" th:value="${listaCan.paciente.cpf}" name="cpf"/>
+                                    <p th:text="*{listaCan.paciente.nomePaci}">
                                         <strong>Paciente</strong>: 
                                     </p>
-                                    <p th:text="*{listaCan.dataAgendada}">
+                                    <p th:text="*{listaCan.dtAgendada}">
                                         <strong>Data</strong>:
                                     </p>
-                                    <p th:text="*{listaCan.idHora.horario}">
+                                    <p th:text="*{listaCan.hora}">
                                         <strong class="hour">Horário</strong>: 
                                     </p>
-                                    <p th:text="*{listaCan.idMed.especialidade.nomeEsp}">
+                                    <p th:text="*{listaCan.medico.especialidade.nomeEsp}">
                                         <strong>Especialidade</strong>:
                                     </p>
-                                    <p th:text="*{listaCan.idMed.nomeMed}">
+                                    <p th:text="*{listaCan.medico.nomeMed}">
                                         <strong class="doctor">Médico</strong>: 
                                     </p>
                                 </section>

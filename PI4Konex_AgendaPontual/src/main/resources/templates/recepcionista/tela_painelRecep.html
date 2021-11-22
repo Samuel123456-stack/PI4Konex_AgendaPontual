@@ -138,10 +138,10 @@
 
                             <tbody>
                                 <tr th:each="listaPainel:${listagemPainel}">
-                                    <td th:text="*{listaPainel.idPaci.nomePaci}"></td>
+                                    <td th:text="*{listaPainel.paciente.nomePaci}"></td>
                                     <td th:text="*{listaPainel.medico.nomeMed}"></td>
-                                    <td th:text="*{listaPainel.dataAgendada}"></td>
-                                    <td th:text="*{listaPainel.idHora.horario}"></td>
+                                    <td th:text="*{listaPainel.dtAgendada}"></td>
+                                    <td th:text="*{listaPainel.hora}"></td>
                                     <td th:text="*{listaPainel.medico.sala}"></td>
                                     <td>
                                         <img src="/image/check-icon.png" alt="icon" />

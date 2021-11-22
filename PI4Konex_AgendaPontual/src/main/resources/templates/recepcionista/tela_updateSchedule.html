@@ -86,27 +86,27 @@
                                 <div class="first-block">
                                     <div class="input-block">
                                         <p>CÓDIGO</p>
-                                        <input type="text" th:field="*{agen.idAgen}" name="idAgen" placeholder="#236035" />
+                                        <input type="text" th:value="*{agen.idConsulta}" name="idConsulta" placeholder="#236035" />
                                     </div>
     
                                     <div class="input-block">
                                         <p>CÓD. MÉDICO</p>
-                                        <input  type="text" th:field="*{agen.idMed.idMed}" name="idMed" placeholder="#63021" />
+                                        <input  type="text" th:value="*{agen.medico.idMed}" name="idMed" placeholder="#63021" />
                                     </div>
     
                                     <div class="input-block">
                                         <p>NOVA DATA</p>
-                                        <input type="text" th:field="*{agen.dataAgendada}" name="dataAgendada" />
+                                        <input type="text" th:value="*{agen.dtAgendada}" name="dtAgendada" />
                                     </div>
 
                                     <div class="input-block">
                                         <p>NOVO HORÁRIO</p>
-                                        <input type="text" th:field="*{agen.idHora.horario}" name="horario" />
+                                        <input type="text" th:value="*{agen.hora}" name="hora" />
                                     </div>
 
                                     <div class="input-block">
                                         <p>MOTIVO</p>
-                                        <select name="infoAdicAgen" th:field="*{agen.infoAdicAgen}" id="reason">
+                                        <select name="informaAdicio" th:field="*{agen.informaAdicio}" id="reason">
                                             <option value="">Selecione o motivo da atualização</option>
                                             <option th:value="'Me atrasei'">Me atrasei</option>
                                         </select>

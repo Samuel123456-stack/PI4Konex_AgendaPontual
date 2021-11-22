@@ -40,11 +40,11 @@ public class Consulta implements Serializable{
     @Column(nullable = true)
     private LocalTime hora;
     
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "fk_med_cons", nullable = true)
     private Medico medico;
     
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "fk_paci_cons", nullable = true)
     private Paciente paciente;
     

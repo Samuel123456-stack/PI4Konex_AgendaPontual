@@ -224,18 +224,17 @@
                         </p>
 
                             <div class="checkbox-block">
-                                <input type="radio" name="sintomasGripe" value="1" th:field="*{paciente.sintomasGripe}" />
+                                <input type="radio" name="sintomasGripe" value="1" th:field="*{paciente.sintomas}" />
                                 <span>Sim</span>
-                                <input type="radio" name="sintomasGripe" value="0" th:field="*{paciente.sintomasGripe}" />
+                                <input type="radio" name="sintomasGripe" value="0" th:field="*{paciente.sintomas}" />
                                 <span>Não</span>
                             </div>
                     </section>
 
-                    <section class="second-question">
-                        <p>
-                            É a sua primeira consulta com este especialista, o
-                            Dr. Wilson Santos?
-                        </p>
+                    <section class="second-question" >
+                        <p th:if="*{med==null}">É a sua primeira consulta?</p>
+                            <p th:unless="*{med==null}">É a sua primeira consulta com o médico</p>
+                            <p th:text="'Dr.' +*{med.nomeMed}"></p>
 
                             <div class="checkbox-block">
                                 <input type="radio" name="primeiraConsulta" value="1" th:field="*{paciente.primeiraConsulta}" />

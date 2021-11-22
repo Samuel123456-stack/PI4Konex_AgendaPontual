@@ -296,9 +296,9 @@
                 <footer class="schedule">
                     <h3>Agendamento</h3>              
                         <div class="input">
-                            <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
-                            <input type="date" th:field="*{agenda.dataAgendada}" name="dataAgendada" />
-                            <input type="time" th:field="*{agenda.idHora.horario}" name="horario" />
+                            <input type="hidden" th:value="*{agenda.idConsulta}" name="idCons"/>
+                            <input type="date" th:field="*{agenda.dtAgendada}" name="dataAgendada" />
+                            <input type="time" th:field="*{agenda.hora}" name="horario" />
                             <input type="hidden" th:value="*{medResumo.id}" name="id"/>
                         </div>
                         
@@ -313,7 +313,7 @@
                     
                         <div class="input-block">
                             <h6>MENSAGEM</h6>
-                            <textarea th:text="*{agenda.infoAdicAgen}" name="infoAdicAgen" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
+                            <textarea th:text="*{agenda.informaAdicio}" name="informaAdicio" placeholder="Escreva quaisquer informações que você queira compartilhar antes da consulta" rows="8" cols="10"></textarea>
                         </div>
                         <input type="submit" value="SALVAR"/>                 
                 </div>
@@ -322,7 +322,7 @@
         </main>
         <form action="#" th:action="@{/recepcionista/posConfirma}" method="">
         <footer class="button-next" th:if="${medResumo != null || agenda!=null}">
-            <input type="hidden" th:value="*{agenda.idAgen}" name="idAgen"/>
+            <input type="hidden" th:value="*{agenda.idConsulta}" name="idConsulta"/>
             <input type="hidden" th:value="*{agenda.medico.idMed}" name="id"/>
             <input type="submit" value="CONFIRMAR O AGENDAMENTO"/>
             

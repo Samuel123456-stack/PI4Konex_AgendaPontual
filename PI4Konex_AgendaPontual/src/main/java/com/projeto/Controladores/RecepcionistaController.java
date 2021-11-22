@@ -2,6 +2,7 @@ package com.projeto.Controladores;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -30,10 +31,11 @@ import com.projeto.Entidades.Pagamento;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.AgendaRepositorio;
+import com.projeto.Repositorios.ConsultaRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
-import com.projeto.Servicos.AgendaServico;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.ClinicasServico;
+import com.projeto.Servicos.ConsultaServico;
 import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
@@ -59,9 +61,9 @@ public class RecepcionistaController {
     @Autowired
     AjudaServico ajuServ;
     @Autowired
-    AgendaServico agenServ;
+    ConsultaServico consServ;
     @Autowired
-    AgendaRepositorio repoAgen;
+    ConsultaRepositorio repoCons;
     @Autowired
     ClinicasServico cliServ;
     @Autowired
@@ -75,11 +77,10 @@ public class RecepcionistaController {
 
     @GetMapping("/painelRecep")
     private String painelRecep(Model model) {
-        Integer idMed = 2;
         Integer idCli = 1;
-        List<Agenda> listagemPainel = agenServ.listagemPainel(idMed, idCli);
+        List<Consulta> listagemPainel = consServ.listagemPainel(idCli);
         model.addAttribute("listagemPainel", listagemPainel);
-        return "/tela_painelRecep";
+        return "/recepcionista/tela_painelRecep";
     }
 
     @RequestMapping("/mostraPaci")
@@ -87,6 +88,8 @@ public class RecepcionistaController {
         Paciente paci = new Paciente();
         Usuario usu = new Usuario();
         Endereco end = new Endereco();
+        Medico med = medServ.infoMed(1);
+        model.addAttribute("med", med);
         model.addAttribute("paciente", paci);
         model.addAttribute("usuario", usu);
         model.addAttribute("endereco", end);
@@ -106,7 +109,6 @@ public class RecepcionistaController {
         //recepServ.criaEnd(end);
         ModelAndView modelView = new ModelAndView("/recepcionista/tela_agendamento");
         //Cria a listagem do filtro e seus atributos
-        //Consulta cons = new Consulta();
         
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = espServ.findAll();
@@ -120,14 +122,14 @@ public class RecepcionistaController {
     //Seleciona o Medico para saber suas informações
     @RequestMapping("/selecMed")
     public String infoEspecialista(@RequestParam Integer idMed, Model model){
-        Agenda agen = new Agenda();
-        agenServ.criaAtualizaAgen(agen);
+        Consulta cons = new Consulta();
+        consServ.cadastro(cons);
         model.addAttribute("medResumo", medServ.medicoResumo(idMed));
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(idMed));
         model.addAttribute("feedPos", feedServ.buscaPositiva(idMed));
         model.addAttribute("feedNot", feedServ.buscaNegativa(idMed));
         model.addAttribute("total", medServ.buscaQteAtendimento(idMed));
-        model.addAttribute("agenda", agen);
+        model.addAttribute("agenda", cons);
         
         return "/recepcionista/tela_agendamento";
     }
@@ -137,13 +139,11 @@ public class RecepcionistaController {
     public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Consulta consulta, Model model){
         //Verificar melhor esse metodo
         Date dataAtual = new Date();
-        DateFormat dataFormatada = new SimpleDateFormat("dd-MM-YYYY");
-        //DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd");
-        String dataAgen = dataFormatada.format(dataAtual);
-        //consulta.setDtAgendada(dataAgen);
+        //DateFormat dataFormatada = new SimpleDateFormat("dd-MM-YYYY");
+        consulta.setDtAgendada(dataAtual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         Medico med = medServ.infoMed(id);
         consulta.setMedico(med);
-        //agenServ.criaAtualizaAgen(agen);
+        consServ.cadastro(consulta);
         model.getAttribute("medResumo");
         return "/recepcionista/tela_agendamento";
     }
@@ -165,7 +165,7 @@ public class RecepcionistaController {
     @RequestMapping("/formConsRecep")
     public String formConsultaRecep(@ModelAttribute("paci") Paciente paci, @ModelAttribute("end") Endereco end,@ModelAttribute("usu") Usuario usu,  Model model){
         Integer idPaci = recepServ.buscaIdporNome(paci.getNomePaci());
-        List<Agenda> listaConsulta = agenServ.listaConsAgenda(idPaci);
+        List<Consulta> listaConsulta = consServ.listaCons(idPaci);
         model.addAttribute("listaConsulta", listaConsulta);
 
         return "/recepcionista/tela_consRes";
@@ -173,9 +173,9 @@ public class RecepcionistaController {
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/posConfirma")
-    public String posConfirma(@RequestParam Integer idAgen,@RequestParam Integer id, @ModelAttribute("agenda")Agenda agen,Model model){
+    public String posConfirma(@RequestParam Integer idConsulta,@RequestParam Integer id, @ModelAttribute("agenda")Agenda cons,Model model){
         List<Convenio> listaConv = recepServ.listaConvPorMed(id); 
-        List<Agenda> listaResumo = agenServ.listaPosConfirma(idAgen);
+        List<Consulta> listaResumo = consServ.listaPosConfirma(idConsulta);
         model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);
 
@@ -234,10 +234,6 @@ public class RecepcionistaController {
     	usu.setIdUsu(3);
     	aju.setUsuario(usu);
        ajuServ.criaAjuda(aju);
-        /*ajudaRec.setIdAjuda(aju.getIdAjuda());
-        ajudaRec.setDataAjudaRec(dataSolic);
-        ajudaRec.setStatusSoli("pendente");
-        ajuServ.criaAjudaRec(ajudaRec);*/
         return painelRecep(model);
     }
 
@@ -259,46 +255,46 @@ public class RecepcionistaController {
         return painelRecep(model);
     }
 
-    @RequestMapping("/{idAgen}/telaAtualizaAgen")
-    public String telaAtualizaAgen(@PathVariable Integer idAgen, Model model){
-        Optional<Agenda> agenOp = this.repoAgen.findById(idAgen);
-        if(agenOp.isPresent()){
-            Agenda agen = agenOp.get();
+    @RequestMapping("/{idCons}/telaAtualizaAgen")
+    public String telaAtualizaAgen(@PathVariable Integer idCons, Model model){
+        Optional<Consulta> consOp = this.repoCons.findById(idCons);
+        if(consOp.isPresent()){
+            Consulta cons = consOp.get();
 
-            model.addAttribute("agen", agen);
+            model.addAttribute("agen", cons);
         }
 
         return "/recepcionista/tela_updateSchedule";
     }
 
     @RequestMapping("/telaFormAgen")
-    public String telaFormAgen(@ModelAttribute("agen") Agenda agen, Model model){
-        agenServ.atualizaAgenda(agen);
+    public String telaFormAgen(@ModelAttribute("agen") Consulta cons, Model model){
+        consServ.atualizaCons(cons);
         return painelRecep(model);
     }
 
     @RequestMapping("/telaCancelaAgen")
     public String telaCancelaAgen(Model model){
-        Agenda agen = new Agenda();
-        model.addAttribute("agen", agen);
+        Consulta cons = new Consulta();
+        model.addAttribute("agen", cons);
 
         return "/recepcionista/tela_cancelSchedule";
     }
 
     @RequestMapping("/telaCancelaFormAgen")
-    public String telaCancelaFormAgen(@ModelAttribute("agen") Agenda agen, Model model){
-        //String cpf = agen.getIdAgen().getCpf();
-        Integer idAgen = agen.getIdAgen();
-        //List<Agenda> listaCancela = agenServ.listaCancelaAgen(cpf, idAgen);
+    public String telaCancelaFormAgen(@ModelAttribute("agen") Consulta cons, Model model){
+        String cpf = cons.getPaciente().getCpf();
+        Integer idCons = cons.getIdConsulta();
+        List<Consulta> listaCancela = consServ.listaCancelaCons(cpf, idCons);
 
-        //model.addAttribute("listaCancela", listaCancela);
+        model.addAttribute("listaCancela", listaCancela);
 
         return "/recepcionista/tela_cancelSchedule";
     }
 
     @PostMapping("/telaCancelaLista")
-    public String telaCancelaLista(@RequestParam String cpf, @RequestParam Integer idAgen,Model model){
-        agenServ.cancelaAgenda(cpf, idAgen);
+    public String telaCancelaLista(@RequestParam String cpf, @RequestParam Integer idConsulta,Model model){
+        consServ.cancelaConsulta(cpf, idConsulta);
         return painelRecep(model);
     }
 }

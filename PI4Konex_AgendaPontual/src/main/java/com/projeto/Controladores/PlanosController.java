@@ -27,7 +27,7 @@ public class PlanosController {
 	
 	@Autowired
 	private MedicojpaRepository mdR;
-	
+
 	// abrir a tela
 	@GetMapping("/planos")
 	public String abertura(Planos planos, @ModelAttribute Medico medico) {
@@ -184,8 +184,11 @@ public class PlanosController {
 	public ModelAndView saveAquisition(
 		@ModelAttribute Planos planos, 
 		@Valid
-		@ModelAttribute Medico med, BindingResult verifica) {
+		@ModelAttribute("medico") Medico med, BindingResult verifica, HttpServletRequest request) {
+		
+		//atribuições
 		ModelAndView mv = new ModelAndView("");
+		
 		
 		if(verifica.hasErrors()) {
 			mv = new ModelAndView("/planos/PosPlanos");

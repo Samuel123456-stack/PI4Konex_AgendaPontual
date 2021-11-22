@@ -1,9 +1,15 @@
 package com.projeto.Entidades;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "usuario")
@@ -15,29 +21,23 @@ public class Usuario {
     @Column(name="idusu")
     private int idUsu;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     @NotBlank
-	@NotNull
+    @NotNull
     private String email;
 
     @Column(name="emailconfirma",nullable = true)
-    @NotBlank
-	@NotNull
     private String confirmaEmail;
 
-    @Column(nullable = true)
-    @NotBlank
-	@NotNull
+    @Column(nullable = false)
+    @Length(min=6)
     private String senha;
 
     @Column(name="senhaconfirma",nullable = true)
-    @NotBlank
-	@NotNull
+    @Length(min=6)
     private String confirmaSenha;
 
     @Column(nullable = true)
-    @NotBlank
-	@NotNull
     private String perfil;
 
     // Metodo Construtor

@@ -158,7 +158,7 @@
                     <p>CPF/CNPJ</p>
                     <input type="text" name="cpfMed" placeholder="Digite seu CPF ou CNPJ">
                 </div>
-                <div class="emailDados" th:id="${#fields.hasErrors('usuario.email')} ? errorInput">
+                <div class="emailDados" th:id="${#fields.hasErrors('usuario.email')}? 'errorInput' ">
                     <p>E-MAIL</p>
                     <input type="email" name="usuario.email" placeholder="Informe um email">
                 </div>

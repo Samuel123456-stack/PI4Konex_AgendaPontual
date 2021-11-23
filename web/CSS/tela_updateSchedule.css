@@ -112,7 +112,7 @@ body{
     color:#858FA1;
     font-size:14px;
 }
-#container-landing form input[type="button"]{
+#container-landing form input[type="submit"]{
     width:100%;
     padding:20px 8px;
     background: #1CC4BF;
@@ -122,7 +122,7 @@ body{
     font-weight:700;
     cursor:pointer;
 }
-#container-landing form input[type="button"]:hover{
+#container-landing form input[type="submit"]:hover{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     transition:letter-spacing ease 250ms;
 }

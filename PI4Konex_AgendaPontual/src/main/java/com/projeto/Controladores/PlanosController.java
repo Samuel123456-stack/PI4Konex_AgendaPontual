@@ -196,7 +196,7 @@ public class PlanosController {
 		}else {
 			plR.createPlanos(planos);
 			mdR.save(med);
-			mv = new ModelAndView("/planos/planos");
+			mv = new ModelAndView("/planos/Confirma");
 		}
 		return mv;
 	}

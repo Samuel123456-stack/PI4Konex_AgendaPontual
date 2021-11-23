@@ -13,12 +13,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.Entidades.Contato;
 import com.projeto.Repositorios.ContatoRepository;
+import com.projeto.Servicos.ContatoServico;
 
 @Controller
 public class ContatoController {
 	//importar o repositorio
 	@Autowired
 	private ContatoRepository cr;
+	
+	@Autowired
+	private ContatoServico conServ;
 	
 	//abrir a tela 
 	@GetMapping("/sobre-nos")
@@ -56,5 +60,19 @@ public class ContatoController {
 			mv = new ModelAndView("redirect:/sobre-nos");
 		}
 		return mv;
+	}
+	
+	@PostMapping("/resgistrarContatoHome")
+	public String registraContatoHome(@Valid @ModelAttribute("contato") Contato contato,
+			BindingResult verifica, RedirectAttributes redirectAtt) {
+		
+		if(verifica.hasErrors()) {
+			redirectAtt.addFlashAttribute("contato", contato);
+			return ("redirect:/");
+			
+		}else {
+			conServ.cadastro(contato);
+			return ("redirect:/");
+		}
 	}
 }

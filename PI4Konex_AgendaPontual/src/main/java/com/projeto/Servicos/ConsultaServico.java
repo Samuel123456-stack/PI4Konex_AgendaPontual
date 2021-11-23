@@ -63,4 +63,9 @@ public class ConsultaServico {
     public List<Consulta> listaPosConfirma(Integer idAgen){
         return conRepo.listaResumo(idAgen);
     }
+	
+	@Transactional(readOnly = true)
+	public List<Consulta> pesquisaConsultaSemFeed(Integer paciente){
+		return conRepo.pesquisaConsultaPorPaciente(paciente);
+	}
 }

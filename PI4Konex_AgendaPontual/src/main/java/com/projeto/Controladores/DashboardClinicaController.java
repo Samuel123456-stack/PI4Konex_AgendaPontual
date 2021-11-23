@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Feedback;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Pagamento;
@@ -52,10 +53,22 @@ public class DashboardClinicaController {
 		ModelAndView mv = new ModelAndView("/clinica/ConsultarFeedback");
 		return mv;
 	}
+	
+	@GetMapping("/ConfigureCli")
+	public ModelAndView configuraCli(Clinica clinica){
+		ModelAndView mv = new ModelAndView("/clinica/ConfigureClinica");
+		return mv;
+	}
 
+	@GetMapping("/SairCli")
+	public ModelAndView sair() {
+		ModelAndView mv = new ModelAndView("/logoffCli");
+		return mv;
+	}
+	
 	@GetMapping("/AjudaClinica")
 	public ModelAndView listaFeedbacks(Ajuda ajuda){
-		ModelAndView mv = new ModelAndView("/clinica/Ajuda");
+		ModelAndView mv = new ModelAndView("/clinica/Ajuda");//falta implementar
 		return mv;
 	}
 	/*

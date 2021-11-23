@@ -10,14 +10,24 @@ import com.projeto.Dto.AvaliacoesNegativasDTO;
 import com.projeto.Dto.AvaliacoesPositivasDTO;
 import com.projeto.Dto.FeedbackCliMedDTO;
 import com.projeto.Dto.MelhoresFeedbacksDTO;
+import com.projeto.Entidades.Feedback;
 import com.projeto.Repositorios.FeedbackRepositorio;
+import com.projeto.Repositorios.FeedbackRepositorio2;
 
 @Service
 public class FeedbackServico {
 
 	@Autowired
 	private FeedbackRepositorio feeRepo;
+	
+	@Autowired
+	private FeedbackRepositorio2 feeRepo2;
 
+	@Transactional(readOnly = false)
+	public void feedbackCadastro(Feedback feedback) {
+		feeRepo2.save(feedback);
+	}
+	
 	@Transactional(readOnly = true)
 	public List<MelhoresFeedbacksDTO> buscaFeedbackPorMedico(Integer idMed) {
 		return feeRepo.buscaFeedbackPorMedico(idMed);

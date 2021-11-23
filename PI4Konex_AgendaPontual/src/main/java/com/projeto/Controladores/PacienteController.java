@@ -17,6 +17,7 @@ import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Especialidade;
+import com.projeto.Entidades.Feedback;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLetter;
 import com.projeto.Entidades.Paciente;
@@ -25,6 +26,7 @@ import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
 import com.projeto.Servicos.EspecialidadeServico;
+import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
 
@@ -49,6 +51,9 @@ public class PacienteController {
 	
 	@Autowired
 	private ConsultaServico consServ;
+	
+	@Autowired
+	private FeedbackServico feeServ;
 	
 	@GetMapping("/dashboard")
 	public String dashboardPaci() {
@@ -99,16 +104,28 @@ public class PacienteController {
     public String radarPontual(){
         return "/paciente/tela_radarPontual";
     }
-    
+  //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.
     @GetMapping("/feedback")
-    public String feedback(){
+    public String feedback(@RequestParam(required = false) Integer idUsu, Model model){
+    	idUsu = 11;
+    	Paciente paciente = paciServ.pesquisaPacientePorUsuarioId(idUsu);
+    	
+    	model.addAttribute("feedback", new Feedback());
+    	model.addAttribute(null, model);
         return "/paciente/tela_feedback";
     }
     
+    @PostMapping("/feedback/cadastro")
+    public String feedbackCadastro(@ModelAttribute("feedback") Feedback feedback) {
+    	feeServ.feedbackCadastro(feedback);
+    	return ("redirect:/paciente/configuracoes");
+    }
+    
+    //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.
     @GetMapping("/configuracoes")
-    public String configurações(@RequestParam(required = false) Integer idusu,Model model){
-    	idusu = 11;
-    	model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(idusu));
+    public String configurações(@RequestParam(required = false) Integer idUsu,Model model){
+    	idUsu = 11;
+    	model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(idUsu));
     	return "/paciente/tela_configuracoes";
     }
     

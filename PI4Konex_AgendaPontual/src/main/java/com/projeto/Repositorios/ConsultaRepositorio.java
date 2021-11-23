@@ -50,4 +50,12 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    "join clinica as cli on m.fk_cli_med=cli.idcli join endereco as e on cli.fk_end_cli= e.idend "+
    "where c.idcons = ?1")
    List<Consulta> listaResumo(Integer idCons);
+   
+   @Query(nativeQuery = true, value = "select c.idcons, c.hora, c.fk_med_cons,c.fk_med_cons,c.fk_paci_cons,c.dtagendada," +
+   "c.informacoesadic, c.confirmada,c.retorno,c.horachegada,c.horasaida,c.duracao,c.concluida,"+
+   "c.naocompareceu,c.cancelada,c.fk_rec_cons,c.fk_pag_cons,c.fk_feed_cons, m.valor, e.logradouro, "+
+   "e.numero, e.complemento, e.cep  from consulta as c join medico as m on c.fk_med_cons=m.idmed "+
+   "join clinica as cli on m.fk_cli_med=cli.idcli join endereco as e on cli.fk_end_cli= e.idend "+
+   "where c.idcons = ?1")
+   List<Consulta> pesquisaConsultaPorPaciente(Integer paciente);
 }

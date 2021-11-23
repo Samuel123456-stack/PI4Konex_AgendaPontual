@@ -2,6 +2,7 @@ package com.projeto.Entidades;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ public class Feedback implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idfeed")
-    private int idFeed;
+    private Integer idFeed;
 
     @Column(nullable = true)
     private int avaliacao;
@@ -34,64 +35,66 @@ public class Feedback implements Serializable {
     // Metodo Construtor
     public Feedback() {
     }
-
     // Metodo Construtor com Atributos
-    public Feedback(int idFeed, int avaliacao, String comentario, boolean paraMed,
-            boolean paraCli, boolean feedAno) {
-        this.idFeed = idFeed;
-        this.avaliacao = avaliacao;
-        this.comentario = comentario;
-        this.paraMed = paraMed;
-        this.paraCli = paraCli;
-        this.feedAno = feedAno;
-    }
-
-    // Getters e Setters
-    public int getIdFeed() {
-        return idFeed;
-    }
-
-    public void setIdFeed(int idFeed) {
-        this.idFeed = idFeed;
-    }
-
-    public int getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public boolean isParaMed() {
-        return paraMed;
-    }
-
-    public void setParaMed(boolean paraMed) {
-        this.paraMed = paraMed;
-    }
-
-    public boolean isParaCli() {
-        return paraCli;
-    }
-
-    public void setParaCli(boolean paraCli) {
-        this.paraCli = paraCli;
-    }
-
-    public boolean isFeedAno() {
-        return feedAno;
-    }
-
-    public void setFeedAno(boolean feedAno) {
-        this.feedAno = feedAno;
-    }
+	public Feedback(Integer idFeed, int avaliacao, String comentario, boolean paraMed, boolean paraCli,
+			boolean feedAno) {
+		this.idFeed = idFeed;
+		this.avaliacao = avaliacao;
+		this.comentario = comentario;
+		this.paraMed = paraMed;
+		this.paraCli = paraCli;
+		this.feedAno = feedAno;
+	}
+	// Getters e Setters
+	public Integer getIdFeed() {
+		return idFeed;
+	}
+	public void setIdFeed(Integer idFeed) {
+		this.idFeed = idFeed;
+	}
+	public int getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(int avaliacao) {
+		this.avaliacao = avaliacao;
+	}
+	public String getComentario() {
+		return comentario;
+	}
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+	public boolean isParaMed() {
+		return paraMed;
+	}
+	public void setParaMed(boolean paraMed) {
+		this.paraMed = paraMed;
+	}
+	public boolean isParaCli() {
+		return paraCli;
+	}
+	public void setParaCli(boolean paraCli) {
+		this.paraCli = paraCli;
+	}
+	public boolean isFeedAno() {
+		return feedAno;
+	}
+	public void setFeedAno(boolean feedAno) {
+		this.feedAno = feedAno;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(idFeed);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Feedback other = (Feedback) obj;
+		return Objects.equals(idFeed, other.idFeed);
+	}
 }

@@ -87,7 +87,7 @@ body{
     border-radius:8px;
     width:100%;
 }
-#container-landing .health-insurance button{
+#container-landing .health-insurance input[type="submit"]{
     width:100%;
     padding:20px;
     border:none;
@@ -98,7 +98,7 @@ body{
     font:700 15.5px 'Mulish', sans-serif;
     cursor:pointer;
 }
-#container-landing .health-insurance button:hover{
+#container-landing .health-insurance input[type="submit"]:hover{
     letter-spacing:0.4;
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     transition:letter-spacing ease 250ms, box-shadow 300ms;
@@ -114,7 +114,7 @@ body{
     margin:52px 0 113px 0;
     padding:18px;
 }
-#container-landing .last-button button{
+#container-landing .last-button input[type="submit"]{
     color:#fff;
     background: #166CD0;
     border-radius: 8px;
@@ -125,7 +125,7 @@ body{
     font-size:15.5px;
     cursor:pointer;
 }
-#container-landing .last-button button:hover{
+#container-landing .last-button input[type="submit"]:hover{
     letter-spacing:0.4;
     transition:letter-spacing ease 250ms;
     background: linear-gradient(258.4deg, rgba(255, 255, 255, 0.21) 58.84%, rgba(255, 255, 255, 0) 101.8%), #166CD0;

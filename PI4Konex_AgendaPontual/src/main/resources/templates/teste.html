@@ -10,7 +10,7 @@
 
 		<div class="first-row" th:object="${paciente}">
 			<div class="input-block">
-				<p>NOME</p>
+				<p th:field="*{nomePaci}">NOME</p>
 				<input type="text" th:field="*{nomePaci}" name="text-name"
 					placeholder="Digite seu nome completo" />
 			</div>

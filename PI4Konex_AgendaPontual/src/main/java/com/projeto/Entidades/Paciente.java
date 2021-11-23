@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -70,7 +71,7 @@ public class Paciente implements Serializable {
     @JoinColumn(name = "fk_end_paci")
     private Endereco endereco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usu_paci")
     private Usuario usuario;
 

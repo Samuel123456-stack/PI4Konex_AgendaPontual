@@ -106,8 +106,16 @@ public class PacienteController {
     }
     
     @GetMapping("/configuracoes")
-    public String configurações(){
-        return "/paciente/tela_configuracoes";
+    public String configurações(@RequestParam(required = false) Integer idusu,Model model){
+    	idusu = 11;
+    	model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(idusu));
+    	return "/paciente/tela_configuracoes";
+    }
+    
+    @PostMapping("/configuracoes/atualiza")
+    public String configuracoesSave(@ModelAttribute("paciente") Paciente paciente) {
+    	paciServ.cadastroVoid(paciente);
+    	return ("redirect:/paciente/configuracoes");
     }
     
     @RequestMapping("/ajuda")

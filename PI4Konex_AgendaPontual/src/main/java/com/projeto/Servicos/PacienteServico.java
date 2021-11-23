@@ -17,4 +17,14 @@ public class PacienteServico {
 	public Paciente cadastro(Paciente paciente) {
 		return paciRepo.save(paciente);
 	}
+	
+	@Transactional(readOnly = false)
+	public void cadastroVoid(Paciente paciente) {
+		paciRepo.save(paciente);
+	}
+	
+	@Transactional(readOnly = true)
+	public Paciente pesquisaPacientePorUsuarioId(Integer idusu) {
+		return paciRepo.buscaPacientePorUsuarioId(idusu);
+	}
 }

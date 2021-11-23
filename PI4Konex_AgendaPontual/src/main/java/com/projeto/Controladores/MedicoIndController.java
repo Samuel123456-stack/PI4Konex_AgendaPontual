@@ -21,6 +21,7 @@ import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
+import com.projeto.Servicos.PagamentoServico;
 import com.projeto.Servicos.RecepcionistaServico;
 import com.projeto.Servicos.UsuarioServico;
 
@@ -44,6 +45,8 @@ public class MedicoIndController {
     FeedbackServico feedServ;
     @Autowired
     RecepcionistaServico recepServ;
+    @Autowired
+    PagamentoServico pagServ;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -124,11 +127,20 @@ public class MedicoIndController {
         return "";
     }
 
+    @RequestMapping("/pagamentos")
+    public String medIndPagamentos(Model model){
+        Integer idMed = 2;
+        model.addAttribute("dadosPag", pagServ.listaPagPorMed(idMed));
+
+        return "/medInd/consulPagClin";
+    }
+
 
     @RequestMapping("/feedback")
     public String medIndFeedback(Model model){
         Integer idMed = 2;
         model.addAttribute("listaFeed", feedServ.listaFeedback(idMed));
+        model.addAttribute("dadosFeed", feedServ.listaFeedback(idMed));
         return "/medInd/feedBkMedInd";
     }
 

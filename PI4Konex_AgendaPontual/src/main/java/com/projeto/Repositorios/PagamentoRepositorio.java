@@ -1,9 +1,12 @@
 package com.projeto.Repositorios;
 
-import com.projeto.Entidades.Pagamento;
+import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.projeto.Dto.PagamentoDTO;
 
-public interface PagamentoRepositorio extends JpaRepository<Pagamento,Integer> {
+
+public interface PagamentoRepositorio {
+
+    List<PagamentoDTO> listaPagPorMed(Integer idMed);
     
 }

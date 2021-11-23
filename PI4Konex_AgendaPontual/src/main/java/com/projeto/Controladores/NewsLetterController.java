@@ -21,7 +21,7 @@ public class NewsLetterController {
 	public String cadastroEmail(@Valid @ModelAttribute("news") NewsLetter news, BindingResult result) {
 	
 		if (result.hasErrors()) {
-			return "home";
+			return "/home/home";
 		}
 		newsServ.cadastro(news);
 		return "redirect:/";

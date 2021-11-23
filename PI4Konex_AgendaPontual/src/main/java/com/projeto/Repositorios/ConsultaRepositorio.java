@@ -58,4 +58,11 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    "join clinica as cli on m.fk_cli_med=cli.idcli join endereco as e on cli.fk_end_cli= e.idend "+
    "where c.idcons = ?1")
    List<Consulta> pesquisaConsultaPorPaciente(Integer paciente);
+   
+   @Query(nativeQuery = true, value = "select * "
+   		+ "from consulta as c "
+   		+ "where c.concluida = 1 and c.fk_paci_cons = :paciente")
+   List<Consulta> pesquisaConsultaSemFeed(Integer paciente);
+   
+   
 }

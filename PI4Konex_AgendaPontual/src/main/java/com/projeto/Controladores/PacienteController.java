@@ -22,6 +22,7 @@ import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLetter;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.ConsultaRepositorio2;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
@@ -54,6 +55,9 @@ public class PacienteController {
 	
 	@Autowired
 	private FeedbackServico feeServ;
+	
+	@Autowired
+	private ConsultaRepositorio2 cr2;
 	
 	@GetMapping("/dashboard")
 	public String dashboardPaci() {
@@ -109,9 +113,12 @@ public class PacienteController {
     public String feedback(@RequestParam(required = false) Integer idUsu, Model model){
     	idUsu = 11;
     	Paciente paciente = paciServ.pesquisaPacientePorUsuarioId(idUsu);
-    	
+    	System.out.println("Código do paciente:" + paciente.getIdPaci());
     	model.addAttribute("feedback", new Feedback());
-    	model.addAttribute(null, model);
+    	model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));
+    	List<Consulta> list = cr2.pesquisaConsultaSemFeed(paciente.getIdPaci());
+    	System.out.println("Tamanho da lista "+list.size());
+    	
         return "/paciente/tela_feedback";
     }
     

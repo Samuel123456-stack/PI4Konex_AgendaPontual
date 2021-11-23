@@ -19,6 +19,13 @@
 		});
 	});
 	</script>
+	<style type="text/css">
+	.errorInput {
+		border: 1, 4px;
+		border-radius: 8px;
+		border-color: red;
+	}
+	</style>
 </head>
 <body>
     <header>
@@ -233,19 +240,19 @@
 
                 É importante manter esse id do form por causa do textarea.
             -->    
-                <form action="" id="formAtendimento">
+                <form th:action="@{/resgistrarContatoHome}" method="post" id="formAtendimento" th:object="${contato}">
                     <H2>Olá, como nós podemos te ajudar?</H2>
                     <div class="atendNome">
                         <p>Nome</p>
-                        <input type="text" name="nomeAtendimento" placeholder="Digite seu nome">
+                        <input type="text" th:field="*{nome}" name="nomeAtendimento" placeholder="Digite seu nome">
                     </div>
                     <div class="atendEmail">
                         <p>E-mail</p>
-                        <input type="email" name="emailAtendimento" placeholder="Digite seu e-mail">
+                        <input type="email" th:field="*{email}" name="emailAtendimento" placeholder="Digite seu e-mail">
                     </div>
                     <div class="atendMsg">
                         <p>Mensagem</p>
-                        <textarea rows="4" cols="50" name="mensagem" form="formAtendimento" placeholder="Escreva sua mensagem"></textarea>
+                        <textarea rows="4" cols="50" th:field="*{mensagem}" name="mensagem" form="formAtendimento" placeholder="Escreva sua mensagem"></textarea>
                     </div>
                     <button value="submit">Enviar</button>
                 </form>
@@ -361,9 +368,9 @@
             <br style="clear: both;">
             <div id="barra"></div>
             <div class="news">
-                <h1>NewsLatter</h1>
+                <h1>NewsLetter</h1>
                 	<div class="email">
-                    <form th:action="@{/newslatter/cadastro/home}" th:object="${news}" method="POST">
+                    <form th:action="@{/newsletter/cadastro/home}" th:object="${news}" method="POST">
                         <input type="text" th:field="*{email}" id="emailRodape" placeholder="Digite seu melhor e-mail">
                         <button value="submit" id="btnEmail">Inscrever</button>
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Teste</span>

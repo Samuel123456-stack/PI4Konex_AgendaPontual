@@ -36,12 +36,12 @@ public class Contato implements Serializable {
 	private String email;
 
 	@Column(nullable = false, length = 15)
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	private String telefone;
 
 	@Column(name = "contatowpp", nullable = true)
-	private boolean contatoWpp = false;
+	private boolean contatoWpp;
 
 	@Column(nullable = true, columnDefinition = "Text")
 	@NotNull

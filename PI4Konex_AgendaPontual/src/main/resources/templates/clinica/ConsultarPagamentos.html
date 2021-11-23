@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../CSS/painelPrinClin.css">
-    <title>Painel Principal</title>
+    <link rel="stylesheet" href="../CSS/consulPagClin.css">
+    <title>Consulta de pagamentos</title>
 </head>
 <body>
     <header>
@@ -25,7 +25,7 @@
                 </a>
                 <div class="textoMenuClinica">
                     <p>
-                        <a th:href="@{/ConfigureCli}">
+                        <a href="">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M9.06985 0.152241C9.55991 -0.050747 10.1105 -0.050747 10.6006 0.152241L16.1409 2.44712C16.631 2.65011 17.0203 3.03946 17.2233 3.52951L19.5182 9.06985C19.7212 9.55991 19.7212 10.1105 19.5182 10.6006L17.2233 16.1409C17.0203 16.631 16.631 17.0203 16.1409 17.2233L10.6006 19.5182C10.1105 19.7212 9.55991 19.7212 9.06985 19.5182L3.52951 17.2233C3.03946 17.0203 2.65011 16.631 2.44712 16.1409L0.152241 10.6006C-0.050747 10.1105 -0.050747 9.55991 0.152241 9.06985L2.44712 3.52951C2.65011 3.03946 3.03946 2.65011 3.52951 2.44712L9.06985 0.152241ZM9.23463 2.31703C9.72469 2.11404 10.2753 2.11404 10.7654 2.31703L14.8915 4.02612C15.3815 4.22911 15.7709 4.61846 15.9739 5.10851L17.683 9.23463C17.886 9.72469 17.886 10.2753 17.683 10.7654L15.9739 14.8915C15.7709 15.3815 15.3815 15.7709 14.8915 15.9739L10.7654 17.683C10.2753 17.886 9.72469 17.886 9.23463 17.683L5.10851 15.9739C4.61846 15.7709 4.22911 15.3815 4.02612 14.8915L2.31703 10.7654C2.11404 10.2753 2.11404 9.72469 2.31703 9.23463L4.02612 5.10851C4.22911 4.61846 4.61846 4.22911 5.10851 4.02612L9.23463 2.31703ZM10 13C8.34315 13 7 11.6569 7 10C7 8.34315 8.34315 7 10 7C11.6569 7 13 8.34315 13 10C13 11.6569 11.6569 13 10 13ZM5 10C5 7.23858 7.23858 5 10 5C12.7614 5 15 7.23858 15 10C15 12.7614 12.7614 15 10 15C7.23858 15 5 12.7614 5 10Z" fill="#546582"/>
                             </svg>
@@ -34,7 +34,7 @@
                         </a>
                     </p>
                     <p>
-                        <a th:href="@{/AjudaClinica}">
+                        <a href="">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.0004 4C8.95745 4.00132 7.95759 4.41622 7.22011 5.1537C6.48263 5.89118 6.06773 6.89104 6.06641 7.934H8.06641C8.06641 6.867 8.93441 6 10.0004 6C11.0664 6 11.9344 6.867 11.9344 7.934C11.9344 8.532 11.4534 8.966 10.7184 9.56C10.4783 9.7481 10.2477 9.94801 10.0274 10.159C9.02941 11.156 9.00041 12.215 9.00041 12.333V13H11.0004L10.9994 12.367C11.0004 12.351 11.0324 11.981 11.4404 11.574C11.5904 11.424 11.7794 11.274 11.9754 11.116C12.7544 10.485 13.9334 9.532 13.9334 7.934C13.9326 6.89106 13.518 5.89104 12.7806 5.15347C12.0433 4.41591 11.0434 4.00106 10.0004 4ZM9.00041 14H11.0004V16H9.00041V14Z" fill="#546582"/>
                                 <path d="M10 0C4.486 0 0 4.486 0 10C0 15.514 4.486 20 10 20C15.514 20 20 15.514 20 10C20 4.486 15.514 0 10 0ZM10 18C5.589 18 2 14.411 2 10C2 5.589 5.589 2 10 2C14.411 2 18 5.589 18 10C18 14.411 14.411 18 10 18Z" fill="#546582"/>
@@ -43,7 +43,7 @@
                         </a>
                     </p>
                     <a href="">
-                        <img src="/image/Group639.svg" alt="">
+                        <img src="../image/Group639.svg" alt="">
                     </a>
                     <p>
                         <a href="">
@@ -62,198 +62,152 @@
     
     <div class="todo">
 
-        <div class="links">
-                <a th:href="@{/NovoMed}">
-                    <div class="txtAlink">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="9" width="2" height="20" fill="#546582" fill-opacity="0.8"/>
-                            <rect y="11" width="2" height="20" transform="rotate(-90 0 11)" fill="#546582" fill-opacity="0.8"/>
-                        </svg>
-                        <p>NOVO MÉDICO</p>
+        <div id="voltar">
+            <a href="">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9L9.27651 -4.05489e-07L11 1.67211L3.44698 9L11 16.3279L9.27651 18L-3.93402e-07 9Z" fill="#1CC4BF"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9 9L18.2765 -4.05489e-07L20 1.67211L12.447 9L20 16.3279L18.2765 18L9 9Z" fill="#1CC4BF"/>
+                </svg> 
+            </a>
+        </div>
+
+        <div id="titulo">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.5303 20V18.3019H2.04545V1.69811H17.9545V20H20V0H0V20H11.5303Z" fill="#166CD0"/>
+                <rect x="4" y="3" width="2" height="2.66667" fill="#166CD0"/>
+                <rect x="3.33398" y="13.666" width="2" height="12.6667" transform="rotate(-90 3.33398 13.666)" fill="#166CD0"/>
+            </svg>                
+            <h1>Histórico de agendamentos</h1>
+        </div>
+
+        <div class="filtroLista">
+            <h1>Lista de consultas</h1>
+            <h3>Você pode filtrar por período.</h3>
+                <form action="">
+                    <div class="dataDe">
+                        <p>DE</p>
+                        <input type="date" name="dataDe">
                     </div>
-                </a>
-            <div class="linkMeio">
-                <a th:href="@{/NovoRecep}">
-                    <div class="txtAlink">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="9" width="2" height="20" fill="#546582" fill-opacity="0.8"/>
-                            <rect y="11" width="2" height="20" transform="rotate(-90 0 11)" fill="#546582" fill-opacity="0.8"/>
-                        </svg>
-                        <p>NOVO RECEPCIONISTA</p>
+                    <div class="dataAte">
+                        <p>ATÉ</p>
+                        <input type="date" name="dataAte">
                     </div>
-                </a>
+                    <input type="submit" value="LISTAR">
+                    <button type="reset">
+                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1.53846 0C0.688793 0 0 0.688793 0 1.53846V3.84615C0 4.69582 0.688793 5.38462 1.53846 5.38462H2.38354L3.69066 17.9517L3.6909 17.954L3.6918 17.962C3.75787 18.5235 4.02774 19.0411 4.45019 19.4168C4.87265 19.7925 5.4183 20 5.98363 20H17.0937C17.6591 20 18.2047 19.7925 18.6272 19.4168C19.0497 19.0411 19.3195 18.5235 19.3856 17.962L19.3867 17.9517L20.6934 5.38462H21.5385C22.3881 5.38462 23.0769 4.69582 23.0769 3.84615V1.53846C23.0769 0.688793 22.3881 0 21.5385 0H1.53846ZM20.0086 3.84615H19.9895H3.08739H3.0683H1.53846V1.53846H21.5385V3.84615H20.0086ZM3.9303 5.38462H19.1466L17.8571 17.7865C17.8343 17.972 17.7446 18.1429 17.6049 18.2671C17.4641 18.3924 17.2822 18.4615 17.0937 18.4615H5.98366C5.79522 18.4615 5.61334 18.3924 5.47252 18.2671C5.33277 18.1429 5.24312 17.972 5.22023 17.7865L3.9303 5.38462ZM14.7747 8.68684C15.0751 8.98724 15.0751 9.47429 14.7747 9.7747L12.6263 11.9231L14.7747 14.0715C15.0751 14.3719 15.0751 14.8589 14.7747 15.1593C14.4743 15.4597 13.9872 15.4597 13.6868 15.1593L11.5385 13.0109L9.39008 15.1593C9.08968 15.4597 8.60263 15.4597 8.30223 15.1593C8.00182 14.8589 8.00182 14.3719 8.30223 14.0715L10.4506 11.9231L8.30223 9.7747C8.00182 9.47429 8.00182 8.98724 8.30223 8.68684C8.60263 8.38644 9.08968 8.38644 9.39008 8.68684L11.5385 10.8352L13.6868 8.68684C13.9872 8.38644 14.4743 8.38644 14.7747 8.68684Z" fill="#546582" fill-opacity="0.5"/>
+                        </svg>
+                        Limpar período   
+                    </button>
+                </form>
+        </div>
+        <div class="info">
+            <div class="totalPag">
+                <p>Total de pagamentos</p>
+                <h4>0234</h4>
             </div>
-                <a th:href="@{/ConsultaPagamentos}">
-                    <div class="txtAlink">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.5303 20V18.3019H2.04545V1.69811H17.9545V20H20V0H0V20H11.5303Z" fill="#546582" fill-opacity="0.8"/>
-                            <rect x="4" y="3" width="2" height="2.66667" fill="#546582" fill-opacity="0.8"/>
-                            <rect x="3.33398" y="13.666" width="2" height="12.6667" transform="rotate(-90 3.33398 13.666)" fill="#546582" fill-opacity="0.8"/>
-                        </svg>
-                        <p>PAGAMENTOS</p>
-                    </div>
-                </a>
-            <div class="linkMeio">  
-                <a th:href="@{/HistoricoAgenda}">
-                    <div class="txtAlink">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86364 18.3019V20H0V0H20V10H17.9545V1.69811H2.04545V18.3019H8.86364ZM4 4V6H16V4H4ZM4 14V12H10V14H4ZM4 8V9.6H13.6V8H4Z" fill="#546582" fill-opacity="0.8"/>
-                        </svg>
-                        <p>HISTÓRICO</p>
-                    </div>
-                </a>
+            <div class="qntPagDin">
+                <p>Qtd. Pag. em Dinheiro</p>
+                <h4>0234</h4>
             </div>
-                <a th:href="@{/FeedbackClinica}">
-                    <div class="txtAlink">
-                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.5 14.1H5.12721L4.8636 14.3636L0.9 18.3272V0.9H19.1V14.1H5.5Z" stroke="#758299" stroke-width="1.8"/>
-                        </svg> 
-                        <p>FEEDBACKS</p>
-                    </div>
-                </a>
+            <div class="qntPagDeb">
+                <p>Qtd. Pag.  em Débito</p>
+                <h4>0150</h4>
+            </div>
+            <div class="qntPagCred">
+                <p>Qtd. Pag. em Crédito</p>
+                <h4>0985</h4>
+            </div>
         </div>
-            
-        <div class="esquerda">
-            <img src="/image/graficoPrin.png">
-
-                <div class="info" id="feed">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.25 21.9512H30V0H0V30L8.25 21.9512ZM2.7 23.5938L7.1511 19.2512H27.3V2.7H2.7V23.5938Z" fill="#1E0081" fill-opacity="0.7"/>
-                    </svg>                        
-                    <p>Total de feedbacks</p>
-                    <h1>02653</h1>
-                </div>
-                <div class="info" id="med">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.5 6H16.5V24H13.5V6Z" fill="#064A4F" fill-opacity="0.7"/>
-                        <path d="M6 16.5L6 13.5L24 13.5L24 16.5L6 16.5Z" fill="#064A4F" fill-opacity="0.7"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M27.3 5.7C27.3 4.04315 25.9569 2.7 24.3 2.7H2.7V24.3C2.7 25.9569 4.04315 27.3 5.7 27.3H24.3C25.9569 27.3 27.3 25.9569 27.3 24.3V5.7ZM0 0V24C0 27.3137 2.68629 30 6 30H24C27.3137 30 30 27.3137 30 24V6C30 2.68629 27.3137 0 24 0H0Z" fill="#064A4F" fill-opacity="0.7"/>
-                    </svg>                        
-                    <p>Total de médicos</p>
-                    <h1>015</h1>
-                </div>
-                <div class="info" id="recep">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M27.3 5.7C27.3 4.04315 25.9569 2.7 24.3 2.7H5.7C4.04315 2.7 2.7 4.04315 2.7 5.7V24.3C2.7 25.9569 4.04315 27.3 5.7 27.3H24.3C25.9569 27.3 27.3 25.9569 27.3 24.3V5.7ZM6 0C2.68629 0 0 2.68629 0 6V24C0 27.3137 2.68629 30 6 30H24C27.3137 30 30 27.3137 30 24V6C30 2.68629 27.3137 0 24 0H6Z" fill="#003687" fill-opacity="0.7"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M25.5711 9.40919L12.6166 22.3697L4.5 14.256L6.40919 12.3468L12.6166 18.5514L23.662 7.5L25.5711 9.40919Z" fill="#003687" fill-opacity="0.7"/>
-                    </svg>                        
-                    <p>Total de recepcionistas</p>
-                    <h1>004</h1>
-                </div>
+        <div class="listaConsul">
+                <table id="tbNot">
+                    <thead>
+                        <tr>
+                        <th style="width: 221px;">Nome</th>
+                        <th style="width: 195px; text-align: left;">For. Pagamento</th>
+                        <th style="width: 135px; text-align: left;">Pagamento</th>
+                        <th style="width: 103px; text-align: left;">Consulta</th>
+                        <th style="width: 94px; text-align: left;">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="/web/imagens/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        <tr>
+                            <td id="nomeTb">
+                                <img src="../image/doctor.png">
+                                <p>Arnaldo Campos</p>
+                            </td>
+                            <td id="dataTb">23/09/2021- 15:50h</td>
+                            <td id="pagTb">Débito</td>
+                            <td id="consulTb">#215030</td>
+                            <td id="valTb"> <div class="divVal">170,00</div></td>
+                        </tr>
+                        
+                        
+                        
+                        
+                    </tbody>
+                </table>
         </div>
-
-        <div class="melEsp">
-            <h1>Melhores Especialistas</h1>
-
-            <table id="tbNot">
-                <thead>
-                    <tr>
-                    <th style="width: 168px;">Nome</th>
-                    <th style="width: 142px; text-align: left;">Especialidade</th>
-                    <th style="width: 148px; text-align: left;">Pontos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="../image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
 
     </div>
 

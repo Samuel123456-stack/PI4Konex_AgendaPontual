@@ -1,10 +1,10 @@
 package com.projeto.Servicos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 import com.projeto.Entidades.Consulta;
 import com.projeto.Repositorios.AgendaRepositorio;
@@ -68,4 +68,10 @@ public class ConsultaServico {
 	public List<Consulta> pesquisaConsultaSemFeed(Integer paciente){
 		return conRepo.pesquisaConsultaPorPaciente(paciente);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Consulta> consultasMarcadas(Integer paciente){
+		return conRepo.consultasMarcadas(paciente);
+	}
+
 }

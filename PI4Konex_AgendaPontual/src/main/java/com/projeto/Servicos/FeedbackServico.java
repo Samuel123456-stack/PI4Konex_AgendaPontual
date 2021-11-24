@@ -24,8 +24,8 @@ public class FeedbackServico {
 	private FeedbackRepositorio2 feeRepo2;
 
 	@Transactional(readOnly = false)
-	public void feedbackCadastro(Feedback feedback) {
-		feeRepo2.save(feedback);
+	public Feedback feedbackCadastro(Feedback feedback) {
+		return feeRepo2.save(feedback);
 	}
 	
 	@Transactional(readOnly = true)
@@ -46,5 +46,10 @@ public class FeedbackServico {
 	@Transactional(readOnly = true)
 	public List<FeedbackCliMedDTO> listaFeedback(Integer idMed) {
 		return feeRepo.listaFeedback(idMed);
+	}
+	
+	@Transactional(readOnly = true)
+	public Feedback buscaFeedPorId(Integer id) {
+		return feeRepo2.buscaFeedPorId(id);
 	}
 }

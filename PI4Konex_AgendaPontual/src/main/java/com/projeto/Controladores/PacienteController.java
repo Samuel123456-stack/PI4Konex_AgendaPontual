@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.projeto.Dto.ConsultaSemFeedDTO;
+import com.projeto.Dto.UltimoIdDTO;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Consulta;
@@ -30,6 +32,7 @@ import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
+import com.projeto.Servicos.UltimoIdDTOServico;
 
 @Controller
 @RequestMapping("/paciente")
@@ -58,6 +61,9 @@ public class PacienteController {
 	
 	@Autowired
 	private ConsultaRepositorio2 cr2;
+	
+	@Autowired
+	private UltimoIdDTOServico ultServ;
 	
 	@GetMapping("/dashboard")
 	public String dashboardPaci() {
@@ -111,21 +117,20 @@ public class PacienteController {
   //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.
     @GetMapping("/feedback")
     public String feedback(@RequestParam(required = false) Integer idUsu, Model model){
-    	idUsu = 11;
+    	idUsu = 9;
     	Paciente paciente = paciServ.pesquisaPacientePorUsuarioId(idUsu);
-    	System.out.println("Código do paciente:" + paciente.getIdPaci());
     	model.addAttribute("feedback", new Feedback());
-    	model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));
-    	List<Consulta> list = cr2.pesquisaConsultaSemFeed(paciente.getIdPaci());
-    	System.out.println("Tamanho da lista "+list.size());
-    	
-        return "/paciente/tela_feedback";
+    	model.addAttribute("num", new UltimoIdDTO());
+    	model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));    	
+        return "/paciente/tela_frame8";
     }
     
     @PostMapping("/feedback/cadastro")
-    public String feedbackCadastro(@ModelAttribute("feedback") Feedback feedback) {
-    	feeServ.feedbackCadastro(feedback);
-    	return ("redirect:/paciente/configuracoes");
+    public String feedbackCadastro(@RequestParam Integer idCons,@ModelAttribute("feedback") Feedback feedback) {
+    	Consulta consulta = consServ.buscaConsultaPorId(idCons);
+    	consulta.setFeedback(feeServ.feedbackCadastro(feedback));
+    	consServ.cadastro(consulta);
+    	return ("redirect:/paciente/feedback");
     }
     
     //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.

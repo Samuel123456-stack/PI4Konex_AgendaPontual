@@ -115,7 +115,7 @@ body{
     margin-right:15px;
     transform:scale(1.5);
 }
-#container-landing input[type="button"]{
+#container-landing input[type="submit"]{
     background:#1CC4BF;
     color:#fff;
     border:0;
@@ -126,7 +126,7 @@ body{
     width:235px;
     text-align: center;
 }
-#container-landing input[type="button"]:hover{
+#container-landing input[type="submit"]:hover{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
 }
 #container-landing .table-patience-list{

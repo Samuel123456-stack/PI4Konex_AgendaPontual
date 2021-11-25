@@ -1,58 +1,49 @@
 package com.projeto.Entidades;
 
+
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+/*
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;*/
 
-@Entity
-@Table(name = "usuario")
-public class Usuario{
-    // Atributos
-
-    @Id
+//@Entity
+//@Table(name = "acesso")
+public class Acesso /*implements UserDetails*/{
+/*
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idusu")
     private int idUsu;
 
     @Column(nullable = false)
-    @NotBlank
-    @NotNull
     private String email;
-
-    @Column(name="emailconfirma",nullable = true)
-    private String confirmaEmail;
 
     @Column(nullable = false)
     @Length(min=6)
     private String senha;
-
-    @Column(name="senhaconfirma",nullable = true)
-    @Length(min=6)
-    private String confirmaSenha;
 
     @Column(nullable = true)
     private String perfil;
     
 
     // Metodo Construtor
-    public Usuario() {
+    public Acesso() {
 
     }
 
     // Metodo Construtor com Atributos
-    public Usuario(int idUsu, String email, String confirmaEmail, String senha, String confirmaSenha, String perfil) {
+    public Acesso(int idUsu, String email, String senha, String perfil) {
         this.idUsu = idUsu;
         this.email = email;
-        this.confirmaEmail = confirmaEmail;
         this.senha = senha;
-        this.confirmaSenha = confirmaSenha;
         this.perfil = perfil;
     }
 
@@ -73,28 +64,12 @@ public class Usuario{
         this.email = email;
     }
 
-    public String getConfirmaEmail() {
-        return confirmaEmail;
-    }
-
-    public void setConfirmaEmail(String confirmaEmail) {
-        this.confirmaEmail = confirmaEmail;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getConfirmaSenha() {
-        return confirmaSenha;
-    }
-
-    public void setConfirmaSenha(String confirmaSenha) {
-        this.confirmaSenha = confirmaSenha;
     }
 
     public String getPerfil() {
@@ -106,4 +81,47 @@ public class Usuario{
     }
 
     
+    //METODOS
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+*/
 }

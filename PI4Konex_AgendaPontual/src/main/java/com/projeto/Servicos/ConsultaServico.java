@@ -87,4 +87,10 @@ public class ConsultaServico {
     public void atualizaIdPagNaIdCons(Integer idPag, Integer idCons){
         conRepo.atualizaIdPagNaIdCons(idPag, idCons);
     }
+    
+    @Transactional(readOnly = false)
+	public void adcionaInformacoes(Integer id, String inforAd) {
+    	Consulta consulta = conRepo.findByIdConsulta(id);
+    	consulta.setInformaAdicio(inforAd);
+	}
 }

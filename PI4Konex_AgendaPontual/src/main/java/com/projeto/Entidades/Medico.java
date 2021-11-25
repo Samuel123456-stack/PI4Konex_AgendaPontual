@@ -16,7 +16,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -109,6 +108,10 @@ public class Medico implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_esp_med")
 	private Especialidade especialidade;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_proj_med")
+	private ProjecaoSalarial proj;
 
 	// Metodo Construtor
 	public Medico() {
@@ -308,6 +311,14 @@ public class Medico implements Serializable {
 
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
+	}
+
+	public ProjecaoSalarial getProj() {
+		return proj;
+	}
+
+	public void setProj(ProjecaoSalarial proj) {
+		this.proj = proj;
 	}
 
 	@Override

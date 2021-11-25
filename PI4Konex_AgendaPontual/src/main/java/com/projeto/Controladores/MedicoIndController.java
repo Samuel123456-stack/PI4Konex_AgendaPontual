@@ -13,9 +13,11 @@ import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Doenca;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Medico;
+import com.projeto.Entidades.ProjecaoSalarial;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.MedicojpaRepository;
+import com.projeto.Repositorios.ProjecaoRepositorio;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.DoencaServico;
 import com.projeto.Servicos.EspecialidadeServico;
@@ -47,6 +49,8 @@ public class MedicoIndController {
     RecepcionistaServico recepServ;
     @Autowired
     PagamentoServico pagServ;
+    @Autowired
+    ProjecaoRepositorio projRepo;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -70,8 +74,6 @@ public class MedicoIndController {
     @RequestMapping("/cadPt1")
     public String cadPt1(@ModelAttribute("medInd") Medico medInd, Model model){
 
-        /*String crm  = medInd.getCrm();
-        Integer idEsp  = medInd.getEspecialidade().getIdEsp();*/
         return "/medInd/primPt2Med";
     }
 
@@ -88,17 +90,25 @@ public class MedicoIndController {
 
     @RequestMapping("/quartoPassoMedInd")
     public String quartoPasso(@ModelAttribute("medInd") Medico medInd,Model model){
-
-        /*Integer idMed = 1;
-        System.out.println("IDMED"+medInd.getEspecialidade().getIdEsp());
-        model.addAttribute("listaDoe", doeServ.buscaDoencaPorMedico(idMed));*/
+    	ProjecaoSalarial projSal = new ProjecaoSalarial();
+    	model.addAttribute("proj", projSal);
 
         return "/medInd/priMedClin";
     }
+    
+    @RequestMapping("/salvaProj")
+    public String salvaProj(@ModelAttribute("medInd") Medico medInd,
+    @ModelAttribute("proj")ProjecaoSalarial projSal, Model model) {
+    	medInd.setIdMed(1);
+        projSal.setMedico(medInd);
+    	projRepo.save(projSal);
+    	return "/medInd/priMedClin";
+    }
 
     @RequestMapping("/projSalarialMedInd")
-    public String projSalarialMedInd(){
-
+    public String projSalarialMedInd(@ModelAttribute("projSal")ProjecaoSalarial projSal, Model model){
+        
+        
         return "";
     }
 

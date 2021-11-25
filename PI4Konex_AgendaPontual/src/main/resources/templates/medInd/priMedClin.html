@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/priMedClin.css">
+    <script type="text/javascript">
+    $('input[type=checkbox]').change(function(){
+    	var x=document.getElementById("selectDias");
+    	var limit = x.options[x.selectedIndex].value;
+    	   if ($('input[name=diaSemana]:checked').length > limit) {
+    	        $(this).prop('checked', false)
+    	   }
+    	})
+    </script>
     <title>Primeiro Acesso Pt3</title>
 </head>
 <body>
@@ -41,31 +50,31 @@
         
 
         <div class="proj">
-            <form th:action="@{/medInd/projSalarialMedInd}">
+            <form th:action="@{/medInd/salvaProj}">
                 <h1>1. Estamos na última etapa, finalizando ela será redirecionado(a) para o seu painel.</h1>
                 <div class="dirProj">
                     <div class="lucro">
                         <p>LUCRO POR PACIENTE</p>
-                        <input type="text" name="lucroPaci" placeholder="Qual o valor recebido por paciente">
+                        <input type="text" name="valorPaci" th:field="*{proj.valorPaci}" placeholder="Qual o valor recebido por paciente">
                     </div>
                     <div class="meta">
                         <p>META SALARIAL</p>
-                        <input type="text" name="metaSal" placeholder="Qual é o valor da sua meta?">
+                        <input type="text" name="metaPaci" th:field="*{proj.metaPaci}" placeholder="Qual é o valor da sua meta?">
                     </div>
                     <div class="inicio">
                         <p>INICIO DO EXPEDIENTE</p>
-                        <input type="time" name="inicio">
+                        <input type="time" name="horaInicio" th:field="*{proj.horaInicio}">
                     </div>
                     <div class="termino">
                         <p>TÉRMINO DO EXPEDIENTE</p>
-                        <input type="time" name="termino">
+                        <input type="time" name="horaSaida" th:field=*{proj.horaSaida}>
                     </div>
                     <div class="intervalo">
                         <p>INTERVALO</p>
                         <h4>Você deseja ativar o tempo de segurança? Recomendamos que seja ativado para precaver atrasos na primeira consulta do dia.</h4>
-                        <input type="radio" class="option-radio" name="intervalo" value="sim" />
+                        <input type="radio" class="option-radio" name="tempoSeguranca" th:field="*{proj.tempoSeguranca}" value="1" />
                         <label for="sim">Sim</label>
-                        <input type="radio" class="option-radio" name="intervalo" value="nao" />
+                        <input type="radio" class="option-radio" name="tempoSeguranca" th:field="*{proj.tempoSeguranca}" value="0" />
                         <label for="nao">Não</label>
                     </div>
                 </div>
@@ -100,9 +109,7 @@
                     </div>
                     <div class="interloTempo">
                         <p>INTERVALO</p>
-                        <select name="interloTempo">
-                            <option value="" disabled selected>Quanto tempo é o seu intervalo?</option>
-                        </select>
+                        <input type="time" name="horaIntervalo" th:field="*{proj.horaIntervalo}">
                     </div>
                     <input type="submit" value="SALVAR ALTERAÇÕES DA PROJEÇÃO">
                     <button type="reset">

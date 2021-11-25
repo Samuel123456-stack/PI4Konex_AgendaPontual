@@ -72,5 +72,19 @@ public class ConsultaServico {
 	public List<Consulta> consultasMarcadas(Integer paciente){
 		return conRepo.consultasMarcadas(paciente);
 	}
-
+	
+	@Transactional(readOnly = false)
+	public void excluiConsulta(Integer idCons){
+		conRepo.deleteById(idCons);
+	}
+	
+	@Transactional(readOnly = false)
+    public Consulta alteraConsulta(Consulta cons){
+        Integer idCons = cons.getIdConsulta();
+        Consulta consulta = conRepo.findById(idCons).get();
+        consulta.setDtAgendada(cons.getDtAgendada());
+        consulta.setHora(cons.getHora());
+        consulta.setInformaAdicio(cons.getInformaAdicio());
+        return conRepo.save(consulta);
+    }
 }

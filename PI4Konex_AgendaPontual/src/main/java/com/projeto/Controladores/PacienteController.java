@@ -1,7 +1,5 @@
 package com.projeto.Controladores;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.projeto.Dto.ConsultaSemFeedDTO;
 import com.projeto.Dto.UltimoIdDTO;
 import com.projeto.Entidades.Ajuda;
-import com.projeto.Entidades.Cidade;
 import com.projeto.Entidades.Consulta;
-import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Feedback;
-import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLetter;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
@@ -32,7 +26,6 @@ import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
-import com.projeto.Servicos.UltimoIdDTOServico;
 
 @Controller
 @RequestMapping("/paciente")
@@ -65,7 +58,7 @@ public class PacienteController {
 	
 	@GetMapping("/dashboard")
 	public String dashboardPaci(Model model) {
-		Integer idUsu = 1;
+		Integer idUsu = 11;
 		//paciServ.pesquisaPacientePorUsuarioId(idUsu)
 		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
 		
@@ -79,18 +72,15 @@ public class PacienteController {
 			@RequestParam(required = false) String sexFem, @RequestParam(required = false) Float valorMin,
 			@RequestParam(required = false) Float valorMax, @RequestParam(required = false) Integer minExp,
 			@RequestParam(required = false) Integer maxExp) {
-		
+
 		ModelAndView mv = new ModelAndView("/paciente/novaConsulta");
 
-		List<Medico> medicos = medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem,valorMin,
-				valorMax, minExp, maxExp);
-		List<Cidade> cidades = cidServ.findAll();
-		List<Especialidade> especs = espServ.findAll();
-		mv.addObject("cidades", cidades);
-		mv.addObject("medicos", medicos);
-		mv.addObject("especs", especs);
+		mv.addObject("cidades", cidServ.findAll());
+		mv.addObject("medicos",
+				medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin, valorMax, minExp, maxExp));
+		mv.addObject("especs", espServ.findAll());
 		mv.addObject("news", new NewsLetter());
-		return mv;
+return mv;
 	}
 	
 	@PostMapping("/cadastro/validacao/{id}")
@@ -108,8 +98,27 @@ public class PacienteController {
     }
     
     @GetMapping("/consultas")
-    public String consultas(){
+    public String consultas(Model model){
+    	model.addAttribute("lista", consServ.consultasMarcadas(11));
         return "/paciente/consultas";
+    }
+    
+    @PostMapping("/consulta/cancela")
+    public String cancelaConsulta(@RequestParam Integer idCons) {
+    	consServ.excluiConsulta(idCons);
+    	return ("redirect:/paciente/consultas");
+    }
+    
+    @GetMapping("/consultas/detalhes/{idCons}")
+    public String consultasDetalhes(@PathVariable("idCons") Integer idCons, Model model){
+    	model.addAttribute("lista", consServ.consultasMarcadas(11));
+        return "/paciente/consultas";
+    }
+    
+    @PostMapping("/consulta/alterea")
+    public String alteraConsulta(@RequestParam Integer idCons) {
+    	consServ.excluiConsulta(idCons);
+    	return ("redirect:/paciente/consultas");
     }
     
     @GetMapping("/radarPontual")
@@ -124,7 +133,7 @@ public class PacienteController {
     	model.addAttribute("feedback", new Feedback());
     	model.addAttribute("num", new UltimoIdDTO());
     	model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));    	
-        return "/paciente/tela_frame8";
+        return "/paciente/tela_feedback";
     }
     
     @PostMapping("/feedback/cadastro")

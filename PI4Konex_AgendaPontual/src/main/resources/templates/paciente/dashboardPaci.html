@@ -110,17 +110,17 @@
             </svg>
             <h1>Dashboard</h1>
         </div>
-        <div class="consultaAgen">
-            <form action="">
+        <div class="consultaAgen" th:each="resumo, stat: ${resumo}">
+            <form action="" >
                 <div class="dadosAgen">
                 <h2>Consulta agendada</h2>
                 <img src="/image/med1.png" alt="Foto do medico">
-                <h3>Dr. Wilson Santos</h3>
-                <img src="/web/image/svgSacoDin.svg" id="svg">      
-                <p>Valor da consulta: R$ 100,00</p>
+                <h3 th:text="${resumo.medico.nomeMed}"></h3>
+                <img src="/web/image/svgSacoDin.svg" id="svg"> 
+                <p th:text="${#numbers.formatCurrency(resumo.medico.valorMed)}"></p>
 
                 <img src="/image/svgRelogio.svg" id="svg">
-                <p>23 Out 2021, 16:40 Fuso horário: Brasilia</p>
+                <p th:text="${#temporals.format(resumo.dtAgendada, 'dd MMM yyyy') +', '+ resumo.hora + ' Fuso horário: Brasilia'}"></p>
             </div>
             <div id="btnAgen">
                 <input type="submit" value="Ver mais">

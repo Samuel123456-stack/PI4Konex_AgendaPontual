@@ -62,11 +62,13 @@ public class PacienteController {
 	@Autowired
 	private ConsultaRepositorio2 cr2;
 	
-	@Autowired
-	private UltimoIdDTOServico ultServ;
 	
 	@GetMapping("/dashboard")
-	public String dashboardPaci() {
+	public String dashboardPaci(Model model) {
+		Integer idUsu = 1;
+		//paciServ.pesquisaPacientePorUsuarioId(idUsu)
+		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
+		
 		return ("/paciente/dashboardPaci");
 	}
 	

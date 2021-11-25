@@ -31,10 +31,9 @@ public class ConsultaServico {
     public Consulta atualizaCons(Consulta cons){
         Integer idCons = cons.getIdConsulta();
         Consulta consulta = conRepo.findById(idCons).get();
-        //agenda.setDataAgendada(agen.getDataAgendada());
-        //Integer idhorario = repoAgen.verificaIdHora(agenda.getIdHora().getHorario());
-        //agenda.setIdHora(agenda.getHora().getIdHora());
-        //agenda.setInfoAdicAgen(agen.getInfoAdicAgen());
+        consulta.setDtAgendada(cons.getDtAgendada());
+        consulta.setHora(cons.getHora());
+        consulta.setInformaAdicio(cons.getInformaAdicio());
         return conRepo.save(consulta);
     }
 

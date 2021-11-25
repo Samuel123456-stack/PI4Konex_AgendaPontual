@@ -81,6 +81,7 @@
                             <img src="/image/user-recep.png" alt="user-photo" />
                         </li>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaSair}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -94,6 +95,7 @@
                                     fill="#546582" />
                             </svg>
                             <span>Sair</span>
+                        </a>
                         </li>
                     </ul>
                 </div>
@@ -168,7 +170,7 @@
                     </a>
                     </button>
                     <button type="button">
-                        <a style="text-decoration: none;" th:href="@{/recepcionista/consRecep}">
+                        <a style="text-decoration: none;" th:href="@{/recepcionista/telaAlteraDados}">
                         <img src="/image/note-icon.png" alt="icon" />
                         CONSULTAR AGENDAMENTOS
                     </a>
@@ -192,11 +194,11 @@
                     <p>Serve ter informações do cliente.</p>
 
                     <div class="form-cep">
-                        <form action="" method="">
+                        <form th:action="@{/recepcionista/formConsRecep}" method="">
                             <div class="main-input">
                                 <div class="cep-input">
-                                    <p>CEP</p>
-                                    <input type="text" name="cep" placeholder="___.___.___-__" />
+                                    <p>CPF</p>
+                                    <input type="text" name="cpf" th:field="*{paci.cpf}" placeholder="___.___.___-__" />
                                 </div>
 
                                 <input type="submit" value="CONSULTAR" />

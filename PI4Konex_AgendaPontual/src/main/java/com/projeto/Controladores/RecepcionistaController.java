@@ -29,9 +29,11 @@ import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Pagamento;
 import com.projeto.Entidades.Recepcionista;
+import com.projeto.Entidades.Triagem;
 import com.projeto.Entidades.Usuario;
-import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.ConsultaRepositorio;
+import com.projeto.Repositorios.MedicojpaRepository;
+import com.projeto.Repositorios.TriagemRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.ClinicasServico;
@@ -72,13 +74,20 @@ public class RecepcionistaController {
     DoencaServico doeServ;
     @Autowired
     FeedbackServico feedServ;
+    @Autowired
+    TriagemRepositorio repoTri;
+    @Autowired
+    MedicojpaRepository medRepo;
+
     
 
 
     @GetMapping("/painelRecep")
     private String painelRecep(Model model) {
+        Paciente paci = new Paciente();
         Integer idCli = 1;
         List<Consulta> listagemPainel = consServ.listagemPainel(idCli);
+        model.addAttribute("paci", paci);
         model.addAttribute("listagemPainel", listagemPainel);
         return "/recepcionista/tela_painelRecep";
     }
@@ -88,11 +97,13 @@ public class RecepcionistaController {
         Paciente paci = new Paciente();
         Usuario usu = new Usuario();
         Endereco end = new Endereco();
+        Triagem tri = new Triagem();
         Medico med = medServ.infoMed(1);
         model.addAttribute("med", med);
         model.addAttribute("paciente", paci);
         model.addAttribute("usuario", usu);
         model.addAttribute("endereco", end);
+        model.addAttribute("triagem", tri);
         return "/recepcionista/tela_cadClientes";
 
     }
@@ -102,11 +113,15 @@ public class RecepcionistaController {
     @RequestParam(required = false) Float valorMin, @RequestParam(required = false) Float valorMax,
     @RequestParam(required = false) String sexFem, @RequestParam(required = false) String sexMas, 
     @ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, 
-    @ModelAttribute("endereco") Endereco end, Model model){
+    @ModelAttribute("endereco") Endereco end, Triagem tri, Model model){
         //Salva as Informações
         //recepServ.criaPaci(paci);
         //usuServ.criaUsu(usu);
         //recepServ.criaEnd(end);
+        //tri.setPaciente(paci);
+        //repoTri.save(tri);
+        
+        
         ModelAndView modelView = new ModelAndView("/recepcionista/tela_agendamento");
         //Cria a listagem do filtro e seus atributos
         
@@ -123,7 +138,8 @@ public class RecepcionistaController {
     @RequestMapping("/selecMed")
     public String infoEspecialista(@RequestParam Integer idMed, Model model){
         Consulta cons = new Consulta();
-        consServ.cadastro(cons);
+        Medico med = medRepo.findById(idMed).get();
+        cons.setMedico(med);
         model.addAttribute("medResumo", medServ.medicoResumo(idMed));
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(idMed));
         model.addAttribute("feedPos", feedServ.buscaPositiva(idMed));
@@ -139,18 +155,16 @@ public class RecepcionistaController {
     public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Consulta consulta, Model model){
         //Verificar melhor esse metodo
         Date dataAtual = new Date();
-        //DateFormat dataFormatada = new SimpleDateFormat("dd-MM-YYYY");
         consulta.setDtAgendada(dataAtual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        Medico med = medServ.infoMed(id);
+        Medico med = medRepo.findById(id).get();
         consulta.setMedico(med);
         consServ.cadastro(consulta);
-        model.getAttribute("medResumo");
         return "/recepcionista/tela_agendamento";
     }
 
     //Passa para a tela de Consulta da Recepcionista
-    @RequestMapping("/consRecep")
-    public String consultaRecep(Model model){
+    @RequestMapping("/telaAlteraDados")
+    public String telaAlteraDados(Model model){
         Paciente paci = new Paciente();
         Endereco end = new Endereco();
         Usuario usu = new Usuario();
@@ -163,12 +177,25 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/formConsRecep")
-    public String formConsultaRecep(@ModelAttribute("paci") Paciente paci, @ModelAttribute("end") Endereco end,@ModelAttribute("usu") Usuario usu,  Model model){
-        Integer idPaci = recepServ.buscaIdporNome(paci.getNomePaci());
+    public String formConsultaRecep(@ModelAttribute("paci") Paciente paci,Model model){
+        Integer idPaci = recepServ.buscaPacienteporCPF(paci.getCpf());
         List<Consulta> listaConsulta = consServ.listaCons(idPaci);
         model.addAttribute("listaConsulta", listaConsulta);
 
         return "/recepcionista/tela_consRes";
+    }
+
+    @RequestMapping("/alteraDados")
+    public String alteraDadosPaci(@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,@ModelAttribute("usu") Usuario usu, Model model){
+        paci.setIdPaci(1);
+        end.setIdEnd(9);
+        usu.setIdUsu(9);
+        paci.setEndereco(end);
+        paci.setUsuario(usu);
+        recepServ.atualizaPaci(paci);
+        recepServ.atualizaEnd(end);
+        usuServ.atualizaUsuario(usu);
+        return painelRecep(model);
     }
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
@@ -192,7 +219,6 @@ public class RecepcionistaController {
     //Valida o Agendamento e direciona para a tela da recepionista
     @RequestMapping("/validaAgen")
     public String validaAgen(Model model){
-
         return painelRecep(model);
     }
    
@@ -296,5 +322,11 @@ public class RecepcionistaController {
     public String telaCancelaLista(@RequestParam String cpf, @RequestParam Integer idConsulta,Model model){
         consServ.cancelaConsulta(cpf, idConsulta);
         return painelRecep(model);
+    }
+
+    @RequestMapping("/telaSair")
+    public String telaSair(){
+        
+        return "/recepcionista/tela_sair";
     }
 }

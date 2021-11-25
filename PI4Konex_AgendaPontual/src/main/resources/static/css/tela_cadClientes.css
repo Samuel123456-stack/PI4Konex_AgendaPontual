@@ -3,6 +3,7 @@
     margin:0;
     padding:0;
     outline:0;
+    margin-right: 10px;
     box-sizing: border-box;
     font-family: 'Mulish', sans-serif;
     list-style: none;
@@ -243,4 +244,26 @@ body{
   }
   #container-landing input[type="checkbox"]{
     border-radius: 100px;
+    margin-right: 10px;
+  }
+
+
+  .testeDoenca:not(:checked) + label {
+    background-color: #DDDDDD;
+    color: #a7a7a7;
+}
+  .testeDoenca + label {
+    font: 13px "Microsoft Yahei";
+    display: table;
+    font-size: 15px;
+    padding: 10px 25px 10px 10px;
+    background-color: rgba(0, 255, 240, 3);
+    color: #b3b3b3;
+    border-radius: 5px;
+    margin-right: 10px;
+    border-radius:6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
   }

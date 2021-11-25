@@ -81,8 +81,19 @@ public class RecepcionistaServico {
         repoPaci.deleteById(id);
     }
     @Transactional(readOnly = true)
-    public Integer buscaIdporNome(String nome){
-        return repoPaci.buscaIdporNome(nome);
+    public Integer buscaPacienteporCPF(String nome){
+        return repoPaci.buscaPacienteporCPF(nome);
+    }
+
+    @Transactional(readOnly = false)
+    public Paciente atualizaPaci(Paciente paci){
+        Integer idPaci = paci.getIdPaci();
+        Paciente paciente = repoPaci.findById(idPaci).get();
+        paciente.setNomePaci(paci.getNomePaci());
+        paciente.setCpf(paci.getCpf());
+        paciente.setDataNasc(paci.getDataNasc());
+        paciente.setSexo(paci.getSexo());
+        return repoPaci.save(paciente);
     }
 
     //Metodos do CRUD Endereco
@@ -101,6 +112,18 @@ public class RecepcionistaServico {
 
     public void deletaEndPorId(Integer id){
         repoEnd.deleteById(id);
+    }
+
+    @Transactional(readOnly = false)
+    public Endereco atualizaEnd(Endereco end){
+        Integer idEnd = end.getIdEnd();
+        Endereco endereco = repoEnd.findById(idEnd).get();
+        endereco.setLogradouro(end.getLogradouro());
+        endereco.setComplemento(end.getComplemento());
+        endereco.setCep(end.getCep());
+        endereco.setNumero(end.getNumero());
+
+        return repoEnd.save(endereco);
     }
 
 

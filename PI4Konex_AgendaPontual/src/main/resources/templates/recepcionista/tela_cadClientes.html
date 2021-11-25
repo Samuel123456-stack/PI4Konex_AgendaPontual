@@ -9,6 +9,37 @@
     <meta name="author" content="konex-group">
 
     <link rel="stylesheet" href="/css/tela_cadClientes.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="jquery-nicelabel.css" rel="stylesheet">
+    <script src="/js/jquery.nicelabel.js"></script>
+    <script>
+        $(function(){
+            $('#rect-checkbox > input').nicelabel();
+            $('#rect-radio > input').nicelabel();
+            $('#circle-checkbox > input').nicelabel();
+            $('#circle-radio > input').nicelabel();
+            $('#text-checkbox > input').nicelabel();
+            $('#text-radio > input').nicelabel();
+            $('#text-checkbox-ico > input:eq(0)').nicelabel({
+                checked_ico: './ico/checked.png',
+                unchecked_ico: './ico/unchecked.png'
+            });
+            $('#text-checkbox-ico > input:eq(1)').nicelabel({
+                checked_ico: './ico/checked.png',
+                unchecked_ico: './ico/unchecked.png'
+            });
+            $('#text-checkbox-ico > input:eq(2)').nicelabel({
+                checked_ico: './ico/checked.png',
+                unchecked_ico: './ico/unchecked.png'
+            });
+            $('#text-checkbox-ico > input:eq(3)').nicelabel({
+                uselabel: false
+            });
+            
+        });
+        </script>
+
+
 </head>
 
 <body>
@@ -52,6 +83,7 @@
                 <div class="menu-selection">
                     <ul>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaAtualizaRecep}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -59,8 +91,10 @@
                                     fill="#546582" />
                             </svg>
                             <span>Configurações</span>
+                        </a>
                         </li>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaAjuda}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -71,11 +105,13 @@
                                     fill="#546582" />
                             </svg>
                             <span>Ajuda</span>
+                        </a>
                         </li>
                         <li>
                             <img src="/image/user-recep.png" alt="user-photo" />
                         </li>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaSair}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -89,6 +125,7 @@
                                     fill="#546582" />
                             </svg>
                             <span>Sair</span>
+                        </a>
                         </li>
                     </ul>
                 </div>
@@ -250,27 +287,81 @@
 
                     <div class="diseases-list">
                         <div class="first-list">
-                            <section class="cirrose">Cirrose hepática</section>
-                            <section class="diabete">Diabete mellitus</section>
-                            <section class="cerebro">Doença cerebrovascular</section>
-                            <section class="renal">Doença renal crônica</section>
-                            <section class="neurologico">Doenças neurológicas</section>
+                            <input id="doe1" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="1"  type="checkbox"/>                            
+                            <label class="testeDoenca" for="doe1">
+                                <span>Cirrose hepática</span>
+                            </label>
+                            <input id="doe2" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="2" type="checkbox">                            
+                            <label class="testeDoenca" for="doe2">
+                                <span>Diabete mellitus</span>
+                            </label>
+                            <input id="doe3" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="3" type="checkbox">                            
+                            <label class="testeDoenca" for="doe3">
+                                <span>Doença cerebrovascular</span>
+                            </label>
+                            <input id="doe4" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="4" type="checkbox">                            
+                            <label class="testeDoenca" for="doe4">
+                                <span>Doenças neurológicas</span>
+                            </label>
+                            <input id="doe5" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="5" type="checkbox">                            
+                            <label class="testeDoenca" for="doe5">
+                                <span>Hemoglobinopatias graves</span>
+                            </label>
+                            <input id="doe6" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="6" type="checkbox">                            
+                            <label class="testeDoenca" for="doe6">
+                                <span>Hipertensão</span>
+                            </label>
                         </div>
 
                         <div class="second-list">
-                            <section class="hemoglo">Hemoglobinopatias graves</section>
-                            <section class="hipertensao">Hipertensão</section>
-                            <section class="imunosso">Imunossuprimidos</section>
-                            <section class="insuficiencia">Insuficiencia cardíaca</section>
-                            <section class="obesidade">Obesidade mórbida</section>
+                            <input id="doe7" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="7" type="checkbox">                            
+                            <label class="testeDoenca" for="doe7">
+                                <span>Imunossuprimidos</span>
+                            </label>
+                            <input id="doe8" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="8" type="checkbox">                            
+                            <label class="testeDoenca" for="doe8">
+                                <span>Insuficiencia Cardiaca</span>
+                            </label>
+                            <input id="doe9" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="9" type="checkbox">                            
+                            <label class="testeDoenca" for="doe9">
+                                <span>Pneumopatias cronicas graves</span>
+                            </label>
+                            <input id="doe10" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="10" type="checkbox">                            
+                            <label class="testeDoenca" for="doe10">
+                                <span>Sindrome de Down</span>
+                            </label>
+                            <input id="doe11" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="11" type="checkbox">                            
+                            <label class="testeDoenca" for="doe11">
+                                <span>Sindromes conorarianas</span>
+                            </label>
+
                         </div>
 
                         <div class="third-list">
-                            <section class="pneumopatia">Pneumopatias crônicas graves</section>
-                            <section class="sindrome">Sindrome de Down</section>
-                            <section class="coronarianas">Sindromes conorarianas</section>
-                            <section class="volvopatia">Volvopatia</section>
-                        </div>
+                            <input id="doe12" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="12" type="checkbox">                            
+                            <label class="testeDoenca" for="doe12">
+                                <span>Dores de Cabeça</span>
+                            </label>
+                            <input id="doe13" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="13" type="checkbox">                            
+                            <label class="testeDoenca" for="doe13">
+                                <span>Náuseas</span>
+                            </label>
+                            <input id="doe14" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="14" type="checkbox">                            
+                            <label class="testeDoenca" for="doe14">
+                                <span>Febre</span>
+                            </label>
+                            <input id="doe15" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="15" type="checkbox">                            
+                            <label class="testeDoenca" for="doe15">
+                                <span>Dor no Olho</span>
+                            </label>
+                            <input id="doe16" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="16" type="checkbox">                            
+                            <label class="testeDoenca" for="doe16">
+                                <span>Dificuldade de Visão </span>
+                            </label>
+                            <input id="doe17" class="testeDoenca" name="idDoenca" th:field="*{triagem.doenca.idDoenca}" value="17" type="checkbox">                            
+                            <label class="testeDoenca" for="doe17">
+                                <span>Conjuntivite</span>
+                            </label>
                     </div>
                 </div>
                 <footer class="button-next">

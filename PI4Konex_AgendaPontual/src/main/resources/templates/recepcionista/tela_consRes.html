@@ -53,6 +53,7 @@
                 <div class="menu-selection">
                     <ul>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaAtualizaRecep}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -60,8 +61,10 @@
                                     fill="#546582" />
                             </svg>
                             <span>Configurações</span>
+                        </a>
                         </li>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaAjuda}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -72,11 +75,13 @@
                                     fill="#546582" />
                             </svg>
                             <span>Ajuda</span>
+                        </a>
                         </li>
                         <li>
                             <img src="/image/user-recep.png" alt="user-photo" />
                         </li>
                         <li>
+                            <a style="text-decoration: none;" th:href="@{/recepcionista/telaSair}">
                             <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -90,6 +95,7 @@
                                     fill="#546582" />
                             </svg>
                             <span>Sair</span>
+                        </a>
                         </li>
                     </ul>
                 </div>
@@ -97,10 +103,10 @@
         </header>
 
         <main class="main-page">
-            <div class="form-container">
+            <div class="form-container" th:if="${listaConsulta==null}">
                 <h3>Resultado da consulta</h3>
                 <div class="form-structure">
-                    <form action="#" th:action="@{/recepcionista/formConsRecep}" method="">
+                    <form action="#" th:action="@{/recepcionista/alteraDados}" method="">
                         <div class="first-block">
                             <div class="input-block">
                                 <p>NOME</p>
@@ -116,26 +122,14 @@
                                 <p>DATA DE NASCIMENTO</p>
                                 <input name="dataNasc" th:field="*{paci.dataNasc}" class="birht-date">
                             </div>
-                            <div class="input-block">
-                                <p>ESTADO NASC</p>
-                                <select name="state-birth" id="subject" disabled="disabled">
-                                    <option value="">PR</option>
-                                </select>
-                            </div>
-                            <div class="input-block">
-                                <p>CIDADE NATAL</p>
-                                <select name="hometown" id="subject" disabled="disabled">
-                                    <option value="">Londrina</option>
-                                </select>
-                            </div>
                         </div>
 
                         <div class="second-block">
                             <div class="input-block">
-                                <input type="checkbox" name="sexo" value="Feminino" th:field="*{paci.sexo}"/>
-                                <span class="female">Feminino</span>
                                 <input type="checkbox" name="sexo" value="Masculino" th:field="*{paci.sexo}"/>
                                 <span class="female">Masculino</span>
+                                <input type="checkbox" name="sexo" value="Feminino" th:field="*{paci.sexo}"/>
+                                <span class="female">Feminino</span>
                             </div>
 
                             <div class="input-block">
@@ -170,11 +164,6 @@
                                 <span>Não assinante de Newslatter</span>
                             </div>
 
-                            <div class="input-block">
-                                <p>DATA DE CADASTRO</p>
-                                <input name="dataCriaPaci" class="register-date">
-                            </div>
-
                             <div class="submit-button">
                                 <input type="submit" value="ALTERAR DADOS" />
                             </div>
@@ -184,7 +173,7 @@
             </div>
         </main>
 
-        <div class="table-patience-list">
+        <div class="table-patience-list" th:if="${listaConsulta==null}">
             <h3>Lista de Agendamentos</h3>
             <table>
                 <thead>

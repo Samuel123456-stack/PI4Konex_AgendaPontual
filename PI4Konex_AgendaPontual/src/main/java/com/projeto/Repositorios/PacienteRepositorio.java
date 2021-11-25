@@ -8,11 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface PacienteRepositorio extends JpaRepository<Paciente,Integer> {
 
-    @Query(nativeQuery = true, value = "select p.idpaci from paciente as p where p.nome=?1")
-    Integer buscaIdporNome(String nome);
-
-    @Query(nativeQuery = true, value = "select p.fk_end_paci from paciente as p where")
-    Integer buscaIdEndporNome(String nome);
+    @Query(nativeQuery = true, value = "select * from paciente as p inner join usuario as u "
+    +"on p.fk_usu_paci=u.idusu inner join endereco as e on p.fk_end_paci=e.idend where p.cpf=?1")
+    Integer buscaPacienteporCPF(String cpf);
     
 //    @Query(nativeQuery = true, value = "select p.idpaci, p.foto, p.nome, p.cpf, p.datanasci, p.rg, p.celular, "
 //    		+ "p.sexo, p.primeiraconsulta, p.sintomasgripe, p.termouso, p.fk_end_paci, p.fk_usu_paci "

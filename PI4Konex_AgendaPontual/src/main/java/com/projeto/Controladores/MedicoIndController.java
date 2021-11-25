@@ -112,7 +112,7 @@ public class MedicoIndController {
     @RequestMapping("/consoleMed")
     public String consoleMed(){
 
-        return "";
+        return ("/medInd/console");
     }
 
     @RequestMapping("/consultarAgenda")

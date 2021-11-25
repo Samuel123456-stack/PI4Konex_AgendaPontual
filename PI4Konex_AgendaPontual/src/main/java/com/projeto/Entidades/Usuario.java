@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario{
     // Atributos
 
     @Id
@@ -106,4 +105,5 @@ public class Usuario {
         this.perfil = perfil;
     }
 
+    
 }

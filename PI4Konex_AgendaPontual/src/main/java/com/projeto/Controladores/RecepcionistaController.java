@@ -33,6 +33,7 @@ import com.projeto.Entidades.Triagem;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.ConsultaRepositorio;
 import com.projeto.Repositorios.MedicojpaRepository;
+import com.projeto.Repositorios.PacienteRepositorio;
 import com.projeto.Repositorios.TriagemRepositorio;
 import com.projeto.Repositorios.UsuarioRepositorio;
 import com.projeto.Servicos.AjudaServico;
@@ -78,6 +79,8 @@ public class RecepcionistaController {
     TriagemRepositorio repoTri;
     @Autowired
     MedicojpaRepository medRepo;
+    @Autowired
+    PacienteRepositorio paciRepo;
 
     
 
@@ -107,38 +110,79 @@ public class RecepcionistaController {
         return "/recepcionista/tela_cadClientes";
 
     }
+
+    @RequestMapping("/telaPaciAgen")
+    public String telaPaciAgen(Model model){
+        Paciente paci = new Paciente();
+
+        model.addAttribute("paciente", paci);
+        return "/recepcionista/tela_paciAgen";
+    }
+
+    @RequestMapping("/conPaciAgen")
+    public String conPaciAgen(@ModelAttribute("paciente")Paciente paci, Model model){
+        Integer idPaci =recepServ.buscaPacienteporCPF(paci.getCpf());
+        paci = paciRepo.findById(idPaci).get();
+        Consulta cons = new Consulta();
+        Paciente paciente = paci;
+        cons.setPaciente(paciente);
+        Integer idEsp = 0;
+        Integer idCid = 0;
+        Integer idCli = 0;
+        Float valorMin = 0f;
+        Float valorMax = 0f;
+        String sexFem = "";
+        String sexMas = "";
+        Usuario usu = new Usuario();
+        Endereco end = new Endereco();
+        Triagem tri = new Triagem();
+        
+        model.addAttribute("usuario", usu);
+        model.addAttribute("endereco", end);
+        model.addAttribute("paciente", paciente);
+
+        return salvaInfoPaciBD(idEsp, idCid, idCli, valorMin, valorMax, sexFem, sexMas,idPaci, paci, usu, end, tri, model);
+        
+    }
+
     @RequestMapping("/addAgenda")
-    public ModelAndView salvaInfoPaciBD(@RequestParam(required = false) Integer idEsp,
+    public String salvaInfoPaciBD(@RequestParam(required = false) Integer idEsp,
     @RequestParam(required = false) Integer idCid, @RequestParam(required = false) Integer idCli,
     @RequestParam(required = false) Float valorMin, @RequestParam(required = false) Float valorMax,
     @RequestParam(required = false) String sexFem, @RequestParam(required = false) String sexMas, 
-    @ModelAttribute("paciente") Paciente paci, @ModelAttribute("usuario") Usuario usu, 
-    @ModelAttribute("endereco") Endereco end, Triagem tri, Model model){
+    @RequestParam(required = false) Integer idPaci, @ModelAttribute("paciente") Paciente paci, 
+    @ModelAttribute("usuario") Usuario usu, @ModelAttribute("endereco") Endereco end, Triagem tri, 
+    Model model){
         //Salva as Informações
-        //recepServ.criaPaci(paci);
-        //usuServ.criaUsu(usu);
-        //recepServ.criaEnd(end);
-        //tri.setPaciente(paci);
-        //repoTri.save(tri);
-        
-        
-        ModelAndView modelView = new ModelAndView("/recepcionista/tela_agendamento");
+        if(paci.getIdPaci()==null){
+
+            return telaPaciAgen(model);
+        }else if(paci.getIdPaci()!=null && usu.getIdUsu()!=null){
+        recepServ.criaPaci(paci);
+        usuServ.criaUsu(usu);
+        recepServ.criaEnd(end);
+        tri.setPaciente(paci);
+        repoTri.save(tri);
+        }
         //Cria a listagem do filtro e seus atributos
-        
+        System.out.println("Paciente:"+ paci.getIdPaci());
+        paci = paciRepo.findById(idPaci).get();
         List<Cidade> listaCid = recepServ.listarTodosCid();
         List<Especialidade> listaEsp = espServ.findAll();
         List<Medico> listaFiltraMed = medServ.filtraMedCli(idEsp, idCid, idCli, sexMas, sexFem, valorMin, valorMax);
-        modelView.addObject("listaCid", listaCid);
-        modelView.addObject("listaEsp", listaEsp);
-        modelView.addObject("listaFiltraMed", listaFiltraMed);
-        return modelView;
+        model.addAttribute("listaCid", listaCid);
+        model.addAttribute("listaEsp", listaEsp);
+        model.addAttribute("listaFiltraMed", listaFiltraMed);
+        return "/recepcionista/tela_agendamento";
     }
 
     //Seleciona o Medico para saber suas informações
     @RequestMapping("/selecMed")
-    public String infoEspecialista(@RequestParam Integer idMed, Model model){
+    public String infoEspecialista(@RequestParam Integer idMed, @RequestParam(required = false) Integer idPaci,
+    @ModelAttribute("paciente")Paciente paci, Model model){
         Consulta cons = new Consulta();
         Medico med = medRepo.findById(idMed).get();
+        paci = paciRepo.findById(idPaci).get();
         cons.setMedico(med);
         model.addAttribute("medResumo", medServ.medicoResumo(idMed));
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(idMed));
@@ -152,12 +196,15 @@ public class RecepcionistaController {
 
     //Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/salvaInfoAdic")
-    public String salvaInfoAdici(@RequestParam Integer id,@ModelAttribute("agenda")Consulta consulta, Model model){
+    public String salvaInfoAdici(@RequestParam Integer id, @RequestParam(required = false) Integer idPaci,
+    @ModelAttribute("agenda")Consulta consulta, @ModelAttribute("paciente")Paciente paci, Model model){
         //Verificar melhor esse metodo
         Date dataAtual = new Date();
         consulta.setDtAgendada(dataAtual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         Medico med = medRepo.findById(id).get();
+        paci = paciRepo.findById(idPaci).get();
         consulta.setMedico(med);
+        consulta.setPaciente(paci);
         consServ.cadastro(consulta);
         return "/recepcionista/tela_agendamento";
     }
@@ -177,7 +224,8 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/formConsRecep")
-    public String formConsultaRecep(@ModelAttribute("paci") Paciente paci,Model model){
+    public String formConsultaRecep(@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,
+    	    @ModelAttribute("usu") Usuario usu,Model model){
         Integer idPaci = recepServ.buscaPacienteporCPF(paci.getCpf());
         List<Consulta> listaConsulta = consServ.listaCons(idPaci);
         model.addAttribute("listaConsulta", listaConsulta);
@@ -186,7 +234,8 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/alteraDados")
-    public String alteraDadosPaci(@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,@ModelAttribute("usu") Usuario usu, Model model){
+    public String alteraDadosPaci(@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,
+    @ModelAttribute("usu") Usuario usu, Model model){
         paci.setIdPaci(1);
         end.setIdEnd(9);
         usu.setIdUsu(9);
@@ -200,18 +249,12 @@ public class RecepcionistaController {
 
     //Passa para a tela de Confirmação e Salva Informaçoes Adicionais, Horario e Data
     @RequestMapping("/posConfirma")
-    public String posConfirma(@RequestParam Integer idConsulta,@RequestParam Integer id, @ModelAttribute("agenda")Agenda cons,Model model){
+    public String posConfirma(@RequestParam Integer idConsulta,@RequestParam Integer id, 
+    @ModelAttribute("agenda")Agenda cons,Model model){
         List<Convenio> listaConv = recepServ.listaConvPorMed(id); 
         List<Consulta> listaResumo = consServ.listaPosConfirma(idConsulta);
         model.addAttribute("listaResumo", listaResumo);
         model.addAttribute("listaConv", listaConv);
-
-        return "/recepcionista/tela_proconfirmation";
-    }
-
-    //Consulta se a Disponibilidade no agendamento
-    @RequestMapping("/consDispo")
-    public String consDispo(){
 
         return "/recepcionista/tela_proconfirmation";
     }
@@ -238,7 +281,8 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/atualizaRecep")
-    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, @ModelAttribute("usu") Usuario usu, Model model){
+    public String telaAtualizaRecep(@ModelAttribute("recep") Recepcionista recep, 
+    @ModelAttribute("usu") Usuario usu, Model model){
         usu.setIdUsu(19);
         recep.setIdRec(1);
         
@@ -266,18 +310,23 @@ public class RecepcionistaController {
     @RequestMapping("/telaRegPag")
     public String telaRegisPag(Model model){
         Pagamento pag = new Pagamento();
+        Consulta cons = new Consulta();
+        model.addAttribute("cons", cons);
         model.addAttribute("pag", pag);
 
         return "/recepcionista/tela_regPayment";
     }
 
     @RequestMapping("/telaFormPag")
-    public String telaFormaPag(@ModelAttribute("pag")Pagamento pag, Model model){
+    public String telaFormaPag(@ModelAttribute("cons")Consulta cons, 
+    	@ModelAttribute("pag")Pagamento pag, Model model){
         Date dataAtual = new Date();
         DateFormat dataFormatada = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String dataPag = dataFormatada.format(dataAtual);
         pag.setDataPag(dataPag);
+        cons.setPagamento(pag);
         pagServ.criaPag(pag);
+        consServ.atualizaIdPagNaIdCons(pag.getIdPag(), cons.getIdConsulta());
         return painelRecep(model);
     }
 
@@ -291,6 +340,19 @@ public class RecepcionistaController {
         }
 
         return "/recepcionista/tela_updateSchedule";
+    }
+
+    @RequestMapping("/{idCons}/registraPresenca")
+    public String registraPresenca(@PathVariable Integer idCons, @RequestParam(required = false) Integer idPaci,
+    		@ModelAttribute("paci")Paciente paci,@ModelAttribute("end") Endereco end,
+    	    @ModelAttribute("usu") Usuario usu, Model model){
+        Optional<Consulta> consOp = this.repoCons.findById(idCons);
+        if(consOp.isPresent()){
+            Consulta cons = consOp.get();
+            consServ.mudaConsulta(idCons);
+        }
+
+        return "/recepcionista/tela_consRes";
     }
 
     @RequestMapping("/telaFormAgen")

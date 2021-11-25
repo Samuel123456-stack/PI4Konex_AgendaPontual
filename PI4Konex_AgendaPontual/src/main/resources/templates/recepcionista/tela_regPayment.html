@@ -93,10 +93,9 @@
                                 <form action="#" th:action="@{/recepcionista/telaFormPag}" method="">
                                     <div class="first-block">
                                         <div class="input-block">
-                                            <p>CÓD. PAGAMENTO</p>
-                                            <input type="text" name="idPag" th:field="*{pag.idPag}"/>
+                                            <p>CÓD. CONSULTA</p>
+                                            <input type="text" name="idConsulta" th:field="*{cons.idConsulta}" placeholder="#803506" />
                                         </div>
-        
                                         <div class="input-block">
                                             <p>FORMA DE PAGAMENTO</p>
                                             <select name="formaPag" th:field="*{pag.formaPag}" id="payment">

@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
 *{
     margin:0;
     padding:0;
     outline:0;
-    margin-right: 10px;
     box-sizing: border-box;
     font-family: 'Mulish', sans-serif;
     list-style: none;
@@ -102,10 +100,7 @@ body{
     color:#546582;
 }
 #container-landing .third-block .input-block > span{
-    margin:0 20px 0 14px;
-}
-#container-landing input[type="checkbox"]{
-    transform: scale(1.5);
+    
 }
 #container-landing .third-block .input-block:nth-child(2){
     width:500px;
@@ -198,6 +193,11 @@ body{
     background: linear-gradient(258.4deg, rgba(0, 255, 240, 0.43) 58.84%, rgba(255, 255, 255, 0) 101.8%), #1CC4BF;
     transition:letter-spacing ease 250ms;
 }
+#container-landing .input-block:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}
+
 
 
 #container-landing input[type="checkbox"]{
@@ -246,6 +246,7 @@ body{
     border-radius: 100px;
     margin-right: 10px;
   }
+
 
 
   .testeDoenca:not(:checked) + label {

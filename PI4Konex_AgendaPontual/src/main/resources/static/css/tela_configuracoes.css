@@ -134,7 +134,6 @@
 }
 #container-landing input[type="checkbox"]{
     margin: 0 0 0 30px;
-    transform: scale(1.5);
     color:#546582;
 }
 #container-landing input[type="submit"]{

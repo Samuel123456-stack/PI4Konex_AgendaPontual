@@ -1,15 +1,15 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Resultado da Consulta</title>
+    <title>Painel do Recepcionista</title>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS">
     <meta name="description" content="Agenda Pontual">
     <meta name="author" content="konex-group">
 
-    <link rel="stylesheet" href="/css/tela_consRes.css">
+    <link rel="stylesheet" href="/css/tela_painelRecep.css">
 </head>
 
 <body>
@@ -54,203 +54,71 @@
                     <ul>
                         <li>
                             <a style="text-decoration: none;" th:href="@{/recepcionista/telaAtualizaRecep}">
-                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M9.06985 0.941792C9.55991 0.738804 10.1105 0.738804 10.6006 0.941792L16.1409 3.23667C16.631 3.43966 17.0203 3.82901 17.2233 4.31907L19.5182 9.8594C19.7212 10.3495 19.7212 10.9001 19.5182 11.3901L17.2233 16.9305C17.0203 17.4205 16.631 17.8099 16.1409 18.0129L10.6006 20.3077C10.1105 20.5107 9.55991 20.5107 9.06985 20.3077L3.52951 18.0129C3.03946 17.8099 2.65011 17.4205 2.44712 16.9305L0.152241 11.3901C-0.050747 10.9001 -0.050747 10.3495 0.152241 9.8594L2.44712 4.31907C2.65011 3.82901 3.03946 3.43966 3.52951 3.23667L9.06985 0.941792ZM9.23463 3.10658C9.72469 2.90359 10.2753 2.90359 10.7654 3.10658L14.8915 4.81567C15.3815 5.01866 15.7709 5.40801 15.9739 5.89806L17.683 10.0242C17.886 10.5142 17.886 11.0649 17.683 11.5549L15.9739 15.681C15.7709 16.1711 15.3815 16.5604 14.8915 16.7634L10.7654 18.4725C10.2753 18.6755 9.72469 18.6755 9.23463 18.4725L5.10851 16.7634C4.61846 16.5604 4.22911 16.1711 4.02612 15.681L2.31703 11.5549C2.11404 11.0649 2.11404 10.5142 2.31703 10.0242L4.02612 5.89806C4.22911 5.40801 4.61846 5.01866 5.10851 4.81567L9.23463 3.10658ZM10 13.7896C8.34315 13.7896 7 12.4464 7 10.7896C7 9.1327 8.34315 7.78955 10 7.78955C11.6569 7.78955 13 9.1327 13 10.7896C13 12.4464 11.6569 13.7896 10 13.7896ZM5 10.7896C5 8.02813 7.23858 5.78955 10 5.78955C12.7614 5.78955 15 8.02813 15 10.7896C15 13.551 12.7614 15.7896 10 15.7896C7.23858 15.7896 5 13.551 5 10.7896Z"
-                                    fill="#546582" />
-                            </svg>
-                            <span>Configurações</span>
-                        </a>
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M9.06985 0.941792C9.55991 0.738804 10.1105 0.738804 10.6006 0.941792L16.1409 3.23667C16.631 3.43966 17.0203 3.82901 17.2233 4.31907L19.5182 9.8594C19.7212 10.3495 19.7212 10.9001 19.5182 11.3901L17.2233 16.9305C17.0203 17.4205 16.631 17.8099 16.1409 18.0129L10.6006 20.3077C10.1105 20.5107 9.55991 20.5107 9.06985 20.3077L3.52951 18.0129C3.03946 17.8099 2.65011 17.4205 2.44712 16.9305L0.152241 11.3901C-0.050747 10.9001 -0.050747 10.3495 0.152241 9.8594L2.44712 4.31907C2.65011 3.82901 3.03946 3.43966 3.52951 3.23667L9.06985 0.941792ZM9.23463 3.10658C9.72469 2.90359 10.2753 2.90359 10.7654 3.10658L14.8915 4.81567C15.3815 5.01866 15.7709 5.40801 15.9739 5.89806L17.683 10.0242C17.886 10.5142 17.886 11.0649 17.683 11.5549L15.9739 15.681C15.7709 16.1711 15.3815 16.5604 14.8915 16.7634L10.7654 18.4725C10.2753 18.6755 9.72469 18.6755 9.23463 18.4725L5.10851 16.7634C4.61846 16.5604 4.22911 16.1711 4.02612 15.681L2.31703 11.5549C2.11404 11.0649 2.11404 10.5142 2.31703 10.0242L4.02612 5.89806C4.22911 5.40801 4.61846 5.01866 5.10851 4.81567L9.23463 3.10658ZM10 13.7896C8.34315 13.7896 7 12.4464 7 10.7896C7 9.1327 8.34315 7.78955 10 7.78955C11.6569 7.78955 13 9.1327 13 10.7896C13 12.4464 11.6569 13.7896 10 13.7896ZM5 10.7896C5 8.02813 7.23858 5.78955 10 5.78955C12.7614 5.78955 15 8.02813 15 10.7896C15 13.551 12.7614 15.7896 10 15.7896C7.23858 15.7896 5 13.551 5 10.7896Z"
+                                        fill="#546582" />
+                                </svg>
+                                <span>Configurações</span>
+                            </a>
                         </li>
                         <li>
                             <a style="text-decoration: none;" th:href="@{/recepcionista/telaAjuda}">
-                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10.0004 4.78955C8.95745 4.79087 7.95759 5.20577 7.22011 5.94325C6.48263 6.68074 6.06773 7.6806 6.06641 8.72355H8.06641C8.06641 7.65655 8.93441 6.78955 10.0004 6.78955C11.0664 6.78955 11.9344 7.65655 11.9344 8.72355C11.9344 9.32155 11.4534 9.75555 10.7184 10.3496C10.4783 10.5377 10.2477 10.7376 10.0274 10.9486C9.02941 11.9456 9.00041 13.0046 9.00041 13.1226V13.7896H11.0004L10.9994 13.1566C11.0004 13.1406 11.0324 12.7706 11.4404 12.3636C11.5904 12.2136 11.7794 12.0636 11.9754 11.9056C12.7544 11.2746 13.9334 10.3216 13.9334 8.72355C13.9326 7.68061 13.518 6.68059 12.7806 5.94302C12.0433 5.20546 11.0434 4.79061 10.0004 4.78955ZM9.00041 14.7896H11.0004V16.7896H9.00041V14.7896Z"
-                                    fill="#546582" />
-                                <path
-                                    d="M10 0.789551C4.486 0.789551 0 5.27555 0 10.7896C0 16.3036 4.486 20.7896 10 20.7896C15.514 20.7896 20 16.3036 20 10.7896C20 5.27555 15.514 0.789551 10 0.789551ZM10 18.7896C5.589 18.7896 2 15.2006 2 10.7896C2 6.37855 5.589 2.78955 10 2.78955C14.411 2.78955 18 6.37855 18 10.7896C18 15.2006 14.411 18.7896 10 18.7896Z"
-                                    fill="#546582" />
-                            </svg>
-                            <span>Ajuda</span>
-                        </a>
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.0004 4.78955C8.95745 4.79087 7.95759 5.20577 7.22011 5.94325C6.48263 6.68074 6.06773 7.6806 6.06641 8.72355H8.06641C8.06641 7.65655 8.93441 6.78955 10.0004 6.78955C11.0664 6.78955 11.9344 7.65655 11.9344 8.72355C11.9344 9.32155 11.4534 9.75555 10.7184 10.3496C10.4783 10.5377 10.2477 10.7376 10.0274 10.9486C9.02941 11.9456 9.00041 13.0046 9.00041 13.1226V13.7896H11.0004L10.9994 13.1566C11.0004 13.1406 11.0324 12.7706 11.4404 12.3636C11.5904 12.2136 11.7794 12.0636 11.9754 11.9056C12.7544 11.2746 13.9334 10.3216 13.9334 8.72355C13.9326 7.68061 13.518 6.68059 12.7806 5.94302C12.0433 5.20546 11.0434 4.79061 10.0004 4.78955ZM9.00041 14.7896H11.0004V16.7896H9.00041V14.7896Z"
+                                        fill="#546582" />
+                                    <path
+                                        d="M10 0.789551C4.486 0.789551 0 5.27555 0 10.7896C0 16.3036 4.486 20.7896 10 20.7896C15.514 20.7896 20 16.3036 20 10.7896C20 5.27555 15.514 0.789551 10 0.789551ZM10 18.7896C5.589 18.7896 2 15.2006 2 10.7896C2 6.37855 5.589 2.78955 10 2.78955C14.411 2.78955 18 6.37855 18 10.7896C18 15.2006 14.411 18.7896 10 18.7896Z"
+                                        fill="#546582" />
+                                </svg>
+                                <span>Ajuda</span>
+                            </a>
                         </li>
                         <li>
                             <img src="/image/user-recep.png" alt="user-photo" />
                         </li>
                         <li>
                             <a style="text-decoration: none;" th:href="@{/recepcionista/telaSair}">
-                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M2 10.7896C2 15.2078 5.58172 18.7896 10 18.7896C14.4183 18.7896 18 15.2078 18 10.7896C18 6.37127 14.4183 2.78955 10 2.78955C5.58172 2.78955 2 6.37127 2 10.7896ZM10 0.789551C4.47715 0.789551 0 5.2667 0 10.7896C0 16.3124 4.47715 20.7896 10 20.7896C15.5228 20.7896 20 16.3124 20 10.7896C20 5.2667 15.5228 0.789551 10 0.789551Z"
-                                    fill="#546582" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M13.2158 6.33447L14.63 7.74869L6.99108 15.3876L5.57687 13.9734L13.2158 6.33447Z"
-                                    fill="#546582" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M7.06836 6.33447L5.65415 7.74869L13.2931 15.3876L14.7073 13.9734L7.06836 6.33447Z"
-                                    fill="#546582" />
-                            </svg>
-                            <span>Sair</span>
-                        </a>
+                                <svg width="20" height="21" viewBox="0 0 20 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M2 10.7896C2 15.2078 5.58172 18.7896 10 18.7896C14.4183 18.7896 18 15.2078 18 10.7896C18 6.37127 14.4183 2.78955 10 2.78955C5.58172 2.78955 2 6.37127 2 10.7896ZM10 0.789551C4.47715 0.789551 0 5.2667 0 10.7896C0 16.3124 4.47715 20.7896 10 20.7896C15.5228 20.7896 20 16.3124 20 10.7896C20 5.2667 15.5228 0.789551 10 0.789551Z"
+                                        fill="#546582" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.2158 6.33447L14.63 7.74869L6.99108 15.3876L5.57687 13.9734L13.2158 6.33447Z"
+                                        fill="#546582" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.06836 6.33447L5.65415 7.74869L13.2931 15.3876L14.7073 13.9734L7.06836 6.33447Z"
+                                        fill="#546582" />
+                                </svg>
+                                <span>Sair</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
             </section>
         </header>
 
-        <main class="main-page">
-                    <section class="back">
-                    <a style="text-decoration: none;" th:href="@{/recepcionista/painelRecep}">
-                <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M-3.93402e-07 9.78955L9.27651 0.78955L11 2.46167L3.44698 9.78955L11 17.1174L9.27651 18.7896L-3.93402e-07 9.78955Z"
-                        fill="#1CC4BF" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M9 9.78955L18.2765 0.78955L20 2.46167L12.447 9.78955L20 17.1174L18.2765 18.7896L9 9.78955Z"
-                        fill="#1CC4BF" />
-                </svg>
-                </a>
-            </section>
-            <div class="form-container" th:if="${listaConsulta==null}">
-                <h3>Resultado da consulta</h3>
-                <div class="form-structure">
-                    <form action="#" th:action="@{/recepcionista/alteraDados}" method="">
-                        <div class="first-block">
-                            <div class="input-block">
-                                <p>NOME</p>
-                                <input name="nomePaci" th:field="*{paci.nomePaci}" class="name-input">
+        <body>
+            <footer class="quick-view">
+                <h3>ID da Consulta</h3>
+
+                <div class="form-cep">
+                    <form th:action="@{/recepcionista/conPaciAgen}" method="">
+                        <div class="main-input">
+                            <div class="cep-input">
+                                <p>ID CONSULTA</p>
+                                <input type="text" name="cpf" th:field="*{paciente.cpf}" placeholder="___.___.___-__" />
                             </div>
 
-                            <div class="input-block">
-                                <p>CPF/CNPJ</p>
-                                <input name="cpf" th:field="*{paci.cpf}" class="cpf_cnpj">
-                            </div>
-
-                            <div class="input-block">
-                                <p>DATA DE NASCIMENTO</p>
-                                <input name="dataNasc" th:field="*{paci.dataNasc}" class="birht-date">
-                            </div>
-                        </div>
-
-                        <div class="second-block">
-                            <div class="input-block">
-                                <input type="checkbox" name="sexo" value="Masculino" th:field="*{paci.sexo}"/>
-                                <span class="female">Masculino</span>
-                                <input type="checkbox" name="sexo" value="Feminino" th:field="*{paci.sexo}"/>
-                                <span class="female">Feminino</span>
-                            </div>
-
-                            <div class="input-block">
-                                <p>E-MAIL</p>
-                                <input name="email" th:field="*{usu.email}" class="email">
-                            </div>
-
-                            <div class="input-block">
-                                <p>SUA RESIDENCIA</p>
-                                <input name="logradouro" th:field="*{end.logradouro}" class="residence">
-                            </div>
-
-                            <div class="input-block">
-                                <p>NUMERAÇÃO</p>
-                                <input name="numero" th:field="*{end.numero}" class="number">
-                            </div>
-
-                            <div class="input-block">
-                                <p>CEP</p>
-                                <input name="cep" th:field="*{end.cep}" class="cep">
-                            </div>
-                        </div>
-
-                        <div class="third-block">
-                            <div class="input-block">
-                                <p>COMPLEMENTO</p>
-                                <input name="complemento" th:field="*{end.complemento}" class="complemento">
-                            </div>
-
-                            <div class="input-block">
-                                <input type="checkbox" name="subscriber-input" checked="checked"/>
-                                <span>Não assinante de Newslatter</span>
-                            </div>
-
-                            <div class="submit-button">
-                                <input type="submit" value="ALTERAR DADOS" />
-                            </div>
+                            <input type="submit" value="Salvar ID da Consulta" />
                         </div>
                     </form>
                 </div>
-            </div>
-        </main>
-
-        <div class="table-patience-list" th:if="${listaConsulta!=null}">
-            <h3>Lista de Agendamentos</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>CÓDIGO</td>
-                        <td>NOME DO ESPECIALISTA</td>
-                        <td>ESPECIALIDADE</td>
-                        <td>DATA</td>
-                        <td>HORÁRIO</td>
-                        <td>ATENDIMENTO</td>
-                        <td></td>
-                        <td>UPD</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    
-                    <tr th:each="consAgen:${listaConsulta}" >
-                        <td><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
-                            </svg>
-                            </td>
-                        <td th:text="*{consAgen.idConsulta}"></td>
-                        <td th:text="*{consAgen.paciente.nomePaci}"></td>
-                        <td th:text="*{consAgen.medico.especialidade.nomeEsp}"></td>
-                        <td th:text="*{consAgen.dtAgendada}"></td>
-                        <td th:text="*{consAgen.horaChegada}"></td>
-                        <td th:text="*{consAgen.hora}"></td>
-                        <td><a th:href="@{/recepcionista/{idCons}/telaAtualizaAgen (idCons=${consAgen.idConsulta})}">Atualiza</a></td>
-                        <td>
-                        <a th:href="@{/recepcionista/{idCons}/registraPresenca (idCons=${consAgen.idConsulta})}">
-                            <img src="/image/check-icon.png" alt="icon" />
-                        </a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-           <section class="description">
-            <div class="meaning-arrow">
-                <h4>LEGENDA</h4>
-            <div>
-                <svg width="71" height="8" viewBox="0 0 71 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M70.3536 4.14262C70.5488 3.94735 70.5488 3.63077 70.3536 3.43551L67.1716 0.253529C66.9763 0.0582664 66.6597 0.0582664 66.4645 0.253529C66.2692 0.448791 66.2692 0.765373 66.4645 0.960635L69.2929 3.78906L66.4645 6.61749C66.2692 6.81275 66.2692 7.12933 66.4645 7.3246C66.6597 7.51986 66.9763 7.51986 67.1716 7.3246L70.3536 4.14262ZM0 4.28906H70V3.28906H0V4.28906Z" fill="#546582" fill-opacity="0.2"/>
-                 </svg>
-                    
-            </div>
-            </div>
-
-            <div class="green_purple">
-                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="5" cy="5.78906" r="5" fill="#57DE35"/>
-                </svg>
-                <span>: Presença confirmada</span>
-
-                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="5" cy="5.78906" r="5" fill="#7B61FF"/>
-                </svg>
-                <span>:Não compareceu</span>
-            </div>
-           </section>
-        </div>
-    </div>
-</body>
+            </footer>
+        </body>
 
 </html>

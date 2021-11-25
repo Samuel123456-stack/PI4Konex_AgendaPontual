@@ -19,7 +19,7 @@ public class Usuario{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idusu")
-    private int idUsu;
+    private Integer idUsu;
 
     @Column(nullable = false)
     @NotBlank
@@ -47,7 +47,7 @@ public class Usuario{
     }
 
     // Metodo Construtor com Atributos
-    public Usuario(int idUsu, String email, String confirmaEmail, String senha, String confirmaSenha, String perfil) {
+    public Usuario(Integer idUsu, String email, String confirmaEmail, String senha, String confirmaSenha, String perfil) {
         this.idUsu = idUsu;
         this.email = email;
         this.confirmaEmail = confirmaEmail;
@@ -57,11 +57,11 @@ public class Usuario{
     }
 
     // Getters e Setters
-    public int getIdUsu() {
+    public Integer getIdUsu() {
         return idUsu;
     }
 
-    public void setIdUsu(int idUsu) {
+    public void setIdUsu(Integer idUsu) {
         this.idUsu = idUsu;
     }
 

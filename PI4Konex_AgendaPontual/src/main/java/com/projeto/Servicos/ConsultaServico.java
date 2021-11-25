@@ -79,12 +79,12 @@ public class ConsultaServico {
 	}
 	
 	@Transactional(readOnly = false)
-    public Consulta alteraConsulta(Consulta cons){
-        Integer idCons = cons.getIdConsulta();
-        Consulta consulta = conRepo.findById(idCons).get();
-        consulta.setDtAgendada(cons.getDtAgendada());
-        consulta.setHora(cons.getHora());
-        consulta.setInformaAdicio(cons.getInformaAdicio());
-        return conRepo.save(consulta);
+    public void mudaConsulta(Integer idCons){
+        conRepo.mudaConsulta(idCons);
+    }
+
+    @Transactional(readOnly = false)
+    public void atualizaIdPagNaIdCons(Integer idPag, Integer idCons){
+        conRepo.atualizaIdPagNaIdCons(idPag, idCons);
     }
 }

@@ -9,6 +9,7 @@
     list-style: none;
     border:0;
     text-align: justify;
+    color:#546582;
 }
 body{
     height:200vh;
@@ -113,7 +114,6 @@ body{
 }
 #container-landing form input[type="checkbox"]{
     margin-right:15px;
-    transform:scale(1.5);
 }
 #container-landing input[type="submit"]{
     background:#1CC4BF;

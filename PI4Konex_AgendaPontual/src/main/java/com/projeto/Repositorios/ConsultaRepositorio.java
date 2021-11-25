@@ -1,6 +1,7 @@
 package com.projeto.Repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -73,5 +74,11 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    		+ "where c.concluida = 0 and p.idpaci = ?1")
    List<Consulta> consultasMarcadas(Integer paciente);
    
-   
+   @Modifying
+   @Query(nativeQuery = true, value="update consulta set naocompareceu = 1 where idcons=?1")
+   void mudaConsulta(Integer idCons);
+
+   @Modifying
+   @Query(nativeQuery = true, value="update consulta set fk_pag_cons= ?1 where idcons=?2")
+   void atualizaIdPagNaIdCons(Integer idPag, Integer idCons);
 }

@@ -202,8 +202,9 @@
             </form>
                 <div class="resulBusca" th:if="${medicos != null}">
                     <div class="med" th:each="medico, stat: ${medicos}">
-                        <form action="">
+                        <form th:action="@{/paciente/medico/agenda/?{idMed}}" method="get">
                             <img th:src="*{'data:image/png;base64,'+{medico.foto}}">
+                            <input hidden="" name="idMed" th:value="${medico.idMed}">
                             <div class="ptMed">
                                 <h3 th:text="${medico.pontos}+ PT"></h3>
                             </div>

@@ -15,6 +15,7 @@ import com.projeto.Dto.UltimoIdDTO;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Feedback;
+import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.NewsLetter;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Entidades.Usuario;
@@ -22,49 +23,56 @@ import com.projeto.Repositorios.ConsultaRepositorio2;
 import com.projeto.Servicos.AjudaServico;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ConsultaServico;
+import com.projeto.Servicos.ConvenioServico;
 import com.projeto.Servicos.EspecialidadeServico;
 import com.projeto.Servicos.FeedbackServico;
 import com.projeto.Servicos.MedicoServico;
 import com.projeto.Servicos.PacienteServico;
+import com.projeto.Servicos.UltimoIdDTOServico;
 
 @Controller
 @RequestMapping("/paciente")
 public class PacienteController {
-	
+
 	@Autowired
 	private MedicoServico medServ;
-	
+
 	@Autowired
 	private EspecialidadeServico espServ;
-	
+
 	@Autowired
 	private CidadeServico cidServ;
-	
+
 	@Autowired
 	private PacienteServico paciServ;
-	
+
 	@Autowired
 	private AjudaServico ajuServ;
-	
+
 	@Autowired
 	private ConsultaServico consServ;
-	
+
 	@Autowired
 	private FeedbackServico feeServ;
-	
+
 	@Autowired
 	private ConsultaRepositorio2 cr2;
-	
-	
+
+	@Autowired
+	private ConvenioServico convServ;
+
+	@Autowired
+	private UltimoIdDTOServico ultServ;
+
 	@GetMapping("/dashboard")
 	public String dashboardPaci(Model model) {
-		Integer idUsu = 11;
-		//paciServ.pesquisaPacientePorUsuarioId(idUsu)
+		Integer idUsu = 14;
+		// paciServ.pesquisaPacientePorUsuarioId(idUsu)
 		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
-		
+
 		return ("/paciente/dashboardPaci");
 	}
-	
+
 	@GetMapping("/medico/busca")
 	public ModelAndView novaConsulta(@RequestParam(required = false) Integer cidade,
 			@RequestParam(required = false) String esp, @RequestParam(required = false) Integer bairro,
@@ -80,101 +88,154 @@ public class PacienteController {
 				medServ.buscaMedCompleta(cidade, bairro, espec, sexMas, sexFem, valorMin, valorMax, minExp, maxExp));
 		mv.addObject("especs", espServ.findAll());
 		mv.addObject("news", new NewsLetter());
-return mv;
+		return mv;
 	}
-	
+
 	@PostMapping("/cadastro/validacao/{id}")
-	public String pacienteCadastro(@PathVariable("id") Integer id,@ModelAttribute("paciente") Paciente paciente) {
+	public String pacienteCadastro(@PathVariable("id") Integer id, @ModelAttribute("paciente") Paciente paciente) {
 		Consulta consulta = consServ.buscaConsultaPorId(id);
 		Paciente novoPaciente = paciServ.cadastro(paciente);
 		consulta.setPaciente(novoPaciente);
 		consServ.cadastro(consulta);
 		return ("redirect:/paciente/confirmacao");
 	}
+
+	@GetMapping("/confirmacao")
+	public String confirmacao() {
+		return "/paciente/tela_confirmShop";
+	}
+
+	@GetMapping("/consultas")
+	public String consultas(Model model) {
+		model.addAttribute("lista", consServ.consultasMarcadas(13));
+		return "/paciente/consultas";
+	}
+
+	@GetMapping("/medico/agenda")
+	public ModelAndView agendaMedica(@RequestParam Integer idMed, @ModelAttribute("dados") Consulta dados) {
+		ModelAndView mv = new ModelAndView("/paciente/tela_resumo");
+		mv.addObject("medico", medServ.medicoResumo(idMed));
+		mv.addObject("paciente", new Paciente());
+		mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
+		mv.addObject("positiva", feeServ.buscaPositiva(idMed));
+		mv.addObject("negativa", feeServ.buscaNegativa(idMed));
+		mv.addObject("total", medServ.buscaQteAtendimento(idMed));
+		mv.addObject("seg", medServ.buscaSeg(idMed));
+		mv.addObject("ter", medServ.buscaTer(idMed));
+		mv.addObject("qua", medServ.buscaQua(idMed));
+		mv.addObject("qui", medServ.buscaQui(idMed));
+		mv.addObject("sex", medServ.buscaSex(idMed));
+		mv.addObject("sab", medServ.buscaSab(idMed));
+		return mv;
+	}
+
+	@PostMapping("/consulta/validacao/{idMed}")
+	public ModelAndView valida(@PathVariable("idMed") Integer idMed, @ModelAttribute("dados") Consulta dados) {
+		Integer idUsu = 9;
+		ModelAndView mv = new ModelAndView("/paciente/tela_validation");
+		Medico med = new Medico();
+		mv.addObject("medico", medServ.medicoResumo(idMed));
+		mv.addObject("paciente", new Paciente());
+		mv.addObject("feedback", feeServ.buscaFeedbackPorMedico(idMed));
+		mv.addObject("positiva", feeServ.buscaPositiva(idMed));
+		mv.addObject("negativa", feeServ.buscaNegativa(idMed));
+		mv.addObject("total", medServ.buscaQteAtendimento(idMed));
+		mv.addObject("convenios", convServ.listaConvenio());
+		med.setIdMed(idMed);
+		dados.setMedico(med);
+		consServ.cadastro(dados);
+		mv.addObject("numero", ultServ.buscaUtimoId());
+		mv.addObject("detalhes", consServ.buscaConsultaPorId(ultServ.buscaUtimoId().getNum()));
+		return mv;
+	}
 	
-    @GetMapping("/confirmacao")
-    public String confirmacao(){
-        return "/paciente/tela_confirmShop";
-    }
-    
-    @GetMapping("/consultas")
-    public String consultas(Model model){
-    	model.addAttribute("lista", consServ.consultasMarcadas(11));
-        return "/paciente/consultas";
-    }
-    
-    @PostMapping("/consulta/cancela")
-    public String cancelaConsulta(@RequestParam Integer idCons) {
-    	consServ.excluiConsulta(idCons);
-    	return ("redirect:/paciente/consultas");
-    }
-    
-    @GetMapping("/consultas/detalhes/{idCons}")
-    public String consultasDetalhes(@PathVariable("idCons") Integer idCons, Model model){
-    	model.addAttribute("lista", consServ.consultasMarcadas(11));
-        return "/paciente/consultas";
-    }
-    
-    @PostMapping("/consulta/alterea")
-    public String alteraConsulta(@RequestParam Integer idCons) {
-    	consServ.excluiConsulta(idCons);
-    	return ("redirect:/paciente/consultas");
-    }
-    
-    @GetMapping("/radarPontual")
-    public String radarPontual(){
-        return "/paciente/tela_radarPontual";
-    }
-  //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.
-    @GetMapping("/feedback")
-    public String feedback(@RequestParam(required = false) Integer idUsu, Model model){
-    	idUsu = 9;
-    	Paciente paciente = paciServ.pesquisaPacientePorUsuarioId(idUsu);
-    	model.addAttribute("feedback", new Feedback());
-    	model.addAttribute("num", new UltimoIdDTO());
-    	model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));    	
-        return "/paciente/tela_feedback";
-    }
-    
-    @PostMapping("/feedback/cadastro")
-    public String feedbackCadastro(@RequestParam Integer idCons,@ModelAttribute("feedback") Feedback feedback) {
-    	Consulta consulta = consServ.buscaConsultaPorId(idCons);
-    	consulta.setFeedback(feeServ.feedbackCadastro(feedback));
-    	consServ.cadastro(consulta);
-    	return ("redirect:/paciente/feedback");
-    }
-    
-    //Deixei RequestParam para desenrolar o código sem security. Mas o correto é usar o PathVariable.
-    @GetMapping("/configuracoes")
-    public String configurações(@RequestParam(required = false) Integer idUsu,Model model){
-    	idUsu = 11;
-    	model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(idUsu));
-    	return "/paciente/tela_configuracoes";
-    }
-    
-    @PostMapping("/configuracoes/atualiza")
-    public String configuracoesSave(@ModelAttribute("paciente") Paciente paciente) {
-    	paciServ.cadastroVoid(paciente);
-    	return ("redirect:/paciente/configuracoes");
-    }
-    
-    @RequestMapping("/ajuda")
-    public String medIndAjuda(Model model){
-        model.addAttribute("aju", new Ajuda());
-        return "/paciente/tela_ajuda";
-    }
-	
-    @PostMapping("/ajuda/nova")
-    public String criaAjudaMedInd(@ModelAttribute("ajuda") Ajuda ajuda) {
-    	Usuario usu = new Usuario();
-    	usu.setIdUsu(2);
-    	ajuda.setUsuario(usu);
-    	ajuServ.criaAjuda(ajuda);
-    	return ("redirect:/paciente/dashboardPaci");
-    } 
-    
-    @GetMapping("/saida")
-    public String saida(){
-        return "/paciente/tela_saida";
-    }
+	@PostMapping("/consulta/confirmacao/{id}")
+	public String consultaCofirmacao(@PathVariable("id") Integer id, @ModelAttribute("paciente") Paciente paciente) {
+		Integer idUsu = 9;
+		Paciente doLogin = paciServ.pesquisaPacientePorUsuarioId(idUsu);
+		doLogin.setPrimeiraConsulta(paciente.getPrimeiraConsulta());
+		doLogin.setSintomas(paciente.getSintomas());
+		paciServ.cadastroVoid(paciente);
+		Consulta consulta = consServ.buscaConsultaPorId(id);
+		consulta.setPaciente(doLogin);
+		return ("redirect:/paciente/dashboard");
+	}
+
+	@PostMapping("/consulta/cancela")
+	public String cancelaConsulta(@RequestParam Integer idCons) {
+		consServ.excluiConsulta(idCons);
+		return ("redirect:/paciente/consultas");
+	}
+
+	@GetMapping("/consultas/detalhes/{idCons}")
+	public String consultasDetalhes(@PathVariable("idCons") Integer idCons, Model model) {
+		model.addAttribute("lista", consServ.consultasMarcadas(11));
+		return "/paciente/consultas";
+	}
+
+	@PostMapping("/consulta/alterea")
+	public String alteraConsulta(@RequestParam Integer idCons) {
+		consServ.excluiConsulta(idCons);
+		return ("redirect:/paciente/consultas");
+	}
+
+	@GetMapping("/radarPontual")
+	public String radarPontual() {
+		return "/paciente/tela_radarPontual";
+	}
+
+	// Deixei RequestParam para desenrolar o código sem security. Mas o correto é
+	// usar o PathVariable.
+	@GetMapping("/feedback")
+	public String feedback(@RequestParam(required = false) Integer idUsu, Model model) {
+		idUsu = 9;
+		Paciente paciente = paciServ.pesquisaPacientePorUsuarioId(idUsu);
+		model.addAttribute("feedback", new Feedback());
+		model.addAttribute("num", new UltimoIdDTO());
+		model.addAttribute("consulta", cr2.pesquisaConsultaSemFeed(paciente.getIdPaci()));
+		return "/paciente/tela_feedback";
+	}
+
+	@PostMapping("/feedback/cadastro")
+	public String feedbackCadastro(@RequestParam Integer idCons, @ModelAttribute("feedback") Feedback feedback) {
+		Consulta consulta = consServ.buscaConsultaPorId(idCons);
+		consulta.setFeedback(feeServ.feedbackCadastro(feedback));
+		consServ.cadastro(consulta);
+		return ("redirect:/paciente/feedback");
+	}
+
+	// Deixei RequestParam para desenrolar o código sem security. Mas o correto é
+	// usar o PathVariable.
+	@GetMapping("/configuracoes")
+	public String configurações(@RequestParam(required = false) Integer idUsu, Model model) {
+		idUsu = 11;
+		model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(idUsu));
+		return "/paciente/tela_configuracoes";
+	}
+
+	@PostMapping("/configuracoes/atualiza")
+	public String configuracoesSave(@ModelAttribute("paciente") Paciente paciente) {
+		paciServ.cadastroVoid(paciente);
+		return ("redirect:/paciente/configuracoes");
+	}
+
+	@RequestMapping("/ajuda")
+	public String medIndAjuda(Model model) {
+		model.addAttribute("aju", new Ajuda());
+		return "/paciente/tela_ajuda";
+	}
+
+	@PostMapping("/ajuda/nova")
+	public String criaAjudaMedInd(@ModelAttribute("ajuda") Ajuda ajuda) {
+		Usuario usu = new Usuario();
+		usu.setIdUsu(2);
+		ajuda.setUsuario(usu);
+		ajuServ.criaAjuda(ajuda);
+		return ("redirect:/paciente/dashboardPaci");
+	}
+
+	@GetMapping("/saida")
+	public String saida() {
+		return "/paciente/tela_saida";
+	}
 }

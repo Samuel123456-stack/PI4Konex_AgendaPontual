@@ -45,5 +45,13 @@ public class UsuarioServico {
             usuario.setConfirmaSenha(usu.getSenha());
             return repoUsu.save(usuario);
         }
+        @Transactional(readOnly = false)
+        public Usuario alteraDadosUsuario(Usuario usu){
+            Integer idUsu = usu.getIdUsu();
+            Usuario usuario = repoUsu.findById(idUsu).get();
+            usuario.setEmail(usu.getEmail());
+            usuario.setConfirmaEmail(usu.getEmail());
+            return repoUsu.save(usuario);
+        }
 
 }

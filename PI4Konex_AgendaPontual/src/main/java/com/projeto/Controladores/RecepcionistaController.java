@@ -2,6 +2,7 @@ package com.projeto.Controladores;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
@@ -32,6 +32,7 @@ import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Triagem;
 import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.ConsultaRepositorio;
+import com.projeto.Repositorios.EnderecoRepositorio;
 import com.projeto.Repositorios.MedicojpaRepository;
 import com.projeto.Repositorios.PacienteRepositorio;
 import com.projeto.Repositorios.TriagemRepositorio;
@@ -81,6 +82,10 @@ public class RecepcionistaController {
     MedicojpaRepository medRepo;
     @Autowired
     PacienteRepositorio paciRepo;
+    @Autowired
+    EnderecoRepositorio endRepo;
+    @Autowired
+    UsuarioRepositorio usuRepo;
 
     
 
@@ -213,13 +218,22 @@ public class RecepcionistaController {
     @RequestMapping("/telaAlteraDados")
     public String telaAlteraDados(Model model){
         Paciente paci = new Paciente();
-        Endereco end = new Endereco();
-        Usuario usu = new Usuario();
 
         model.addAttribute("paci", paci);
-        model.addAttribute("end", end);
-        model.addAttribute("usu", usu);
+        return "/recepcionista/tela_paciAltera";
+    }
 
+    @RequestMapping("/conPaciAltera")
+    public String conPaciAltera(@ModelAttribute("paci") Paciente paci, Model model){
+        Integer idPaci =recepServ.buscaPacienteporCPF(paci.getCpf());
+        paci = paciRepo.findById(idPaci).get();
+        Paciente paciente = paci;
+        Usuario usu = usuRepo.findById(paci.getUsuario().getIdUsu()).get();
+        Endereco end = endRepo.findById(paci.getEndereco().getIdEnd()).get();
+
+        model.addAttribute("paci", paciente);
+        model.addAttribute("usu", usu);
+        model.addAttribute("end", end);
         return "/recepcionista/tela_consRes";
     }
 
@@ -234,16 +248,19 @@ public class RecepcionistaController {
     }
 
     @RequestMapping("/alteraDados")
-    public String alteraDadosPaci(@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,
+    public String alteraDadosPaci(@RequestParam(required = false) Integer id ,@ModelAttribute("paci") Paciente paci,@ModelAttribute("end") Endereco end,
     @ModelAttribute("usu") Usuario usu, Model model){
-        paci.setIdPaci(1);
-        end.setIdEnd(9);
-        usu.setIdUsu(9);
-        paci.setEndereco(end);
-        paci.setUsuario(usu);
-        recepServ.atualizaPaci(paci);
+        Paciente paciente = paci;
+        String nome = paciente.getNomePaci();
+        String cpf = paciente.getCpf();
+        LocalDate dataNasc = paciente.getDataNasc();
+        String sexo = paciente.getSexo();
+        recepServ.atualizaPaci(nome,cpf,dataNasc,sexo,id);
+        paci = paciRepo.findById(id).get();
+        end.setIdEnd(paci.getEndereco().getIdEnd());
+        usu.setIdUsu(paci.getUsuario().getIdUsu());
         recepServ.atualizaEnd(end);
-        usuServ.atualizaUsuario(usu);
+        usuServ.alteraDadosUsuario(usu);
         return painelRecep(model);
     }
 
@@ -348,7 +365,6 @@ public class RecepcionistaController {
     	    @ModelAttribute("usu") Usuario usu, Model model){
         Optional<Consulta> consOp = this.repoCons.findById(idCons);
         if(consOp.isPresent()){
-            Consulta cons = consOp.get();
             consServ.mudaConsulta(idCons);
         }
 

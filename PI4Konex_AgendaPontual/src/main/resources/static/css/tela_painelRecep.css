@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -71,9 +73,9 @@
 }
 #container-landing input[type="submit"]{
     padding:23px;
-    background: #1CC4BF;
+    background: #1CC4BF; 
     border-radius: 8px;
-    color:#fff;
+    color:#fff; 
     width:140px;
     font:bold 14px 'Mulish', sans-serif;
     cursor:pointer;
@@ -130,11 +132,14 @@
     border: 1.4px solid rgba(84, 101, 130, 0.1);
     border-radius: 8px;
     padding:40px 20px;
+    width:400px;
+    margin:auto;
 }
 #container-landing .quick-view h3{
     color:#546582;
     font-size:25px;
     line-height: 31px;
+    margin-bottom:30px;
 }
 #container-landing .quick-view > p{
     color:#546582;
@@ -172,4 +177,24 @@
     position:absolute;
     left:15px;
     bottom:5px;
+}
+#container-landing .input-block:hover, #container-landing .cep-input:hover{
+    border: 1.4px solid #858FA1;
+    transition: border 250ms;
+}
+#container-landing .table-patience-list table::-webkit-scrollbar {
+    width: 2px;
+}
+
+#container-landing .table-patience-list table::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px #E8E8E8; 
+border-radius: 10px;
+}
+   
+#container-landing .table-patience-list table::-webkit-scrollbar-thumb {
+background: #546582; 
+}
+  
+#container-landing .table-patience-list table::-webkit-scrollbar-thumb:hover {
+    background: #546582; 
 }

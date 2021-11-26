@@ -66,7 +66,7 @@ public class PacienteController {
 
 	@GetMapping("/dashboard")
 	public String dashboardPaci(Model model) {
-		Integer idUsu = 14;
+		Integer idUsu = 16;
 		// paciServ.pesquisaPacientePorUsuarioId(idUsu)
 		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
 
@@ -97,7 +97,7 @@ public class PacienteController {
 		Paciente novoPaciente = paciServ.cadastro(paciente);
 		consulta.setPaciente(novoPaciente);
 		consServ.cadastro(consulta);
-		return ("redirect:/paciente/confirmacao");
+		return ("redirect:/paciente/dashboard");
 	}
 
 	@GetMapping("/confirmacao")
@@ -131,7 +131,7 @@ public class PacienteController {
 
 	@PostMapping("/consulta/validacao/{idMed}")
 	public ModelAndView valida(@PathVariable("idMed") Integer idMed, @ModelAttribute("dados") Consulta dados) {
-		Integer idUsu = 9;
+		Integer idUsu = 16;
 		ModelAndView mv = new ModelAndView("/paciente/tela_validation");
 		Medico med = new Medico();
 		mv.addObject("medico", medServ.medicoResumo(idMed));
@@ -231,7 +231,7 @@ public class PacienteController {
 		usu.setIdUsu(2);
 		ajuda.setUsuario(usu);
 		ajuServ.criaAjuda(ajuda);
-		return ("redirect:/paciente/dashboardPaci");
+		return ("redirect:/paciente/dashboard");
 	}
 
 	@GetMapping("/saida")

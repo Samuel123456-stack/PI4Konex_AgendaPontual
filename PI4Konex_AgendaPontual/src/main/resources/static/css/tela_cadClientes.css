@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -83,9 +85,6 @@ body{
     font:400 16px 'Mulish', sans-serif;
     color:#858FA1;
 }
-#container-landing .input-block input:not(input[type="checkbox"]){
-    width:100%;
-}
 #container-landing .input-block:nth-child(2){
     margin:0 15px;
 }
@@ -100,7 +99,7 @@ body{
     color:#546582;
 }
 #container-landing .third-block .input-block > span{
-    
+    margin-right:10px;
 }
 #container-landing .third-block .input-block:nth-child(2){
     width:500px;
@@ -244,27 +243,4 @@ body{
   }
   #container-landing input[type="checkbox"]{
     border-radius: 100px;
-    margin-right: 10px;
-  }
-
-
-
-  .testeDoenca:not(:checked) + label {
-    background-color: #DDDDDD;
-    color: #a7a7a7;
-}
-  .testeDoenca + label {
-    font: 13px "Microsoft Yahei";
-    display: table;
-    font-size: 15px;
-    padding: 10px 25px 10px 10px;
-    background-color: rgba(0, 255, 240, 3);
-    color: #b3b3b3;
-    border-radius: 5px;
-    margin-right: 10px;
-    border-radius:6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.2s;
   }

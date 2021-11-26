@@ -1,5 +1,6 @@
 package com.projeto.Servicos;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.projeto.Entidades.Cidade;
@@ -86,14 +87,8 @@ public class RecepcionistaServico {
     }
 
     @Transactional(readOnly = false)
-    public Paciente atualizaPaci(Paciente paci){
-        Integer idPaci = paci.getIdPaci();
-        Paciente paciente = repoPaci.findById(idPaci).get();
-        paciente.setNomePaci(paci.getNomePaci());
-        paciente.setCpf(paci.getCpf());
-        paciente.setDataNasc(paci.getDataNasc());
-        paciente.setSexo(paci.getSexo());
-        return repoPaci.save(paciente);
+    public void atualizaPaci(String nome, String cpf, LocalDate dataNasc, String sexo, Integer id){
+        repoPaci.atualizaPaciente(nome, cpf, dataNasc, sexo, id);
     }
 
     //Metodos do CRUD Endereco

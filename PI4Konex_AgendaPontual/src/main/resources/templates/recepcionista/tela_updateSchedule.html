@@ -102,12 +102,12 @@
     
                                     <div class="input-block">
                                         <p>NOVA DATA</p>
-                                        <input type="text" th:value="*{agen.dtAgendada}" name="dtAgendada" />
+                                        <input type="text" th:value="*{agen.dtAgendada}" th:field="*{agen.dtAgendada}" name="dtAgendada" />
                                     </div>
 
                                     <div class="input-block">
                                         <p>NOVO HORÁRIO</p>
-                                        <input type="text" th:value="*{agen.hora}" name="hora" />
+                                        <input type="text" th:value="*{agen.hora}" th:field="*{agen.hora}" name="hora" />
                                     </div>
 
                                     <div class="input-block">

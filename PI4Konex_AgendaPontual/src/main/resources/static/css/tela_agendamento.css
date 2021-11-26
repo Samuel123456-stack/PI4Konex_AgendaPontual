@@ -111,7 +111,7 @@ form .third-input span{
     position:relative;
 }
 #container-landing form .second-block .male{
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 #container-landing form .second-block .first-input .input,
 #container-landing form .second-block .second-input .input{
@@ -524,7 +524,7 @@ form .third-input span{
       top:4px;
       height: 20px;
       width: 20px;
-      border: 1.4px solid #eee;
+      border: 1.4px solid #ddd;
   }
   
   #container-landing input[type="checkbox"]:checked{

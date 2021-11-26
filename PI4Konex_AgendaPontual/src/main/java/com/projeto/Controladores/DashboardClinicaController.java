@@ -1,10 +1,13 @@
 package com.projeto.Controladores;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.Entidades.Agenda;
@@ -14,13 +17,26 @@ import com.projeto.Entidades.Feedback;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.Pagamento;
 import com.projeto.Entidades.Recepcionista;
+import com.projeto.Repositorios.MedicojpaRepository;
+
+
 
 @Controller
 public class DashboardClinicaController {
+	//chamada do repositorio
+	@Autowired
+	private MedicojpaRepository medR;
 	
 	@GetMapping("/viewDash")
-	public ModelAndView viewCli() {
+	public ModelAndView viewCli(Medico medico) {
 		ModelAndView mv = new ModelAndView("/clinica/DashboardClinica");
+		
+		//referencio o que eu quero listar, no caso uma lista.
+		List<Medico> bestMed = medR.melhoresMedCli(2);
+				
+		//seto o objeto a ser exibido atraves do thymeleaf
+		mv.addObject("bestMed", bestMed);
+		
 		return mv;
 	}
 	

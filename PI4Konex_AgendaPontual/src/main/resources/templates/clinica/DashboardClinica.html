@@ -154,99 +154,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="../image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
+                    <tr th:each="medicos:${bestMed}">
                         <td id="nomeTb">
                             <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
+                            <p th:text="${medicos.nomeMed}"></p >
                         </td>
-                        <td id="espcTb">Ginecologia</td>
+                        <td id="espcTb"th:text="${medicos.especialidade.nomeEsp}"></td>
                         <td id="pntTb">
                             <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="nomeTb">
-                            <img src="/image/doctor.png">
-                            <p>Silvia de Melo</p>
-                        </td>
-                        <td id="espcTb">Ginecologia</td>
-                        <td id="pntTb">
-                            <div class="ponto">
-                                2657
+                                <p th:text="${medicos.pontos}"></p>
                             </div>
                         </td>
                     </tr>

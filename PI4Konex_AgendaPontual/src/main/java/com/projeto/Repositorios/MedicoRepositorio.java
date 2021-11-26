@@ -43,5 +43,5 @@ public interface MedicoRepositorio{
     List<HorariosSabDTO> buscaSab(Integer idMed);
 
     Medico infoMed(Integer idMed);
-		
+ 
 }

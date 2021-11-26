@@ -20,6 +20,7 @@ import com.projeto.Dto.HorariosSegDTO;
 import com.projeto.Dto.HorariosSexDTO;
 import com.projeto.Dto.HorariosTerDTO;
 import com.projeto.Dto.MedicoResumoDTO;
+import com.projeto.Dto.MelhoresFeedbacksDTO;
 import com.projeto.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Clinica;
 import com.projeto.Entidades.Endereco;
@@ -539,4 +540,8 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 		}
 		return med;
 	}
+
+
+	
+	
 }

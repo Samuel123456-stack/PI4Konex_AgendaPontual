@@ -267,19 +267,6 @@
                                 <span>Não</span>
                             </div>
                     </section>
-
-                    <section class="second-question" >
-                        <p th:if="*{med==null}">É a sua primeira consulta?</p>
-                            <p th:unless="*{med==null}">É a sua primeira consulta com o médico</p>
-                            <p th:text="'Dr.' +*{med.nomeMed}"></p>
-
-                            <div class="checkbox-block">
-                                <input type="radio" name="primeiraConsulta" value="1" th:field="*{paciente.primeiraConsulta}" />
-                                <span>Sim</span>
-                                <input type="radio" name="primeiraConsulta" value="0" th:field="*{paciente.primeiraConsulta}" />
-                                <span>Não</span>
-                            </div>
-                    </section>
                 </div>
 
                 <div class="diseases-page">

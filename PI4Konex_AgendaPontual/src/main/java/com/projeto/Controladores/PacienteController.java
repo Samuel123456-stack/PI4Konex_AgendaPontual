@@ -107,7 +107,7 @@ public class PacienteController {
 
 	@GetMapping("/consultas")
 	public String consultas(Model model, @ModelAttribute("altera") Consulta altera) {
-		model.addAttribute("lista", consServ.consultasMarcadas(11));
+		model.addAttribute("lista", consServ.consultasMarcadas(1));
 		return "/paciente/consultas";
 	}
 
@@ -171,6 +171,7 @@ public class PacienteController {
 	@GetMapping("/consulta/{idCons}")
 	public String consultaDetalhe(@PathVariable("idCons") Integer idCons, Model model) {
 		 Consulta consulta = consServ.buscaConsultaPorId(idCons);
+		 System.out.println(consulta.getMedico().getIdMed());
 		 model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getMedico().getIdMed()));
 		 model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getMedico().getIdMed()));
 		 model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getMedico().getIdMed()));

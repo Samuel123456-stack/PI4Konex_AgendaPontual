@@ -190,8 +190,8 @@
                 <h1 id="painelDinamico">Painel Dinâmico</h1>
                 <p>Ao clicar em uma das no ícone de informações, é exibido aqui automaticamente.</p>
             </div>
-            <div class="med" th:each="med, stat: ${medico}">
-                <img src="/web/imagens/med1.png" alt="">
+            <div class="med">
+                <img th:src="*{'data:image/png;base64,'+ {medico.foto}}">
                 <h2 th:text="${med.nomeMed}"></h2>
                 <p th:text="${med.especialidade.nomeEsp}"></p>
                 <div class="atendEAva">
@@ -209,7 +209,7 @@
                 <hr>
                 <p>Sou uma pessoa super simpática e atenciosa, considero a empatia a chave do meu sucesso. </p>
             </div>
-            <div class="info">
+            <div class="info" th:each="med, stat: ${medico}" >
                 <h2>Informações</h2>
                 <div class="linhaInfo">
                     <img src="/web/imagens/svgRelogio.svg" alt="">

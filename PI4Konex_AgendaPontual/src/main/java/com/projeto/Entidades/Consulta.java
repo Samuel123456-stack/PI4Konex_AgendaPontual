@@ -20,6 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,12 +34,15 @@ public class Consulta implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idcons")
+    
     private Integer idConsulta;
     
     @Column(name = "dtagendada")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+   
     private LocalDate dtAgendada;
     
+
     @Column(nullable = true)
     private LocalTime hora;
     

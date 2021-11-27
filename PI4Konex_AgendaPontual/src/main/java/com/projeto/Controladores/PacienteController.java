@@ -1,8 +1,11 @@
 package com.projeto.Controladores;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,7 +69,7 @@ public class PacienteController {
 
 	@GetMapping("/dashboard")
 	public String dashboardPaci(Model model) {
-		Integer idUsu = 16;
+		Integer idUsu = 11;
 		// paciServ.pesquisaPacientePorUsuarioId(idUsu)
 		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
 
@@ -92,12 +95,12 @@ public class PacienteController {
 	}
 
 	@PostMapping("/cadastro/validacao/{id}")
-	public String pacienteCadastro(@PathVariable("id") Integer id, @ModelAttribute("paciente") Paciente paciente) {
+	public String pacienteCadastro(@PathVariable("id") Integer id, @ModelAttribute("paciente") Paciente nwpaciente) {
 		Consulta consulta = consServ.buscaConsultaPorId(id);
-		Paciente novoPaciente = paciServ.cadastro(paciente);
+		Paciente novoPaciente = paciServ.cadastro(nwpaciente);
 		consulta.setPaciente(novoPaciente);
 		consServ.cadastro(consulta);
-		return ("redirect:/paciente/dashboard");
+		return ("redirect:/paciente/confirmacao");
 	}
 
 	@GetMapping("/confirmacao")
@@ -106,8 +109,8 @@ public class PacienteController {
 	}
 
 	@GetMapping("/consultas")
-	public String consultas(Model model) {
-		model.addAttribute("lista", consServ.consultasMarcadas(13));
+	public String consultas(Model model, @ModelAttribute("altera") Consulta altera) {
+		model.addAttribute("lista", consServ.consultasMarcadas(11));
 		return "/paciente/consultas";
 	}
 
@@ -131,7 +134,7 @@ public class PacienteController {
 
 	@PostMapping("/consulta/validacao/{idMed}")
 	public ModelAndView valida(@PathVariable("idMed") Integer idMed, @ModelAttribute("dados") Consulta dados) {
-		Integer idUsu = 16;
+		Integer idUsu = 21;
 		ModelAndView mv = new ModelAndView("/paciente/tela_validation");
 		Medico med = new Medico();
 		mv.addObject("medico", medServ.medicoResumo(idMed));
@@ -150,14 +153,9 @@ public class PacienteController {
 	}
 	
 	@PostMapping("/consulta/confirmacao/{id}")
-	public String consultaCofirmacao(@PathVariable("id") Integer id, @ModelAttribute("paciente") Paciente paciente) {
-		Integer idUsu = 9;
-		Paciente doLogin = paciServ.pesquisaPacientePorUsuarioId(idUsu);
-		doLogin.setPrimeiraConsulta(paciente.getPrimeiraConsulta());
-		doLogin.setSintomas(paciente.getSintomas());
-		paciServ.cadastroVoid(paciente);
-		Consulta consulta = consServ.buscaConsultaPorId(id);
-		consulta.setPaciente(doLogin);
+	public String consultaCofirmacao(@PathVariable("id") Integer idCons, @ModelAttribute("paciente") Paciente paciente) {
+		Integer idUsu = 21;
+		paciServ.atualizaPacienteConsulta(idCons, idUsu, paciente);
 		return ("redirect:/paciente/dashboard");
 	}
 
@@ -167,16 +165,27 @@ public class PacienteController {
 		return ("redirect:/paciente/consultas");
 	}
 
-	@GetMapping("/consultas/detalhes/{idCons}")
-	public String consultasDetalhes(@PathVariable("idCons") Integer idCons, Model model) {
-		model.addAttribute("lista", consServ.consultasMarcadas(11));
-		return "/paciente/consultas";
+//	@GetMapping("/consultas/detalhes/{idCons}")
+//	public String consultasDetalhes(@PathVariable("idCons") Integer idCons, Model model) {
+//		model.addAttribute("lista", consServ.consultasMarcadas(11));
+//		return "/paciente/consultas";
+//	}
+	
+	@GetMapping("/consulta/{idCons}")
+	public String consultaDetalhe(@PathVariable("idCons") Integer idCons, Model model) {
+		 Consulta consulta = consServ.buscaConsultaPorId(idCons);
+		 model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getMedico().getIdMed()));
+		 model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getMedico().getIdMed()));
+		 model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getMedico().getIdMed()));
+		 model.addAttribute("medico", medServ.buscaMedicoPorId(consulta.getMedico().getIdMed()));
+		return "redirect:/paciente/consultas#painelDinamico";
 	}
+	
 
-	@PostMapping("/consulta/alterea")
-	public String alteraConsulta(@RequestParam Integer idCons) {
-		consServ.excluiConsulta(idCons);
-		return ("redirect:/paciente/consultas");
+	@PostMapping("/consulta/altera")
+	public String alteraConsulta(@ModelAttribute Consulta altera) {	
+		consServ.alteraConsulta(altera);
+		return "redirect:/paciente/consultas";
 	}
 
 	@GetMapping("/radarPontual")

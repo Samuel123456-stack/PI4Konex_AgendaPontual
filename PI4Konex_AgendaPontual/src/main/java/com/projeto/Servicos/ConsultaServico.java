@@ -1,5 +1,7 @@
 package com.projeto.Servicos;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,4 +95,12 @@ public class ConsultaServico {
     	Consulta consulta = conRepo.findByIdConsulta(id);
     	consulta.setInformaAdicio(inforAd);
 	}
+    
+    @Transactional(readOnly = false)
+    public void alteraConsulta(Consulta altera) {
+    	Consulta consulta = conRepo.findByIdConsulta(altera.getIdConsulta());
+    	 consulta.setDtAgendada(altera.getDtAgendada());
+    	 consulta.setHora(altera.getHora());
+    	 conRepo.save(consulta);
+    }
 }

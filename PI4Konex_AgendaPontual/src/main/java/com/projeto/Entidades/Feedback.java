@@ -19,6 +19,9 @@ public class Feedback implements Serializable {
 
     @Column(nullable = true)
     private int avaliacao;
+    
+    @Column(nullable = true)
+    private int pontualidade;
 
     @Column(nullable = true)
     private String comentario;
@@ -36,10 +39,11 @@ public class Feedback implements Serializable {
     public Feedback() {
     }
     // Metodo Construtor com Atributos
-	public Feedback(Integer idFeed, int avaliacao, String comentario, boolean paraMed, boolean paraCli,
-			boolean feedAno) {
+	public Feedback(Integer idFeed, int avaliacao, int pontualidade, String comentario, boolean paraMed,
+			boolean paraCli, boolean feedAno) {
 		this.idFeed = idFeed;
 		this.avaliacao = avaliacao;
+		this.pontualidade = pontualidade;
 		this.comentario = comentario;
 		this.paraMed = paraMed;
 		this.paraCli = paraCli;
@@ -57,6 +61,12 @@ public class Feedback implements Serializable {
 	}
 	public void setAvaliacao(int avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+	public int getPontualidade() {
+		return pontualidade;
+	}
+	public void setPontualidade(int pontualidade) {
+		this.pontualidade = pontualidade;
 	}
 	public String getComentario() {
 		return comentario;

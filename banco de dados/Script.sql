@@ -3806,3 +3806,37 @@ CREATE TABLE contato_site (
     fk_adm_duv Integer null,
     FOREIGN KEY (fk_adm_duv) REFERENCES adm (idadm) 
 );
+
+select * from usuario
+left join paciente  on fk_usu_paci = idusu
+left join clinica on fk_usu_cli = idusu;
+
+use agendapontual;
+
+
+select p.idpaci from usuario 
+inner join paciente p on fk_usu_paci = idusu
+where idusu = 11;
+
+select * from consulta as c where c.concluida = 1 and c.fk_feed_cons is null and c.fk_paci_cons = 3;
+
+select * from consulta where concluida = 1 and fk_paci_cons = 3;
+
+select * from paciente;
+
+select * from consulta;
+
+select * from consulta where concluida = 1 and fk_feed_cons is null and fk_paci_cons = 3;
+
+select * from contato_site;
+
+select * from consulta where idcons = 15;
+
+
+select m.nome, m.valor, c.dtagendada, c.hora 
+from consulta c
+inner join medico m on fk_med_cons = idmed
+inner join paciente p on fk_paci_cons = idpaci
+where idpaci = 1;
+
+

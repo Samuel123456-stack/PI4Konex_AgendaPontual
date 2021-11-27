@@ -114,23 +114,23 @@ body{
     color: #505F79;
 }
 /*scroll tabela*/
-::-webkit-scrollbar {
+.notifica tbody::-webkit-scrollbar {
     width: 2px;
 }
   
 /* Track */
-::-webkit-scrollbar-track {
+.notifica tbody::-webkit-scrollbar-track {
 box-shadow: inset 0 0 5px #E8E8E8; 
 border-radius: 10px;
 }
    
 /* Handle */
-::-webkit-scrollbar-thumb {
+.notifica tbody::-webkit-scrollbar-thumb {
 background: #546582; 
 }
   
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.notifica tbody::-webkit-scrollbar-thumb:hover {
     background: #546582; 
 }
 /*fim scroll*/

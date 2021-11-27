@@ -70,6 +70,10 @@
     font-size: 15px;
     color: rgba(80, 95, 121, 0.4);
 }
+.selectBusca select{
+	width: 97px;
+	height: 19px;
+}
 .selectBusca select, .textoBusca input{
     font-weight: 600;
     font-size: 15.5px;

@@ -1,7 +1,5 @@
 package com.projeto.Servicos;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import com.projeto.Dto.MedicoResumoDTO;
 import com.projeto.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Entidades.Medico;
 import com.projeto.Repositorios.MedicoRepositorio;
+import com.projeto.Repositorios.MedicojpaRepository;
 
 @Service
 public class MedicoServico {
@@ -25,6 +24,9 @@ public class MedicoServico {
 
 	@Autowired
 	private MedicoRepositorio medRepo;
+	
+	@Autowired
+	private MedicojpaRepository medRepo2;
 
 	@Transactional(readOnly = true)
 	public List<Medico> listaMedPorCli(Integer id) {
@@ -104,5 +106,10 @@ public class MedicoServico {
 
 		return medico;
 		
+	}
+	
+	@Transactional(readOnly = true)
+	public Medico buscaMedicoPorId(Integer idMed) {
+		return medRepo2.getById(idMed);
 	}
 }

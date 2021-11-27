@@ -71,7 +71,7 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    		+ "inner join medico m on c.fk_med_cons = m.idmed "
    		+ "inner join especialidade as e on m.fk_esp_med = e.idesp "
    		+ "inner join paciente p on c.fk_paci_cons = p.idpaci "
-   		+ "where c.concluida = 0 and p.idpaci = ?1")
+   		+ "where c.concluida = 0 and p.idpaci = ?1 order by dtagendada asc, hora asc")
    List<Consulta> consultasMarcadas(Integer paciente);
    
    @Modifying

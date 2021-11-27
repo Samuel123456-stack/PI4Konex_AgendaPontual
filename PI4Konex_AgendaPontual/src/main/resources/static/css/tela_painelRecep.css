@@ -8,6 +8,7 @@
     font-family: 'Mulish', sans-serif;
     list-style: none;
     border:0;
+    text-decoration: none;
 }
 #container-landing{
     max-width: 1250px;

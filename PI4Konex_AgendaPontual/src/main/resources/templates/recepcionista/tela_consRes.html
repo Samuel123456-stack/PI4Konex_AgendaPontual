@@ -140,9 +140,9 @@
                         <div class="second-block">
                             <div class="input-block">
                                 <input type="radio" name="sexo" value="Masculino" th:value="*{paci.sexo}" th:field="*{paci.sexo}"/>
-                                <span class="female">Masculino</span>
+                                <span class="female" style="margin-right: 10px;">Masculino</span>
                                 <input type="radio" name="sexo" value="Feminino" th:value="*{paci.sexo}" th:field="*{paci.sexo}"/>
-                                <span class="female">Feminino</span>
+                                <span class="female" style="margin-right: 10px;">Feminino</span>
                             </div>
 
                             <div class="input-block">
@@ -220,7 +220,7 @@
                         <td><a th:href="@{/recepcionista/{idCons}/telaAtualizaAgen (idCons=${consAgen.idConsulta})}">Atualiza</a></td>
                         <td>
                         <a th:href="@{/recepcionista/{idCons}/registraPresenca (idCons=${consAgen.idConsulta})}">
-                            <img src="/image/check-icon.png" alt="icon" />
+                            <img src="/image/icon-confirm.png" alt="icon" />
                         </a>
                         </td>
                     </tr>
@@ -229,7 +229,7 @@
             </table>
             </div>
 
-           <section class="description">
+           <section class="description" style="position:absolute;">
             <div class="meaning-arrow">
                 <h4>LEGENDA</h4>
             <div>

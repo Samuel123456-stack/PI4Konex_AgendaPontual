@@ -458,6 +458,7 @@ form .third-input span{
 }
 .local-calendar .additional-information .input-block textarea{
     width:100%;
+    resize: none;
 }
 .local-calendar .additional-information .input-block textarea::placeholder{
     color:#858FA1;

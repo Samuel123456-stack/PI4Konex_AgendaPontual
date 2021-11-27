@@ -213,15 +213,19 @@
                             <div class="list-no-feedbacks">
                                 <table class="table-list">
                                         <tr>
-                                           	<th class="name"></th>
                                             <th class="code_id">Cod.</th>
                                             <th class="name">Nome</th>
                                         </tr>
-                                        <tr th:each="cons, stat: ${consulta}">
-                                        	<td><input type="radio" th:value="${cons.idCons}" id="codBanco" name="IdCons"></td>
-                                            <td th:text="${cons.idCons}"></td>
-                                            <td th:text="${cons.nome}"></td>
-                                        </tr> 
+                                        <tbody>
+						                    <tr>
+						                        <td id="codTb">
+						                            <input type="radio" class="option-radio" id="codtb1" name="codFeedback" value="#806030"/>
+						                            <label for="codtb1">#806030</label>
+						                        </td>
+						                        <td id="nomeTb">Odonto +Med</td>
+						                    </tr>
+						                    
+						                </tbody>
                                 </table>
                             </div>
                         </div>

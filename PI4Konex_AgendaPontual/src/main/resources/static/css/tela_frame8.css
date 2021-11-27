@@ -90,6 +90,7 @@ body{
     font-size: 14px;
     font-family: 'Mulish', sans-serif;
     color: #000;
+    outline: none;
 }
 .msgDaFeed textarea::placeholder{
     color: #B9BFC9;
@@ -120,6 +121,18 @@ body{
 }
 .notaPont{
     height: 134px;
+}
+.notaGeral input[type="text"]{
+    width: 190px;
+    height: 20px;
+    margin: 0 0 28px 0;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #546582;
 }
 .notaGeral h3, .notaPont h3{
     font-size: 16px;
@@ -271,6 +284,15 @@ body{
 }
 #codTb{
     width: 132px;
+    text-align: center;
+}
+#codTb .option-radio{
+    top: 3px;
+    width: 16px;
+    height: 16px;
+}
+#codTb input[type="radio"] {
+    margin: 3px 3px 0px 0px;
 }
 #nomeTb{
     width: 125px;

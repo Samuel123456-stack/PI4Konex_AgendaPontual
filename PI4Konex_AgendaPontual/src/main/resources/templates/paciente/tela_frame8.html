@@ -123,15 +123,15 @@
                     <div class="quem">
                        <h3>Para quem é?</h3>
                         <p>
-                            <input type="radio" class="option-radio" id="paraQuem1" name="paraMed" th:field="*{paraMed}" th:value="1"/>
+                            <input type="radio" class="option-radio" id="paraQuem1" name="paraQuem" value="medico"/>
                             <label for="example2">Para o Médico</label>
                         </p>
                         <p>
-                            <input type="radio" class="option-radio" id="paraQuem2" name="paraCli" th:field="*{paraCli}" th:value="1"/>
+                            <input type="radio" class="option-radio" id="paraQuem2" name="paraQuem" value="consultorio"/>
                             <label for="example2">Para o Consultório</label>
                         </p>
                         <p>
-                            <input type="radio" class="option-radio" id="paraQuem3"/>
+                            <input type="radio" class="option-radio" id="paraQuem3" name="paraQuem" value="ambos"/>
                             <label for="example2">Para Ambos</label>
                         </p>
                     </div>
@@ -143,8 +143,7 @@
                 <div class="direitaDaFeed">
                     <input id="CodConsul" type="text" name="idCons" readonly="readonly" placeholder="#806030">
                     <div class="notaGeral">
-                  			<input type="text" id="para" readonly="readonly">
-                        	<h3>Nota para Ambos</h3>
+                  			<input type="text" name="notaParaQ" value="Nota para ambos" disabled>
                             <input type="range" th:field="*{avaliacao}" min="0" max="10" class="slider" id="nota">
                             <p>0</p>
                             <p id="ValorDaNota"><span id="valNotaGeral"></span></p>

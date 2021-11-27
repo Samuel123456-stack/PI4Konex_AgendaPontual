@@ -23,7 +23,7 @@ public class ProjecaoSalarial {
 	@Column(name = "valorpaci", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
 	private Float valorPaci;
 
-	@Column(name = "metapaci", nullable = true, columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
+	@Column(name = "metapaci", nullable = true, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private Float metaPaci;
 
 	@Column(name = "horainicio", nullable = true)
@@ -38,6 +38,18 @@ public class ProjecaoSalarial {
 	@Column(name = "temposegu", nullable = true)
 	private boolean tempoSeguranca;
 
+	@Column(name="qtddias",nullable = true)
+	private Integer qtdDias;
+
+	@Column(name="qtdpacidias", nullable = true)
+	private Integer qtdPaciDias;
+
+	@Column(name="duracao",nullable = true)
+	private Integer tempoDuracao;
+
+	@Column(name="totalcons",nullable = true)
+	private Float totalConsulta;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_agen_proj")
 	private Agenda agenda;
@@ -50,17 +62,22 @@ public class ProjecaoSalarial {
 
 	}
 
-	public ProjecaoSalarial(Float valorPaci, Float metaPaci, LocalTime horaInicio, LocalTime horaSaida,
-			LocalTime horaIntervalo, boolean tempoSeguranca, Agenda agen, Medico med) {
+	public ProjecaoSalarial(Integer idProj, Float valorPaci, Float metaPaci, LocalTime horaInicio, LocalTime horaSaida,
+			LocalTime horaIntervalo, boolean tempoSeguranca, Integer qtdDias, Integer qtdPaciDias, Integer tempoDuracao,
+			Float totalConsulta, Agenda agenda, Medico medico) {
+		this.idProj = idProj;
 		this.valorPaci = valorPaci;
 		this.metaPaci = metaPaci;
 		this.horaInicio = horaInicio;
 		this.horaSaida = horaSaida;
 		this.horaIntervalo = horaIntervalo;
 		this.tempoSeguranca = tempoSeguranca;
+		this.qtdDias = qtdDias;
+		this.qtdPaciDias = qtdPaciDias;
+		this.tempoDuracao = tempoDuracao;
+		this.totalConsulta = totalConsulta;
 		this.agenda = agenda;
 		this.medico = medico;
-
 	}
 
 	public Integer getIdProj() {
@@ -117,6 +134,38 @@ public class ProjecaoSalarial {
 
 	public void setTempoSeguranca(boolean tempoSeguranca) {
 		this.tempoSeguranca = tempoSeguranca;
+	}
+
+	public Integer getQtdDias() {
+		return qtdDias;
+	}
+
+	public void setQtdDias(Integer qtdDias) {
+		this.qtdDias = qtdDias;
+	}
+
+	public Integer getQtdPaciDias() {
+		return qtdPaciDias;
+	}
+
+	public void setQtdPaciDias(Integer qtdPaciDias) {
+		this.qtdPaciDias = qtdPaciDias;
+	}
+
+	public Integer getTempoDuracao() {
+		return tempoDuracao;
+	}
+
+	public void setTempoDuracao(Integer tempoDuracao) {
+		this.tempoDuracao = tempoDuracao;
+	}
+
+	public Float getTotalConsulta() {
+		return totalConsulta;
+	}
+
+	public void setTotalConsulta(Float totalConsulta) {
+		this.totalConsulta = totalConsulta;
 	}
 
 	public Agenda getAgenda() {

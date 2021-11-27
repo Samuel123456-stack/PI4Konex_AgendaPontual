@@ -82,35 +82,41 @@
             <table id="tbNot">
                 <thead>
                     <tr>
+                        <th></th>
                         <th style="width: 150px;">Nome</th>
                         <th style="width: 112px; text-align: left;">Data</th>
-                        <th style="width: 195px; text-align: left;">Horário</th>
+                        <th style="width: 175px; text-align: left;">Horário</th>
                         <th style="width: 88px; text-align: left;">Feedback p/</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="listaFeed : ${listaFeed}">
+                        
+                        <td><a th:href="@{/medInd/mostraFeed/{idFeed} (idFeed=${listaFeed.idFeed})}">Visualizar</a> </td>
+                    
+                        <input hidden th:value="${listaFeed.idFeed}" />
                         <td id="nomeTb">
                             <p th:text = "*{listaFeed.nome}"></p>
                         </td>
                         <td id="dataTb" th:text="*{listaFeed.dtAgendada}"></td>
                         <td th:text="*{listaFeed.hora}"></td>
-                        <td id="feedTb">
-                            <div id="pnt">
-                                93 pt
+                        <td id="feedTb" >
+                            <div id="pnt" th:text="*{listaFeed.pontos}">
+                                
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
         </div>
-        <div class="direitaFeed">
-            <div class="dadosFeed">
+        <div class="direitaFeed" th:if="${dadosFeed!=null}">
+            <div class="dadosFeed" th:each="dadosFeed:${dadosFeed}">
                 <div class="dadosCli">
-                    <img src="/web/imagens/doctor.png">
-                    <h3>Anônimo</h3>
-                    <p>28/09/2021 - 15:50h</p>
-                    <p>Médico: Ricardo Pires</p>
+                    <img src="/image/doctor.png">
+                    <h3 th:text="*{dadosFeed.nome}"></h3>
+                    <p th:text="*{dadosFeed.dtAgendada}"></p>
+                    <p th:text="*{dadosFeed.hora}"></p>
+                    <p th:text="'Médico: '+*{dadosFeed.nomeMed}">Médico: Ricardo Pires</p>
                 </div>
                 <!--
                     colocar a variavel no lugar do Médico
@@ -119,33 +125,14 @@
 
                     assim vcs vao usar a mesma variavel do texto pra a classe
                 -->
-                <div class="ptnFeed">
-                    Médico
-                </div>
 
-                <h4>Nota: 8 de 10.</h4>
+                <h4 th:text="'Nota: ' +*{dadosFeed.pontos}+' de 10'"></h4>
                 <h3>Comentário</h3>
-                <p>“Um excelente médico, é muito atencioso, o tempo de consulta foi 
+                <p th:text="*{dadosFeed.comentario}">“Um excelente médico, é muito atencioso, o tempo de consulta foi 
                     com me recomedou alguns medicamentos e fiquei bem melhor.
                     Acredito que ele possa melhorar a comunicação, me ouviu bastante,
                     mas não conversou bastante, contudo, o fato dele ter prestado atenção ao invés de ficar digitando no computador, já foi um 
                     grande diferencial dos outros médicos.</p>
-            </div>
-            <div class="opcs">
-                <button>
-                    <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9L9.27651 -4.05489e-07L11 1.67211L3.44698 9L11 16.3279L9.27651 18L-3.93402e-07 9Z" fill="#1CC4BF"/>
-                    </svg>
-                    <p>Anterior</p>
-                </button>
-                <div class="meioBtns"></div>
-                <button>
-                    <p>Próximo</p>
-                    <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 9L1.72349 18L-7.58966e-07 16.3279L7.55302 9L-9.33735e-07 1.67212L1.72349 1.10621e-07L11 9Z" fill="#1CC4BF"/>
-                    </svg>
-                </button>        
-                
             </div>
         </div>
     </div>

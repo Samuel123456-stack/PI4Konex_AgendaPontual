@@ -17,4 +17,6 @@ public interface FeedbackRepositorio {
 	AvaliacoesNegativasDTO buscaAvaNegativa(Integer idMed);
 
 	List<FeedbackCliMedDTO> listaFeedback(Integer idMed);
+
+	List<FeedbackCliMedDTO> listaFeedporId(Integer idFeed);
 }

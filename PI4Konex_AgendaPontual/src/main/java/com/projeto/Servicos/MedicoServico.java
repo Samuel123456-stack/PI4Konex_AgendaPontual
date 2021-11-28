@@ -99,12 +99,12 @@ public class MedicoServico {
 		Integer idMed = med.getIdMed();
 		Medico medico = medRepo.infoMed(idMed);
 		medico.setNomeMed(med.getNomeMed());
-		/*DateTimeFormatter formata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String testeData = "17/01/1989";
-		LocalDate dataNasc = LocalDate.parse(testeData,formata);
-		medico.setDataNasc(dataNasc);*/
-
-		return medico;
+		medico.setCpfMed(med.getCpfMed());
+		medico.setSexoMed(med.getSexoMed());
+		medico.setDataNasc(med.getDataNasc());
+		medico.setRgMed(med.getRgMed());
+		medico.setCelular(med.getCelular());
+		return medRepo2.save(medico);
 		
 	}
 	

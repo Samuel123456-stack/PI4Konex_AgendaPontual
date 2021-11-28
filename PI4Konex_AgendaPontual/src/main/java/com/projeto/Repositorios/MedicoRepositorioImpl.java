@@ -515,7 +515,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				med.setSexoMed(rs.getNString("sexo"));
 				med.setCpfMed(rs.getString("cpf"));
 				med.setRgMed(rs.getString("rg"));
-				med.setCrm(rs.getString("rg"));
+				med.setCrm(rs.getString("crm"));
 				med.setCelular(rs.getString("celular"));
 				med.setValorMed(rs.getFloat("valor"));
 				med.setCelular(rs.getString("celular"));

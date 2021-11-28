@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.projeto.Entidades.Ajuda;
-import com.projeto.Entidades.Doenca;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Feedback;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.ProjecaoSalarial;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.ConsultaRepositorio;
+import com.projeto.Repositorios.EspecialidadeRepositorio;
 import com.projeto.Repositorios.FeedbackRepositorio2;
 import com.projeto.Repositorios.MedicojpaRepository;
 import com.projeto.Repositorios.ProjecaoRepositorio;
@@ -63,6 +64,10 @@ public class MedicoIndController {
     ProjecaoRepositorio projRepo;
     @Autowired
     FeedbackRepositorio2 feedRepo;
+    @Autowired
+    ConsultaRepositorio consRepo;
+    @Autowired
+    EspecialidadeRepositorio espRepo;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -103,6 +108,7 @@ public class MedicoIndController {
     @RequestMapping("/quartoPassoMedInd")
     public String quartoPasso(@ModelAttribute("medInd") Medico medInd,Model model){
     	ProjecaoSalarial projSal = new ProjecaoSalarial();
+        model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(2));
     	model.addAttribute("proj", projSal);
 
         return "/medInd/priMedClin";
@@ -111,77 +117,71 @@ public class MedicoIndController {
     @RequestMapping("/salvaProj")
     public String salvaProj(@ModelAttribute("medInd") Medico medInd,
     @ModelAttribute("proj")ProjecaoSalarial projSal, HttpServletRequest request, Model model) throws ParseException {
-    	medInd.setIdMed(2);
+        medInd.setIdMed(2);
         projSal.setMedico(medInd);
-        //Atributos web
-String time1 =  projSal.getHoraInicio().toString();
-String time2 =  projSal.getHoraSaida().toString();
-LocalTime horaInter = LocalTime.of(1, 0);
-projSal.setHoraIntervalo(horaInter);
-float meta = projSal.getMetaPaci();
-float valorPorPaci = projSal.getValorPaci();
-int qtdDiasTrab = projSal.getQtdDias();
-String opSegure = request.getParameter("tempoSeguranca");
+        // Atributos web
+        String time1 = projSal.getHoraInicio().toString();
+        String time2 = projSal.getHoraSaida().toString();
+        LocalTime horaInter = LocalTime.of(1, 0);
+        projSal.setHoraIntervalo(horaInter);
+        float meta = projSal.getMetaPaci();
+        float valorPorPaci = projSal.getValorPaci();
+        int qtdDiasTrab = projSal.getQtdDias();
+        String opSegure = request.getParameter("tempoSeguranca");
 
-//atributos auxiliares
-int qtdPaciDia = 0;
-int minBase = 0;
-float qtdPaciMes = 0f;
-int intervalo = 60;
+        // atributos auxiliares
+        int qtdPaciDia = 0;
+        int minBase = 0;
+        float qtdPaciMes = 0f;
+        int intervalo = 60;
 
-//calculando a diferença
-SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-Date date1 = format.parse(time1);
-Date date2 = format.parse(time2);
-long difference = date2.getTime() - date1.getTime();
+        // calculando a diferença
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date date1 = format.parse(time1);
+        Date date2 = format.parse(time2);
+        long difference = date2.getTime() - date1.getTime();
 
-//horario Base do calculo qtd de minutros trabalhos
-long diffMinutos = difference / (60 * 1000);
-minBase = (int) diffMinutos; 
+        // horario Base do calculo qtd de minutros trabalhos
+        long diffMinutos = difference / (60 * 1000);
+        minBase = (int) diffMinutos;
 
-//Base menos o intervalo
-minBase = minBase - intervalo;
+        // Base menos o intervalo
+        minBase = minBase - intervalo;
 
-//Verifica se ele deseja tempo de segunraça 
-if("Sim".equalsIgnoreCase(opSegure)){
-	minBase = minBase - 20;		
-}
+        // Verifica se ele deseja tempo de segunraça
+        if ("Sim".equalsIgnoreCase(opSegure)) {
+            minBase = minBase - 20;
+        }
 
-//Calcular a qtd de paciente que ele deve atender no mes 
-qtdPaciMes = meta/valorPorPaci;
-qtdPaciMes = Math.round(qtdPaciMes);
+        // Calcular a qtd de paciente que ele deve atender no mes
+        qtdPaciMes = meta / valorPorPaci;
+        qtdPaciMes = Math.round(qtdPaciMes);
 
-//Calcula a qtd de paciente no dia
-qtdPaciDia = 30/qtdDiasTrab; 
-qtdPaciDia  = Math.round(qtdPaciDia);
+        // Calcula a qtd de paciente no dia
+        qtdPaciDia = 30 / qtdDiasTrab;
+        qtdPaciDia = Math.round(qtdPaciDia);
 
-//Gerar a duração da consulta
-//dividir o minBase pela qtdPaciente do dia
-int durationMin = (minBase/qtdPaciDia) -5;
-//qtdPaciDia  = Math.round(durationMin);
-//Consulta 190. sendo que era 119
-//int totalCons = Math.round(qtdPaciMes);
-//setar os valores
-projSal.setTempoDuracao(durationMin);
-projSal.setQtdPaciDias(qtdPaciDia);
-projSal.setTotalConsulta(qtdPaciMes);
+        // Gerar a duração da consulta
+        // dividir o minBase pela qtdPaciente do dia
+        int durationMin = (minBase / qtdPaciDia) - 5;
+        // qtdPaciDia = Math.round(durationMin);
+        // Consulta 190. sendo que era 119
+        // int totalCons = Math.round(qtdPaciMes);
+        // setar os valores
+        projSal.setTempoDuracao(durationMin);
+        projSal.setQtdPaciDias(qtdPaciDia);
+        projSal.setTotalConsulta(qtdPaciMes);
 
-//salvar no banco
-System.out.println("PROJ:"+ qtdPaciDia);
-System.out.println("PROJ:"+qtdPaciMes);
-System.out.println("PROJ:"+ time1);
-System.out.println("PROJ:"+ minBase);
-System.out.println("PROJ:"+ durationMin);
-model.addAttribute("proj", projSal);
-    	projRepo.save(projSal);
-    	return "/medInd/priMedClin";
-    }
+        // salvar no banco
+        System.out.println("PROJ:" + qtdPaciDia);
+        System.out.println("PROJ:" + qtdPaciMes);
+        System.out.println("PROJ:" + time1);
+        System.out.println("PROJ:" + minBase);
+        System.out.println("PROJ:" + durationMin);
+        model.addAttribute("proj", projSal);
 
-    @RequestMapping("/projSalarialMedInd")
-    public String projSalarialMedInd(@ModelAttribute("projSal")ProjecaoSalarial projSal, Model model){
-        
-        
-        return "";
+        projRepo.save(projSal);
+        return "/medInd/priMedClin";
     }
 
 
@@ -201,15 +201,17 @@ model.addAttribute("proj", projSal);
     }
 
     @RequestMapping("/consultarAgenda")
-    public String consultarAgenda(){
-
-        return "";
+    public String consultarAgenda(Model model){
+        
+        model.addAttribute("listaCons", consRepo.listagemPainelMedInd(2));
+        
+        return "/medInd/consulAgenMedInd";
     }
 
     @RequestMapping("/projSalarial")
     public String projecaoSalarial(){
 
-        return "";
+        return "/medInd/priMedClin";
     }
 
     @RequestMapping("/pagamentos")
@@ -266,16 +268,18 @@ model.addAttribute("proj", projSal);
     public String medIndConfig(Model model){
         Usuario usu = new Usuario();
         Medico med = new Medico();
-      
+        model.addAttribute("listaEsp", espRepo.findAll());
+        model.addAttribute("dadosMed", medServ.infoMed(2));
         model.addAttribute("usu", usu);
         model.addAttribute("med", med);
-        return "/medInd/tela_configMed";
+        return "/medInd/configMedCli";
     }
 
     @RequestMapping("/atualiza")
     public String atualizaMedInd(@ModelAttribute("usu") Usuario usu, @ModelAttribute("med") Medico med, Model model){
         usu.setIdUsu(7);
         med.setIdMed(2);
+        med.setUsuario(usu);
 
         usuServ.atualizaUsuario(usu);
         medServ.atualizaMedico(med);
@@ -297,4 +301,11 @@ model.addAttribute("proj", projSal);
     	ajuServ.criaAjuda(ajuda);
     	return painelMedInd(model);
     } 
+
+    @RequestMapping("/telaSair")
+    public String telaSair(){
+
+        return "/medInd/tela_sairMed";
+    }
+
 }

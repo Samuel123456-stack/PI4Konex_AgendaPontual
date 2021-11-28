@@ -132,7 +132,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 				while (rs.next()) {
 					Medico med = new Medico();
 					med.setIdMed(rs.getInt("idmed"));
-					med.setFoto(rs.getString("foto"));
+					med.setFoto(rs.getBytes("foto"));
 					med.setPontos(rs.getInt("pontos"));
 					med.setNomeMed(rs.getString("nome"));
 					med.setDataNasc(rs.getDate("datanasci").toLocalDate());
@@ -508,7 +508,7 @@ public class MedicoRepositorioImpl implements MedicoRepositorio{
 			if (rs.next()) {
 
 				med.setIdMed(rs.getInt("idmed"));
-				med.setFoto(rs.getString("foto"));
+				med.setFoto(rs.getBytes("foto"));
 				med.setPontos(rs.getInt("pontos"));
 				med.setNomeMed(rs.getString("nome"));
 				med.setDataNasc(rs.getDate("datanasci").toLocalDate());

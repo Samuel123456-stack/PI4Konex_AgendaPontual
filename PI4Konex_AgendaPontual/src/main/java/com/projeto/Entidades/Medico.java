@@ -123,7 +123,6 @@ public class Medico implements Serializable {
 			String sexoMed, String cpfMed, String rgMed, String crm, String celular, float valorMed,
 			LocalDate dataFormatura, String sobreMed, String bioMed, String sala, Integer pontos, Clinica clinica,
 			Endereco endereco, Usuario usuario, Especialidade especialidade) {
-		super();
 		this.idMed = idMed;
 		this.foto = Base64.encodeBase64String(foto);
 		this.dataCriaMed = dataCriaMed;
@@ -165,8 +164,8 @@ public class Medico implements Serializable {
 		return foto;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setFoto(byte [] foto) {
+		this.foto = Base64.encodeBase64String(foto);
 	}
 
 	public LocalDateTime getDataCriaMed() {

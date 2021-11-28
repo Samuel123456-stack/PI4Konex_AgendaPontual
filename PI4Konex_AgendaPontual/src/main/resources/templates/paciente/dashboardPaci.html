@@ -114,7 +114,7 @@
             <form th:action="@{/paciente/consulta/{id}(id=${resumo.idConsulta})}" method="get" >
                 <div class="dadosAgen">
                 <h2>Consulta agendada</h2>
-                <img src="/image/med1.png" alt="Foto do medico">
+                <img th:src="${'data:image/png;base64,'+{resumo.medico.foto}}">
                 <h3 th:text="${resumo.medico.nomeMed}"></h3>
                 <img src="/web/image/svgSacoDin.svg" id="svg"> 
                 <p th:text="${#numbers.formatCurrency(resumo.medico.valorMed)}"></p>

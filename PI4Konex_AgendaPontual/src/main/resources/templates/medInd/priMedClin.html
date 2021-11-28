@@ -55,19 +55,19 @@
                 <div class="dirProj">
                     <div class="lucro">
                         <p>LUCRO POR PACIENTE</p>
-                        <input type="text" name="valorPaci" th:field="*{proj.valorPaci}" placeholder="Qual o valor recebido por paciente">
+                        <input type="text" name="valorPaci" th:field="*{proj.valorPaci}" th:value="*{proj.valorPaci}" placeholder="Qual o valor recebido por paciente">
                     </div>
                     <div class="meta">
                         <p>META SALARIAL</p>
-                        <input type="text" name="metaPaci" th:field="*{proj.metaPaci}" placeholder="Qual é o valor da sua meta?">
+                        <input type="text" name="metaPaci" th:field="*{proj.metaPaci}" th:value="*{proj.metaPaci}" placeholder="Qual é o valor da sua meta?">
                     </div>
                     <div class="inicio">
                         <p>INICIO DO EXPEDIENTE</p>
-                        <input type="time" name="horaInicio" th:field="*{proj.horaInicio}">
+                        <input type="time" name="horaInicio" th:field="*{proj.horaInicio}" th:value="*{proj.horaInicio}">
                     </div>
                     <div class="termino">
                         <p>TÉRMINO DO EXPEDIENTE</p>
-                        <input type="time" name="horaSaida" th:field=*{proj.horaSaida}>
+                        <input type="time" name="horaSaida" th:field="*{proj.horaSaida}" th:value="*{proj.horaInicio}">
                     </div>
                     <div class="intervalo">
                         <p>INTERVALO</p>
@@ -81,13 +81,13 @@
                 <div class="esqProj">
                     <div class="diasSemana">
                         <p>DIAS POR SEMANA</p>
-                        <select id="selectDias" name="diasSemana">
+                        <select id="selectDias" name="qtdDias" th:field="*{proj.qtdDias}">
                             <option value="">Quantos dias na semana você trabalha?</option>
-                            <option value="2">2 Dias na Semana</option>
-                            <option value="3">3 Dias na Semana</option>
-                            <option value="4">4 Dias na Semana</option>
-                            <option value="5">5 Dias na Semana</option>
-                            <option value="6">6 Dias na Semana</option>
+                            <option th:value="2">2 Dias na Semana</option>
+                            <option th:value="3">3 Dias na Semana</option>
+                            <option th:value="4">4 Dias na Semana</option>
+                            <option th:value="5">5 Dias na Semana</option>
+                            <option th:value="6">6 Dias na Semana</option>
                         </select>
                     </div>
                     <div class="quaisDias">
@@ -109,7 +109,9 @@
                     </div>
                     <div class="interloTempo">
                         <p>INTERVALO</p>
-                        <input type="time" name="horaIntervalo" th:field="*{proj.horaIntervalo}">
+                        <select type="time" name="horaIntervalo">
+                            <option value="" disabled selected>60 minutos</option>
+                        </select>
                     </div>
                     <input type="submit" value="SALVAR ALTERAÇÕES DA PROJEÇÃO">
                     <button type="reset">

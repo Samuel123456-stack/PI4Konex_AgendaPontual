@@ -52,4 +52,9 @@ public class FeedbackServico {
 	public Feedback buscaFeedPorId(Integer id) {
 		return feeRepo2.buscaFeedPorId(id);
 	}
+
+	@Transactional(readOnly = true)
+	public List<FeedbackCliMedDTO> listaFeedPorID(Integer idFeed){
+		return feeRepo.listaFeedporId(idFeed);
+	}
 }

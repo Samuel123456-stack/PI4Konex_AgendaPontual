@@ -27,7 +27,7 @@ const animationClass = 'animacao';
 
         target.forEach(function (elemento) {
         
-            if ((rangeS[1].value != 10) && (rangeS[0].value != 10)) {
+            if ((rangeS[1].value != 60) && (rangeS[0].value != 60)) {
                 elemento.classList.add(animationClass)
             } else {
                 elemento.classList.remove(animationClass)

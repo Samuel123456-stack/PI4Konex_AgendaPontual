@@ -102,21 +102,21 @@
                 </form>
         </div>
         <div class="info">
-            <div class="totalPag">
+            <div class="totalPag" th:each="pagForma: ${qtdTotal}">
                 <p>Total de pagamentos</p>
-                <h4>0234</h4>
+                <h4 th:text="*{pagForma.qtdTotal}"></h4>
             </div>
-            <div class="qntPagDin">
+            <div class="qntPagDin" th:each="pagDin: ${qtdDin}">
                 <p>Qtd. Pag. em Dinheiro</p>
-                <h4>0234</h4>
+                <h4 th:text="*{pagDin.qtdDinheiro}"></h4>
             </div>
-            <div class="qntPagDeb">
+            <div class="qntPagDeb" th:each="pagDeb: ${qtdDeb}">
                 <p>Qtd. Pag.  em Débito</p>
-                <h4>0150</h4>
+                <h4 th:text="*{pagDeb.qtdDebito}"></h4>
             </div>
-            <div class="qntPagCred">
+            <div class="qntPagCred" th:each="pagCre: ${qtdCred}">
                 <p>Qtd. Pag. em Crédito</p>
-                <h4>0985</h4>
+                <h4 th:text="*{pagCre.qtdCredito}"></h4>
             </div>
         </div>
         <div class="listaConsul">

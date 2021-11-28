@@ -233,7 +233,7 @@ background: #546582;
 
 .msgForm{
     width: 259px;
-    height: 397px;
+    height: 259px;
     padding: 19px 0 0 24px;
     margin-left: 40px;
     border: 1.4px solid rgba(84, 101, 130, 0.1);
@@ -246,40 +246,11 @@ background: #546582;
     font-size: 17px;
     color: #505F79;
 }
-.hashtag{
-    height: 18px;
-    margin: 0 0 13px 0;
-}
-.hashtag h3{
-    margin: 0;
-    float: left;
-    font-weight: 500;
-    font-size: 16px;
-    color: #1CC4BF;
-}
-.msgForm button{
-    width: 35px;
-    height: 35px;
-    margin: 2px 0 0 10px;
-    border: none;
-    background: #1CC4BF;
-    border-radius: 6px;
-    float: left;
-}
-.assunMsg{
-    width: 236px;
-    height: 37px;
-    border: 1.4px solid rgba(80, 95, 121, 0.1); 
-    border-radius: 8px;
-}
-.assunMsg input[type="text"]{
-    width: 222px;
-    height: 32px;
-    margin: 3px 0 0 6px;
-    border: none;
-}
-.assunMsg input[type="text"]::placeholder{
-    color: #B9BFC9;
+
+.msgForm p{
+	width: 236px;
+    height: 195px;
+	overflow-y: auto;
 }
 .textoMsg{
     width: 236px;

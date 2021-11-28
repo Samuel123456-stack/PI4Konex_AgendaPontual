@@ -5,7 +5,12 @@
     padding:0;
     outline:0;
     box-sizing: border-box;
-    font-family:'Mulish', sans-serif
+    font-family:'Mulish', sans-serif;
+    text-decoration: none;
+    color: #546582;
+}
+#container-landing input, #container-landing select{
+	border:0;
 }
 #container-landing .grid-dashboard{
     display: grid;

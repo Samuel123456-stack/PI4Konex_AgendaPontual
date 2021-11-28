@@ -13,12 +13,16 @@ import com.projeto.Entidades.NewsLetter;
 import com.projeto.Entidades.Paciente;
 import com.projeto.Servicos.CidadeServico;
 import com.projeto.Servicos.ContatoServico;
+import com.projeto.Servicos.PacienteServico;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private CidadeServico cidServ;
+	
+	@Autowired
+	private PacienteServico paciServ;
 	
 	@GetMapping("/")
 	public String Home(Model model) {
@@ -36,7 +40,7 @@ public class HomeController {
 	
 	@GetMapping("/teste")
 	public String teste(Model model) {
-		model.addAttribute("paciente", new Paciente());	
+		model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(9));	
 		return ("teste");
 	}
 	

@@ -51,7 +51,7 @@
             </a>
         </p>
         <p id="consul">
-            <a th:href="@{/paciente/consultas}">
+            <a th:href="@{/paciente/consultas/index}">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86364 20V18.3019H2.04545V1.69811H17.9545V10H20V0H0V20H8.86364ZM4 6V4H16V6H4ZM4 8V10H10V8H4Z" fill="#546582"/>
                 </svg>
@@ -142,8 +142,8 @@
 	                                </svg>
 	                            </button>
                             </a>
-                            <form th:action="@{/paciente/consulta/cancela}" method="post">
-	                            <button name="idCons" th:value="${con.idConsulta}">
+                            <form th:action="@{/paciente/consulta/cancela/{id}(id=${con.idConsulta})}" method="post">
+	                            <button>
 	                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 	                                    <path d="M15 4H20V6H18V19C18 19.2652 17.8946 19.5196 17.7071 19.7071C17.5196 19.8946 17.2652 20 17 20H3C2.73478 20 2.48043 19.8946 2.29289 19.7071C2.10536 19.5196 2 19.2652 2 19V6H0V4H5V1C5 0.734784 5.10536 0.48043 5.29289 0.292893C5.48043 0.105357 5.73478 0 6 0H14C14.2652 0 14.5196 0.105357 14.7071 0.292893C14.8946 0.48043 15 0.734784 15 1V4ZM16 6H4V18H16V6ZM7 2V4H13V2H7Z" fill="#FF634E"/>
 	                                </svg>
@@ -190,61 +190,63 @@
                 <h1 id="painelDinamico">Painel Dinâmico</h1>
                 <p>Ao clicar em uma das no ícone de informações, é exibido aqui automaticamente.</p>
             </div>
-            <div class="med">
-                <img th:src="*{'data:image/png;base64,'+ {medico.foto}}">
-                <h2 th:text="${med.nomeMed}"></h2>
-                <p th:text="${med.especialidade.nomeEsp}"></p>
+            <div class="med" th:object="${medico}">
+            	<!-- <img th:src="*{'data:image/png;base64,'+{medico.foto}}"> -->
+                <img th:src="*{'data:image/png;base64,'+{foto}}">
+                <h2 th:text="*{nomeMed}"></h2>
+                <p th:text="${medico.especialidade.nomeEsp}"></p>
                 <div class="atendEAva">
-                    <p>2670 antedimentos</p>
+                    <p th:text="${total.quantidade}"></p>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.15217 0.1716C5.80821 0.1716 6.43513 0.299702 7.03293 0.555904C7.63074 0.812107 8.14606 1.15662 8.57888 1.58945C9.01171 2.02228 9.35622 2.53759 9.61243 3.1354C9.86863 3.7332 9.99673 4.36012 9.99673 5.01616C9.99673 5.67219 9.86863 6.30008 9.61243 6.89983C9.35622 7.49957 9.01171 8.01489 8.57888 8.44578C8.14606 8.87666 7.63074 9.22021 7.03293 9.47641C6.43513 9.73261 5.80821 9.86071 5.15217 9.86071C4.49614 9.86071 3.86922 9.73261 3.27141 9.47641C2.67361 9.22021 2.15829 8.87666 1.72547 8.44578C1.29264 8.01489 0.948123 7.49957 0.691921 6.89983C0.435718 6.30008 0.307617 5.67219 0.307617 5.01616C0.307617 4.36012 0.435718 3.7332 0.691921 3.1354C0.948123 2.53759 1.29264 2.02228 1.72547 1.58945C2.15829 1.15662 2.67361 0.812107 3.27141 0.555904C3.86922 0.299702 4.49614 0.1716 5.15217 0.1716ZM2.54357 3.89818C2.54357 4.10392 2.61635 4.27957 2.76192 4.42514C2.90749 4.57071 3.08314 4.6435 3.28888 4.6435C3.49462 4.6435 3.67028 4.57071 3.81584 4.42514C3.96141 4.27957 4.0342 4.10392 4.0342 3.89818C4.0342 3.69244 3.96141 3.51679 3.81584 3.37122C3.67028 3.22565 3.49462 3.15287 3.28888 3.15287C3.08314 3.15287 2.90749 3.22565 2.76192 3.37122C2.61635 3.51679 2.54357 3.69244 2.54357 3.89818ZM5.15217 7.99742C5.68399 7.99742 6.1566 7.82371 6.57002 7.47628C6.98344 7.12886 7.25614 6.68341 7.38812 6.13995H2.91622C3.04821 6.6873 3.31994 7.13371 3.73141 7.47919C4.14289 7.82468 4.61648 7.99742 5.15217 7.99742ZM7.01546 4.6435C7.2212 4.6435 7.39686 4.57071 7.54243 4.42514C7.688 4.27957 7.76078 4.10392 7.76078 3.89818C7.76078 3.69244 7.688 3.51679 7.54243 3.37122C7.39686 3.22565 7.2212 3.15287 7.01546 3.15287C6.80973 3.15287 6.63407 3.22565 6.4885 3.37122C6.34293 3.51679 6.27015 3.69244 6.27015 3.89818C6.27015 4.10392 6.34293 4.27957 6.4885 4.42514C6.63407 4.57071 6.80973 4.6435 7.01546 4.6435Z" fill="#1CC4BF"/>
                     </svg>                        
-                    <p>2532</p>
+                    <p th:text="${positiva.positiva}"></p>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.15217 0.171387C5.80821 0.171387 6.43513 0.299488 7.03293 0.55569C7.63074 0.811893 8.14606 1.15641 8.57888 1.58923C9.01171 2.02206 9.35622 2.53738 9.61243 3.13518C9.86863 3.73299 9.99673 4.35991 9.99673 5.01594C9.99673 5.67198 9.86863 6.29987 9.61243 6.89961C9.35622 7.49936 9.01171 8.01468 8.57888 8.44556C8.14606 8.87645 7.63074 9.21999 7.03293 9.4762C6.43513 9.7324 5.80821 9.8605 5.15217 9.8605C4.49614 9.8605 3.86922 9.7324 3.27141 9.4762C2.67361 9.21999 2.15829 8.87645 1.72547 8.44556C1.29264 8.01468 0.948123 7.49936 0.691921 6.89961C0.435718 6.29987 0.307617 5.67198 0.307617 5.01594C0.307617 4.35991 0.435718 3.73299 0.691921 3.13518C0.948123 2.53738 1.29264 2.02206 1.72547 1.58923C2.15829 1.15641 2.67361 0.811893 3.27141 0.55569C3.86922 0.299488 4.49614 0.171387 5.15217 0.171387ZM3.84205 7.53721C4.31563 7.10632 4.75234 6.887 5.15217 6.87923C5.54812 6.87923 5.98483 7.09856 6.4623 7.53721C6.53994 7.61096 6.62631 7.63911 6.72141 7.62164C6.81652 7.60417 6.89125 7.54691 6.94559 7.44987C7.06205 7.25577 7.03876 7.08303 6.87572 6.93164C6.3012 6.39983 5.72669 6.13392 5.15217 6.13392C4.57766 6.13392 4.00314 6.39983 3.42863 6.93164C3.26559 7.08691 3.2423 7.25966 3.35876 7.44987C3.41698 7.54691 3.49268 7.60417 3.58584 7.62164C3.67901 7.63911 3.76441 7.61096 3.84205 7.53721ZM2.54357 4.27063C2.54357 4.47637 2.61635 4.65202 2.76192 4.79759C2.90749 4.94316 3.08314 5.01594 3.28888 5.01594C3.49462 5.01594 3.67028 4.94316 3.81584 4.79759C3.96141 4.65202 4.0342 4.47637 4.0342 4.27063C4.0342 4.06489 3.96141 3.88923 3.81584 3.74366C3.67028 3.5981 3.49462 3.52531 3.28888 3.52531C3.08314 3.52531 2.90749 3.5981 2.76192 3.74366C2.61635 3.88923 2.54357 4.06489 2.54357 4.27063ZM7.01546 5.01594C7.2212 5.01594 7.39686 4.94316 7.54243 4.79759C7.688 4.65202 7.76078 4.47637 7.76078 4.27063C7.76078 4.06489 7.688 3.88923 7.54243 3.74366C7.39686 3.5981 7.2212 3.52531 7.01546 3.52531C6.80973 3.52531 6.63407 3.5981 6.4885 3.74366C6.34293 3.88923 6.27015 4.06489 6.27015 4.27063C6.27015 4.47637 6.34293 4.65202 6.4885 4.79759C6.63407 4.94316 6.80973 5.01594 7.01546 5.01594Z" fill="#546582" fill-opacity="0.4"/>
                     </svg>                        
-                    <p>138</p>
+                    <p th:text="${negativa.negativa}"></p>
                 </div>
-                <p th:text="${med.crm}">CRM: MC0190-SP</p>
+                <p th:text="*{'CRM: '+crm}"></p>
                 <hr>
-                <p>Sou uma pessoa super simpática e atenciosa, considero a empatia a chave do meu sucesso. </p>
+                <p th:text="*{sobreMed}"> </p>
             </div>
-            <div class="info" th:each="med, stat: ${medico}" >
+            <div class="info"  >
                 <h2>Informações</h2>
                 <div class="linhaInfo">
-                    <img src="/web/imagens/svgRelogio.svg" alt="">
-                    <p>23 Out 2021, 16:40 Fuso horário: Brasilia</p>
+                    <img src="/web/imagens/svgRelogio.svg" alt="">                    
+                    <p th:text="${#temporals.format(con.dtAgendada, 'dd MMM yyyy') +', ' +con.hora +' '+'Fuso Horário: Brasília'}">23 Out 2021, 16:40 Fuso horário: Brasilia</p>
                 </div>
                 <div class="enderecoInfo">
                     <img src="/web/imagens/svgMap.svg" alt="">
-                    <p>Rua Antônio Mendes da Rocha Filho, nº 695  Bloco A Sala 49. São Paulo, SP Cep: 02.996-215</p>
+                    <p th:text="${medico.clinica.endereco.logradouro +', '+ 
+                    medico.clinica.endereco.numero+' '+medico.clinica.endereco.complemento+ ' Sala: '+
+                    medico.sala + ' '+ medico.clinica.endereco.bairro.nome+', Cep: '+ medico.clinica.endereco.cep}"></p>
                 </div>
                 <div class="linhaInfo">
                     <img src="/web/imagens/svgTel.svg" alt="">
-                    <p>(11) 5600-2030</p>
+                    <p th:text="${medico.clinica.telefone}"></p>
                 </div>
                 <div class="linhaInfo">
                     <img src="/web/imagens/svgSacoDin.svg" alt="">
-                    <p>Valor da consulta: R$ 100,00</p>
+                    <p th:text="${'Valor da consulta: '+ #numbers.formatCurrency(medico.valorMed)}"></p>
                 </div>
             </div>
         </div>
         <div id="divAltera" class="altera">
-            <form th:action="@{/paciente/consulta/altera}" method="post" th:object="${altera}">
+            <form th:action="@{/paciente/consulta/altera}" method="post" th:object="${con}">
                 <div class="tituloAltera">
                 <h1>Alterar consulta</h1>
                 <p>Altere de forma rápida e sem burocracia.</p> 
                 </div>
                 <div class="codAltera">
                     <p>Código da consulta</p>
-                    <input type="text" th:field="*{idConsulta}" readonly id="numConsulta">
-                    <span th:if="${#fields.hasErrors('idConsulta')}" th:errors="*{idConsulta}"></span>
+                    <input type="text" th:field="*{idConsulta}"  readonly id="numConsulta">
                 </div>
                 <div class="dataltera">
                     <p>Nova data</p>
                     <input type="date" th:field="*{dtAgendada}">
                 </div>
-                <div class="horaltera">
+                <div class="horaltera" >
                     <p>Novo horário</p>
                     <input type="time" th:field="*{hora}" >
                 </div>

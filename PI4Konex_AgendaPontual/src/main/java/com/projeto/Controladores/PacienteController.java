@@ -70,7 +70,7 @@ public class PacienteController {
 
 	@GetMapping("/dashboard")
 	public String dashboardPaci(Model model) {
-		Integer idUsu = 11;
+		Integer idUsu = 1;
 		// paciServ.pesquisaPacientePorUsuarioId(idUsu)
 		model.addAttribute("resumo", consServ.consultasMarcadas(idUsu));
 

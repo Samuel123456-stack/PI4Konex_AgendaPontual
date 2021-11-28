@@ -111,7 +111,7 @@
             <h1>Dashboard</h1>
         </div>
         <div class="consultaAgen" th:each="resumo, stat: ${resumo}">
-            <form action="" >
+            <form th:action="@{/paciente/consulta/{id}(id=${resumo.idConsulta})}" method="get" >
                 <div class="dadosAgen">
                 <h2>Consulta agendada</h2>
                 <img src="/image/med1.png" alt="Foto do medico">

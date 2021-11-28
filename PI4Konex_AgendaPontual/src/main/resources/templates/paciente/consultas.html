@@ -191,6 +191,7 @@
                 <p>Ao clicar em uma das no ícone de informações, é exibido aqui automaticamente.</p>
             </div>
             <div class="med" th:object="${medico}">
+            	<!-- <img th:src="*{'data:image/png;base64,'+{medico.foto}}"> -->
                 <img th:src="*{'data:image/png;base64,'+{foto}}">
                 <h2 th:text="*{nomeMed}"></h2>
                 <p th:text="${medico.especialidade.nomeEsp}"></p>

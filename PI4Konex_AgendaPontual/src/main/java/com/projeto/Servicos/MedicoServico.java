@@ -110,6 +110,6 @@ public class MedicoServico {
 	
 	@Transactional(readOnly = true)
 	public Medico buscaMedicoPorId(Integer idMed) {
-		return medRepo2.getById(idMed);
+		return medRepo2.pesuisaMedicoPorId(idMed);
 	}
 }

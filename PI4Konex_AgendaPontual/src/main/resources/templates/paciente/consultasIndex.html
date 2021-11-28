@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/dashboardPaci.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/consultas.css">
+    <title>Consultas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <script th:src="@{/js/pegaNumConsulta.js}"></script>
+	<style>
+		#errorInput {
+			border: 1, 4px;
+			border-radius: 8px;
+			border-color: red;
+		}
+	</style>
 </head>
-
 <body>
     <div class="menulat">
     <a th:href="@{/}">
@@ -101,150 +108,149 @@
         </div>
     </div>
     <div class="todo">
-        <div class="titulo">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect y="13" width="2" height="7" fill="#166CD0" />
-                <rect x="6" y="8" width="2" height="12" fill="#166CD0" />
-                <rect x="12" y="4" width="2" height="16" fill="#166CD0" />
-                <rect x="18" width="2" height="20" fill="#166CD0" />
-            </svg>
-            <h1>Dashboard</h1>
+        <div class="consultas">
+            <div class="titulo">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86364 20V18.3019H2.04545V1.69811H17.9545V10H20V0H0V20H8.86364ZM4 6V4H16V6H4ZM4 8V10H10V8H4Z" fill="#166CD0"/>
+                </svg>   
+                <h1>Consultas</h1>
+            </div>
+            <div class="listaConsul">
+                <div class="consulta" th:each="con, stat: ${lista}">
+                        <!-- colocar como desativada dentro do ID -->
+                        <div id="ativa"></div>
+                        <h1 th:text="${con.medico.especialidade.nomeEsp}"></h1>
+                        <p id="date" th:text="${#temporals.format(con.dtAgendada, 'dd/MM/yyyy')+' - '+con.hora+'h'}"></p>
+                        <p th:text="${'#'+con.idConsulta}"></p>
+                        <div class="sgvsConsul">
+                            <button>
+                                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H15V18H2V2ZM0 0H2H15H17V2V18V20H15H2H0V18V2V0ZM13 4H4V6H13V4ZM4 8H13V10H4V8ZM13 12H4V14H13V12Z" fill="#7B61FF"/>
+                                </svg>
+                            </button>
+                            <a th:href="@{/paciente/consulta/{id}(id=${con.idConsulta})}">
+	                            <button>
+	                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	                                    <path d="M8.88889 15.5556H11.1111V8.88889H8.88889V15.5556ZM10 4.44444C9.44444 4.44444 8.88889 5 8.88889 5.55556C8.88889 6.11111 9.44444 6.66667 10 6.66667C10.5556 6.66667 11.1111 6.11111 11.1111 5.55556C11.1111 5 10.5556 4.44444 10 4.44444ZM10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10C2.22222 5.66667 5.66667 2.22222 10 2.22222C14.3333 2.22222 17.7778 5.66667 17.7778 10C17.7778 14.3333 14.3333 17.7778 10 17.7778Z" fill="#1CC4BF"/>
+	                                </svg>
+	                            </button>
+                            </a>
+                            <a href="#divAltera">
+	                            <button id="alteraCons" name="altera" th:value="${con.IdConsulta}">
+	                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	                                    <path d="M9.38888 5.55557C9.11274 5.55557 8.88888 5.77943 8.88888 6.05557V10.8263C8.88888 11.0029 8.982 11.1663 9.13387 11.2564L13.1837 13.6577C13.4202 13.7979 13.7255 13.7209 13.8672 13.4854L14.2074 12.9198C14.3504 12.6822 14.2727 12.3737 14.0342 12.2322L10.8003 10.312C10.6486 10.2219 10.5555 10.0585 10.5555 9.88206V6.05557C10.5555 5.77943 10.3317 5.55557 10.0555 5.55557H9.38888ZM19.5 7.77779C19.7761 7.77779 20 7.55393 20 7.27779V1.20713C20 0.761675 19.4614 0.538592 19.1464 0.853574L17.4215 2.57854C17.2257 2.77429 16.909 2.77271 16.7043 2.58637C15.8587 1.81673 14.8855 1.19805 13.8272 0.758734C12.6142 0.255223 11.3133 -0.00265897 9.99999 2.06703e-05C8.02218 2.06703e-05 6.08879 0.58651 4.4443 1.68532C2.79981 2.78414 1.51808 4.34592 0.761208 6.17318C0.00433279 8.00044 -0.1937 10.0111 0.192151 11.9509C0.578003 13.8907 1.53041 15.6725 2.92893 17.0711C4.32746 18.4696 6.10928 19.422 8.04909 19.8078C9.9889 20.1937 11.9996 19.9957 13.8268 19.2388C15.6541 18.4819 17.2159 17.2002 18.3147 15.5557C19.3207 14.05 19.8973 12.3022 19.9875 10.4998C20.0013 10.224 19.7761 10 19.5 10H18.2778C18.0016 10 17.7794 10.2245 17.7619 10.5001C17.5032 14.5568 14.1209 17.7778 9.99999 17.7778C5.71111 17.7778 2.22222 14.2889 2.22222 10C2.22222 5.71113 5.71111 2.22224 9.99999 2.22224C11.964 2.22224 13.7603 2.95853 15.1327 4.15796C15.3412 4.34019 15.3408 4.65916 15.145 4.85497L13.0758 6.92423C12.7608 7.23922 12.9839 7.77779 13.4293 7.77779H19.5Z" fill="#166CD0"/>
+	                                </svg>
+	                            </button>
+                            </a>
+                            <form th:action="@{/paciente/consulta/cancela/{id}(id=${con.idConsulta})}" method="post">
+	                            <button>
+	                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	                                    <path d="M15 4H20V6H18V19C18 19.2652 17.8946 19.5196 17.7071 19.7071C17.5196 19.8946 17.2652 20 17 20H3C2.73478 20 2.48043 19.8946 2.29289 19.7071C2.10536 19.5196 2 19.2652 2 19V6H0V4H5V1C5 0.734784 5.10536 0.48043 5.29289 0.292893C5.48043 0.105357 5.73478 0 6 0H14C14.2652 0 14.5196 0.105357 14.7071 0.292893C14.8946 0.48043 15 0.734784 15 1V4ZM16 6H4V18H16V6ZM7 2V4H13V2H7Z" fill="#FF634E"/>
+	                                </svg>
+	                            </button>
+                            </form>               
+                        </div>
+                </div>           
+            </div>
+            <div class="infoSgvs">
+                <div class="precancela">
+                    <div class="statusConsul">
+                        <div id="ativa"></div>
+                        <p>: Ativa</p>
+                    </div>
+                    <div class="receitaConsul">
+                        <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 2H15V18H2V2ZM0 0H2H15H17V2V18V20H15H2H0V18V2V0ZM13 4H4V6H13V4ZM4 8H13V10H4V8ZM13 12H4V14H13V12Z" fill="#7B61FF"/>
+                        </svg>
+                        <p> : Receita médica</p>    
+                    </div>
+                    <div class="InfoConsul">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.88889 15.5556H11.1111V8.88889H8.88889V15.5556ZM10 4.44444C9.44444 4.44444 8.88889 5 8.88889 5.55556C8.88889 6.11111 9.44444 6.66667 10 6.66667C10.5556 6.66667 11.1111 6.11111 11.1111 5.55556C11.1111 5 10.5556 4.44444 10 4.44444ZM10 0C4.44444 0 0 4.44444 0 10C0 15.5556 4.44444 20 10 20C15.5556 20 20 15.5556 20 10C20 4.44444 15.5556 0 10 0ZM10 17.7778C5.66667 17.7778 2.22222 14.3333 2.22222 10C2.22222 5.66667 5.66667 2.22222 10 2.22222C14.3333 2.22222 17.7778 5.66667 17.7778 10C17.7778 14.3333 14.3333 17.7778 10 17.7778Z" fill="#1CC4BF"/>
+                        </svg>
+                        <p> : Informações da consulta</p>  
+                    </div>
+                    <div class="alterConsul">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.38888 5.55557C9.11274 5.55557 8.88888 5.77943 8.88888 6.05557V10.8263C8.88888 11.0029 8.982 11.1663 9.13387 11.2564L13.1837 13.6577C13.4202 13.7979 13.7255 13.7209 13.8672 13.4854L14.2074 12.9198C14.3504 12.6822 14.2727 12.3737 14.0342 12.2322L10.8003 10.312C10.6486 10.2219 10.5555 10.0585 10.5555 9.88206V6.05557C10.5555 5.77943 10.3317 5.55557 10.0555 5.55557H9.38888ZM19.5 7.77779C19.7761 7.77779 20 7.55393 20 7.27779V1.20713C20 0.761675 19.4614 0.538592 19.1464 0.853574L17.4215 2.57854C17.2257 2.77429 16.909 2.77271 16.7043 2.58637C15.8587 1.81673 14.8855 1.19805 13.8272 0.758734C12.6142 0.255223 11.3133 -0.00265897 9.99999 2.06703e-05C8.02218 2.06703e-05 6.08879 0.58651 4.4443 1.68532C2.79981 2.78414 1.51808 4.34592 0.761208 6.17318C0.00433279 8.00044 -0.1937 10.0111 0.192151 11.9509C0.578003 13.8907 1.53041 15.6725 2.92893 17.0711C4.32746 18.4696 6.10928 19.422 8.04909 19.8078C9.9889 20.1937 11.9996 19.9957 13.8268 19.2388C15.6541 18.4819 17.2159 17.2002 18.3147 15.5557C19.3207 14.05 19.8973 12.3022 19.9875 10.4998C20.0013 10.224 19.7761 10 19.5 10H18.2778C18.0016 10 17.7794 10.2245 17.7619 10.5001C17.5032 14.5568 14.1209 17.7778 9.99999 17.7778C5.71111 17.7778 2.22222 14.2889 2.22222 10C2.22222 5.71113 5.71111 2.22224 9.99999 2.22224C11.964 2.22224 13.7603 2.95853 15.1327 4.15796C15.3412 4.34019 15.3408 4.65916 15.145 4.85497L13.0758 6.92423C12.7608 7.23922 12.9839 7.77779 13.4293 7.77779H19.5Z" fill="#166CD0"/>
+                        </svg>
+                        <p> : Alterar consulta</p>
+                    </div>
+                </div>
+                <div id="" class="cancelConsul">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 4H20V6H18V19C18 19.2652 17.8946 19.5196 17.7071 19.7071C17.5196 19.8946 17.2652 20 17 20H3C2.73478 20 2.48043 19.8946 2.29289 19.7071C2.10536 19.5196 2 19.2652 2 19V6H0V4H5V1C5 0.734784 5.10536 0.48043 5.29289 0.292893C5.48043 0.105357 5.73478 0 6 0H14C14.2652 0 14.5196 0.105357 14.7071 0.292893C14.8946 0.48043 15 0.734784 15 1V4ZM16 6H4V18H16V6ZM7 2V4H13V2H7Z" fill="#FF634E"/>
+                    </svg>    
+                    <p> : Cancelar Consulta</p>
+                </div>
+            </div>
         </div>
-        <div class="consultaAgen" th:each="resumo, stat: ${resumo}">
-            <form action="" >
-                <div class="dadosAgen">
-                <h2>Consulta agendada</h2>
-                <img src="/image/med1.png" alt="Foto do medico">
-                <h3 th:text="${resumo.medico.nomeMed}"></h3>
-                <img src="/web/image/svgSacoDin.svg" id="svg"> 
-                <p th:text="${#numbers.formatCurrency(resumo.medico.valorMed)}"></p>
-
-                <img src="/image/svgRelogio.svg" id="svg">
-                <p th:text="${#temporals.format(resumo.dtAgendada, 'dd MMM yyyy') +', '+ resumo.hora + ' Fuso horário: Brasilia'}"></p>
+        <div class="painel">
+            <div class="tituloPainel">
+                <h1 id="painelDinamico">Painel Dinâmico</h1>
+                <p>Ao clicar em uma das no ícone de informações, é exibido aqui automaticamente.</p>
             </div>
-            <div id="btnAgen">
-                <input type="submit" value="Ver mais">
+            <div class="med">
+                <img>
+                <h2 ></h2>
+                <p></p>
+                <div class="atendEAva">
+                    <p></p>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.15217 0.1716C5.80821 0.1716 6.43513 0.299702 7.03293 0.555904C7.63074 0.812107 8.14606 1.15662 8.57888 1.58945C9.01171 2.02228 9.35622 2.53759 9.61243 3.1354C9.86863 3.7332 9.99673 4.36012 9.99673 5.01616C9.99673 5.67219 9.86863 6.30008 9.61243 6.89983C9.35622 7.49957 9.01171 8.01489 8.57888 8.44578C8.14606 8.87666 7.63074 9.22021 7.03293 9.47641C6.43513 9.73261 5.80821 9.86071 5.15217 9.86071C4.49614 9.86071 3.86922 9.73261 3.27141 9.47641C2.67361 9.22021 2.15829 8.87666 1.72547 8.44578C1.29264 8.01489 0.948123 7.49957 0.691921 6.89983C0.435718 6.30008 0.307617 5.67219 0.307617 5.01616C0.307617 4.36012 0.435718 3.7332 0.691921 3.1354C0.948123 2.53759 1.29264 2.02228 1.72547 1.58945C2.15829 1.15662 2.67361 0.812107 3.27141 0.555904C3.86922 0.299702 4.49614 0.1716 5.15217 0.1716ZM2.54357 3.89818C2.54357 4.10392 2.61635 4.27957 2.76192 4.42514C2.90749 4.57071 3.08314 4.6435 3.28888 4.6435C3.49462 4.6435 3.67028 4.57071 3.81584 4.42514C3.96141 4.27957 4.0342 4.10392 4.0342 3.89818C4.0342 3.69244 3.96141 3.51679 3.81584 3.37122C3.67028 3.22565 3.49462 3.15287 3.28888 3.15287C3.08314 3.15287 2.90749 3.22565 2.76192 3.37122C2.61635 3.51679 2.54357 3.69244 2.54357 3.89818ZM5.15217 7.99742C5.68399 7.99742 6.1566 7.82371 6.57002 7.47628C6.98344 7.12886 7.25614 6.68341 7.38812 6.13995H2.91622C3.04821 6.6873 3.31994 7.13371 3.73141 7.47919C4.14289 7.82468 4.61648 7.99742 5.15217 7.99742ZM7.01546 4.6435C7.2212 4.6435 7.39686 4.57071 7.54243 4.42514C7.688 4.27957 7.76078 4.10392 7.76078 3.89818C7.76078 3.69244 7.688 3.51679 7.54243 3.37122C7.39686 3.22565 7.2212 3.15287 7.01546 3.15287C6.80973 3.15287 6.63407 3.22565 6.4885 3.37122C6.34293 3.51679 6.27015 3.69244 6.27015 3.89818C6.27015 4.10392 6.34293 4.27957 6.4885 4.42514C6.63407 4.57071 6.80973 4.6435 7.01546 4.6435Z" fill="#1CC4BF"/>
+                    </svg>                        
+                    <p></p>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.15217 0.171387C5.80821 0.171387 6.43513 0.299488 7.03293 0.55569C7.63074 0.811893 8.14606 1.15641 8.57888 1.58923C9.01171 2.02206 9.35622 2.53738 9.61243 3.13518C9.86863 3.73299 9.99673 4.35991 9.99673 5.01594C9.99673 5.67198 9.86863 6.29987 9.61243 6.89961C9.35622 7.49936 9.01171 8.01468 8.57888 8.44556C8.14606 8.87645 7.63074 9.21999 7.03293 9.4762C6.43513 9.7324 5.80821 9.8605 5.15217 9.8605C4.49614 9.8605 3.86922 9.7324 3.27141 9.4762C2.67361 9.21999 2.15829 8.87645 1.72547 8.44556C1.29264 8.01468 0.948123 7.49936 0.691921 6.89961C0.435718 6.29987 0.307617 5.67198 0.307617 5.01594C0.307617 4.35991 0.435718 3.73299 0.691921 3.13518C0.948123 2.53738 1.29264 2.02206 1.72547 1.58923C2.15829 1.15641 2.67361 0.811893 3.27141 0.55569C3.86922 0.299488 4.49614 0.171387 5.15217 0.171387ZM3.84205 7.53721C4.31563 7.10632 4.75234 6.887 5.15217 6.87923C5.54812 6.87923 5.98483 7.09856 6.4623 7.53721C6.53994 7.61096 6.62631 7.63911 6.72141 7.62164C6.81652 7.60417 6.89125 7.54691 6.94559 7.44987C7.06205 7.25577 7.03876 7.08303 6.87572 6.93164C6.3012 6.39983 5.72669 6.13392 5.15217 6.13392C4.57766 6.13392 4.00314 6.39983 3.42863 6.93164C3.26559 7.08691 3.2423 7.25966 3.35876 7.44987C3.41698 7.54691 3.49268 7.60417 3.58584 7.62164C3.67901 7.63911 3.76441 7.61096 3.84205 7.53721ZM2.54357 4.27063C2.54357 4.47637 2.61635 4.65202 2.76192 4.79759C2.90749 4.94316 3.08314 5.01594 3.28888 5.01594C3.49462 5.01594 3.67028 4.94316 3.81584 4.79759C3.96141 4.65202 4.0342 4.47637 4.0342 4.27063C4.0342 4.06489 3.96141 3.88923 3.81584 3.74366C3.67028 3.5981 3.49462 3.52531 3.28888 3.52531C3.08314 3.52531 2.90749 3.5981 2.76192 3.74366C2.61635 3.88923 2.54357 4.06489 2.54357 4.27063ZM7.01546 5.01594C7.2212 5.01594 7.39686 4.94316 7.54243 4.79759C7.688 4.65202 7.76078 4.47637 7.76078 4.27063C7.76078 4.06489 7.688 3.88923 7.54243 3.74366C7.39686 3.5981 7.2212 3.52531 7.01546 3.52531C6.80973 3.52531 6.63407 3.5981 6.4885 3.74366C6.34293 3.88923 6.27015 4.06489 6.27015 4.27063C6.27015 4.47637 6.34293 4.65202 6.4885 4.79759C6.63407 4.94316 6.80973 5.01594 7.01546 5.01594Z" fill="#546582" fill-opacity="0.4"/>
+                    </svg>                        
+                    <p></p>
+                </div>
+                <p></p>
+                <hr>
+                <p> </p>
             </div>
+            <div class="info"  >
+                <h2>Informações</h2>
+                <div class="linhaInfo">
+                    <img src="/web/imagens/svgRelogio.svg" alt="">
+                    <p></p>
+                </div>
+                <div class="enderecoInfo">
+                    <img src="/web/imagens/svgMap.svg" alt="">
+                    <p></p>
+                </div>
+                <div class="linhaInfo">
+                    <img src="/web/imagens/svgTel.svg" alt="">
+                    <p></p>
+                </div>
+                <div class="linhaInfo">
+                    <img src="/web/imagens/svgSacoDin.svg" alt="">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <div id="divAltera" class="altera">
+            <form th:action="@{/paciente/consulta/altera}" method="post" th:object="${con}">
+                <div class="tituloAltera">
+                <h1>Alterar consulta</h1>
+                <p>Altere de forma rápida e sem burocracia.</p> 
+                </div>
+                <div class="codAltera">
+                    <p>Código da consulta</p>
+                    <input type="text" th:field="*{idConsulta}"  readonly id="numConsulta">
+                </div>
+                <div class="dataltera">
+                    <p>Nova data</p>
+                    <input type="date" th:field="*{dtAgendada}">
+                </div>
+                <div class="horaltera" >
+                    <p>Novo horário</p>
+                    <input type="time" th:field="*{hora}" >
+                </div>
+                <input type="submit" value="ALTERAR">
             </form>
         </div>
-        <div class="esquerdaBaixo">
-            <div class="notifica">
-                <h2>Notificações</h2>
-                <form action="">
-                    <table id="tbNot">
-                        <thead>
-                            <tr>
-                            <th style="width: 177px;">Remetente</th>
-                            <th style="width: 197px; text-align: left;">Assunto</th>
-                            <th style="width: 83px; text-align: left;">Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                            <tr>
-                                <td id="remeTb">
-                                    <label class="container-label">
-                                        <input type="checkbox" name="">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    Sistema .ual
-                                </td>
-                                <td id="agenTb">#Agendamento</td>
-                                <td id="dataTb">24/09/2021</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-        </div>
 
-        <div class="msgForm">
-            <form action="">
-                <h2>Visualização</h2>
-                
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et at laudantium consequatur. Deleniti facere optio quam! Tempore id neque ducimus, quam amet, voluptatum odio, unde doloribus ipsum repudiandae praesentium provident.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, non nobis ipsam animi sequi incidunt error corrupti omnis ea voluptates odit cupiditate dignissimos eaque molestiae, harum numquam obcaecati neque eum.
-                </p>
-            </form>
-        </div>
     </div>
 </body>
-
 </html>

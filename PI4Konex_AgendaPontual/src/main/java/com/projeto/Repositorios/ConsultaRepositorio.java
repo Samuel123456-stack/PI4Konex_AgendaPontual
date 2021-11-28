@@ -34,7 +34,7 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    "c.fk_rec_cons,c.fk_pag_cons,c.fk_feed_cons, m.nome as Medico, e.nome as Especialidade from consulta "+
    "as c join paciente as p on c.fk_paci_cons=p.idpaci  join medico as m on c.fk_med_cons=m.idmed join "+
    "especialidade as e on m.fk_esp_med=e.idesp join clinica as cli on m.fk_cli_med = cli.idcli where "+
-   "med.idmed = ?1")
+   "m.idmed = ?1")
    List<Consulta> listagemPainelMedInd(Integer idMed); 
 
    @Query(nativeQuery = true, value = "select c.idcons,c.dtagendada,c.hora,c.informacoesadic,  c.confirmada,"+

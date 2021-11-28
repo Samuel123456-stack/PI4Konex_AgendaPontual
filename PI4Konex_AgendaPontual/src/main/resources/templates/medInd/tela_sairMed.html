@@ -2,15 +2,14 @@
 <html>
 
 <head>
-    <title>Configurações</title>
-
+    <title>Sair</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS">
     <meta name="description" content="Agenda Pontual">
     <meta name="author" content="konex-group">
 
-    <link rel="stylesheet" href="/css/tela_configMed.css">
+    <link rel="stylesheet" href="/css/tela_sairMed.css">
 </head>
 <body>
     <div id="container-landing">
@@ -33,21 +32,29 @@
                 <div class="menu-selection">
                    <ul>
                        <li>
+                          
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.06985 0.941792C9.55991 0.738804 10.1105 0.738804 10.6006 0.941792L16.1409 3.23667C16.631 3.43966 17.0203 3.82901 17.2233 4.31907L19.5182 9.8594C19.7212 10.3495 19.7212 10.9001 19.5182 11.3901L17.2233 16.9305C17.0203 17.4205 16.631 17.8099 16.1409 18.0129L10.6006 20.3077C10.1105 20.5107 9.55991 20.5107 9.06985 20.3077L3.52951 18.0129C3.03946 17.8099 2.65011 17.4205 2.44712 16.9305L0.152241 11.3901C-0.050747 10.9001 -0.050747 10.3495 0.152241 9.8594L2.44712 4.31907C2.65011 3.82901 3.03946 3.43966 3.52951 3.23667L9.06985 0.941792ZM9.23463 3.10658C9.72469 2.90359 10.2753 2.90359 10.7654 3.10658L14.8915 4.81567C15.3815 5.01866 15.7709 5.40801 15.9739 5.89806L17.683 10.0242C17.886 10.5142 17.886 11.0649 17.683 11.5549L15.9739 15.681C15.7709 16.1711 15.3815 16.5604 14.8915 16.7634L10.7654 18.4725C10.2753 18.6755 9.72469 18.6755 9.23463 18.4725L5.10851 16.7634C4.61846 16.5604 4.22911 16.1711 4.02612 15.681L2.31703 11.5549C2.11404 11.0649 2.11404 10.5142 2.31703 10.0242L4.02612 5.89806C4.22911 5.40801 4.61846 5.01866 5.10851 4.81567L9.23463 3.10658ZM10 13.7896C8.34315 13.7896 7 12.4464 7 10.7896C7 9.1327 8.34315 7.78955 10 7.78955C11.6569 7.78955 13 9.1327 13 10.7896C13 12.4464 11.6569 13.7896 10 13.7896ZM5 10.7896C5 8.02813 7.23858 5.78955 10 5.78955C12.7614 5.78955 15 8.02813 15 10.7896C15 13.551 12.7614 15.7896 10 15.7896C7.23858 15.7896 5 13.551 5 10.7896Z" fill="#546582"/>
-                        </svg>      
-                        <span>Configurações</span>                      
+                        </svg>
+                        <a th:href="@{/medInd/medIndConfig}" style="text-decoration: none;">      
+                        <span>Configurações</span>
+                    </a>                      
                        </li>
+                       <a th:href="@{/medInd/painelMedInd}" style="text-decoration: none;">  
                        <li>
                            <img src="/image/user-doctor.png" alt="user-photo" />
+                        </a>
                        </li>
                        <li>
+                        
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10ZM10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0Z" fill="#546582"/>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2148 5.54492L14.6291 6.95914L6.9901 14.5981L5.57589 13.1839L13.2148 5.54492Z" fill="#546582"/>
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M7.06836 5.54492L5.65415 6.95914L13.2931 14.5981L14.7073 13.1839L7.06836 5.54492Z" fill="#546582"/>
-                        </svg>                              
-                            <span>Sair</span>                            
+                        </svg>
+                        <a th:href="@{/medInd/telaSair}" style="text-decoration: none;">                              
+                            <span>Sair</span>    
+                        </a>                        
                        </li>
                    </ul>
                 </div>
@@ -56,64 +63,32 @@
 
         <main class="main-page">
             <section class="back">
+                <a th:href="@{/medInd/painelMedInd}">
                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M-3.93402e-07 9.78955L9.27651 0.78955L11 2.46167L3.44698 9.78955L11 17.1174L9.27651 18.7896L-3.93402e-07 9.78955Z" fill="#1CC4BF"/>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9 9.78955L18.2765 0.78955L20 2.46167L12.447 9.78955L20 17.1174L18.2765 18.7896L9 9.78955Z" fill="#1CC4BF"/>
-                </svg> 
+                </svg>
+            </a> 
 
                 <section class="theme-page">
                     <div class="margin">
-                        <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7344 0.897358C13.2244 0.69437 13.775 0.69437 14.2651 0.897358L21.7213 3.98582C22.2114 4.18881 22.6007 4.57815 22.8037 5.06821L25.8922 12.5244C26.0951 13.0145 26.0951 13.5651 25.8922 14.0551L22.8037 21.5113C22.6007 22.0014 22.2114 22.3908 21.7213 22.5937L14.2651 25.6822C13.7751 25.8852 13.2244 25.8852 12.7344 25.6822L5.27817 22.5937C4.78812 22.3908 4.39877 22.0014 4.19578 21.5113L1.10732 14.0551C0.904331 13.5651 0.904331 13.0145 1.10732 12.5244L4.19578 5.06821C4.39877 4.57815 4.78811 4.18881 5.27817 3.98582L12.7344 0.897358ZM12.9441 3.64838C13.4342 3.44539 13.9848 3.44539 14.4749 3.64838L20.1337 5.99234C20.6237 6.19533 21.0131 6.58468 21.2161 7.07473L23.56 12.7335C23.763 13.2236 23.763 13.7742 23.56 14.2643L21.2161 19.9231C21.0131 20.4131 20.6237 20.8025 20.1337 21.0055L14.4749 23.3494C13.9848 23.5524 13.4342 23.5524 12.9441 23.3494L7.28531 21.0055C6.79526 20.8025 6.40591 20.4131 6.20292 19.9231L3.85896 14.2643C3.65598 13.7742 3.65598 13.2236 3.85896 12.7335L6.20292 7.07473C6.40591 6.58468 6.79526 6.19533 7.28531 5.99234L12.9441 3.64838ZM13.7095 17.8536C11.3044 17.8536 9.35477 15.904 9.35477 13.4989C9.35477 11.0939 11.3044 9.14419 13.7095 9.14419C16.1145 9.14419 18.0642 11.0939 18.0642 13.4989C18.0642 15.904 16.1145 17.8536 13.7095 17.8536ZM7.35477 13.4989C7.35477 9.9893 10.1999 7.14419 13.7095 7.14419C17.2191 7.14419 20.0642 9.9893 20.0642 13.4989C20.0642 17.0085 17.2191 19.8536 13.7095 19.8536C10.1999 19.8536 7.35477 17.0085 7.35477 13.4989Z" fill="#166CD0"/>
-                        </svg>   
-                        <span>Configurações</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.4 12C2.4 17.3019 6.69807 21.6 12 21.6C17.3019 21.6 21.6 17.3019 21.6 12C21.6 6.69807 17.3019 2.4 12 2.4C6.69807 2.4 2.4 6.69807 2.4 12ZM12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0Z" fill="#166CD0"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8594 6.6543L17.5564 8.35135L8.38969 17.5181L6.69263 15.821L15.8594 6.6543Z" fill="#166CD0"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.48242 6.6543L6.78537 8.35135L15.9521 17.5181L17.6492 15.821L8.48242 6.6543Z" fill="#166CD0"/>
+                        </svg>                              
+                        <span>Sair</span>
                     </div>
 
-                    <div class="form-container">
-                        <section class="profile-block">
-                            <div class="profile">
-                                <img src="/image/big-user-doctor.png" alt="icon" /> 
-                            </div>
-                            
-                            <div class="profile-about">
-                               <article class="content">
-                                <h3>Gabrile Felipe</h3>
-                                <p>Analista de Experiência</p>
-                               </article>
-
-                               <footer class="update">
-                                <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.55523 7.66667L8.77745 5.44444M6.55523 7.66667V1V7.66667ZM6.55523 7.66667L4.33301 5.44444L6.55523 7.66667Z" stroke="#1CC4BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M1 8.77734L1.345 10.1579C1.40508 10.3983 1.54379 10.6117 1.73907 10.7642C1.93435 10.9167 2.175 10.9995 2.42278 10.9996H10.6883C10.9361 10.9995 11.1768 10.9167 11.372 10.7642C11.5673 10.6117 11.706 10.3983 11.7661 10.1579L12.1111 8.77734" stroke="#1CC4BF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                   <span>Atualizar</span>
-                               </footer>
-                            </div>
-                        </section>
-
-                        <div class="form-structure">
-                            <form th:action="@{/medInd/atualiza}" method="">
-                                <div class="first-block">
-                                    <div class="input-block">
-                                        <p>E-MAIL</p>
-                                        <input type="text" name="email" th:field="*{usu.email}" th:text="*{usu.email}" placeholder="email@dominio.com" />
-                                    </div>
-    
-                                    <div class="input-block">
-                                        <p>SENHA</p>
-                                       <input type="password" name="senha" th:field="*{usu.senha}" th:text="*{usu.senha}" placeholder="**************" />
-                                    </div>
-    
-                                    <div class="input-block">
-                                        <p>DATA DE NASCIMENTO</p>
-                                       <input type="text" th:field="*{med.dataNasc}" th:text="*{med.dataNasc}" placeholder="30/01/1980" />
-                                    </div>
-
-                                    <input type="submit" value="SALVAR" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                        <article class="question">
+                            <h2>Você deseja realmente sair dessa sessão?</h2>
+                            <p>Se sair, agradecemos por sua participação e te esperamos pela próxima sessão!</p>
+                            <form th:action="@{/}">
+                            <footer class="button-exit">
+                                <button type="submit">SAIR</button>
+                            </footer>
+                        </form>
+                        </article>
                 </section>
             </section>
         </main>

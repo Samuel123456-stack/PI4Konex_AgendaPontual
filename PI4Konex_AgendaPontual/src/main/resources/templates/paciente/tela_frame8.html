@@ -118,7 +118,7 @@
             <h1>Feedback</h1>
         </div>
         <div class="daFeed">
-            <form th:action="@{/paciente/feedback/cadastro}" method="get" th:object="${feedback}">
+            <form th:action="@{/paciente/feedback/cadastro}" method="post" th:object="${feedback}">
                 <div class="esquerdaDaFeed">
                     <h2 id="tituloDaFeed">Seu feedback vale muito!</h2>
                     <div class="quem">
@@ -134,13 +134,13 @@
                     </div>
                     <div class="msgDaFeed">
                         <h3>Mensagem</h3>
-                        <textarea name="msgDaFeed" cols="30" rows="10" placeholder="Faça seu comentário aqui."></textarea>
+                        <textarea name="msgDaFeed" th:field="*{comentario}" cols="30" rows="10" placeholder="Faça seu comentário aqui."></textarea>
                     </div>
                 </div>
                 <div class="direitaDaFeed">
-                    <input id="CodConsul" type="text" name="idCons" readonly="readonly" placeholder="#806030">
+                    <input id="CodConsul" type="text" name="idCons" readonly="readonly">
                     <div class="notaGeral">
-                  			<input type="text" id="saida" readonly="readonly">
+                  			<input type="text" id="saida" value="" readonly="readonly">
                             <input type="range" th:field="*{avaliacao}" min="0" max="10" class="slider" id="nota">
                             <p>0</p>
                             <p id="ValorDaNota"><span id="valNotaGeral"></span></p>

@@ -82,24 +82,25 @@
             <table id="tbNot">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th style="width: 150px;">Nome</th>
-                        <th style="width: 112px; text-align: left;">Data</th>
-                        <th style="width: 175px; text-align: left;">Horário</th>
+                        <th style= "width: 75px;"></thstyle="width: 150px;" >
+                        <th style="width: 157px;">Nome</th>
+                        <th style="width: 108px; text-align: left;">Data</th>
+                        <th style="width: 72px; text-align: left;">Horário</th>
                         <th style="width: 88px; text-align: left;">Feedback p/</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="listaFeed : ${listaFeed}">
                         
-                        <td><a th:href="@{/medInd/mostraFeed/{idFeed} (idFeed=${listaFeed.idFeed})}">Visualizar</a> </td>
+                        <td style= "width: 68px;"><a th:href="@{/medInd/mostraFeed/{idFeed} (idFeed=${listaFeed.idFeed})}">Visualizar</a> </td >
                     
                         <input hidden th:value="${listaFeed.idFeed}" />
                         <td id="nomeTb">
                             <p th:text = "*{listaFeed.nome}"></p>
                         </td>
                         <td id="dataTb" th:text="*{listaFeed.dtAgendada}"></td>
-                        <td th:text="*{listaFeed.hora}"></td>
+                        <td id="horaTb" th:text="*{listaFeed.hora}"></td>
                         <td id="feedTb" >
                             <div id="pnt" th:text="*{listaFeed.pontos}">
                                 

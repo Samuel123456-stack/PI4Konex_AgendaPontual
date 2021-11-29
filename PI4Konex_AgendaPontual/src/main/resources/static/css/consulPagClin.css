@@ -205,6 +205,7 @@ background: #546582;
     float: left;
 }
 #nomeTb p{
+	width: 185px;
     margin: 12.222px 0 0 10px;
     font-weight: bold;
 }

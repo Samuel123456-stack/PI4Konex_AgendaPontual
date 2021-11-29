@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/priMedClin.css">
-    <script type="text/javascript">
-    $('input[type=checkbox]').change(function(){
-    	var x=document.getElementById("selectDias");
-    	var limit = x.options[x.selectedIndex].value;
-    	   if ($('input[name=diaSemana]:checked').length > limit) {
-    	        $(this).prop('checked', false)
-    	   }
-    	})
-    </script>
     <title>Primeiro Acesso Pt3</title>
 </head>
 <body>
@@ -109,9 +100,7 @@
                     </div>
                     <div class="interloTempo">
                         <p>INTERVALO</p>
-                        <select type="time" name="horaIntervalo">
-                            <option value="" disabled selected>60 minutos</option>
-                        </select>
+                        <input type="time" name="horaIntervalo" th:field="*{proj.horaIntervalo}" th:value="*{proj.horaIntervalo}">
                     </div>
                     <input type="submit" value="SALVAR ALTERAÇÕES DA PROJEÇÃO">
                     <button type="reset">

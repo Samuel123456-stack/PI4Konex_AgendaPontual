@@ -27,6 +27,7 @@ import com.projeto.Entidades.Usuario;
 import com.projeto.Repositorios.ConsultaRepositorio;
 import com.projeto.Repositorios.EspecialidadeRepositorio;
 import com.projeto.Repositorios.FeedbackRepositorio2;
+import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Repositorios.MedicojpaRepository;
 import com.projeto.Repositorios.ProjecaoRepositorio;
 import com.projeto.Servicos.AjudaServico;
@@ -68,6 +69,8 @@ public class MedicoIndController {
     ConsultaRepositorio consRepo;
     @Autowired
     EspecialidadeRepositorio espRepo;
+    @Autowired
+    MedicoRepositorio medRepo;
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -117,13 +120,12 @@ public class MedicoIndController {
     @RequestMapping("/salvaProj")
     public String salvaProj(@ModelAttribute("medInd") Medico medInd,
     @ModelAttribute("proj")ProjecaoSalarial projSal, HttpServletRequest request, Model model) throws ParseException {
-        medInd.setIdMed(2);
+        medInd.setIdMed(4);
         projSal.setMedico(medInd);
         // Atributos web
         String time1 = projSal.getHoraInicio().toString();
         String time2 = projSal.getHoraSaida().toString();
-        LocalTime horaInter = LocalTime.of(1, 0);
-        projSal.setHoraIntervalo(horaInter);
+        String timeInter = projSal.getHoraIntervalo().toString();
         float meta = projSal.getMetaPaci();
         float valorPorPaci = projSal.getValorPaci();
         int qtdDiasTrab = projSal.getQtdDias();
@@ -137,6 +139,9 @@ public class MedicoIndController {
 
         // calculando a diferença
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        LocalTime date1Hora = LocalTime.parse(time1);
+        LocalTime date2Hora = LocalTime.parse(time2);
+        LocalTime intervaloHora = LocalTime.parse(timeInter); 
         Date date1 = format.parse(time1);
         Date date2 = format.parse(time2);
         long difference = date2.getTime() - date1.getTime();
@@ -171,13 +176,31 @@ public class MedicoIndController {
         projSal.setTempoDuracao(durationMin);
         projSal.setQtdPaciDias(qtdPaciDia);
         projSal.setTotalConsulta(qtdPaciMes);
+        
+        //Logica do Calendario
+        int aux = durationMin;
+        while(aux<=minBase) {
+        	System.out.println(aux);
+        	System.out.println("DURACAO:"+durationMin);
+        	aux+=durationMin;
+        	date1Hora = date1Hora.plusMinutes(durationMin);
+        	System.out.println(date1Hora);
+        	
+        	if(date1Hora==intervaloHora) {
+        		
+                //Aumenta uma hora 
+        		date1Hora=date1Hora.plusHours(1);
+        		
+        		if(date1Hora!=date2Hora) {
+        			continue;
+        		}
+                   
+        	}
+        	
+        }
 
         // salvar no banco
-        System.out.println("PROJ:" + qtdPaciDia);
-        System.out.println("PROJ:" + qtdPaciMes);
-        System.out.println("PROJ:" + time1);
-        System.out.println("PROJ:" + minBase);
-        System.out.println("PROJ:" + durationMin);
+        model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(2));
         model.addAttribute("proj", projSal);
 
         projRepo.save(projSal);
@@ -187,8 +210,10 @@ public class MedicoIndController {
 
     @RequestMapping("/painelMedInd")
     public String painelMedInd(Model model){
-        Integer id = 2;
+        Integer id = 4;
+        Medico pontos = medRepo.infoMed(id);
         List<ProjecaoSalarial> listaProj = projRepo.listaProj(id);
+        model.addAttribute("pontos", pontos);
         model.addAttribute("listaProj", listaProj);
 
         return "/medInd/painelPinMedInd";

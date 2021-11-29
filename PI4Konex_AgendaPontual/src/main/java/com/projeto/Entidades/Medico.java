@@ -97,7 +97,7 @@ public class Medico implements Serializable {
 	@JoinColumn(name = "fk_cli_med")
 	private Clinica clinica;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	//@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_end_med")
 	private Endereco endereco;
 

@@ -1,24 +1,28 @@
 package com.projeto.Servicos;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projeto.Dto.ConsultasPacienteDTO;
 import com.projeto.Entidades.Consulta;
 import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.ConsultaRepositorio;
+import com.projeto.Repositorios.ConsultaRepositorio2;
 
 @Service
 public class ConsultaServico {
 	
 	@Autowired
 	private ConsultaRepositorio conRepo;
+	
 	@Autowired
 	private AgendaRepositorio agenRepo;
+	
+	@Autowired
+	private ConsultaRepositorio2 conRepo2;
 	
 	public void cadastro(Consulta obj) {		
 		conRepo.save(obj);
@@ -103,4 +107,14 @@ public class ConsultaServico {
     	 consulta.setHora(altera.getHora());
     	 conRepo.save(consulta);
     }
+    
+    @Transactional(readOnly = true)
+    public List<ConsultasPacienteDTO> consultaPorPaciente(Integer paciente) {
+    	return conRepo2.buscaConsultaPorPaciente(paciente);
+    } 
+    
+    @Transactional(readOnly = true)
+    public ConsultasPacienteDTO consultaPorIdCons(Integer idCons) {
+    	return conRepo2.buscaConsultaPorId(idCons);
+    } 
 }

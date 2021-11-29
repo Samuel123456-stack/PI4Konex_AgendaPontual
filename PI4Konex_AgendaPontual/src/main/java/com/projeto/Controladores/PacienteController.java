@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.projeto.Dto.AvaliacoesNegativasDTO;
 import com.projeto.Dto.AvaliacoesPositivasDTO;
+import com.projeto.Dto.ConsultasPacienteDTO;
 import com.projeto.Dto.QuantidadeAtendimentosDTO;
 import com.projeto.Dto.UltimoIdDTO;
 import com.projeto.Entidades.Ajuda;
@@ -109,34 +110,54 @@ public class PacienteController {
 		return "/paciente/tela_confirmShop";
 	}
 	
-	@GetMapping("/consultas/index")
-	public String consultasIndex(Model model) {
-		model.addAttribute("lista", consServ.consultasMarcadas(1));
-		model.addAttribute("con", new Consulta());
-		return "/paciente/consultasIndex";
-	}
-
+//	@GetMapping("/consultas/index")
+//	public String consultasIndex(Model model) {
+//		model.addAttribute("lista", consServ.consultasMarcadas(1));
+//		model.addAttribute("con", new Consulta());
+//		return "/paciente/consultasIndex";
+//	}
+	
 	@GetMapping("/consultas")
-	public String consultas(Model model, 
-			@ModelAttribute("medico") Medico medico,
-			@ModelAttribute("con") Consulta consulta,
-			@ModelAttribute("positiva") AvaliacoesPositivasDTO positiva,
-			@ModelAttribute("negativa") AvaliacoesNegativasDTO negativa,
-			@ModelAttribute("total") QuantidadeAtendimentosDTO qteAtendimento) {
-		model.addAttribute("lista", consServ.consultasMarcadas(1));
+	public String consultasIndex(Model model) {
+		ConsultasPacienteDTO consulta = consServ.consultaPorPaciente(11).get(0);
+		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+		model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getIdMed()));
+		model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getIdMed()));
+		model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getIdMed()));
+		model.addAttribute("con", consulta);
 		return "/paciente/consultas";
 	}
+
+//	@GetMapping("/consultas")
+//	public String consultas(Model model,
+//			@ModelAttribute("con") ConsultasPacienteDTO consulta,
+//			@ModelAttribute("positiva") AvaliacoesPositivasDTO positiva,
+//			@ModelAttribute("negativa") AvaliacoesNegativasDTO negativa,
+//			@ModelAttribute("total") QuantidadeAtendimentosDTO qteAtendimento) {
+//		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+//		return "/paciente/consultas";
+//	}
+	
+//	@GetMapping("/consulta/{idCons}")
+//	public String consultaDetalhe(@PathVariable("idCons") Integer idCons, Model model, RedirectAttributes redirect) {
+//		 Consulta consulta = consServ.consultaPorIdCons(idCons);
+//		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+//		redirect.addFlashAttribute("positiva", feeServ.buscaPositiva(consulta.getIdMed()));
+//		redirect.addFlashAttribute("negativa", feeServ.buscaNegativa(consulta.getIdMed()));
+//		redirect.addFlashAttribute("total", medServ.buscaQteAtendimento(consulta.getIdMed()));
+//		redirect.addFlashAttribute("con", consulta);
+//		return ("redirect:/paciente/consultas#painelDinamico");
+//	}
 	
 	@GetMapping("/consulta/{idCons}")
 	public String consultaDetalhe(@PathVariable("idCons") Integer idCons, Model model, RedirectAttributes redirect) {
-		 Consulta consulta = consServ.buscaConsultaPorId(idCons);
-		model.addAttribute("lista", consServ.consultasMarcadas(1));
-		redirect.addFlashAttribute("medico", medServ.buscaMedicoPorId(consulta.getMedico().getIdMed()));
-		redirect.addFlashAttribute("positiva", feeServ.buscaPositiva(consulta.getMedico().getIdMed()));
-		redirect.addFlashAttribute("negativa", feeServ.buscaNegativa(consulta.getMedico().getIdMed()));
-		redirect.addFlashAttribute("total", medServ.buscaQteAtendimento(consulta.getMedico().getIdMed()));
-		redirect.addFlashAttribute("con", consulta);
-		return ("redirect:/paciente/consultas#painelDinamico");
+		ConsultasPacienteDTO consulta = consServ.consultaPorIdCons(idCons);
+		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+		model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getIdMed()));
+		model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getIdMed()));
+		model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getIdMed()));
+		model.addAttribute("con", consulta);
+		return ("/paciente/consultas");
 	}
 
 	@GetMapping("/medico/agenda")

@@ -20,4 +20,8 @@ public interface ClinicaRepositorio extends JpaRepository<Clinica,Integer> {
 			+ "inner join cidade cid on b.fk_cid_bai = cid.idcid "
 			+ "where cid.idcid = :id")
 	List<Object []> buscaClinicas(Integer id);	
+	
+	@Query(nativeQuery = true,value="select * from clinica c "
+				+ "where c.idcli = :id")
+	Clinica buscaClinicaPorId(Integer id);	
 }

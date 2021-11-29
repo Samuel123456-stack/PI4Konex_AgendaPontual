@@ -248,9 +248,7 @@ public class PacienteController {
 
 	@PostMapping("/feedback/cadastro")
 	public String feedbackCadastro(@RequestParam Integer idCons, @ModelAttribute("feedback") Feedback feedback) {
-		Consulta consulta = consServ.buscaConsultaPorId(idCons);
-		consulta.setFeedback(feeServ.feedbackCadastro(feedback));
-		consServ.cadastro(consulta);
+		feeServ.feedbackCadastro(idCons, feedback);
 		return ("redirect:/paciente/feedback");
 	}
 

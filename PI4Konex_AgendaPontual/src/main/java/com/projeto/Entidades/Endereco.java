@@ -27,12 +27,12 @@ public class Endereco implements Serializable {
     private int idEnd;
 
     @Column(nullable = true)
-    @NotBlank
-    @NotNull	
+    //@NotBlank
+    //@NotNull	
     private String logradouro;
 
     @Column(nullable = true)
-    @Min(1)
+    //@Min(1)
     private int numero;
 
     @Column(nullable = true)

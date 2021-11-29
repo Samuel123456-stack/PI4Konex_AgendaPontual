@@ -110,6 +110,13 @@ public class MedicoServico {
 	
 	@Transactional(readOnly = true)
 	public Medico buscaMedicoPorId(Integer idMed) {
-		return medRepo2.pesuisaMedicoPorId(idMed);
+		return medRepo2.buscaMedicoPorId(idMed);
+	}
+	
+	@Transactional(readOnly = false)
+	public void atualizaPontuacao(Integer idMed, Integer ponto) {
+		Medico med = medRepo2.buscaMedicoPorId(idMed);
+		med.setPontos(ponto);
+		medRepo2.save(med);
 	}
 }

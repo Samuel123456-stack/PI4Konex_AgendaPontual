@@ -6,12 +6,14 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ConsultasPacienteDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer idCons;
 	private Integer idMed;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtAgendada;
 	private LocalTime hora;
 	private String especialidade;

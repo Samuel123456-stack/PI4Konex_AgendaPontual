@@ -119,16 +119,28 @@ public class PacienteController {
 	
 	@GetMapping("/consultas")
 	public String consultasIndex(Model model) {
-		ConsultasPacienteDTO consulta = consServ.consultaPorPaciente(11).get(0);
-		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+		ConsultasPacienteDTO consulta;
+		
+		if(consServ.consultaPorPaciente(1).isEmpty()) {
+			consulta = new ConsultasPacienteDTO();
+			model.addAttribute("lista", consulta);
+			model.addAttribute("positiva", new AvaliacoesPositivasDTO());
+			model.addAttribute("negativa", new AvaliacoesNegativasDTO());
+			model.addAttribute("total", new QuantidadeAtendimentosDTO());
+			model.addAttribute("con", consulta);
+			
+		}else {	
+			consulta = consServ.consultaPorPaciente(1).get(0);
+		model.addAttribute("lista", consServ.consultaPorPaciente(1));
 		model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getIdMed()));
 		model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getIdMed()));
 		model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getIdMed()));
 		model.addAttribute("con", consulta);
+		}
 		return "/paciente/consultas";
 	}
 
-//	@GetMapping("/consultas")
+//	@GetMapping("/consultas/index")
 //	public String consultas(Model model,
 //			@ModelAttribute("con") ConsultasPacienteDTO consulta,
 //			@ModelAttribute("positiva") AvaliacoesPositivasDTO positiva,
@@ -152,7 +164,7 @@ public class PacienteController {
 	@GetMapping("/consulta/{idCons}")
 	public String consultaDetalhe(@PathVariable("idCons") Integer idCons, Model model, RedirectAttributes redirect) {
 		ConsultasPacienteDTO consulta = consServ.consultaPorIdCons(idCons);
-		model.addAttribute("lista", consServ.consultaPorPaciente(11));
+		model.addAttribute("lista", consServ.consultaPorPaciente(1));
 		model.addAttribute("positiva", feeServ.buscaPositiva(consulta.getIdMed()));
 		model.addAttribute("negativa", feeServ.buscaNegativa(consulta.getIdMed()));
 		model.addAttribute("total", medServ.buscaQteAtendimento(consulta.getIdMed()));

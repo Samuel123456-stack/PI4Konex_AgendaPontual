@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,6 +18,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Repository
 public class ConsultaRepositorio2Impl implements ConsultaRepositorio2 {
+	Locale local = new Locale("pt","BR");
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy",local);
 	
 	@Autowired
     private HikariDataSource dataSource;
@@ -53,6 +57,7 @@ public class ConsultaRepositorio2Impl implements ConsultaRepositorio2 {
 
 	@Override
 	public List<ConsultasPacienteDTO> buscaConsultaPorPaciente(Integer paciente) {
+		
 		String ordena = " order by c.dtagendada, c.hora";
 		
 		String sql = "select c.idcons,c.dtagendada,c.hora,e.nome,m.idmed,m.foto,m.nome,m.crm,m.sobremim,"

@@ -38,6 +38,9 @@ public class Clinica implements Serializable{
 
 	@Column(name = "fone", nullable = true)
 	private String telefone;
+	
+	@Column(nullable = true)
+	private Integer pontos;
 
 	@JsonIgnore
 	@ManyToOne
@@ -59,7 +62,7 @@ public class Clinica implements Serializable{
 	}
 	// Metodo Construtor com Atributos
 	public Clinica(int idCli, LocalDateTime dataCriaCli, String nomeCli, String nomeMedResp, String cnpj, String rg,
-			int qntAssentos, String telefone, Planos plano, Endereco endereco, Usuario usuario) {
+			int qntAssentos, String telefone, Planos plano, Endereco endereco, Integer pontos, Usuario usuario) {
 		this.idCli = idCli;
 		this.dataCriaCli = dataCriaCli;
 		this.nomeCli = nomeCli;
@@ -70,6 +73,7 @@ public class Clinica implements Serializable{
 		this.telefone = telefone;
 		this.plano = plano;
 		this.endereco = endereco;
+		this.pontos = pontos;
 		this.usuario = usuario;
 	}
 	public int getIdCli() {
@@ -130,7 +134,13 @@ public class Clinica implements Serializable{
 		return endereco;
 	}
 	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+		this.endereco = endereco;		
+	}
+	public Integer getPontos() {
+		return pontos;
+	}
+	public void setPontos(Integer pontos) {
+		this.pontos = pontos;
 	}
 	public Usuario getUsuario() {
 		return usuario;

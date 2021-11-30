@@ -263,11 +263,8 @@
 .feedback-container .first-feedback,
 .feedback-container .second-feedback,
 .feedback-container .third-feedback{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom:20px;
+   float:right;
+   margin: 5px 10px;
 }
 .feedback-container .comment{
     display:flex;

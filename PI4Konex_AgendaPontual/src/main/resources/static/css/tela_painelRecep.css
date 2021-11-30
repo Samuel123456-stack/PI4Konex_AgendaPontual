@@ -62,6 +62,7 @@
     box-sizing: border-box;
     border-radius: 8px;
     padding:8px 15px;
+    overflow: visible;
 }
 #container-landing input[type="date"]{
     color:#858FA1;

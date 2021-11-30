@@ -83,20 +83,18 @@
                     </div>
                     <div class="quaisDias">
                         <p>Quais dias da semana você trabalha</p>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="segunda" />
+                        <input type="checkbox" class="option-radio" name="seg" value="2" />
                         <label for="segunda">Segunda</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="terca" style="margin-left: 10px;"/>
+                        <input type="checkbox" class="option-radio" name="ter" value="3" style="margin-left: 10px;"/>
                         <label for="terca" style="margin-right: 12px;">Terça</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="quarta"/>
+                        <input type="checkbox" class="option-radio" name="qua"  value="4"/>
                         <label for="quarta">Quarta</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="quinta" />
+                        <input type="checkbox" class="option-radio" name="qui"  value="5" />
                         <label for="quinta">Quinta</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="sexta" style="margin-left: 29px;"/>
+                        <input type="checkbox" class="option-radio" name="sex"  value="6" style="margin-left: 29px;"/>
                         <label for="sexta" style="margin-right: 10px;">Sexta</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="sabado" />
+                        <input type="checkbox" class="option-radio" name="sab" value="7" />
                         <label for="sabado">Sabado</label>
-                        <input type="checkbox" class="option-radio" name="diaSemana" value="domingo" />
-                        <label for="domingo">Domingo</label>
                     </div>
                     <div class="interloTempo">
                         <p>INTERVALO</p>
@@ -112,9 +110,8 @@
                 </div>
             </form>
             <hr>
-            <form action="">
                 <h2>Calendário Semanal gerado pela projeção</h2>
-                <div class="calendario">
+                <div class="calendario" >
                     <table id="tbNot">
                         <thead>
                             <tr>
@@ -151,43 +148,92 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>-----</td>
-                                <td>09:00</td>
-                                <td>-----</td>
-                                <td>10:00</td>
-                                <td>09:00</td>
-                                <td>09:00</td>
+                            <tr th:each="listaAgenSeg:${agendaMedSeg}">
+                                <td th:text="*{listaAgenSeg.seg}"></td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
                             <tr>
-                                <td>-----</td>
-                                <td>09:00</td>
-                                <td>-----</td>
-                                <td>10:00</td>
-                                <td>09:00</td>
-                                <td>09:00</td>
+                            <th>
+                                <div class="fundoTh">
+                                    TER
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="listaAgenTer:${agendaMedTer}">
+                                <td th:text="*{listaAgenTer.ter}"></td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
                             <tr>
-                                <td>-----</td>
-                                <td>09:00</td>
-                                <td>-----</td>
-                                <td>10:00</td>
-                                <td>09:00</td>
-                                <td>09:00</td>
+                            <th>
+                                <div class="fundoTh">
+                                    QUA
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="listaAgenQua:${agendaMedQua}">
+                                <td th:text="*{listaAgenQua.qua}"></td>
                             </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
                             <tr>
-                                <td>-----</td>
-                                <td>09:00</td>
-                                <td>-----</td>
-                                <td>10:00</td>
-                                <td>09:00</td>
-                                <td>09:00</td>
+                            <th>
+                                <div class="fundoTh">
+                                    QUI
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="listaAgenQui:${agendaMedQui}">
+                                <td th:text="*{listaAgenQui.qui}"></td>
                             </tr>
-                                
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>
+                                <div class="fundoTh">
+                                    SEX
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="listaAgenSex:${agendaMedSex}">
+                                <td th:text="*{listaAgenSex.sex}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>
+                                <div class="fundoTh">
+                                    SAB
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="listaAgenSab:${agendaMedSab}">
+                                <td th:text="*{listaAgenSab.sab}"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </form>
                 
         </div>
             

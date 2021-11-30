@@ -17,17 +17,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.projeto.Entidades.Agenda;
 import com.projeto.Entidades.Ajuda;
 import com.projeto.Entidades.Consulta;
+import com.projeto.Entidades.DiasSemana;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Feedback;
+import com.projeto.Entidades.Horario;
 import com.projeto.Entidades.Medico;
 import com.projeto.Entidades.ProjecaoSalarial;
 import com.projeto.Entidades.Recepcionista;
 import com.projeto.Entidades.Usuario;
+import com.projeto.Repositorios.AgendaRepositorio;
 import com.projeto.Repositorios.ConsultaRepositorio;
 import com.projeto.Repositorios.EspecialidadeRepositorio;
 import com.projeto.Repositorios.FeedbackRepositorio2;
+import com.projeto.Repositorios.HorarioRepositorio;
 import com.projeto.Repositorios.MedicoRepositorio;
 import com.projeto.Repositorios.MedicojpaRepository;
 import com.projeto.Repositorios.ProjecaoRepositorio;
@@ -72,6 +77,11 @@ public class MedicoIndController {
     EspecialidadeRepositorio espRepo;
     @Autowired
     MedicoRepositorio medRepo;
+    @Autowired
+    AgendaRepositorio agenRepo;
+    @Autowired
+    HorarioRepositorio horaRepo;
+    @Autowired
 
 
     //Por hora serão metodos sem uma logica ou despachamento de tela
@@ -112,15 +122,18 @@ public class MedicoIndController {
     @RequestMapping("/quartoPassoMedInd")
     public String quartoPasso(@ModelAttribute("medInd") Medico medInd,Model model){
     	ProjecaoSalarial projSal = new ProjecaoSalarial();
+        Agenda agenda = new Agenda();
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(2));
     	model.addAttribute("proj", projSal);
+        model.addAttribute("agenda", agenda);
 
         return "/medInd/priMedClin";
     }
     
     @RequestMapping("/salvaProj")
     public String salvaProj(@ModelAttribute("medInd") Medico medInd,
-    @ModelAttribute("proj")ProjecaoSalarial projSal, HttpServletRequest request, Model model) throws ParseException {
+    @ModelAttribute("proj")ProjecaoSalarial projSal, @ModelAttribute("agenda") Agenda agenda,
+    HttpServletRequest request, Model model) throws ParseException {
         medInd.setIdMed(2);
         projSal.setMedico(medInd);
         // Atributos web
@@ -131,6 +144,13 @@ public class MedicoIndController {
         float valorPorPaci = projSal.getValorPaci();
         int qtdDiasTrab = projSal.getQtdDias();
         String opSegure = request.getParameter("tempoSeguranca");
+        String seg = request.getParameter("seg");
+        String ter = request.getParameter("ter");
+        String qua = request.getParameter("qua");
+        String qui = request.getParameter("qui");
+        String sex = request.getParameter("sex");
+        String sab = request.getParameter("sab");
+        
 
         // atributos auxiliares
         int qtdPaciDia = 0;
@@ -178,15 +198,80 @@ public class MedicoIndController {
         projSal.setQtdPaciDias(qtdPaciDia);
         projSal.setTotalConsulta(qtdPaciMes);
         
-        //Logica do Calendario
+        //Logica do Calendario e Agenda do Médico
         int aux = durationMin;
         while(aux<=minBase) {
+            Agenda agen = new Agenda();
+            Horario hora = new Horario();
+            DiasSemana diaSemana = new DiasSemana();
         	System.out.println(aux);
         	System.out.println("DURACAO:"+durationMin);
         	aux+=durationMin;
         	date1Hora = date1Hora.plusMinutes(durationMin);
-        	System.out.println(date1Hora);
-        	
+            System.out.println("segunda:"+seg);
+            System.out.println("terca:"+ ter);
+            if(seg!=null && ter!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(2);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+             if(ter!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(3);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+            if(qua!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(4);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+            if(qui!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(5);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+            if(sex!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(6);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+            if(sab!=null){
+                hora.setHorario(date1Hora);
+                horaRepo.save(hora);
+                diaSemana.setIdDia(7);
+                agen.setDia(diaSemana);
+                agen.setHora(hora);
+                agen.setMedico(medInd);
+                System.out.println(date1Hora);
+                agenRepo.save(agen);
+            }
+
+            
         	if(date1Hora==intervaloHora) {
         		
                 //Aumenta uma hora 
@@ -203,6 +288,12 @@ public class MedicoIndController {
         // salvar no banco
         model.addAttribute("doeResumo", doeServ.buscaDoencaPorMedico(2));
         model.addAttribute("proj", projSal);
+        model.addAttribute("agendaMedSeg", medRepo.buscaSeg(2));
+        model.addAttribute("agendaMedTer", medRepo.buscaTer(2));
+        model.addAttribute("agendaMedQua", medRepo.buscaQua(2));
+        model.addAttribute("agendaMedQui", medRepo.buscaQui(2));
+        model.addAttribute("agendaMedSex", medRepo.buscaSex(2));
+        model.addAttribute("agendaMedSab", medRepo.buscaSab(2));
 
         projRepo.save(projSal);
         return "/medInd/priMedClin";
@@ -247,7 +338,13 @@ public class MedicoIndController {
     }
 
     @RequestMapping("/projSalarial")
-    public String projecaoSalarial(){
+    public String projecaoSalarial(Model model){
+        model.addAttribute("agendaMedSeg", medRepo.buscaSeg(2));
+        model.addAttribute("agendaMedTer", medRepo.buscaTer(2));
+        model.addAttribute("agendaMedQua", medRepo.buscaQua(2));
+        model.addAttribute("agendaMedQui", medRepo.buscaQui(2));
+        model.addAttribute("agendaMedSex", medRepo.buscaSex(2));
+        model.addAttribute("agendaMedSab", medRepo.buscaSab(2));
 
         return "/medInd/priMedClin";
     }

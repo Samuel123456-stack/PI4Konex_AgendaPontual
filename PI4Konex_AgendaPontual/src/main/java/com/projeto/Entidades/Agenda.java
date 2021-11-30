@@ -24,7 +24,7 @@ public class Agenda {
     @JoinColumn(name = "fk_dia_agen", unique = true)
     private DiasSemana dia;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_hor_agen", unique = true)
     private Horario hora;
 

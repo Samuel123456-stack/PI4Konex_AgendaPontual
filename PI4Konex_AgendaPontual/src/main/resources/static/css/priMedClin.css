@@ -269,3 +269,51 @@ background: #546582;
 #desativado{
     fill:#B9BFC9;
 } 
+
+
+.horas{
+	width: 650px;
+    height: 60px;
+    overflow:auto;
+}
+.horas table{
+	width: 66px;
+	padding: 0 20.1px 0 19px;
+}
+.horas table td{
+	float: left;
+	width: 62.63px;
+	padding: 0;
+	text-align: center;
+}
+
+.float{
+	width: 106px;
+	float:left;
+}
+
+/*scroll tabela*/
+.horas::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Track */
+.horas::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #E8E8E8; 
+    border-radius: 10px;
+}
+
+/* Handle */
+.horas::-webkit-scrollbar-thumb {
+    background: #546582; 
+}
+
+/* Handle on hover */
+.horas::-webkit-scrollbar-thumb:hover {
+    background: #546582; 
+}
+/*fim scroll*/
+
+
+
+

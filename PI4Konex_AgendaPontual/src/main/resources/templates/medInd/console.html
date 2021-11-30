@@ -24,22 +24,14 @@
             </a>
             <div class="agendaDia">
                 <p>Pacientes do dia</p>
-                <div class="paciente" id="ativo">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
+                <div class="paciente" id="ativo" th:each="listaPaci:${listaPaci}">
+                    <a th:href="@{/medInd/visualizaPaci/{idPaci} (idPaci=${listaPaci.paciente.idPaci})}">
+                        <input hidden th:value="${listaPaci.paciente.idPaci}" />
+                        <button type="submit">
+                            <img src="/image/Gabriel2.png">
+                            <h4 th:text="*{listaPaci.paciente.nomePaci}"></h4>
                         </button>
-                    </form>
-                </div>
-
-                <div class="paciente" id="">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
-                        </button>
-                    </form>
+                    </a>
                 </div>
                 <div class="paciente" id="">
                     <form action="">
@@ -49,39 +41,6 @@
                         </button>
                     </form>
                 </div>
-                <div class="paciente" id="">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
-                        </button>
-                    </form>
-                </div>
-                <div class="paciente" id="">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
-                        </button>
-                    </form>
-                </div>
-                <div class="paciente" id="">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
-                        </button>
-                    </form>
-                </div>
-                <div class="paciente" id="">
-                    <form action="">
-                        <button type="submit" name="paciente" value="Ana de Mendonça">
-                            <img src="/web/imagens/Gabriel2.png">
-                            <h4>Ana de Mendonça</h4>
-                        </button>
-                    </form>
-                </div>
-
             </div>
             <div class="agendaDia">
                 <p>Próximo dia</p>
@@ -157,11 +116,11 @@
                 </a>
             </div>
         </div>
-        <div class="meio">
-            <div class="topo">
-                <img src="/web/imagens/Gabriel2.png">
+        <div class="meio" th:each="dadosPaci:${dadosPaci}">
+            <div class="topo" >
+                <img src="/image/Gabriel2.png">
                 <div class="dados">
-                    <p>Ana de Mendonça</p>
+                    <p th:text="*{dadosPaci.paciente.nomePaci}"></p>
                     <p>32 anos</p>
                 </div>
                 <div class="tempo">
@@ -176,7 +135,7 @@
                         </clipPath>
                         </defs>
                     </svg>
-                    <p>40:00</p>
+                    <p th:text="*{dadosPaci.duracao}"></p>
                 </div>
                 <button>
                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,8 +155,7 @@
             
             <div class="anotacoes">
                 <h1>Anotações da pré-consulta</h1>
-                <p>Olá, Dra Silvia, estou anciosa para ser atendida, tenho grandes expectativas, pois estou a 
-                    procura de uma especialista para me ajudar a fazer o tratamento de cisto no ovário.</p>
+                <p th:text="*{dadosPaci.informaAdicio}"></p>
             </div>
             <div class="doencas">
                 <h1>Comorbidades</h1>

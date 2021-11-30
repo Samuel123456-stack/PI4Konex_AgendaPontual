@@ -30,11 +30,11 @@ public class Usuario{
     private String confirmaEmail;
 
     @Column(nullable = false)
-    @Length(min=6)
+    @Length(min=6,max=12)
     private String senha;
 
     @Column(name="senhaconfirma",nullable = true)
-    @Length(min=6)
+    @Length(min=6,max=12)
     private String confirmaSenha;
 
     @Column(nullable = true)

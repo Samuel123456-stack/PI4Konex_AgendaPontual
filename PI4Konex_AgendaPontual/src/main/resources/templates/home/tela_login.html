@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
     <meta charset="UTF-8" />
@@ -33,15 +33,15 @@
                 <div class="form-content">
                     <h1>Minha conta</h1>
 
-                    <form action="" method="">
+                    <form th:action="@{/log}" method="POST">
                         <div class="input-field">
                             <p>E-MAIL</p>
-                            <input type="text" name="input-text" placeholder="Entre com seu email" />
+                            <input type="text" name="email" placeholder="Entre com seu email" />
                         </div>
 
                         <div class="input-field">
                             <p>SENHA</p>
-                            <input type="password" name="input-text" placeholder="*************" />
+                            <input type="password" name="senha" placeholder="*************" />
                         </div>
 
                         <div class="check-box-container">
@@ -51,9 +51,12 @@
                             </span>
                             <span>Esqueci minha senha</span>
                         </div>
-
+		
+						<div th:if="${erro == true}">
+							<p th:text="${erro}">.</p >
+						</div>
                         <footer class="subscribe-footer">
-                            <button type="button">ACESSAR</button>
+                            <button type="submit">ACESSAR</button>
                         </footer>
                     </form>
                 </div>

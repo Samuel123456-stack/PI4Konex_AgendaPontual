@@ -123,11 +123,10 @@
                 <table id="tbNot">
                     <thead>
                         <tr>
-                        <th style="width: 221px;">Nome</th>
-                        <th>Data/Horário</th>
+                        <th style="width: 201px;">Nome</th>
+                        <th style="width: 195px;">Data/Horário</th>
                         <th style="width: 195px; text-align: left;">For. Pagamento</th>
-                        <th style="width: 135px; text-align: left;">Pagamento</th>
-                        <th style="width: 103px; text-align: left;">Consulta</th>
+                        <th style="width: 103px; text-align: left;">ID Consulta</th>
                         <th style="width: 94px; text-align: left;">Valor</th>
                         </tr>
                     </thead>
@@ -137,7 +136,7 @@
                                 <p th:text="*{dadosPag.nome}"></p>
                             </td>
                             <td id="dataTb" th:text="*{dadosPag.dtpgto}"></td>
-                            <td th:text="*{dadosPag.formapagamento}" id="pagTb"></td>
+                            <td style="width: 215px;" th:text="*{dadosPag.formapagamento}" id="pagTb"></td>
                             <td id="consulTb" th:text="*{dadosPag.idcons}"></td>
                             <td id="valTb"> <div class="divVal" th:text="*{dadosPag.valor}"></div></td>
                         </tr>          

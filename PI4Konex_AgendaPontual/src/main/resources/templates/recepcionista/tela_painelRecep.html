@@ -126,31 +126,31 @@
                     </div>
 
                     <div class="table-patience-list">
-                        <table>
+                        <table class="tblista">
                             <thead>
                                 <tr>
-                                    <td>PACIENTE</td>
-                                    <td>MEDICO</td>
-                                    <td>DATA</td>
-                                    <td>HORARIO</td>
-                                    <td>SALA</td>
-                                    <td>UPD</td>
+                                    <td style="width:157px">PACIENTE</td >
+                                    <td style="width:143px">MEDICO</td >
+                                    <td style="width:123px">DATA</td >
+                                    <td style="width:155px">HORARIO</td >
+                                    <td style="width:122px">SALA</td >
+                                    <td style="width:115px">UPD</td >
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr th:each="listaPainel:${listagemPainel}">
-                                    <td th:text="*{listaPainel.paciente.nomePaci}"></td>
-                                    <td th:text="*{listaPainel.medico.nomeMed}"></td>
-                                    <td th:text="*{listaPainel.dtAgendada}"></td>
-                                    <td th:text="*{listaPainel.hora}"></td>
-                                    <td th:text="*{listaPainel.medico.sala}"></td>
-                                    <td>
+                                    <td style="width:157px" th:text="*{listaPainel.paciente.nomePaci}"></td>
+                                    <td style="width:143px" th:text="*{listaPainel.medico.nomeMed}"></td>
+                                    <td style="width:123px" th:text="*{listaPainel.dtAgendada}"></td>
+                                    <td style="width:155px" th:text="*{listaPainel.hora}"></td>
+                                    <td style="width:122px" th:text="*{listaPainel.medico.sala}"></td>
+                                    <td  style="width:115px">
                                         <img src="/image/icon-confirm.png" alt="icon" />
-                                    </td>
+                                    </td >
                                 </tr>
-                            </tbody>
-                        </table>
+                            </tbody >
+                        </table >
                     </div>
                 </div>
             </div>

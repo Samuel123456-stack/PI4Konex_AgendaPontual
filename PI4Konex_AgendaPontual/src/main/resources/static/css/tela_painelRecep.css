@@ -200,3 +200,40 @@ background: #546582;
 #container-landing .table-patience-list table::-webkit-scrollbar-thumb:hover {
     background: #546582; 
 }
+
+
+
+.tblista thead, .tblista tbody{
+	width: 931px;
+	display: inline-block;
+}
+.tblista tbody{
+	width: 850px;
+	height:368px;
+	overflow: auto;
+	display: inline-block;
+}
+
+
+/*scroll tabela*/
+.tblista tbody::-webkit-scrollbar {
+    width: 2px;
+}
+
+/* Track */
+.tblista tbody::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #E8E8E8; 
+    border-radius: 10px;
+}
+
+/* Handle */
+.tblista tbody::-webkit-scrollbar-thumb {
+    background: #546582; 
+}
+
+/* Handle on hover */
+.tblista tbody::-webkit-scrollbar-thumb:hover {
+    background: #546582; 
+}
+/*fim scroll*/
+

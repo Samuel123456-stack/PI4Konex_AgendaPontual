@@ -73,6 +73,12 @@ public interface ConsultaRepositorio extends JpaRepository<Consulta,Integer> {
    		+ "inner join paciente p on c.fk_paci_cons = p.idpaci "
    		+ "where c.concluida = 0 and p.idpaci = ?1 order by dtagendada asc, hora asc")
    List<Consulta> consultasMarcadas(Integer paciente);
+
+   @Query(nativeQuery = true, value="select * from consulta where fk_med_cons=?1 and concluida = 0")
+   List<Consulta> consultaConsole(Integer idMed);
+
+   @Query(nativeQuery=true, value="select * from consulta where fk_paci_cons = ?1")
+   List<Consulta> consoleDetalhado(Integer idPaci);
    
    @Modifying
    @Query(nativeQuery = true, value="update consulta set naocompareceu = 1 where idcons=?1")

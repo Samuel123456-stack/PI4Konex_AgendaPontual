@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.projeto.Entidades.Ajuda;
+import com.projeto.Entidades.Consulta;
 import com.projeto.Entidades.Especialidade;
 import com.projeto.Entidades.Feedback;
 import com.projeto.Entidades.Medico;
@@ -120,7 +121,7 @@ public class MedicoIndController {
     @RequestMapping("/salvaProj")
     public String salvaProj(@ModelAttribute("medInd") Medico medInd,
     @ModelAttribute("proj")ProjecaoSalarial projSal, HttpServletRequest request, Model model) throws ParseException {
-        medInd.setIdMed(4);
+        medInd.setIdMed(2);
         projSal.setMedico(medInd);
         // Atributos web
         String time1 = projSal.getHoraInicio().toString();
@@ -210,7 +211,7 @@ public class MedicoIndController {
 
     @RequestMapping("/painelMedInd")
     public String painelMedInd(Model model){
-        Integer id = 4;
+        Integer id = 2;
         Medico pontos = medRepo.infoMed(id);
         List<ProjecaoSalarial> listaProj = projRepo.listaProj(id);
         model.addAttribute("pontos", pontos);
@@ -220,9 +221,21 @@ public class MedicoIndController {
     }
 
     @RequestMapping("/consoleMed")
-    public String consoleMed(){
+    public String consoleMed(Model model){
 
+        model.addAttribute("listaPaci", consRepo.consultaConsole(2));
         return ("/medInd/console");
+    }
+
+    @RequestMapping("/visualizaPaci/{idPaci}")
+    public String visualizaPaci(@PathVariable Integer idPaci, Model model){
+        Optional<Consulta> opCons = this.consRepo.findById(idPaci);
+        if(opCons.isPresent()){
+            model.addAttribute("dadosPaci", consRepo.consoleDetalhado(idPaci));
+        }
+        model.addAttribute("listaPaci", consRepo.consultaConsole(2));
+
+        return "/medInd/console";
     }
 
     @RequestMapping("/consultarAgenda")

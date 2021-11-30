@@ -33,11 +33,6 @@ public class HomeController {
 		return ("/home/home");
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return ("/home/tela_login");
-	}
-	
 	@GetMapping("/teste")
 	public String teste(Model model) {
 		model.addAttribute("paciente", paciServ.pesquisaPacientePorUsuarioId(9));	

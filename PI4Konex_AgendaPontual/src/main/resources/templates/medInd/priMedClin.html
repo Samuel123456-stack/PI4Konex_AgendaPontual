@@ -82,7 +82,7 @@
                         </select>
                     </div>
                     <div class="quaisDias">
-                        <p>Quais dias da semana você trabalha</p>
+                        <p>Selecione um por vez</p>
                         <input type="checkbox" class="option-radio" name="seg" value="2" />
                         <label for="segunda">Segunda</label>
                         <input type="checkbox" class="option-radio" name="ter" value="3" style="margin-left: 10px;"/>
@@ -155,13 +155,8 @@
                     <div class="float" >
 		                   <table class="tbSeg">	               
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                            <tr th:each="listaAgenTer:${agendaMedTer}">
-		                                <td th:text="*{listaAgenTer.ter}"></td>
+		                            <tr th:each="listaAgenSeg:${agendaMedSeg}">
+		                                <td th:text="*{listaAgenSeg.seg}"></td>
 		                            </tr>
 		                        </tbody>
 		                    </table>
@@ -169,11 +164,6 @@
                     <div class="float" >
 		                    <table class="tbTer">
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
 		                            <tr th:each="listaAgenTer:${agendaMedTer}">
 		                                <td th:text="*{listaAgenTer.ter}"></td>
 		                            </tr>
@@ -185,11 +175,6 @@
 	                    <div class="float" >
 		                    <table class="tbQua">
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
 		                            <tr th:each="listaAgenQua:${agendaMedQua}">
 		                                <td th:text="*{listaAgenQua.qua}"></td>
 		                            </tr>
@@ -200,11 +185,6 @@
 	                    <div class="float" >
 		                    <table class="tbQui">
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
 		                            <tr th:each="listaAgenQui:${agendaMedQui}">
 		                                <td th:text="*{listaAgenQui.qui}"></td>
 		                            </tr>
@@ -214,11 +194,6 @@
 	                    <div class="float" >
 		                    <table class="tbSex">
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
 		                            <tr th:each="listaAgenSex:${agendaMedSex}">
 		                                <td th:text="*{listaAgenSex.sex}"></td>
 		                            </tr>
@@ -228,46 +203,6 @@
 	                    <div class="float" >
 		                    <table class="tbSab">
 		                        <tbody>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
-		                        	<tr>
-		                            	<td>
-		                                    -----
-		                            	</td>
-		                        	</tr>
 		                            <tr th:each="listaAgenSab:${agendaMedSab}">
 		                                <td th:text="*{listaAgenSab.sab}"></td>
 		                            </tr>

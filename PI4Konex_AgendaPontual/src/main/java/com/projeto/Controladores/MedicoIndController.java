@@ -192,11 +192,11 @@ public class MedicoIndController {
         int durationMin = (minBase / qtdPaciDia) - 5;
         // qtdPaciDia = Math.round(durationMin);
         // Consulta 190. sendo que era 119
-        // int totalCons = Math.round(qtdPaciMes);
+        int totalCons = Math.round(qtdPaciMes);
         // setar os valores
         projSal.setTempoDuracao(durationMin);
         projSal.setQtdPaciDias(qtdPaciDia);
-        projSal.setTotalConsulta(qtdPaciMes);
+        projSal.setTotalConsulta(totalCons);
         
         //Logica do Calendario e Agenda do Médico
         int aux = durationMin;
@@ -204,21 +204,19 @@ public class MedicoIndController {
             Agenda agen = new Agenda();
             Horario hora = new Horario();
             DiasSemana diaSemana = new DiasSemana();
-        	System.out.println(aux);
-        	System.out.println("DURACAO:"+durationMin);
         	aux+=durationMin;
         	date1Hora = date1Hora.plusMinutes(durationMin);
-            System.out.println("segunda:"+seg);
-            System.out.println("terca:"+ ter);
-            if(seg!=null && ter!=null){
+            boolean verifica = false;
+            if(seg!=null){
                 hora.setHorario(date1Hora);
                 horaRepo.save(hora);
                 diaSemana.setIdDia(2);
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
              if(ter!=null){
                 hora.setHorario(date1Hora);
@@ -227,8 +225,9 @@ public class MedicoIndController {
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
             if(qua!=null){
                 hora.setHorario(date1Hora);
@@ -237,8 +236,9 @@ public class MedicoIndController {
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
             if(qui!=null){
                 hora.setHorario(date1Hora);
@@ -247,8 +247,9 @@ public class MedicoIndController {
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
             if(sex!=null){
                 hora.setHorario(date1Hora);
@@ -257,8 +258,9 @@ public class MedicoIndController {
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
             if(sab!=null){
                 hora.setHorario(date1Hora);
@@ -267,8 +269,9 @@ public class MedicoIndController {
                 agen.setDia(diaSemana);
                 agen.setHora(hora);
                 agen.setMedico(medInd);
-                System.out.println(date1Hora);
                 agenRepo.save(agen);
+            }else{
+                verifica = true;
             }
 
             
@@ -321,6 +324,10 @@ public class MedicoIndController {
     @RequestMapping("/consoleMed")
     public String consoleMed(){
         return ("/medInd/console");
+    }
+    @RequestMapping("/consoleMed2")
+    public String consoleMed2(){
+        return ("/medInd/consoleDuplicada");
     }
 
     @RequestMapping("/visualizaPaci/{idPaci}")

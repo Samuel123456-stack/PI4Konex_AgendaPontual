@@ -48,7 +48,7 @@ public class ProjecaoSalarial {
 	private Integer tempoDuracao;
 
 	@Column(name="totalcons",nullable = true)
-	private Float totalConsulta;
+	private Integer totalConsulta;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_agen_proj")
@@ -64,7 +64,7 @@ public class ProjecaoSalarial {
 
 	public ProjecaoSalarial(Integer idProj, Float valorPaci, Float metaPaci, LocalTime horaInicio, LocalTime horaSaida,
 			LocalTime horaIntervalo, boolean tempoSeguranca, Integer qtdDias, Integer qtdPaciDias, Integer tempoDuracao,
-			Float totalConsulta, Agenda agenda, Medico medico) {
+			Integer totalConsulta, Agenda agenda, Medico medico) {
 		this.idProj = idProj;
 		this.valorPaci = valorPaci;
 		this.metaPaci = metaPaci;
@@ -160,11 +160,11 @@ public class ProjecaoSalarial {
 		this.tempoDuracao = tempoDuracao;
 	}
 
-	public Float getTotalConsulta() {
+	public Integer getTotalConsulta() {
 		return totalConsulta;
 	}
 
-	public void setTotalConsulta(Float totalConsulta) {
+	public void setTotalConsulta(Integer totalConsulta) {
 		this.totalConsulta = totalConsulta;
 	}
 

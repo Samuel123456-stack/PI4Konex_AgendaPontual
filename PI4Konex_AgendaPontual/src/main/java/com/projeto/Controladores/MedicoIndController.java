@@ -310,11 +310,16 @@ public class MedicoIndController {
 
         return "/medInd/painelPinMedInd";
     }
-
+/*
     @RequestMapping("/consoleMed")
     public String consoleMed(Model model){
 
         model.addAttribute("listaPaci", consRepo.consultaConsole(2));
+        return ("/medInd/console");
+    }*/
+    
+    @RequestMapping("/consoleMed")
+    public String consoleMed(){
         return ("/medInd/console");
     }
 

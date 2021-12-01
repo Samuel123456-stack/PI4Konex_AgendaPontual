@@ -70,6 +70,12 @@
     font-size: 14px;
     border: none;
 }
+.interloTempo input[type="time"]{
+    width: 100px;
+    height: 27px;
+    font-size: 14px;
+    border: none;
+}
 .lucro input[type="text"]::placeholder, .meta input[type="text"]::placeholder{
     color: #858FA1;
 }

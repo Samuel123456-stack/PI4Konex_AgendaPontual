@@ -1,5 +1,5 @@
 var sec=60
-var min=10
+var min=30
 var iniciado = false;
 
 var interval
@@ -10,11 +10,14 @@ function start(){
     }
     iniciado = true;
     watch()
-    interval= setInterval(watch,1000)
+    interval= setInterval(watch,10)
 }
 
-function pause(){
-    clearInterval(interval)
+function addTime(){
+	if(min >= 5){
+		return;
+	}
+    min+=5;
 
 }
 
